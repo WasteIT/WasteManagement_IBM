@@ -1,0 +1,49 @@
+## Skeleton taken from Chirp project
+## CORRECT ALL CHIRP REFERENCES TO CORRECT REFERENCES
+name: Release
+
+on:
+  push:
+    tags:
+    - "v*.*.*"
+    
+jobs:
+  tests: 
+    uses: ./.github/workflows/build_and_test.yml
+  
+  release:
+    needs: ["tests"]
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_ROOT: /home/runner/.dotnet
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.0.*
+      - name: Builds release
+        shell: bash
+        run: |
+          tag=$(git describe --tags --abbrev=0)
+          cd [INSERT FILEPATH TO MAIN FOLDER FROM ROOT] [EXAMPLE "src/Chirp.Razor"]
+          for release in linux-x64 osx-x64 win-x64
+          do
+            echo 
+          release_os=Chirp-$tag-$release
+          dotnet publish Chirp.Razor.csproj --framework net7.0 --runtime $release -c Release -o "$release_os" /p:PublishTrimmed=true /p:PublishSingleFile=true
+          7z a -tzip "${{ github.workspace }}/Chirp.Razor/${release_os}.zip" "./${release_os}/*"
+          rm -r "${release_os}"
+          done
+      - name: Set Tag
+        run: echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v1
+        with:
+          files:  |
+           ${{ github.workspace }}/Chirp.Razor/Chirp-*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

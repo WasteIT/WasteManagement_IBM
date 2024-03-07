@@ -1,0 +1,24 @@
+## Skeleton taken from Chirp project
+name: build_and_test
+on: 
+  workflow_call: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.*
+    - name: Restore dependencies
+      run: dotnet restore [INSERT FILEPATH TO MAIN FOLDER FROM ROOT] [EXAMPLE "src/Chirp.Razor"]
+    - name: Build
+      run: dotnet build [INSERT FILEPATH TO MAIN FOLDER FROM ROOT] [EXAMPLE "src/Chirp.Razor"] --no-restore
+    - name: Test
+      run: dotnet test [INSERT FILEPATH TO MAIN FOLDER FROM ROOT] [EXAMPLE "test/test.Chirp"] --no-build --verbosity normal
