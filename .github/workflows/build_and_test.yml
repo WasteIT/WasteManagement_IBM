@@ -11,14 +11,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 7.0.*
     - name: Restore dependencies
-      run: dotnet restore [INSERT FILEPATH TO MAIN FOLDER FROM ROOT] [EXAMPLE "src/Chirp.Razor"]
+      run: dotnet restore Function
     - name: Build
-      run: dotnet build [INSERT FILEPATH TO MAIN FOLDER FROM ROOT] [EXAMPLE "src/Chirp.Razor"] --no-restore
+      run: dotnet build  Function --no-restore
     - name: Test
-      run: dotnet test [INSERT FILEPATH TO MAIN FOLDER FROM ROOT] [EXAMPLE "test/test.Chirp"] --no-build --verbosity normal
+      run: dotnet test Tests/Function.Tests --no-build --verbosity normal
