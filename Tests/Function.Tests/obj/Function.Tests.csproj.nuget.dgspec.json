@@ -1,0 +1,140 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/Function.Tests.csproj": {}
+  },
+  "projects": {
+    "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/Function.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/Function.csproj",
+        "projectName": "Function",
+        "projectPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/Function.csproj",
+        "packagesPath": "/Users/edwardrostomian/.nuget/packages/",
+        "outputPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/edwardrostomian/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/Function.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/Function.Tests.csproj",
+        "projectName": "Function.Tests",
+        "projectPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/Function.Tests.csproj",
+        "packagesPath": "/Users/edwardrostomian/.nuget/packages/",
+        "outputPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/edwardrostomian/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/Function.csproj": {
+                "projectPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/Function.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.6.0, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

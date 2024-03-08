@@ -1,0 +1,7 @@
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/obj/Debug/net7.0/WasteManagement_IBM.GeneratedMSBuildEditorConfig.editorconfig
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/obj/Debug/net7.0/WasteManagement_IBM.AssemblyInfoInputs.cache
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/obj/Debug/net7.0/WasteManagement_IBM.AssemblyInfo.cs
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/obj/Debug/net7.0/WasteManagement_IBM.csproj.CoreCompileInputs.cache
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/obj/Debug/net7.0/WasteManagement_IBM.MvcApplicationPartsAssemblyInfo.cache
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/obj/Debug/net7.0/WasteManagement_IBM.RazorAssemblyInfo.cache
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/obj/Debug/net7.0/WasteManagement_IBM.RazorAssemblyInfo.cs

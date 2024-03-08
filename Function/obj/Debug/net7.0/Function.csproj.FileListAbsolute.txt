@@ -1,0 +1,11 @@
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/bin/Debug/net7.0/Function.deps.json
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/bin/Debug/net7.0/Function.dll
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/bin/Debug/net7.0/Function.pdb
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/obj/Debug/net7.0/Function.GeneratedMSBuildEditorConfig.editorconfig
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/obj/Debug/net7.0/Function.AssemblyInfoInputs.cache
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/obj/Debug/net7.0/Function.AssemblyInfo.cs
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/obj/Debug/net7.0/Function.csproj.CoreCompileInputs.cache
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/obj/Debug/net7.0/Function.dll
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/obj/Debug/net7.0/refint/Function.dll
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/obj/Debug/net7.0/Function.pdb
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/Function/obj/Debug/net7.0/ref/Function.dll
