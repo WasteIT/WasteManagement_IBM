@@ -18,23 +18,23 @@ jobs:
       DOTNET_ROOT: /home/runner/.dotnet
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: Setup dotnet
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 7.0.*
       - name: Builds release
         shell: bash
         run: |
           tag=$(git describe --tags --abbrev=0)
-          cd [INSERT FILEPATH TO MAIN FOLDER FROM ROOT] [EXAMPLE "src/Chirp.Razor"]
+          cd Function
           for release in linux-x64 osx-x64 win-x64
           do
             echo 
-          release_os=Chirp-$tag-$release
-          dotnet publish Chirp.Razor.csproj --framework net7.0 --runtime $release -c Release -o "$release_os" /p:PublishTrimmed=true /p:PublishSingleFile=true
-          7z a -tzip "${{ github.workspace }}/Chirp.Razor/${release_os}.zip" "./${release_os}/*"
+          release_os=Function-$tag-$release
+          dotnet publish Function.csproj --framework net7.0 --runtime $release -c Release -o "$release_os" /p:PublishTrimmed=true /p:PublishSingleFile=true
+          7z a -tzip "${{ github.workspace }}/Function/${release_os}.zip" "./${release_os}/*"
           rm -r "${release_os}"
           done
       - name: Set Tag
@@ -44,6 +44,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files:  |
-           ${{ github.workspace }}/Chirp.Razor/Chirp-*.zip
+           ${{ github.workspace }}/Function/Function*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
