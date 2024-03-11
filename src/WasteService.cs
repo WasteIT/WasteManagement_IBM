@@ -25,7 +25,7 @@ public class WasteService
         {
             // Can't use async yet because program terminates
             //SetResponse response = await client.SetAsync("test/", set);
-            client.Set("test/", wasteMeasure);
+            client.Set("sensor/" + wasteMeasure.ID, wasteMeasure);
         }   
         catch (Exception e)
         {

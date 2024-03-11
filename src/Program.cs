@@ -2,6 +2,7 @@ using FireSharp;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using System.Text.Json;
 
 
 
@@ -22,17 +23,20 @@ IFirebaseConfig config = new FirebaseConfig
 IFirebaseClient client = new FireSharp.FirebaseClient(config);
 
 var wasteService = new WasteService(client);
-if (wasteService != null) Console.WriteLine("yay");
+if (wasteService == null) Console.WriteLine("An error occured when connecting to the database");
 
-app.MapGet("/", () =>
+
+app.MapPost("/test", async (HttpContext context) =>
 {
-    var currentWasteUpdate = new WasteMeasure
-        {
-            ID = 1,
-            Timestamp = "2",
-            fill_level = 3
-        };
-    wasteService.SetData(currentWasteUpdate);
+    using var reader = new StreamReader(context.Request.Body);
+    var json = await reader.ReadToEndAsync();
+    var data = JsonSerializer.Deserialize<WasteMeasure>(json);
+    wasteService.SetData(new WasteMeasure
+    {
+        ID = data.ID,
+        Timestamp = data.Timestamp,
+        fill_level = data.fill_level
+    });
 });
 
 // Configure the HTTP request pipeline.
