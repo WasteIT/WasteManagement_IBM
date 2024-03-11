@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj": {}
+    "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj": {}
   },
   "projects": {
-    "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj": {
+    "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
+        "projectUniqueName": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
         "projectName": "WasteManagement_IBM",
-        "projectPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
-        "packagesPath": "/Users/edwardrostomian/.nuget/packages/",
-        "outputPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/obj/",
+        "projectPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
+        "packagesPath": "/Users/nusers/.nuget/packages/",
+        "outputPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/edwardrostomian/.nuget/NuGet/NuGet.Config"
+          "/Users/nusers/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -41,6 +41,10 @@
             "FireSharp": {
               "target": "Package",
               "version": "[2.0.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
@@ -54,6 +58,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -62,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }

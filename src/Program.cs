@@ -3,26 +3,36 @@ using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-app.MapGet("/", () => "Hello World");
+
 
 IFirebaseConfig config = new FirebaseConfig
 {
     AuthSecret = "AIzaSyBrUXDmmZzLtLWYNdqwh4jhFbQvR51SP4A",
     BasePath = "https://wasteit-193de-default-rtdb.europe-west1.firebasedatabase.app/"
 };
-IFirebaseClient client = new FireSharp.FirebaseClient(config);
-var wasteService = new WasteService(client);
 
-app.MapPost("/sensor", async (WasteMeasure wasteMeasure) =>
+IFirebaseClient client = new FireSharp.FirebaseClient(config);
+
+var wasteService = new WasteService(client);
+if (wasteService != null) Console.WriteLine("yay");
+
+app.MapGet("/", () =>
 {
-    await wasteService.SetData(1, "2", 3.0f);
-    return wasteMeasure;
+    var currentWasteUpdate = new WasteMeasure
+        {
+            ID = 1,
+            Timestamp = "2",
+            fill_level = 3
+        };
+    wasteService.SetData(currentWasteUpdate);
 });
 
 // Configure the HTTP request pipeline.
@@ -43,3 +53,8 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+
+
+void configureWasteData() {
+
+}

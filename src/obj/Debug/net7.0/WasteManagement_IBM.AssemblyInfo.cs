@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WasteManagement_IBM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7ef3d8491148bb42f058d5687db981f657c5999")]
 [assembly: System.Reflection.AssemblyProductAttribute("WasteManagement_IBM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WasteManagement_IBM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

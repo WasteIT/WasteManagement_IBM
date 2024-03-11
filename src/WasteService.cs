@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using FireSharp;
 using FireSharp.Config;
 using FireSharp.Interfaces;
@@ -12,20 +13,23 @@ using Newtonsoft.Json;
 public class WasteService
 {
     private IFirebaseClient client;
+    //connection conn = new connection();
     public WasteService(IFirebaseClient client)
     {
         this.client = client;
     }
 
-    public async Task SetData(int Id, string Timestamp, float fill_level)
-    {
-        var data = new WasteMeasure
+    public async Task SetData(WasteMeasure wasteMeasure)
+    { 
+        try
         {
-            ID = Id,
-            Timestamp = Timestamp,
-            fill_level = fill_level
-        };
-        SetResponse response = await client.SetAsync("sensor/" + Id, data);
-        WasteMeasure result = response.ResultAs<WasteMeasure>();
+            // Can't use async yet because program terminates
+            //SetResponse response = await client.SetAsync("test/", set);
+            client.Set("test/", wasteMeasure);
+        }   
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }
