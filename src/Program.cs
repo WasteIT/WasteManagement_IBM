@@ -43,7 +43,7 @@ app.MapPost("/test", async (HttpContext context) =>
         fill_level = data.fill_level
     });
 });
-app.MapGet("/", () => "Hello World!")
+app.MapGet("/", () => "Hello World!");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
