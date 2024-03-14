@@ -19,6 +19,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore Function
     - name: Build
-      run: dotnet build  Function --no-restore
+      run: dotnet build /src Function --no-restore
     - name: Test
       run: dotnet test Tests/Function.Tests --no-build --verbosity normal
