@@ -31,6 +31,11 @@ app.MapPost("/test", async (HttpContext context) =>
     using var reader = new StreamReader(context.Request.Body);
     var json = await reader.ReadToEndAsync();
     var data = JsonSerializer.Deserialize<WasteMeasure>(json);
+    /* Idea for how to 'sanitize' input
+     if (test(data)) {
+        var wm = transform(data);
+        wasteService.SetData(wm);
+    }*/
     wasteService.SetData(new WasteMeasure
     {
         ID = data.ID,
