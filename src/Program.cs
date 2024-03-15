@@ -36,11 +36,12 @@ app.MapPost("/test", async (HttpContext context) =>
         var wm = transform(data);
         wasteService.SetData(wm);
     }*/
+    float fill = float.Parse(data.fill_level, CultureInfo.InvariantCulture);
     wasteService.SetData(new WasteMeasure
     {
         ID = data.ID,
         Timestamp = data.Timestamp,
-        fill_level = data.fill_level
+        fill_level = fill
     });
 });
 app.MapGet("/", () => "Hello World!");
