@@ -1,0 +1,61 @@
+{
+  "version": 2,
+  "dgSpecHash": "JwpE8Tm25nPKa1x2zLgG9fd0vwhp9W5MUmnVqV8geS54AmWj6HU3eurlqt85Q/zVOSlb+GWxE3DMvR3MLX9Xsg==",
+  "success": true,
+  "projectFilePath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
+  "expectedPackageFiles": [
+    "/Users/edwardrostomian/.nuget/packages/firesharp/2.0.4/firesharp.2.0.4.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/microsoft.aspnetcore.spaservices.extensions/5.0.0/microsoft.aspnetcore.spaservices.extensions.5.0.0.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/microsoft.bcl/1.1.9/microsoft.bcl.1.1.9.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/microsoft.bcl.async/1.0.168/microsoft.bcl.async.1.0.168.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/microsoft.bcl.build/1.0.14/microsoft.bcl.build.1.0.14.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/microsoft.extensions.fileproviders.abstractions/5.0.0/microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/microsoft.extensions.fileproviders.physical/5.0.0/microsoft.extensions.fileproviders.physical.5.0.0.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/microsoft.extensions.filesystemglobbing/5.0.0/microsoft.extensions.filesystemglobbing.5.0.0.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/microsoft.extensions.primitives/5.0.0/microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/microsoft.net.http/2.2.28/microsoft.net.http.2.2.28.nupkg.sha512",
+    "/Users/edwardrostomian/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'FireSharp 2.0.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "FireSharp",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Bcl 1.1.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Bcl",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Bcl.Async 1.0.168' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Bcl.Async",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Net.Http 2.2.28' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Net.Http",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
+}
