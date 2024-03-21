@@ -1,10 +1,14 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.IO;
+using System.Text.Json;
 using FireSharp;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
-using System.Text.Json;
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +16,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-
 
 IFirebaseConfig config = new FirebaseConfig
 {
@@ -23,19 +26,17 @@ IFirebaseConfig config = new FirebaseConfig
 IFirebaseClient client = new FireSharp.FirebaseClient(config);
 
 var wasteService = new WasteService(client);
-if (wasteService == null) Console.WriteLine("An error occured when connecting to the database");
+if (wasteService == null) Console.WriteLine("An error occurred when connecting to the database");
 
-
+// Configure endpoints
 app.MapPost("/test", async (HttpContext context) =>
 {
     using var reader = new StreamReader(context.Request.Body);
     var json = await reader.ReadToEndAsync();
     var data = JsonSerializer.Deserialize<WasteMeasure>(json);
-    /* Idea for how to 'sanitize' input
-     if (test(data)) {
-        var wm = transform(data);
-        wasteService.SetData(wm);
-    }*/
+
+    // Perform any data processing or validation here
+
     wasteService.SetData(new WasteMeasure
     {
         ID = data.ID,
@@ -43,28 +44,36 @@ app.MapPost("/test", async (HttpContext context) =>
         fill_level = data.fill_level
     });
 });
+
 app.MapGet("/", () => "Hello World!");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
+app.Map("/react", appBuilder =>
+{
+    appBuilder.UseStaticFiles();
+    appBuilder.UseRouting();
+    appBuilder.UseAuthorization();
+    appBuilder.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
+    appBuilder.UseSpa(spa =>
+    {
+        spa.Options.SourcePath = "my-app";
+        if (app.Environment.IsDevelopment())
+        {
+            spa.UseProxyToSpaDevelopmentServer("http://localhost:3000"); // Assuming your React development server runs on port 3000
+        }
+    });
+});
 
 app.Run();
-
-
-void configureWasteData() {
-
-}
