@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:44426",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "/Users/casperpilgaard/Documents/GitHub/WasteManagement_IBM/ClientApp/",
+"MaxTimeoutInSeconds": "120"
+}
+}
