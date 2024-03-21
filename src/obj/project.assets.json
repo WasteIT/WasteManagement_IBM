@@ -395,19 +395,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/nusers/.nuget/packages/": {}
+    "/Users/casperpilgaard/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
+      "projectUniqueName": "/Users/casperpilgaard/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
       "projectName": "WasteManagement_IBM",
-      "projectPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
-      "packagesPath": "/Users/nusers/.nuget/packages/",
-      "outputPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/obj/",
+      "projectPath": "/Users/casperpilgaard/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
+      "packagesPath": "/Users/casperpilgaard/.nuget/packages/",
+      "outputPath": "/Users/casperpilgaard/Documents/GitHub/WasteManagement_IBM/src/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/nusers/.nuget/NuGet/NuGet.Config"
+        "/Users/casperpilgaard/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -454,15 +454,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.14, 7.0.14]"
+            "version": "[7.0.15, 7.0.15]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.osx-arm64",
-            "version": "[7.0.14, 7.0.14]"
+            "version": "[7.0.15, 7.0.15]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.14, 7.0.14]"
+            "version": "[7.0.15, 7.0.15]"
           }
         ],
         "frameworkReferences": {
@@ -473,7 +473,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
       }
     }
   },
