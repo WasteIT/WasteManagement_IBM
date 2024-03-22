@@ -63,4 +63,10 @@
 /Users/nusers/Documents/GitHub/WasteManagement_IBM/src/obj/Debug/net7.0/WasteManagement_IBM.csproj.CopyComplete
 /Users/nusers/Documents/GitHub/WasteManagement_IBM/src/obj/Debug/net7.0/WasteManagement_IBM.genruntimeconfig.cache
 /Users/nusers/Documents/GitHub/WasteManagement_IBM/src/obj/Debug/net7.0/ref/WasteManagement_IBM.dll
-/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/bin/Debug/net7.0/Microsoft.AspNetCore.SpaServices.Extensions.dll
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/bin/Debug/net7.0/spa.proxy.json
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/bin/Debug/net7.0/appsettings.Development.json
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/bin/Debug/net7.0/appsettings.json
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/bin/Debug/net7.0/Microsoft.AspNetCore.SpaProxy.dll
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/obj/Debug/net7.0/spa.proxy.json
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/obj/Debug/net7.0/WasteManagement_IBM.RazorAssemblyInfo.cache
+/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/obj/Debug/net7.0/WasteManagement_IBM.RazorAssemblyInfo.cs
