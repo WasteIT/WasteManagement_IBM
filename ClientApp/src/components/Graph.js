@@ -19,7 +19,7 @@ export default class Graph extends Component {
         datasets: [ //Vi skal bruge det rigtige dataset 
           {
             label: 'Bin 1',
-            data: [20, 30, 40, 50, 60, 70, 80], //Bin type 1
+            data: [20, 30, 40, 50, 60, 70, 80,90,100,110], //Bin type 1
             borderColor: 'rgba(255, 99, 132, 1)',
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
           },

@@ -1,42 +1,34 @@
 import React, { Component } from 'react';
 import Graph from './Graph';
+import Form from 'react-bootstrap/Form';
 
 export default class Layout extends Component {
   static displayName = Layout.name;
 
   render() {
     return (
-      <div style={{ display: 'flex', height: '100vh' }}>
-        {/* Left section */}
-        <div style={{ flex: 1, backgroundColor: '#f0f0f0' }}>
-          <ul>
-            <li>Menu item 1</li>
-            <li>Menu item 2</li>
-            <li>Menu item 3</li>
-            <li>Menu item 4</li>
-          </ul>
-        </div>
-        {/* Middle section */}
-        <div style={{ flex: 2, backgroundColor: '#ffffff', textAlign: 'center' }}>
-          <h3>Filter options</h3>
-          <div style={{ marginBottom: '20px' }}>
-            <button style={{ marginRight: '10px' }}>Past week</button>
-            <button style={{ marginRight: '10px' }}>Past month</button>
-            <button>Custom filter</button>
-            <Graph />
+      <main>
+        <div className="information_page">
+          <Form className="fraction_filter">
+            <Form.Check type="checkbox" id="fraction_1" label="Rest" checked/>
+            <Form.Check type="checkbox" id="fraction_1" label="Plastic" checked/>
+            <Form.Check type="checkbox" id="fraction_1" label="Cardboard" checked/>
+            <Form.Check type="checkbox" id="fraction_1" label="Other"/>
+            <Form.Check type="checkbox" id="fraction_1" label="Other"/>
+          </Form>
+          <div className='graph_wrapper_outer'>
+            <div className='filter_options_wrapper'>
+              <h3>Filter options:</h3>
+              <button type='button' className='btn button filter_graph_button'>Past week</button>
+              <button type='button' className='btn button filter_graph_button'>Past month</button>
+              <button type='button' className='btn button filter_graph_button'>Custom filter</button>
+            </div>
+            <div className='graph_wrapper_inner'>
+              <Graph />
+            </div>
           </div>
         </div>
-        {/* Right section */}
-        <div style={{ flex: 1, backgroundColor: '#f5f5F5' }}>
-          {/* make checkboxes one text and a checkbox on each line*/}
-          <input type="checkbox" id="fraction1" />
-          <label htmlFor="fraction1"> fraction one</label><br/>
-          <input type="checkbox" id="fraction2" />
-          <label htmlFor="fraction2"> fraction two</label><br/>
-          <input type="checkbox" id="fraction3" />
-          <label htmlFor="fraction3"> fraction three</label><br/>
-        </div>
-      </div>
+      </main>
     );
   }
 }
