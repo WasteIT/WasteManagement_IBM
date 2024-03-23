@@ -13,11 +13,10 @@ export default class Layout extends Component {
         'Bin 1': true,
         'Bin 2': true,
         'Bin 3': true,
-        'Other1': true,
-        'Other2': true
+        'Bin 4': true,
+        'Bin 5': true
       }
     };
-
   }
 
   toggleSensorVisibility(label) {
@@ -55,6 +54,20 @@ export default class Layout extends Component {
               label="Bin 3"
               checked={this.state.sensorVisibility['Bin 3']}
               onChange={() => this.toggleSensorVisibility('Bin 3')}
+            />
+            <Form.Check
+              type="checkbox"
+              id="Bin 4"
+              label="Bin 4"
+              checked={this.state.sensorVisibility['Bin 4']}
+              onChange={() => this.toggleSensorVisibility('Bin 4')}
+            />
+            <Form.Check
+              type="checkbox"
+              id="Bin 5"
+              label="Bin 5"
+              checked={this.state.sensorVisibility['Bin 5']}
+              onChange={() => this.toggleSensorVisibility('Bin 5')}
             />
           </Form>
           <div className='graph_wrapper_outer'>

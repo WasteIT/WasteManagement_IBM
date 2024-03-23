@@ -14,9 +14,11 @@ export default class Graph extends Component {
   
   async componentDidMount() {
     await this.initializeFirebase();
-    await this.fetchSensorData("/sensor/3", 'Bin 1');
-    await this.fetchSensorData("/sensor/3", 'Bin 2');
-    await this.fetchSensorData("/sensor/3", 'Bin 3');
+    await this.fetchSensorData("/Jægersboggade/sensor/1", 'Bin 1');
+    await this.fetchSensorData("/Jægersboggade/sensor/2", "Bin 2");
+    await this.fetchSensorData("/Jægersboggade/sensor/3", "Bin 3");
+    await this.fetchSensorData("/Jægersboggade/sensor/4", "Bin 4");
+    await this.fetchSensorData("/Jægersboggade/sensor/5", "Bin 5");
     this.buildChart();
   }
   
@@ -52,7 +54,7 @@ export default class Graph extends Component {
           Object.keys(data).forEach((key) => {
             const row = data[key];
             const time = row.Timestamp;
-            const fillLevel = row.fill_level*Math.random();
+            const fillLevel = row.fill_level;
             sensorData.push({ x: time, y: fillLevel });
           });
           this.setState(prevState => ({
