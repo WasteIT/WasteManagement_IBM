@@ -28,7 +28,7 @@ export default class Graph extends Component {
 
   async initializeFirebase() {
     const firebaseConfig = {
-     
+      
     };
   
     const app = initializeApp(firebaseConfig);
@@ -73,7 +73,7 @@ export default class Graph extends Component {
       const datasets = Object.keys(this.state.sensorData).map(label => ({
         label: label,
         data: this.state.sensorData[label],
-        borderColor: this.getRandomColor(),
+        borderColor: this.getRandomColor(label),
         backgroundColor: 'rgba(255, 255, 255, 0)',
         hidden: !this.state.sensorVisibility[label]
       }));
@@ -111,8 +111,18 @@ export default class Graph extends Component {
     this.chart.update();
   }
   
-  getRandomColor() {
-    return `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`;
+  getRandomColor(label) {
+    switch(label) {
+      case 'Bin 1':
+        return `rgba(139, 69, 19, 1)`;
+      case 'Bin 2':
+        return `rgba(50, 50, 50, 1)`;
+      case 'Bin 3':
+        return `rgba(0, 0, 255, 1)`;
+      default:
+        return `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`;
+    }
+   
   }
   
   render() {
