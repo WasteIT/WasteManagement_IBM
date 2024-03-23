@@ -28,7 +28,14 @@ export default class Graph extends Component {
 
   async initializeFirebase() {
     const firebaseConfig = {
-      
+      apiKey: "AIzaSyBrUXDmmZzLtLWYNdqwh4jhFbQvR51SP4A",
+      authDomain: "wasteit-193de.firebaseapp.com",
+      databaseURL: "https://wasteit-193de-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "wasteit-193de",
+      storageBucket: "wasteit-193de.appspot.com",
+      messagingSenderId: "956930927762",
+      appId: "1:956930927762:web:b0d69690f1091005f04a4b",
+      measurementId: "G-DJY9G44K2M"
     };
   
     const app = initializeApp(firebaseConfig);
