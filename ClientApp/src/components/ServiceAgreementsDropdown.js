@@ -3,20 +3,16 @@ import Accordion from 'react-bootstrap/Accordion';
 import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-class ServiceAgrgeementsDropdown extends Component {
+class ServiceAgreementsDropdown extends Component {
     render() {
+        const { name } = this.props;
+
         return (
             <Accordion className="dropdown" defaultActiveKey="1">
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>Jægersborggade 23</Accordion.Header>
+                    <Accordion.Header>{name}</Accordion.Header>
                     <Accordion.Body>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Content for {name}</p>
                         <NavLink tag={Link} className="btn button" to="/graph">Agreements</NavLink>
                     </Accordion.Body>
                 </Accordion.Item>
@@ -25,4 +21,4 @@ class ServiceAgrgeementsDropdown extends Component {
     }
 }
 
-export default ServiceAgrgeementsDropdown;
+export default ServiceAgreementsDropdown;
