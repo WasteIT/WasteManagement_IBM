@@ -13,51 +13,43 @@ const Layout = () => {
   const [graphInstance, setGraphInstance] = useState(null);
 
   useEffect(() => {
-    fetchNumberOfSensors(name + "/sensor");
-    Object.keys(isSensorDataVisible).forEach(element =>  {
-      fetchGraphData(name + "/sensor/" + element, element);
-    });
-    setIsLoading(false);
+    fetchSensorData();
   }, []);
 
-  useEffect(() => {
-    if (!isLoading && Object.keys(sensorData).length > 0) {
-
-      buildChart();
-    }
-  }, [isLoading, sensorData, isSensorDataVisible]);
-
-  const fetchNumberOfSensors = async (path) => {
+  const fetchSensorData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/data/' + path);
+      const response = await fetch("http://localhost:5000/data/" + name + "/sensor");
       if (!response.ok) {
-        throw new Error('Failed to fetch children data');
+        throw new Error('Failed to fetch sensor data');
       }
       const childrenData = await response.json();
 
       const initialVisibilityState = {};
       Object.keys(childrenData).forEach((key, index) => {
-         if(index != 0) initialVisibilityState[key] = true;
+        if (index !== 0) initialVisibilityState[key] = true;
       });
       setIsSensorDataVisible(initialVisibilityState);
+
+      Object.keys(initialVisibilityState).forEach(element => {
+        fetchGraphData(`${name}/sensor/${element}`, element);
+      });
+      
+      setIsLoading(false);
     } catch (error) {
-      console.error('Error fetching children data:', error);
+      console.error('Error fetching sensor data:', error);
     }
   };
 
   const fetchGraphData = async (path, label) => {
     try {
-      const response = await fetch('http://localhost:5000/sensor/' + path);
+      const response = await fetch("http://localhost:5000/sensor/" + path);
       const jsonData = await response.json();
       const sensorData = [];
-      jsonData.forEach((entry) => {
+      jsonData.forEach(entry => {
         const parsedEntry = JSON.parse(entry);
-        var timestamp = parsedEntry[1].Timestamp;
-        var fillLevel = parsedEntry[1].fill_level;
-        sensorData.push({
-          x: timestamp,
-          y: fillLevel
-        });
+        const timestamp = parsedEntry[1].Timestamp;
+        const fillLevel = parsedEntry[1].fill_level;
+        sensorData.push({ x: timestamp, y: fillLevel });
       });
       setSensorData(prevState => ({
         ...prevState,
@@ -67,11 +59,16 @@ const Layout = () => {
         ...prevState,
         [label]: true
       }));
-      
     } catch (error) {
       console.error('Error fetching graph data:', error);
     }
-  }
+  };
+
+  useEffect(() => {
+    if (!isLoading && Object.keys(sensorData).length > 0) {
+      buildChart();
+    }
+  }, [isLoading, sensorData, isSensorDataVisible]);
 
   const buildChart = () => {
     if (graphInstance) {
