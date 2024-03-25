@@ -1,8 +1,6 @@
 import { Component, useEffect } from "react";
 import ServiceAgreementsDropdown from "./ServiceAgreementsDropdown";
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue } from 'firebase/database';
-import { json } from "react-router-dom";
+
 
 class Agreements extends Component {
 
@@ -22,7 +20,6 @@ class Agreements extends Component {
         }
         const jsonData = await response.json();
         this.setState({ serviceAgreements: jsonData });
-        console.log(this.state.serviceAgreements);
     };
 
     render() {
@@ -34,7 +31,7 @@ class Agreements extends Component {
                 </div>
                 <div>
                     {this.state.serviceAgreements.map(item => (
-                        <ServiceAgreementsDropdown name={item}/>
+                        <ServiceAgreementsDropdown name={item} />
                     ))}
                 </div>
            </main>
