@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import Chart from 'chart.js/auto';
 import Form from 'react-bootstrap/Form';
+import { Chart } from 'chart.js/auto';
+import 'chartjs-adapter-date-fns';
 
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
@@ -28,7 +29,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           setIsSensorDataVisible(initialVisibilityState);
     
           Object.keys(initialVisibilityState).forEach(element => {
-            fetchGraphData(`${name}/sensor/${element}`, element);
+            fetchGraphData(name + "/sensor/" + element, element);
           });
           
           setIsLoading(false);
@@ -47,7 +48,8 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         const sensorData = [];
         jsonData.forEach(entry => {
           const parsedEntry = JSON.parse(entry);
-          const timestamp = parsedEntry[1].Timestamp;
+          const timestamp = new Date(parseInt(parsedEntry[1].Timestamp) * 1000);
+          console.log(timestamp);
           const fillLevel = parsedEntry[1].fill_level;
           sensorData.push({ x: timestamp, y: fillLevel });
         });
@@ -100,12 +102,18 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
                 text: 'Procent Full',
               },
             },
-            x: {
-              title: {
-                display: true,
-                text: 'Time',
+            x: {  
+              type: 'time',
+              ticks:{
+                display: false
+              }, 
+              time: {
+                unit: 'day',
+                displayFormats: {
+                  second: 'HH',
+                }
               },
-            },
+            }
           },
         },
       });
