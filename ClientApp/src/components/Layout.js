@@ -17,14 +17,14 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       const fetchSensorData = async () => {
         try {
           const response = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor");
+          
           if (!response.ok) {
             throw new Error('Failed to fetch sensor data');
           }
           const childrenData = await response.json();
-    
           const initialVisibilityState = {};
-          Object.keys(childrenData).forEach((key, index) => {
-            if (index !== 0) initialVisibilityState[key] = true;
+          childrenData.forEach((key, index) => {
+            initialVisibilityState[key] = true;
           });
           setIsSensorDataVisible(initialVisibilityState);
     
