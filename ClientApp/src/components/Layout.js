@@ -71,6 +71,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       if (!isLoading && Object.keys(sensorData).length > 0) {
         buildChart();
       }
+       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLoading, sensorData, isSensorDataVisible]);
 
     const buildChart = () => {
