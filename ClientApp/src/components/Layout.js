@@ -18,7 +18,7 @@ const Layout = () => {
 
   const fetchSensorData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/data/" + name + "/sensor");
+      const response = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor");
       if (!response.ok) {
         throw new Error('Failed to fetch sensor data');
       }
@@ -42,7 +42,7 @@ const Layout = () => {
 
   const fetchGraphData = async (path, label) => {
     try {
-      const response = await fetch("http://localhost:5000/sensor/" + path);
+      const response = await fetch("https://wasteit-backend.azurewebsites.net/sensor/" + path);
       const jsonData = await response.json();
       const sensorData = [];
       jsonData.forEach(entry => {
