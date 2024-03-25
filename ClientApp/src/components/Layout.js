@@ -13,32 +13,32 @@ const Layout = () => {
   const [graphInstance, setGraphInstance] = useState(null);
 
   useEffect(() => {
-    fetchSensorData();
-  }, []);
-
-  const fetchSensorData = async () => {
-    try {
-      const response = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor");
-      if (!response.ok) {
-        throw new Error('Failed to fetch sensor data');
+    const fetchSensorData = async () => {
+      try {
+        const response = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor");
+        if (!response.ok) {
+          throw new Error('Failed to fetch sensor data');
+        }
+        const childrenData = await response.json();
+  
+        const initialVisibilityState = {};
+        Object.keys(childrenData).forEach((key, index) => {
+          if (index !== 0) initialVisibilityState[key] = true;
+        });
+        setIsSensorDataVisible(initialVisibilityState);
+  
+        Object.keys(initialVisibilityState).forEach(element => {
+          fetchGraphData(`${name}/sensor/${element}`, element);
+        });
+        
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching sensor data:', error);
       }
-      const childrenData = await response.json();
+    };
+    fetchSensorData();
+  }, [name]);
 
-      const initialVisibilityState = {};
-      Object.keys(childrenData).forEach((key, index) => {
-        if (index !== 0) initialVisibilityState[key] = true;
-      });
-      setIsSensorDataVisible(initialVisibilityState);
-
-      Object.keys(initialVisibilityState).forEach(element => {
-        fetchGraphData(`${name}/sensor/${element}`, element);
-      });
-      
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Error fetching sensor data:', error);
-    }
-  };
 
   const fetchGraphData = async (path, label) => {
     try {
@@ -64,10 +64,13 @@ const Layout = () => {
     }
   };
 
+  
   useEffect(() => {
     if (!isLoading && Object.keys(sensorData).length > 0) {
+     
       buildChart();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, sensorData, isSensorDataVisible]);
 
   const buildChart = () => {
