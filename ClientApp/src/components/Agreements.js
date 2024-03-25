@@ -25,7 +25,6 @@ const fetchDataBeforeAgreements = (WrappedComponent) => {
       };
 
       fetchData();
-
     }, []);
 
     return <WrappedComponent {...props} serviceAgreements={serviceAgreements} isLoading={isLoading} />;
@@ -33,9 +32,15 @@ const fetchDataBeforeAgreements = (WrappedComponent) => {
 };
 
 const Agreements = ({ serviceAgreements, isLoading }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  
   if (isLoading) {
-    return
+    return null;
   }
+
+  const filteredAgreements = serviceAgreements.filter(item =>
+    item.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <main className="main">
@@ -46,17 +51,19 @@ const Agreements = ({ serviceAgreements, isLoading }) => {
           placeholder="Search"
           aria-label="Search"
           aria-describedby="search-addon"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button
           type="button"
           className="btn search_bar_button"
           data-mdb-ripple-init
         >
-          search
+          Search
         </button>
       </div>
       <div>
-        {serviceAgreements.map((item, index) => (
+        {filteredAgreements.map((item, index) => (
           <ServiceAgreementsDropdown key={index} name={item} />
         ))}
       </div>
