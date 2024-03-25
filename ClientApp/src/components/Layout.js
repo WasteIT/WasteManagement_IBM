@@ -37,7 +37,7 @@ const Layout = () => {
 
       const initialVisibilityState = {};
       Object.keys(childrenData).forEach((key, index) => {
-          initialVisibilityState[key] = true;
+         if(index != 0) initialVisibilityState[key] = true;
       });
       setIsSensorDataVisible(initialVisibilityState);
     } catch (error) {
@@ -130,6 +130,10 @@ const Layout = () => {
         return `rgba(50, 50, 50, 1)`;
       case '3':
         return `rgba(0, 0, 255, 1)`;
+      case '4':
+        return `rgba(0, 128, 0, 1)`;
+      case '5':
+        return `rgba(255, 255, 0, 1)`;
       default:
         return `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`;
     }
