@@ -49,7 +49,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         jsonData.forEach(entry => {
           const parsedEntry = JSON.parse(entry);
           const timestamp = new Date(parseInt(parsedEntry[1].Timestamp) * 1000);
-          console.log(timestamp);
+
           const fillLevel = parsedEntry[1].fill_level;
           sensorData.push({ x: timestamp, y: fillLevel });
         });
