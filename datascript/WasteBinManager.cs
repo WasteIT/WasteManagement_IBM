@@ -7,16 +7,22 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text;
 
 namespace datascript
 {
 
     class WasteBinManager
     {
+        private static readonly HttpClient sharedClient = new HttpClient
+        {
+            BaseAddress = new Uri("http://localhost:5000/test")
+        };
+
+        static List<long> randomEpochTimes;
         public List<WasteBin> bins { get; }
         public List<string> allBinData = new List<string>();
         public int panic { get; }
-
         public WasteBinManager()
         {
             bins = new List<WasteBin>();
@@ -76,13 +82,15 @@ namespace datascript
 
         }
 
-        public void generateData()
+        public async Task generateData()
         {
             Random rand = new Random();
             for (int dayCount = 1; dayCount <= 30; dayCount++)
             {
-                for (int measurementCount = 1; measurementCount <= 12; measurementCount++)
+                randomEpochTimes = GenerateRandomEpochTimes(2024, 1, dayCount);
+                for (int measurementCount = 1; measurementCount <= 2; measurementCount++)
                 {
+                    string time = randomEpochTimes[measurementCount].ToString();
                     //first check if bin is being emptied (first measurement on bin collection day)
                     foreach (WasteBin bin in bins)
                     {
@@ -103,73 +111,47 @@ namespace datascript
                         }
 
                         bin.measurements.Add(bin.fillLevel);
-                        allBinData.Add("Day " + dayCount + ", meassurement " + measurementCount + ": Bin: " + bin.binNumber + " (" + bin.type + "): " + bin.fillLevel);
+                        await PostAsync(sharedClient, bin, time);
                     }
                 }
             }
         }
 
-        public void printAllWastebinData()
-        {
-
-            foreach (string data in allBinData)
-            {
-                Console.WriteLine(data);
-            }
-        }
-        public void printOverfilledTime()
-        {
-            foreach (WasteBin bin in bins)
-            {
-                Console.WriteLine("Bin number " + bin.binNumber + " was overfilled for " + (bin.overfillTime / 1080.0) * 100 + " percent of the time");
-            }
-        }
-        public void writeDataListsToAFileOrSomething()
-        {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter("/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/datascript/data.txt"))
+        static async Task PostAsync(HttpClient httpClient, WasteBin bin, string time)
+        {        
+                using StringContent jsonContent = new StringContent(JsonSerializer.Serialize(new
                 {
-                    foreach (WasteBin bin in bins)
-                    {
-                        writer.WriteLine("\n" + bin.binNumber + "\n");
-                        foreach (double meassurement in bin.measurements)
-                        {
-                            writer.WriteLine(meassurement);
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                Console.WriteLine("OH NO!");
-            }
+                    ID = bin.type,
+                    Timestamp = time,
+                    fill_level = bin.fillLevel.ToString()
+                }), Encoding.UTF8, "application/json");
 
+                using HttpResponseMessage response = await httpClient.PostAsync("test", jsonContent);
+
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"{jsonResponse}\n");
         }
-        public async void DataSender(List<double> doubles) 
+
+        static List<long> GenerateRandomEpochTimes(int year, int month, int day)
         {
-            string firebaseAddress = "https://wasteit-193de-default-rtdb.europe-west1.firebasedatabase.app/";
-            List<double> measurements = doubles;
-            string jsonString = JsonSerializer.Serialize(measurements);
-            string quickTest = "wowowowow";
-            string jsonStringTest = JsonSerializer.Serialize(quickTest);
+            List<long> epochTimes = new List<long>();
+            Random random = new Random();
 
-        using (HttpClient client = new HttpClient())
-        {  
-            
-            Console.WriteLine("above");
-            HttpResponseMessage responseMessage = await client.PutAsync($"{firebaseAddress}/tester.json", new StringContent(jsonStringTest));
-            Console.WriteLine("below");
-            if(responseMessage.IsSuccessStatusCode)
+            // Create DateTime object for the given day
+            DateTime givenDate = new DateTime(year, month, day);
+
+            // Convert the given date to epoch time
+            long startEpochTime = (long)(givenDate.Date - new DateTime(1970, 1, 1)).TotalSeconds;
+            long endEpochTime = startEpochTime + 86400; // Add 24 hours in seconds for end time
+
+            // Generate random epoch times within the range of the given day
+            for (int i = 0; i <= 2; i++) // Generate 12 random times
             {
-                Console.WriteLine("amazing");
+                long randomEpochTime = startEpochTime + (long)(random.NextDouble() * (endEpochTime - startEpochTime));
+                epochTimes.Add(randomEpochTime);
             }
-            else
-            {
-                Console.WriteLine("no good");
-            }
-        }
+
+            return epochTimes;
         }
     }
-    
 }
