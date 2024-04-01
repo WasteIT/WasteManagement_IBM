@@ -10,7 +10,7 @@ const fetchDataBeforeAgreements = (WrappedComponent) => {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            "https://wasteit-backend.azurewebsites.net/agreement"
+            "http://localhost:5000/agreement"
           );
           if (!response.ok) {
             throw new Error("Failed to fetch data");

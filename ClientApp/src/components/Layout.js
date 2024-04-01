@@ -16,7 +16,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
     useEffect(() => {
       const fetchSensorData = async () => {
         try {
-          const response = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor");
+          const response = await fetch("http://localhost:5000/data/" + name + "/sensor");
           
           if (!response.ok) {
             throw new Error('Failed to fetch sensor data');
@@ -43,14 +43,15 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
 
     const fetchGraphData = async (path, label) => {
       try {
-        const response = await fetch("https://wasteit-backend.azurewebsites.net/sensor/" + path);
+        const response = await fetch("http://localhost:5000/sensor/" + path);
+
         const jsonData = await response.json();
         const sensorData = [];
-        jsonData.forEach(entry => {
-          const parsedEntry = JSON.parse(entry);
-          const timestamp = new Date(parseInt(parsedEntry[1].Timestamp) * 1000);
-
-          const fillLevel = parsedEntry[1].fill_level;
+        
+        const parsedJSONData = JSON.parse(jsonData)
+        Object.values(parsedJSONData).forEach(entry => {
+          const timestamp = new Date(parseInt(entry.Timestamp) * 1000);
+          const fillLevel = entry.fill_level;
           sensorData.push({ x: timestamp, y: fillLevel });
         });
         setSensorData(prevState => ({
