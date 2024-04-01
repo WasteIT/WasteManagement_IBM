@@ -31,7 +31,6 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           Object.keys(initialVisibilityState).forEach(element => {
             fetchGraphData(name + "/sensor/" + element, element);
           });
-          
           setIsLoading(false);
         } catch (error) {
           console.error('Error fetching sensor data:', error);
