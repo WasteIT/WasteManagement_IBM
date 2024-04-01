@@ -121,7 +121,9 @@ namespace datascript
         {        
                 using StringContent jsonContent = new StringContent(JsonSerializer.Serialize(new
                 {
-                    ID = bin.type,
+
+                    ID = bin.binNumber,
+                    Type = bin.type,
                     Timestamp = time,
                     fill_level = bin.fillLevel.ToString()
                 }), Encoding.UTF8, "application/json");
