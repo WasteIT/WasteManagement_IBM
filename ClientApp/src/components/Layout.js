@@ -51,10 +51,12 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
 
 
     const filterSensorDataByDateRange = (startTimestamp, endTimestamp) => {
-
+      console.log("Start time stamp: " + startTimestamp)
+      console.log("End time stamp: " + endTimestamp)
       //In case there is no date set, use full dataset
-      if (startTimestamp == null || endTimestamp == null) {
-        setSensorData(fullSensorData);
+      if (startTimestamp == null && endTimestamp == null) {
+        setSensorData("fullSensorData: ", JSON.stringify(fullSensorData, null, 2));
+        console.log("fullSensorData") //??????
       }
       
       const filteredData = {};
@@ -252,11 +254,13 @@ const Layout = ({ isLoading, chartRef, toggleisSensorDataVisible, isSensorDataVi
             <Form className="daterange">
             <DateRangePicker onChange={(selectedDateRange) => {
                 
-                  setSelectedDateRange([selectedDateRange[0], selectedDateRange[1]]);
+                  
                   // Now that setSelectedDateRange has been called, you can update graph instance
                   if (selectedDateRange != null) {
                     filterSensorDataByDateRange(selectedDateRange[0].getTime(), selectedDateRange[1].getTime());
+                    setSelectedDateRange([selectedDateRange[0], selectedDateRange[1]]);
                   } else {
+                    setSelectedDateRange(null);
                     filterSensorDataByDateRange(null, null);
                   }
             }} />
