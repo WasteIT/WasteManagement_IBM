@@ -41,6 +41,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         }
       };
       fetchSensorData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name, dateRange]);
 
     const fetchGraphData = async (path, label) => {
