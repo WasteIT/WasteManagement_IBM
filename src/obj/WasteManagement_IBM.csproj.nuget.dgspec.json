@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj": {}
+    "/Users/juliusdalsgaardbertelsen/Documents/ITU/WasteIT/WasteManagement_IBM/src/WasteManagement_IBM.csproj": {}
   },
   "projects": {
-    "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj": {
+    "/Users/juliusdalsgaardbertelsen/Documents/ITU/WasteIT/WasteManagement_IBM/src/WasteManagement_IBM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
+        "projectUniqueName": "/Users/juliusdalsgaardbertelsen/Documents/ITU/WasteIT/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
         "projectName": "WasteManagement_IBM",
-        "projectPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
-        "packagesPath": "/Users/edwardrostomian/.nuget/packages/",
-        "outputPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/obj/",
+        "projectPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/WasteIT/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
+        "packagesPath": "/Users/juliusdalsgaardbertelsen/.nuget/packages/",
+        "outputPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/WasteIT/WasteManagement_IBM/src/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/edwardrostomian/.nuget/NuGet/NuGet.Config"
+          "/Users/juliusdalsgaardbertelsen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"

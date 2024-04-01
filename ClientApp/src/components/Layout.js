@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { Chart } from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
+import { DateRangePicker, Stack } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css';
 
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
@@ -10,8 +12,13 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
     const chartRef = useRef();
     const [isSensorDataVisible, setIsSensorDataVisible] = useState({});
     const [sensorData, setSensorData] = useState({});
+    const [fullSensorData, setFullSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [graphInstance, setGraphInstance] = useState(null);
+
+    //OOO This is for holding the selected date range.
+    const [selectedDateRange, setSelectedDateRange] = useState(null);
+
 
     useEffect(() => {
       const fetchSensorData = async () => {
@@ -31,6 +38,9 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           Object.keys(initialVisibilityState).forEach(element => {
             fetchGraphData(name + "/sensor/" + element, element);
           });
+          
+          //In order to save the full dataset to return to after filtering we save it here
+          
           setIsLoading(false);
         } catch (error) {
           console.error('Error fetching sensor data:', error);
@@ -39,6 +49,36 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       fetchSensorData();
     }, [name]);
 
+
+    const filterSensorDataByDateRange = (startTimestamp, endTimestamp) => {
+
+      //In case there is no date set, use full dataset
+      if (startTimestamp == null || endTimestamp == null) {
+        setSensorData(fullSensorData);
+      }
+      
+      const filteredData = {};
+      
+      // Filter data for each label
+      Object.keys(sensorData).forEach(label => {
+          console.log(`Label: ${label}`);
+          
+          const filteredEntries = fullSensorData[label].filter(entry => {
+              const timestamp = entry.x.getTime();
+              console.log(`Entry Timestamp: ${timestamp}`);
+              console.log(`Start Timestamp: ${startTimestamp}, End Timestamp: ${endTimestamp}`);
+              console.log(`Is Timestamp within Range? ${timestamp >= startTimestamp && timestamp <= endTimestamp}`);
+              return timestamp >= startTimestamp && timestamp <= endTimestamp;
+          });
+          
+          filteredData[label] = filteredEntries;
+      });
+  
+      // Update sensorData with filtered data
+      console.log("Filtered Data:", JSON.stringify(filteredData, null, 2));
+      setSensorData(filteredData);
+  };
+  
 
     const fetchGraphData = async (path, label) => {
       try {
@@ -49,14 +89,21 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         
         const parsedJSONData = JSON.parse(jsonData)
         Object.values(parsedJSONData).forEach(entry => {
-          const timestamp = new Date(parseInt(entry.Timestamp) * 1000);
           const fillLevel = entry.fill_level;
+          const timestamp = new Date(parseInt(entry.Timestamp) * 1000);
           sensorData.push({ x: timestamp, y: fillLevel });
+
         });
         setSensorData(prevState => ({
           ...prevState,
           [label]: sensorData
         }));
+        //set the initial full sensor data set so we can return to it after filtering...
+        setFullSensorData(prevState => ({
+          ...prevState,
+          [label]: sensorData
+        }));
+
         setIsSensorDataVisible(prevState => ({
           ...prevState,
           [label]: true
@@ -156,11 +203,30 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       }
     };
 
-    return <WrappedComponent {...props} isLoading={isLoading} chartRef={chartRef} toggleisSensorDataVisible={toggleisSensorDataVisible} isSensorDataVisible={isSensorDataVisible} />;
+    return (
+      <WrappedComponent 
+        {...props} 
+        isLoading={isLoading} 
+        chartRef={chartRef} 
+        toggleisSensorDataVisible={toggleisSensorDataVisible} 
+        isSensorDataVisible={isSensorDataVisible}
+        //Pass the selected date range and setter function as props
+        selectedDateRange={selectedDateRange}
+        setSelectedDateRange={setSelectedDateRange}
+        filterSensorDataByDateRange={filterSensorDataByDateRange} 
+        fullSensorData={fullSensorData} // Pass the original sensor data to the wrapped component
+      />
+    );
   };
 };
 
-const Layout = ({ isLoading, chartRef, toggleisSensorDataVisible, isSensorDataVisible }) => {
+const Layout = ({ isLoading, chartRef, toggleisSensorDataVisible, isSensorDataVisible, setSelectedDateRange, selectedDateRange, filterSensorDataByDateRange }) => {
+
+    // Log the selectedDateRange value whenever it changes
+    useEffect(() => {
+      console.log("Selected Date Range:", selectedDateRange);
+    }, [selectedDateRange]);
+
   return (
     <main>
       {isLoading ? (
@@ -179,17 +245,28 @@ const Layout = ({ isLoading, chartRef, toggleisSensorDataVisible, isSensorDataVi
             />
           ))}
         </Form>
+       
         <div className='graph_wrapper_outer'>
           <div className='filter_options_wrapper'>
-            <h3>Filter options:</h3>
-            <button type='button' className='btn button filter_graph_button'>Past week</button>
-            <button type='button' className='btn button filter_graph_button'>Past month</button>
-            <button type='button' className='btn button filter_graph_button'>Custom filter</button>
+            <h3>Pick date range:</h3>
+            <Form className="daterange">
+            <DateRangePicker onChange={(selectedDateRange) => {
+                
+                  setSelectedDateRange([selectedDateRange[0], selectedDateRange[1]]);
+                  // Now that setSelectedDateRange has been called, you can update graph instance
+                  if (selectedDateRange != null) {
+                    filterSensorDataByDateRange(selectedDateRange[0].getTime(), selectedDateRange[1].getTime());
+                  } else {
+                    filterSensorDataByDateRange(null, null);
+                  }
+            }} />
+            </Form>
           </div>
           <div className='graph_wrapper_inner'>
             <canvas ref={chartRef} />
           </div>
         </div>
+       
       </div>
     )}
     </main>
