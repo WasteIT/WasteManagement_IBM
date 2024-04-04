@@ -58,7 +58,6 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
 
         jsonData.forEach(entry => {
           const fillLevel = entry.fill_level;
-          console.log(entry);
           const timestamp = new Date(parseInt(entry.timestamp) * 1000);
          
           sensorData.push({ x: timestamp, y: fillLevel });
@@ -83,9 +82,10 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         buildChart();
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLoading, sensorData, dateRange, isSensorDataVisible]);
+    }, [isLoading, isSensorDataVisible]);
 
     const buildChart = () => {
+
       if (graphInstance) {
         graphInstance.destroy();
       }
@@ -129,7 +129,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         },
       });
 
-      setGraphInstance(newGraphInstance);
+      setGraphInstance(newGraphInstance)
     };
 
     const toggleIsSensorDataVisible = label => {
@@ -204,12 +204,32 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
               <input
                 type="date"
                 value={dateRange.startDate.toISOString().split('T')[0]}
-                onChange={e => setDateRange(prev => ({...prev, startDate: new Date(e.target.value)}))}
+                onChange={e => {
+                  
+                  if(dateRange.endDate.toISOString().split('T')[0] > e.target.value){
+                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value)}))
+                  } else {
+                    var selectedDate = new Date(e.target.value)
+                    selectedDate.setDate(selectedDate.getDate() + 30);
+                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value), endDate: selectedDate }))
+                  }
+                  isLoading = false;
+                }}
               />
               <input
                 type="date"
                 value={dateRange.endDate.toISOString().split('T')[0]}
-                onChange={e => setDateRange(prev => ({...prev, endDate: new Date(e.target.value)}))}
+                onChange={e => {
+                  //console.log("This is my target value: " + e.target.value)
+                  if(dateRange.startDate.toISOString().split('T')[0] < e.target.value){
+                    setDateRange(prev => ({...prev, endDate: new Date(e.target.value)}))
+                  } else {
+                    var selectedDate = new Date(e.target.value)
+                    selectedDate.setDate(selectedDate.getDate() - 30);
+                    setDateRange(prev => ({...prev, startDate: selectedDate, endDate: new Date(e.target.value) }))
+                  }
+                  isLoading = false
+                  }}
               />
             </div>
             <div className='graph_wrapper_inner'>
