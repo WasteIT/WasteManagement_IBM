@@ -11,6 +11,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
     const [isSensorDataVisible, setIsSensorDataVisible] = useState({});
     const [sensorData, setSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [isBuildingGraph, setIsBuildingGraph] = useState(false);
     const [graphInstance, setGraphInstance] = useState(null);
     const [dateRange, setDateRange] = useState({
       startDate: new Date(new Date().setDate(new Date().getDate() - 84)),
@@ -86,6 +87,13 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
     }, [isLoading, sensorData, dateRange, isSensorDataVisible]);
 
     const buildChart = () => {
+
+      if (isBuildingGraph) return
+     setIsBuildingGraph(true)
+     var date = new Date()
+     console.log("IS BUILDING A GRAPH AT: " + date.getTime())
+
+
       if (graphInstance) {
         graphInstance.destroy();
       }
@@ -129,7 +137,10 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         },
       });
 
-      setGraphInstance(newGraphInstance);
+      setGraphInstance(newGraphInstance)
+      setIsBuildingGraph(false)
+      var date2 = new Date()
+      console.log("IS NO LONGER BUILDING A GRAPH AT: " + date2.getTime())
     };
 
     const toggleIsSensorDataVisible = label => {
@@ -204,12 +215,32 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
               <input
                 type="date"
                 value={dateRange.startDate.toISOString().split('T')[0]}
-                onChange={e => setDateRange(prev => ({...prev, startDate: new Date(e.target.value)}))}
+                onChange={e => {
+                  console.log("This is my target value: " + e.target.value)
+                  if(dateRange.endDate.toISOString().split('T')[0] > e.target.value){
+                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value)}))
+                  } else {
+                    var selectedDate = new Date(e.target.value)
+                    selectedDate.setDate(selectedDate.getDate() + 30);
+                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value), endDate: selectedDate }))
+                  }
+                  
+                  }}
               />
               <input
                 type="date"
                 value={dateRange.endDate.toISOString().split('T')[0]}
-                onChange={e => setDateRange(prev => ({...prev, endDate: new Date(e.target.value)}))}
+                onChange={e => {
+                  console.log("This is my target value: " + e.target.value)
+                  if(dateRange.startDate.toISOString().split('T')[0] < e.target.value){
+                    setDateRange(prev => ({...prev, endDate: new Date(e.target.value)}))
+                  } else {
+                    var selectedDate = new Date(e.target.value)
+                    selectedDate.setDate(selectedDate.getDate() - 30);
+                    setDateRange(prev => ({...prev, startDate: selectedDate, endDate: new Date(e.target.value) }))
+                  }
+                  //isLoading = false
+                  }}
               />
             </div>
             <div className='graph_wrapper_inner'>
