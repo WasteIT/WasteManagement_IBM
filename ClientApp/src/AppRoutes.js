@@ -1,5 +1,5 @@
-import Home from "./components/Home";
-import Agreements from "./components/Agreements"
+import Home from "./pages/Home";
+import Agreements from "./pages/Agreements"
 import Layout from "./components/Layout"
 import LoginPage from "./LoginPage";
 import Login from "./Login";
