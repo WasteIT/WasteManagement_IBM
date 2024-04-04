@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ServiceAgreementsDropdown from "./ServiceAgreementsDropdown";
+import ServiceAgreementsDropdown from "../components/ServiceAgreementsDropdown";
 
 const fetchDataBeforeAgreements = (WrappedComponent) => {
   return (props) => {
