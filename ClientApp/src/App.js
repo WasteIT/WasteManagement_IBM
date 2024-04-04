@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
-import { NavMenu } from './components/NavMenu'; 
+import {NavMenu} from './components/NavMenu'; 
 import './style.css';
 
 export default class App extends React.Component {
