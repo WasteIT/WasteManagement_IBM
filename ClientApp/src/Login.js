@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase'; // Make sure to import from './firebase' with lowercase 'firebase'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,17 +11,7 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log(user);
-      // Navigate to /home after successful login
-      navigate('/');
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    }
+   
   };
 
   return (

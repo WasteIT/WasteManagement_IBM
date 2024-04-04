@@ -1,26 +1,37 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase'; // Updated import
 
 const Signup = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log(user);
-      navigate("/");
+      const response = await fetch('http://localhost:5000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        // If login is successful
+        const data = await response.json();
+        console.log('Login successful:', data);
+        // Handle login success (e.g., redirect, store token if provided, etc.)
+      } else {
+        // If login failed
+        console.error('Login failed');
+        // Handle login failure (e.g., show error message)
+      }
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      console.error('An error occurred:', error);
+      // Handle errors (e.g., show error message)
     }
   };
 
@@ -35,8 +46,8 @@ const Signup = () => {
                 <label htmlFor="email-address">Email address</label>
                 <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                   placeholder="Email address"
                 />
