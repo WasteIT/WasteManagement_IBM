@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { firebase } from '../firebase'; 
 
 export class NavMenu extends Component {
+  
   static displayName = NavMenu.name;
 
   constructor (props) {
@@ -10,15 +12,11 @@ export class NavMenu extends Component {
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
+      isLoggedIn: false,
       collapsed: true
     };
   }
-  isLoggedin = () => {
-    if (localStorage.getItem('token')) {
-      return true;
-    }
-    return false;
-  };
+
 
   toggleNavbar () {
     this.setState({
@@ -26,8 +24,13 @@ export class NavMenu extends Component {
     });
   }
 
+  handleLogout = () => {
+    this.setState({ isLoggedIn: false });
+  }
+
   render() {
     return (
+      
       <header>
         <Navbar className="navbar-expand navbar-toggleable ng-white border-bottom box-shadow" container light>
         <NavbarBrand tag={Link} to="/">
@@ -42,15 +45,15 @@ export class NavMenu extends Component {
               <NavItem>
                 <NavLink tag={Link} className="" to="/Agreements">Agreements</NavLink>
               </NavItem>
-              if (isLoggedin()) {
+              {this.state.isLoggedIn ? (
                 <NavItem>
-                  <NavLink tag={Link} className="" to="/Login">Login</NavLink>
+                <NavLink tag={Link} className="" to="/Login">Login</NavLink>
                 </NavItem>
-              } else {
+              ) : (
                 <NavItem>
                   <NavLink tag={Link} className="" to="/Logout">Logout</NavLink>
                 </NavItem>
-              }
+              )}
             </ul>
          </Collapse>
         </Navbar>
