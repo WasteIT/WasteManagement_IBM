@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card';
 
-function Cards() {
+export default function Cards() {
   return (
     <Card className="card">
       <Card.Body>
@@ -13,5 +13,3 @@ function Cards() {
     </Card>
   );
 }
-
-export default Cards;
