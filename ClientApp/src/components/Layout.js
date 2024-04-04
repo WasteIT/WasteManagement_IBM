@@ -209,20 +209,23 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
                   if(dateRange.endDate.toISOString().split('T')[0] > e.target.value){
                     setDateRange(prev => ({...prev, startDate: new Date(e.target.value)}))
                   } else {
-                    var selectedDate = new Date(e.target.value) + 30
+                    var selectedDate = new Date(e.target.value)
+                    selectedDate.setDate(selectedDate.getDate() + 30);
                     setDateRange(prev => ({...prev, startDate: new Date(e.target.value), endDate: selectedDate }))
                   }
-                  isLoading = false
-                  }}
+                  isLoading = false;
+                }}
               />
               <input
                 type="date"
                 value={dateRange.endDate.toISOString().split('T')[0]}
                 onChange={e => {
+                  //console.log("This is my target value: " + e.target.value)
                   if(dateRange.startDate.toISOString().split('T')[0] < e.target.value){
                     setDateRange(prev => ({...prev, endDate: new Date(e.target.value)}))
                   } else {
-                    var selectedDate = new Date(e.target.value) -30
+                    var selectedDate = new Date(e.target.value)
+                    selectedDate.setDate(selectedDate.getDate() - 30);
                     setDateRange(prev => ({...prev, startDate: selectedDate, endDate: new Date(e.target.value) }))
                   }
                   isLoading = false
