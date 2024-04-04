@@ -34,9 +34,14 @@ export function NavMenu() {
                 <NavLink tag={Link} className="" to="/Agreements">Agreements</NavLink>
               </NavItem>
               {!LoginStatus ? (
-                <NavItem>
-                <NavLink tag={Link} className="" to="/Login">Login</NavLink>
-                </NavItem>
+                <div>
+                  <NavItem>
+                  <NavLink tag={Link} className="" to="/Login">Login</NavLink>
+                  </NavItem>
+                  <NavItem>
+                  <NavLink tag={Link} className="" to="/Signup">Signup</NavLink>
+                  </NavItem>
+                </div>
               ) : (
                 <NavItem>
                   <NavLink tag={Link} className="" to="/Logout">Logout</NavLink>

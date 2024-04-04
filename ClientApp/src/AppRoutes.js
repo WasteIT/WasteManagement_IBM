@@ -19,10 +19,6 @@ const AppRoutes = [
     element: <Agreements />
   }, 
   {
-    index : true,
-    element: <LoginPage />
-  },
-  {
   path: '/login',
   element: <Login />
   },
