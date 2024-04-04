@@ -2,7 +2,7 @@
 "SpaProxyServer": {
 "ServerUrl": "https://localhost:44426",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "/Users/juliusdalsgaardbertelsen/Documents/ITU/WasteIT/WasteManagement_IBM/src/../ClientApp/",
+"WorkingDirectory": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/src/../ClientApp/",
 "MaxTimeoutInSeconds": "120"
 }
 }

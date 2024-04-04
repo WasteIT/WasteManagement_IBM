@@ -14,6 +14,12 @@ export class NavMenu extends Component {
       collapsed: true
     };
   }
+  isLoggedin = () => {
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
+  };
 
   toggleNavbar () {
     this.setState({
@@ -37,6 +43,15 @@ export class NavMenu extends Component {
               <NavItem>
                 <NavLink tag={Link} className="" to="/Agreements">Agreements</NavLink>
               </NavItem>
+              if (isLoggedin()) {
+                <NavItem>
+                  <NavLink tag={Link} className="" to="/Login">Login</NavLink>
+                </NavItem>
+              } else {
+                <NavItem>
+                  <NavLink tag={Link} className="" to="/Logout">Logout</NavLink>
+                </NavItem>
+              }
             </ul>
          </Collapse>
         </Navbar>
