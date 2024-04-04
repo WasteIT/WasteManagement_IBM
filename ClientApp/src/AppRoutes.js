@@ -1,7 +1,6 @@
 import Home from "./pages/Home";
 import Agreements from "./pages/Agreements"
 import Layout from "./components/Layout"
-import LoginPage from "./LoginPage";
 import Login from "./Login";
 import Signup from "./Signup";
 
