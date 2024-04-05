@@ -4,6 +4,33 @@ import Form from 'react-bootstrap/Form';
 import { Chart } from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
 
+const getRandomColor = (label) => {
+  switch (label) {
+    case 'General waste':
+      return `rgba(19, 13, 15, 1)`;
+    case 'Food':
+      return `rgba(0, 178, 90, 1)`;
+    case 'Cardboard':
+      return `rgba(190, 160, 102, 1)`;
+    case 'Metal':
+      return `rgba(87, 109, 122, 1)`;
+    case 'Plastic':
+      return `rgba(146, 52, 148, 1)`;
+    case 'Glass':
+      return `rgba(96, 195, 174, 1)`;
+    case 'Paper':
+      return `rgba(0, 132, 194, 1)`;
+    case 'Carton':
+      return `rgba(187, 155, 106, 1)`;
+    case 'Textiles':
+      return `rgba(139, 69, 19, 1)`;
+    case 'Dangerous':
+        return `rgba(237, 28, 47, 1)`;
+    default:
+      return `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`;
+  }
+};
+
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
     const { state: { name } = {} } = useLocation();
@@ -144,32 +171,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       }));
     };
 
-    const getRandomColor = (label) => {
-      switch (label) {
-        case 'General waste':
-          return `rgba(19, 13, 15, 1)`;
-        case 'Food':
-          return `rgba(0, 178, 90, 1)`;
-        case 'Cardboard':
-          return `rgba(190, 160, 102, 1)`;
-        case 'Metal':
-          return `rgba(87, 109, 122, 1)`;
-        case 'Plastic':
-          return `rgba(146, 52, 148, 1)`;
-        case 'Glass':
-          return `rgba(96, 195, 174, 1)`;
-        case 'Paper':
-          return `rgba(0, 132, 194, 1)`;
-        case 'Carton':
-          return `rgba(187, 155, 106, 1)`;
-        case 'Textiles':
-          return `rgba(139, 69, 19, 1)`;
-        case 'Dangerous':
-            return `rgba(237, 28, 47, 1)`;
-        default:
-          return `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`;
-      }
-    };
+    
 
     return (
       <WrappedComponent
@@ -180,14 +182,16 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         isSensorDataVisible={isSensorDataVisible}
         dateRange={dateRange}
         setDateRange={setDateRange}
+        name={name}
       />
     );
   };
 };
 
-const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVisible, dateRange, setDateRange }) => {
+const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVisible, dateRange, setDateRange, name }) => {
   return (
     <main>
+       <h2 style={{textAlign: "center", paddingTop: "20px"}}>{name}</h2>
       {isLoading ? (
         <div></div>
       ) : (
@@ -195,6 +199,9 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
           <Form className="fraction_filter">
             {Object.keys(isSensorDataVisible).map((label, index) => (
               <Form.Check
+                className='temp_Form'
+                style={{backgroundColor: getRandomColor(label), color: '#fff',
+                padding: 10, paddingRight: 15, width: "12rem",}}
                 key={index}
                 type="checkbox"
                 id={label}
@@ -238,7 +245,7 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
               />
             </div>
             <div className='graph_wrapper_inner'>
-              <canvas ref={chartRef} />
+              <canvas className='chart' ref={chartRef} />
             </div>
           </div>
         </div>

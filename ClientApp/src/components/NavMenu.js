@@ -34,12 +34,12 @@ export function NavMenu() {
                 <NavLink tag={Link} className="" to="/Agreements">Agreements</NavLink>
               </NavItem>
               {true ? (
-                <div>
+                <div className='logged_out_wrapper'>
                   <NavItem>
-                  <NavLink tag={Link} className="" to="/Login">Login</NavLink>
+                    <NavLink tag={Link} className="" to="/Login">Login</NavLink>
                   </NavItem>
                   <NavItem>
-                  <NavLink tag={Link} className="" to="/Signup">Signup</NavLink>
+                    <NavLink tag={Link} className="" to="/Signup">Signup</NavLink>
                   </NavItem>
                 </div>
               ) : (

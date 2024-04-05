@@ -77,6 +77,9 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+.logged_out_wrapper {
+  display: flex;
+}
 
 /*
 ==========================
@@ -178,6 +181,31 @@ ServiceAgreementsDropdown.js styles
 }
 
 .graph_wrapper_inner {
-  width: 135%;
+  width: 50rem;
   height: auto;
+  margin-left: 2rem;
+  margin-top: 2rem;
+}
+
+.form-check-input[type=checkbox] {
+  margin-left: 15px; 
+  margin-right: 10px
+}
+
+input[type="date"] {
+  background-color: #fafafa; /* Light grey background */
+  border: 1px solid #ddd; /* Light grey border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 12px; /* Padding inside the input */
+  font-size: 16px; /* Slightly larger font size for better readability */
+  color: #333; /* Dark grey text for contrast */
+  width: 100%; /* Full-width to fit its container */
+  box-sizing: border-box; /* Border and padding included in width */
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for focus effects */
+}
+
+input[type="date"]:focus {
+  border-color: #0056b3; /* Change border color on focus for visual feedback */
+  outline: none; /* Remove the default focus outline */
+  box-shadow: 0 0 0 2px rgba(0,86,179,0.2); /* Soft glow effect on focus */
 }
