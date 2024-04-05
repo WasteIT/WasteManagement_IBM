@@ -105,6 +105,11 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           datasets: datasets
         },
         options: {
+          plugins: {
+            legend: {
+              display: false,
+            }
+          },
           scales: {
             y: {
               beginAtZero: true,
