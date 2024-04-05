@@ -29,7 +29,7 @@ export default function Agreements(){
      <main className='main'>
        
        <div>
-            <SearchBar onSearch={handleSearchQueryChange} />
+            <SearchBar onSearchResult={handleSearchQueryChange} />
             <SearchResults filteredAgreements={filteredAgreements} />
         </div>
      </main>
