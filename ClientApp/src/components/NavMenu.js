@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export function NavMenu() {
 
 
-  const [Collapsed, setCollapsed] = useState(true);
-  const [LoginStatus, setLoginStatus] = useState(false);
+  //const [Collapsed, setCollapsed] = useState(true);
+  //const [LoginStatus, setLoginStatus] = useState(false);
   
-
+/*
   const handleLogout = () => {
     setLoginStatus(!LoginStatus)
   }
@@ -16,7 +16,7 @@ export function NavMenu() {
   const toggleNavbar = () => {
     setCollapsed(!Collapsed)
   }
-
+*/
 
     return (
       <header>
@@ -33,7 +33,7 @@ export function NavMenu() {
               <NavItem>
                 <NavLink tag={Link} className="" to="/Agreements">Agreements</NavLink>
               </NavItem>
-              {!LoginStatus ? (
+              {true ? (
                 <div>
                   <NavItem>
                   <NavLink tag={Link} className="" to="/Login">Login</NavLink>

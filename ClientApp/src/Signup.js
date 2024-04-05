@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Signup = () => {
-  const navigate = useNavigate();
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
