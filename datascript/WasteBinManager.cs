@@ -16,7 +16,7 @@ namespace datascript
     {
         private static readonly HttpClient sharedClient = new HttpClient
         {
-            BaseAddress = new Uri("http://localhost:5000/test")
+            BaseAddress = new Uri("https://wasteit-backend.azurewebsites.net/test")
         };
 
         static List<long> randomEpochTimes;
@@ -34,7 +34,7 @@ namespace datascript
 
         public void manageOverspill(WasteBin overfilledBin, double overfill)
         {
-            Console.WriteLine("MANAGING OVERSPILL");
+            //Console.WriteLine("MANAGING OVERSPILL");
             bool overspillManaged = false;
             foreach (var bin in bins)
             {
@@ -42,10 +42,10 @@ namespace datascript
                 {
                     break;
                 }
-                if (bin.type == "general waste" || bin.type == overfilledBin.type && !bin.overfilled && bin != overfilledBin)
+                if (bin.type == "General waste" && bin != overfilledBin)
                 {
+                    //Console.WriteLine("Handling overspill from " + overfilledBin.type + " into: " + bin.type);
                     bin.addWaste(overfill);
-                    overfilledBin.removeWaste(overfill);
                     overspillManaged = true;
                     if (bin.fillLevel > bin.depth)
                     {
@@ -57,7 +57,7 @@ namespace datascript
                     }
                 }
             }
-            if (!overspillManaged)
+            if (overspillManaged)
             {
                 overfilledBin.fillLevel = overfilledBin.depth;
             }
@@ -86,24 +86,20 @@ namespace datascript
         {
             Random rand = new Random();
             for (int dayCount = 1; dayCount <= 30; dayCount++)
-            {
+            {   
+                
                 randomEpochTimes = GenerateRandomEpochTimes(2024, 1, dayCount);
+                string time = randomEpochTimes[0].ToString();
                 for (int measurementCount = 1; measurementCount <= 2; measurementCount++)
                 {
-                    string time = randomEpochTimes[measurementCount].ToString();
+                    
                     //first check if bin is being emptied (first measurement on bin collection day)
                     foreach (WasteBin bin in bins)
                     {
 
-                        if (bin.schedule != 0 && (dayCount % bin.schedule) == 0 && measurementCount == 1)
-                        {
-                            bin.emptyBin();
-                        }
-
                         //fill wastebin and handle potential overspill
-                        bin.fillLevel += ((2 * rand.NextDouble()) * (bin.fillRate) * bin.popularity); //Randomly adjust fill level
-
-                        if (bin.fillLevel >= bin.depth)
+                        bin.fillLevel += (((rand.NextDouble()+1)) * (bin.fillRate) * bin.popularity); //Randomly adjust fill level
+                        if (bin.fillLevel >= bin.depth || bin.overfilled)
                         {
                             bin.overfilled = true;
                             bin.overfillTime++; //count number of meassurements made where the bin has been overfilled.
@@ -111,8 +107,17 @@ namespace datascript
                         }
 
                         bin.measurements.Add(bin.fillLevel);
+                        //allBinData.Add("Day " + dayCount + ", meassurement " + measurementCount + ": Bin: " + bin.binNumber + " (" + bin.type + "): " + bin.fillLevel);
+                        
+                        if (bin.schedule != 0 && (dayCount % bin.schedule) == 0 && measurementCount == 1)
+                        {
+                            bin.emptyBin();
+                        }
+                    }
+                    foreach (WasteBin bin in bins) {
                         await PostAsync(sharedClient, bin, time);
                     }
+                    
                 }
             }
         }
@@ -149,11 +154,21 @@ namespace datascript
             // Generate random epoch times within the range of the given day
             for (int i = 0; i <= 2; i++) // Generate 12 random times
             {
-                long randomEpochTime = startEpochTime + (long)(random.NextDouble() * (endEpochTime - startEpochTime));
+                long randomEpochTime = startEpochTime + (endEpochTime - startEpochTime) + 43200;
                 epochTimes.Add(randomEpochTime);
             }
 
             return epochTimes;
+        }
+
+        public void printAllWastebinData()
+        {
+
+            foreach (string data in allBinData)
+            {
+                if (data.Contains("Plastic"))
+                Console.WriteLine(data);
+            }
         }
     }
 }

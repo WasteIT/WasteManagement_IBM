@@ -20,7 +20,7 @@ namespace datascript
         public List<double> measurements { get; set; }
         public double dailyFillLevel {get; set; }
 
-        public WasteBin(int binNumber, string type, int depth, int schedule, double popularity, WasteBinManager wastebinManager, double fillRate)
+        public WasteBin(int binNumber, string type, int depth, int schedule, double popularity, WasteBinManager wastebinManager)
         {
             this.type = type;
             this.depth = depth;
@@ -30,7 +30,7 @@ namespace datascript
             fillLevel = 0;
             overfilled = false;
             overfillTime = 0;
-            this.fillRate = fillRate;
+            this.fillRate = depth/(schedule*2);
             this.wasteBinManager = wasteBinManager;
             this.binNumber = binNumber;
             measurements = new List<double>();
