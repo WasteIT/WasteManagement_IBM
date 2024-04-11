@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import WasteCard from '../components/WasteCard';
 
 export default function CardPage() {
     const location = useLocation();
-    const [name, setName] = useState(location.state.name);
+    const [name, ] = useState(location.state.name);
     const [cards, setCards] = useState([]);
-    
-
 
     useEffect(() => {
         const fetchSensorData = async () => {
@@ -23,14 +21,16 @@ export default function CardPage() {
           }
         };
         fetchSensorData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [name]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [name]);
      
     return (
-        <main>
-            {cards.map(name => (  
-                <WasteCard name={name}/>
-            ))}  
+        <main className='main' style={{ width: '90%'}}>
+            <div className="card_container">
+                {cards.map(name => (  
+                    <WasteCard name={name}/>
+                ))}  
+            </div>
         </main>
     );
 }
