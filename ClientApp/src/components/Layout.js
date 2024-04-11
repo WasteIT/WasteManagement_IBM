@@ -203,7 +203,8 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
               <div key={index} style={{ display: "inline-block", marginRight: "20px", marginTop: "0px" }}>
                 <ServiceWasteTypeDropdown
                   wasteType={wasteType}
-                  sensorData={sensorData[wasteType]}
+                  sensors={sensorData[wasteType]}
+                  onChange={() => toggleIsSensorDataVisible(wasteType)}
                 />
                 <Form.Check
                   type="checkbox"
