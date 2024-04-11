@@ -41,8 +41,8 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
     const [isLoading, setIsLoading] = useState(true);
     const [graphInstance, setGraphInstance] = useState(null);
     const [dateRange, setDateRange] = useState({
-      startDate: new Date(new Date().setDate(new Date().getDate() - 84)),
-      endDate: new Date(new Date().setDate(new Date().getDate() - 70)),
+      startDate: new Date(new Date().setDate(new Date().getDate()-31)),
+      endDate: new Date(new Date().setDate(new Date().getDate())),
     });
 
     useEffect(() => {
@@ -76,11 +76,9 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       try {
         const startTimestamp = Math.floor(dateRange.startDate.getTime() / 1000);
         const endTimestamp = Math.floor(dateRange.endDate.getTime() / 1000);
-        
+       
         const response = await fetch(`https://wasteit-backend.azurewebsites.net/sensor/${path}/?start=${startTimestamp}&end=${endTimestamp}`);
-        
         const jsonData = await response.json();
-        
 
         const sensorData = [];
 
