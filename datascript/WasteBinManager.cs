@@ -160,7 +160,7 @@ namespace datascript
             }
         }
 
-        public async Task uploadDataForOneGenerationOfMeasurements(DateTime time)
+        public async Task uploadDataForOneGenerationOfMeasurements(long time)
         {
             foreach (var wasteCategory in wasteCategories)
             {
@@ -202,7 +202,7 @@ namespace datascript
                 calculateWasteShareForEachBin();
                 distributeWasteBasedOnShare();
                 EmptyBinsOnSchedule(observation);
-                await uploadDataForOneGenerationOfMeasurements(timeDateTime);
+                await uploadDataForOneGenerationOfMeasurements(time);
                 ResetCategoriesAndBins();
             }
         }

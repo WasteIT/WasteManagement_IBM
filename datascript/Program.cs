@@ -20,7 +20,7 @@ namespace datascript
 
 
 
-            WasteCategory generalWaste = new WasteCategory("general waste", 3, 7);
+            WasteCategory generalWaste = new WasteCategory("General waste", 3, 7);
             wasteBinManager.addWasteCategory(generalWaste);
 
             WasteBin bin1 = new WasteBin(1, 120, 0.7, generalWaste, wasteBinManager);
@@ -32,7 +32,7 @@ namespace datascript
             generalWaste.AddWasteBin(bin3);
 
 
-            WasteCategory cardboardWaste = new WasteCategory("cardboard", 3, 7);
+            WasteCategory cardboardWaste = new WasteCategory("Cardboard", 3, 7);
             wasteBinManager.addWasteCategory(cardboardWaste);
 
             WasteBin bin4 = new WasteBin(4, 120, 0.5, cardboardWaste, wasteBinManager);
@@ -41,7 +41,7 @@ namespace datascript
             cardboardWaste.AddWasteBin(bin4);
             cardboardWaste.AddWasteBin(bin5);
 
-            WasteCategory plasticWaste = new WasteCategory("plastic", 3, 7);
+            WasteCategory plasticWaste = new WasteCategory("Plastic", 3, 7);
             wasteBinManager.addWasteCategory(plasticWaste);
 
             WasteBin bin6 = new WasteBin(4, 120, 0.9, plasticWaste, wasteBinManager);
