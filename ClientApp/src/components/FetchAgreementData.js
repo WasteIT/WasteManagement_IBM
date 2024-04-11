@@ -11,6 +11,7 @@ export default function FetchAgreementData (){
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
+        
         const jsonData = await response.json();
         setServiceAgreements(jsonData);
         setIsLoading(false);
