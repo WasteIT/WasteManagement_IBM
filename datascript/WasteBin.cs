@@ -7,34 +7,24 @@ namespace datascript
     class WasteBin
     {
         public int binNumber { get; set; }
-        public string type { get; set; }
+        public WasteCategory wasteCategory { get; set; }
         public int depth { get; set; }
-        public int schedule { get; set; }
         public double popularity { get; set; }
         public double fillLevel { get; set; }
-        public bool overfilled { get; set; }
-        public int overfillTime { get; set; }
-        public int measurementCount { get; set; }
-        public double fillRate { get; set; }
         public WasteBinManager wasteBinManager { get; set; }
-        public List<double> measurements { get; set; }
-        public double dailyFillLevel {get; set; }
 
-        public WasteBin(int binNumber, string type, int depth, int schedule, double popularity, WasteBinManager wastebinManager)
+        public double popularityWithRandomVariation { get; set; }
+        public double share { get; set; }
+
+        public WasteBin(int binNumber, int depth, double popularity, WasteCategory wasteCategory, WasteBinManager wastebinManager)
         {
-            this.type = type;
+            this.wasteCategory = wasteCategory;
             this.depth = depth;
-            this.schedule = schedule;
             this.popularity = popularity;
-            measurementCount = 0;
             fillLevel = 0;
-            overfilled = false;
-            overfillTime = 0;
-            this.fillRate = depth/(schedule*2);
             this.wasteBinManager = wasteBinManager;
             this.binNumber = binNumber;
-            measurements = new List<double>();
-            Console.WriteLine("JUST MADE A NEW BIN WITH THESE SPECS: " + type + " " + depth + " " + schedule + " " + popularity);
+            //Console.WriteLine("JUST MADE A NEW BIN WITH THESE SPECS: " + type + " " + depth + " " + schedule + " " + popularity);
         }
 
         public void addWaste(double amount)
@@ -49,7 +39,7 @@ namespace datascript
         public void emptyBin()
         {
             fillLevel = 0;
-            overfilled = false;
+            //overfilled = false;
         }
     }
 }

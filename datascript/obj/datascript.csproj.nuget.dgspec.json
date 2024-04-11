@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Madso\\Downloads\\datascript\\datascript\\datascript.csproj": {}
+    "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Madso\\Downloads\\datascript\\datascript\\datascript.csproj": {
+    "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Madso\\Downloads\\datascript\\datascript\\datascript.csproj",
+        "projectUniqueName": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj",
         "projectName": "datascript",
-        "projectPath": "C:\\Users\\Madso\\Downloads\\datascript\\datascript\\datascript.csproj",
-        "packagesPath": "C:\\Users\\Madso\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Madso\\Downloads\\datascript\\datascript\\obj\\",
+        "projectPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj",
+        "packagesPath": "/Users/juliusdalsgaardbertelsen/.nuget/packages/",
+        "outputPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Madso\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/juliusdalsgaardbertelsen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }
