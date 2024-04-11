@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import FetchAgreementData from "../components/FetchAgreementData";
 import SearchResults from "../components/SearchResults";
 import SearchBar from "../components/Searchbar";
-import WasteCard from "../components/WasteCard";
 
 export default function Agreements(){
   const { serviceAgreements, isLoading } = FetchAgreementData();
   
-  
-
-
   const [searchQuery, setSearchQuery] = useState("");
   
   if (isLoading) {
@@ -27,13 +23,10 @@ export default function Agreements(){
   
    return (
      <main className='main'>
-       
        <div>
             <SearchBar onSearchResult={handleSearchQueryChange} />
             <SearchResults filteredAgreements={filteredAgreements} />
         </div>
-
-        <WasteCard></WasteCard>
      </main>
    );
 }

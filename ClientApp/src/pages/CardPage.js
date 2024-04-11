@@ -25,10 +25,10 @@ export default function CardPage() {
     }, [name]);
      
     return (
-        <main className='main' style={{ width: '90%'}}>
+        <main className='main' style={{ marginTop: '1rem', width: '90%'}}>
             <div className="card_container">
-                {cards.map(name => (  
-                    <WasteCard name={name}/>
+                {cards.map((name, index) => (  
+                    <WasteCard key={index} name={name}/>
                 ))}  
             </div>
         </main>
