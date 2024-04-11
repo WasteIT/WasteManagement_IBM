@@ -47,7 +47,6 @@ namespace datascript
             WasteBin bin6 = new WasteBin(4, 120, 0.9, plasticWaste, wasteBinManager);
 
             plasticWaste.AddWasteBin(bin6);
-            await wasteBinManager.generateData(30, 2, new DateTime(2024, 3, 1));
 
             WasteCategory dangerousWaste = new WasteCategory("Dangerous", 3, 2);
             wasteBinManager.addWasteCategory(dangerousWaste);
@@ -67,7 +66,7 @@ namespace datascript
             foodWaste.AddWasteBin(bin9);
             foodWaste.AddWasteBin(bin10);
 
-            WasteCategory glassWaste = new WasteCategory("glass", 3, 2);
+            WasteCategory glassWaste = new WasteCategory("Glass", 3, 2);
             wasteBinManager.addWasteCategory(glassWaste);
 
             WasteBin bin11 = new WasteBin(1, 120, 0.7, glassWaste, wasteBinManager);
@@ -93,6 +92,8 @@ namespace datascript
 
             foodWaste.AddWasteBin(bin15);
             foodWaste.AddWasteBin(bin16);
+
+             await wasteBinManager.generateData(30, 2, new DateTime(2024, 3, 1));
         }
     }
 }
