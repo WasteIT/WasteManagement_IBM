@@ -97,6 +97,7 @@ namespace datascript
                 }
                 if (excessWaste > 0)
                 {
+                    Console.WriteLine("Adding waste from one bin to another bin of the same type beyond its normal share");
                     double totalCapacity = wasteCategory.wasteBins.Sum(bin => bin.depth - bin.fillLevel);
                     if (excessWaste > totalCapacity)
                     {
@@ -123,6 +124,7 @@ namespace datascript
 
                 if (wasteCategory.type == "general waste")
                 {
+                    Console.WriteLine("Adding overflow waste to general waste bin");
                     double totalCapacity = wasteCategory.wasteBins.Sum(bin => bin.depth - bin.fillLevel);
                     if (totalCapacity < overflowGeneralWaste)
                     {
@@ -158,13 +160,13 @@ namespace datascript
             }
         }
 
-        public void uploadDataForOneGenerationOfMeasurements(DateTime time)
+        public async Task uploadDataForOneGenerationOfMeasurements(DateTime time)
         {
             foreach (var wasteCategory in wasteCategories)
             {
                 foreach (var bin in wasteCategory.wasteBins)
                 {
-                    //await PostAsync(sharedClient, bin, time);
+                    await PostAsync(sharedClient, bin, time.ToString());
                     Console.WriteLine("Bin with number " + bin.binNumber + " of type " + bin.wasteCategory.type + " has a level of " + bin.fillLevel + " at time: " + time);
                 }
             }
@@ -200,7 +202,7 @@ namespace datascript
                 calculateWasteShareForEachBin();
                 distributeWasteBasedOnShare();
                 EmptyBinsOnSchedule(observation);
-                uploadDataForOneGenerationOfMeasurements(timeDateTime);
+                await uploadDataForOneGenerationOfMeasurements(timeDateTime);
                 ResetCategoriesAndBins();
             }
         }
