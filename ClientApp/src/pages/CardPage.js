@@ -6,7 +6,7 @@ export default function CardPage() {
     const location = useLocation();
     const [name, ] = useState(location.state.name);
     const [cards, setCards] = useState([]);
-
+    
     useEffect(() => {
         const fetchSensorData = async () => {
           try {
@@ -27,8 +27,8 @@ export default function CardPage() {
     return (
         <main className='main' style={{ marginTop: '1rem', width: '90%'}}>
             <div className="card_container">
-                {cards.map((name, index) => (  
-                    <WasteCard key={index} name={name}/>
+                {cards.map((carType, index) => (  
+                    <WasteCard key={index} streetname={name} name={carType}/>
                 ))}  
             </div>
         </main>
