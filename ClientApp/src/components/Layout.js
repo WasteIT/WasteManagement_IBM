@@ -198,21 +198,23 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
         <div></div>
       ) : (
         <div className="information_page">
-          {Object.keys(sensorData).map((wasteType, index) => (
-            <div key={index}>
-              <ServiceWasteTypeDropdown
-                wasteType={wasteType}
-                sensorData={sensorData[wasteType]}
-              />
-              <Form.Check
-                type="checkbox"
-                id={`checkbox-${index}`}
-                label={wasteType}
-                checked={isSensorDataVisible[wasteType]}
-                onChange={() => toggleIsSensorDataVisible(wasteType)}
-              />
-            </div>
-          ))}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {Object.keys(sensorData).map((wasteType, index) => (
+              <div key={index} style={{ display: "inline-block", marginRight: "20px", marginTop: "0px" }}>
+                <ServiceWasteTypeDropdown
+                  wasteType={wasteType}
+                  sensorData={sensorData[wasteType]}
+                />
+                <Form.Check
+                  type="checkbox"
+                  id={`checkbox-${index}`}
+                  label={wasteType}
+                  checked={isSensorDataVisible[wasteType]}
+                  onChange={() => toggleIsSensorDataVisible(wasteType)}
+                />
+              </div>
+            ))}
+          </div>
           <div className='graph_wrapper_outer'>
             <div className='filter_options_wrapper'>
               <input
