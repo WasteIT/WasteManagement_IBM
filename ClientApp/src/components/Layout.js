@@ -40,18 +40,21 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
     const [isLoading, setIsLoading] = useState(true);
     const [graphInstance, setGraphInstance] = useState(null);
     const [dateRange, setDateRange] = useState({
-      startDate: new Date(new Date().setDate(new Date().getDate()-31)),
-      endDate: new Date(new Date().setDate(new Date().getDate())),
+      startDate: new Date(new Date().setDate(new Date().getDate()- 60)),
+      endDate: new Date(new Date().setDate(new Date().getDate() + 10)),
     });
 
     useEffect(() => {
       const fetchSensorData = async () => {
         try {
           const response = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor");
+          
           if (!response.ok) {
             throw new Error('Failed to fetch sensor data');
           }
+          
           const childrenData = await response.json();
+
           const initialVisibilityState = {};
           childrenData.forEach((key, index) => {
             initialVisibilityState[key] = true;
@@ -75,8 +78,9 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       try {
         const startTimestamp = Math.floor(dateRange.startDate.getTime() / 1000);
         const endTimestamp = Math.floor(dateRange.endDate.getTime() / 1000);
-       
+  
         const response = await fetch(`https://wasteit-backend.azurewebsites.net/sensor/${path}/?start=${startTimestamp}&end=${endTimestamp}`);
+        
         const jsonData = await response.json();
 
         const sensorData = [];
@@ -84,7 +88,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         jsonData.forEach(entry => {
           const fillLevel = entry.fill_level;
           const timestamp = new Date(parseInt(entry.timestamp) * 1000);
-         
+        
           sensorData.push({ x: timestamp, y: fillLevel });
         });
 
@@ -116,7 +120,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       }
 
       const chartRefCurrent = chartRef.current.getContext('2d');
-
+      
       const datasets = Object.keys(sensorData).map(label => ({
         label: label,
         data: sensorData[label],
@@ -124,6 +128,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         backgroundColor: 'rgba(255, 255, 255, 0)',
         hidden: !isSensorDataVisible[label]
       }));
+      console.log(datasets)
       const newGraphInstance = new Chart(chartRefCurrent, {
         type: 'line',
         data: {
@@ -189,7 +194,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
 const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVisible, dateRange, setDateRange, name }) => {
   return (
     <main>
-       <h2 style={{textAlign: "center", paddingTop: "20px"}}>{name}</h2>
+       <h2 style={{textAlign: "center", paddingTop: "20px"}}>Hej</h2>
       {isLoading ? (
         <div></div>
       ) : (
