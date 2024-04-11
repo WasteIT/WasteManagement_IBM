@@ -76,7 +76,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         const startTimestamp = Math.floor(dateRange.startDate.getTime() / 1000);
         const endTimestamp = Math.floor(dateRange.endDate.getTime() / 1000);
         
-        const response = await fetch(`https://wasteit-backend.azurewebsites.net/sensor/${path}/?start=${startTimestamp}&end=${endTimestamp}`);
+        const response = await fetch(`https://wasteit-backend.azurewebsites.net/address/sensor/${path}/?start=${startTimestamp}&end=${endTimestamp}`);
         
         const jsonData = await response.json();
         
