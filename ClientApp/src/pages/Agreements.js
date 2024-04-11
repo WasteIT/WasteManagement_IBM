@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FetchAgreementData from "../components/FetchAgreementData";
 import SearchResults from "../components/SearchResults";
 import SearchBar from "../components/Searchbar";
-
+import WasteCard from "../components/WasteCard";
 
 export default function Agreements(){
   const { serviceAgreements, isLoading } = FetchAgreementData();
@@ -32,6 +32,8 @@ export default function Agreements(){
             <SearchBar onSearchResult={handleSearchQueryChange} />
             <SearchResults filteredAgreements={filteredAgreements} />
         </div>
+
+        <WasteCard></WasteCard>
      </main>
    );
 }

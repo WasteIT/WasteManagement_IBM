@@ -11,7 +11,7 @@ class ServiceAgreementsDropdown extends Component {
                     <Accordion.Header>{name}</Accordion.Header>
                     <Accordion.Body>
                         <p>Content for {name}</p>
-                        <Link className="btn button" to="/graph"  state={{ name: name }}>Agreements</Link>
+                        <Link className="btn button" to="/graph"  state={{ name: name }}>Agreement</Link>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
