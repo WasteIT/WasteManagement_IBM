@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/Users/juliusdalsgaardbertelsen/.nuget/packages/": {}
+    "C:\\Users\\Madso\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj",
+      "projectUniqueName": "C:\\Users\\Madso\\WasteManagement_IBM\\datascript\\datascript.csproj",
       "projectName": "datascript",
-      "projectPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj",
-      "packagesPath": "/Users/juliusdalsgaardbertelsen/.nuget/packages/",
-      "outputPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/obj/",
+      "projectPath": "C:\\Users\\Madso\\WasteManagement_IBM\\datascript\\datascript.csproj",
+      "packagesPath": "C:\\Users\\Madso\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Madso\\WasteManagement_IBM\\datascript\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/juliusdalsgaardbertelsen/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Madso\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
