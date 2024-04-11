@@ -60,7 +60,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           setIsSensorDataVisible(initialVisibilityState);
 
           Object.keys(initialVisibilityState).forEach(element => {
-            fetchGraphData(name + "/sensor/" + element, element);
+            fetchGraphData("address/" + name + "/sensor/" + element, element);
           });
 
           setIsLoading(false);
@@ -184,12 +184,13 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         dateRange={dateRange}
         setDateRange={setDateRange}
         name={name}
+        sensorData={sensorData}
       />
     );
   };
 };
 
-const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVisible, dateRange, setDateRange, name }) => {
+const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVisible, dateRange, setDateRange, name, sensorData }) => {
   return (
     <main>
       <h2 style={{textAlign: "center", paddingTop: "20px"}}>{name}</h2>
@@ -197,22 +198,21 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
         <div></div>
       ) : (
         <div className="information_page">
-            <ServiceWasteTypeDropdown
-              wasteTypes={Object.keys(isSensorDataVisible)}
-              style={{
-                backgroundColor: getRandomColor('General waste'),
-                color: '#fff',
-                padding: 10,
-                paddingRight: 15,
-                width: "12rem",
-              }}
-              onSelect={(e) => toggleIsSensorDataVisible(e.target.value)}
-            >
-              {Object.keys(isSensorDataVisible).map((label, index) => (
-                <option key={index} value={label}>{label}</option>
-              ))}
-            </ServiceWasteTypeDropdown>
-    
+          {Object.keys(sensorData).map((wasteType, index) => (
+            <div key={index}>
+              <ServiceWasteTypeDropdown
+                wasteType={wasteType}
+                onSelect={(e) => toggleIsSensorDataVisible(wasteType)}
+              />
+              <Form.Check
+                type="checkbox"
+                id={`checkbox-${index}`}
+                label={wasteType}
+                checked={isSensorDataVisible[wasteType]}
+                onChange={() => toggleIsSensorDataVisible(wasteType)}
+              />
+            </div>
+          ))}
           <div className='graph_wrapper_outer'>
             <div className='filter_options_wrapper'>
               <input
@@ -226,7 +226,6 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
                     selectedDate.setDate(selectedDate.getDate() + 30);
                     setDateRange(prev => ({...prev, startDate: new Date(e.target.value), endDate: selectedDate }))
                   }
-                  isLoading = false;
                 }}
               />
               <input
@@ -240,7 +239,6 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
                     selectedDate.setDate(selectedDate.getDate() - 30);
                     setDateRange(prev => ({...prev, startDate: selectedDate, endDate: new Date(e.target.value) }))
                   }
-                  isLoading = false
                 }}
               />
             </div>
@@ -253,6 +251,5 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
     </main>
   );
 };
-
 
 export default fetchDataBeforeLayout(Layout);
