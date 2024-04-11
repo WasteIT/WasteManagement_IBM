@@ -38,6 +38,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
     const chartRef = useRef();
     const [isSensorDataVisible, setIsSensorDataVisible] = useState({});
     const [sensorData, setSensorData] = useState({});
+    const [sensorData2, setSensorData2] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [graphInstance, setGraphInstance] = useState(null);
     const [dateRange, setDateRange] = useState({
@@ -55,22 +56,39 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           }
           
           const childrenData = await response.json();
-
+      
           const initialVisibilityState = {};
+          const sensorData = {};
+      
+          // Iterate over each waste type
+          for (const wasteType of childrenData) {
+            initialVisibilityState[wasteType] = true;
+      
+            // Fetch sensors for the current waste type
+            const sensorsResponse = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor/" + wasteType);
+            if (!sensorsResponse.ok) {
+              throw new Error('Failed to fetch sensors for waste type: ' + wasteType);
+            }
+            const sensorsData = await sensorsResponse.json();
+      
+            // Add sensors to sensorData object
+            sensorData[wasteType] = sensorsData;
+          }
+      
           childrenData.forEach((key, index) => {
             initialVisibilityState[key] = true;
           });
+
           setIsSensorDataVisible(initialVisibilityState);
-
-          Object.keys(initialVisibilityState).forEach(element => {
-            fetchGraphData("address/" + name + "/sensor/" + element, element);
-          });
-
+  
+          setSensorData(sensorData);
           setIsLoading(false);
         } catch (error) {
           console.error('Error fetching sensor data:', error);
         }
       };
+
+      
       fetchSensorData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name, dateRange]);
@@ -121,7 +139,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       }
 
       const chartRefCurrent = chartRef.current.getContext('2d');
-      
+      console.log(sensorData)
       const datasets = Object.keys(sensorData).map(label => ({
         label: label,
         data: sensorData[label],
@@ -129,7 +147,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         backgroundColor: 'rgba(255, 255, 255, 0)',
         hidden: !isSensorDataVisible[label]
       }));
-      console.log(datasets)
+      
       const newGraphInstance = new Chart(chartRefCurrent, {
         type: 'line',
         data: {
@@ -205,9 +223,9 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
             {Object.keys(sensorData).map((wasteType, index) => (
               <div key={index} style={{ display: "inline-block", marginRight: "20px", marginTop: "0px" }}>
                 <ServiceWasteTypeDropdown
-                  wasteType={wasteType}
-                  sensors={sensorData[wasteType]}
-                  onChange={() => toggleIsSensorDataVisible(wasteType)}
+                wasteType={wasteType}
+                sensors={sensorData[wasteType]}
+                onChange={(sensor) => toggleIsSensorDataVisible(sensor)}
                 />
                 <Form.Check
                   type="checkbox"

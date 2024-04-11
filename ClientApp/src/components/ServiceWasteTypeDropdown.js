@@ -1,16 +1,22 @@
-import { secondsToHours } from 'date-fns';
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Form from 'react-bootstrap/Form';
 
-const ServiceWasteTypeDropdown = ({ wasteType, sensors}) => {
+const ServiceWasteTypeDropdown = ({ wasteType, sensors, onChange }) => {
+  const handleSensorClick = (sensor) => {
+    onChange(sensor);
+  };
+
   return (
     <Dropdown>
       <Dropdown.Toggle variant="primary" id="dropdown-basic">
         {wasteType}
       </Dropdown.Toggle>
       <Dropdown.Menu>
-      <Dropdown.Item>{sensors}</Dropdown.Item>
+        {sensors.map((sensor, index) => (
+          <Dropdown.Item key={index} onClick={() => handleSensorClick(sensor)}>
+            {sensor.name} sensor: {index + 1}
+          </Dropdown.Item>
+        ))}
       </Dropdown.Menu>
     </Dropdown>
   );
