@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { Chart } from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
+import ServiceWasteTypeDropdown from './ServiceWasteTypeDropdown';
 
 const getRandomColor = (label) => {
   switch (label) {
@@ -191,33 +192,33 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
 const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVisible, dateRange, setDateRange, name }) => {
   return (
     <main>
-       <h2 style={{textAlign: "center", paddingTop: "20px"}}>{name}</h2>
+      <h2 style={{textAlign: "center", paddingTop: "20px"}}>{name}</h2>
       {isLoading ? (
         <div></div>
       ) : (
         <div className="information_page">
-          <Form className="fraction_filter">
-            {Object.keys(isSensorDataVisible).map((label, index) => (
-              <Form.Check
-                className='temp_Form'
-                style={{backgroundColor: getRandomColor(label), color: '#fff',
-                padding: 10, paddingRight: 15, width: "12rem",}}
-                key={index}
-                type="checkbox"
-                id={label}
-                label={label}
-                checked={isSensorDataVisible[label]}
-                onChange={() => toggleIsSensorDataVisible(label)}
-              />
-            ))}
-          </Form>
+            <ServiceWasteTypeDropdown
+              wasteTypes={Object.keys(isSensorDataVisible)}
+              style={{
+                backgroundColor: getRandomColor('General waste'),
+                color: '#fff',
+                padding: 10,
+                paddingRight: 15,
+                width: "12rem",
+              }}
+              onSelect={(e) => toggleIsSensorDataVisible(e.target.value)}
+            >
+              {Object.keys(isSensorDataVisible).map((label, index) => (
+                <option key={index} value={label}>{label}</option>
+              ))}
+            </ServiceWasteTypeDropdown>
+    
           <div className='graph_wrapper_outer'>
             <div className='filter_options_wrapper'>
               <input
                 type="date"
                 value={dateRange.startDate.toISOString().split('T')[0]}
                 onChange={e => {
-                  
                   if(dateRange.endDate.toISOString().split('T')[0] > e.target.value){
                     setDateRange(prev => ({...prev, startDate: new Date(e.target.value)}))
                   } else {
@@ -232,7 +233,6 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
                 type="date"
                 value={dateRange.endDate.toISOString().split('T')[0]}
                 onChange={e => {
-                  //console.log("This is my target value: " + e.target.value)
                   if(dateRange.startDate.toISOString().split('T')[0] < e.target.value){
                     setDateRange(prev => ({...prev, endDate: new Date(e.target.value)}))
                   } else {
@@ -241,7 +241,7 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
                     setDateRange(prev => ({...prev, startDate: selectedDate, endDate: new Date(e.target.value) }))
                   }
                   isLoading = false
-                  }}
+                }}
               />
             </div>
             <div className='graph_wrapper_inner'>
@@ -253,5 +253,6 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
     </main>
   );
 };
+
 
 export default fetchDataBeforeLayout(Layout);
