@@ -66,6 +66,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       
             // Fetch sensors for the current waste type
             const sensorsResponse = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor/" + wasteType);
+            
             if (!sensorsResponse.ok) {
               throw new Error('Failed to fetch sensors for waste type: ' + wasteType);
             }
@@ -81,6 +82,10 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
 
           setIsSensorDataVisible(initialVisibilityState);
   
+          Object.keys(initialVisibilityState).forEach(element => {
+            fetchGraphData("address/" + name + "/sensor/" + element, element);
+          });
+
           setSensorData(sensorData);
           setIsLoading(false);
         } catch (error) {
