@@ -51,8 +51,54 @@ namespace Function.Tests
             
             
             //Assert
-            double totalWaste = bin1.share + bin2.share + bin3.share;
-            Assert.Equal(10, totalWaste);
+            double totalWastePercent = bin1.share + bin2.share + bin3.share;
+            int roundedTotalWastePercent = (int)Math.Ceiling(totalWastePercent);
+            Assert.Equal(roundedTotalWastePercent, 1);
         }
+        [Theory]
+        //[InlineData(0.5, 0.5, 100, 0)]
+        [InlineData(0.2, 0.8, 10, 0)]
+        public void distributeWasteBasedOnShare(int bin1Share, int bin2Share, double bin1FillLevel, double bin2FillLevel)
+        {
+            //Arrange
+            WasteBinManager manager = new WasteBinManager();
+
+            WasteCategory plastic = new WasteCategory("Plastic", 7, new List<int> { 6 });
+            WasteCategory general = new WasteCategory("GeneralWaste", 6, new List<int> { 4 });
+
+            WasteBin bin1 = new WasteBin(1, 120, 1, plastic, manager);
+            WasteBin bin2 = new WasteBin(2, 120, 1, plastic, manager);
+
+            WasteBin bin3 = new WasteBin(2, 120, 0.6, general, manager);
+
+            bin1.share = bin1Share;
+            bin2.share = bin2Share;
+            bin1.fillLevel = bin1FillLevel;
+            bin2.fillLevel = bin2FillLevel;
+
+            plastic.wasteAmount = 50;
+
+            manager.addWasteCategory(plastic);
+            manager.addWasteCategory(general);
+
+            plastic.AddWasteBin(bin1);
+            plastic.AddWasteBin(bin2);
+            general.AddWasteBin(bin3);
+            //Act
+            manager.distributeWasteBasedOnShare();
+            
+            //Assert
+            if(bin1.fillLevel + bin1.share * plastic.wasteAmount > bin1.depth && bin2.fillLevel + bin2.share * plastic.wasteAmount < bin2.depth)
+            {
+                Assert.Equal(bin1.fillLevel, bin1.depth);
+                Assert.True(bin2.fillLevel > bin2.share * plastic.wasteAmount);
+            }
+            if(bin1.fillLevel + bin1.share * plastic.wasteAmount < bin1.depth && bin2.fillLevel + bin2.share * plastic.wasteAmount < bin2.depth)
+            {
+                Assert.Equal(bin1.fillLevel, bin1.share * plastic.wasteAmount);
+                Assert.Equal(bin2.fillLevel, bin2.share * plastic.wasteAmount);
+            }
+            
+        } 
     }
 }

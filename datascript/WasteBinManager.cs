@@ -73,7 +73,7 @@ namespace datascript
                 foreach (var bin in wasteCategory.wasteBins)
                 {
                     //first calculate the share of waste without randomness
-                    bin.share = wasteAmount * (bin.popularityWithRandomVariation / totalPopularity);
+                    bin.share = (bin.popularityWithRandomVariation / totalPopularity);
                 }
             }
             //For each category, add the waste to the relevant bins
