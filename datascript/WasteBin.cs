@@ -16,6 +16,8 @@ namespace datascript
         public double popularityWithRandomVariation { get; set; }
         public double share { get; set; }
 
+        public List<Measurement> measurements { get; set; }
+
         public WasteBin(int binNumber, int depth, double popularity, WasteCategory wasteCategory, WasteBinManager wastebinManager)
         {
             this.wasteCategory = wasteCategory;
@@ -24,6 +26,7 @@ namespace datascript
             fillLevel = 0;
             this.wasteBinManager = wasteBinManager;
             this.binNumber = binNumber;
+            this.measurements = new List<Measurement>();
             //Console.WriteLine("JUST MADE A NEW BIN WITH THESE SPECS: " + type + " " + depth + " " + schedule + " " + popularity);
         }
 

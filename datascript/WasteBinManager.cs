@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text;
+using System.Linq;
 
 namespace datascript
 {
@@ -27,10 +28,16 @@ namespace datascript
         public List<string> allBinData = new List<string>();
         public int panic { get; }
 
+
+        public Dictionary<string, List<int>> pickupSchedule;
+        public Dictionary<string, double> averageFillLevelAtPickup;
+
         public WasteBinManager()
         {
             //bins = new List<WasteBin>();
             wasteCategories = new List<WasteCategory>();
+            pickupSchedule = new Dictionary<string, List<int>>();
+            averageFillLevelAtPickup = new Dictionary<string, double>();
         }
 
         public void addWasteCategory(WasteCategory wasteCategory)
@@ -97,7 +104,7 @@ namespace datascript
                 }
                 if (excessWaste > 0)
                 {
-                    Console.WriteLine("Adding waste from one bin to another bin of the same type beyond its normal share");
+                    //Console.WriteLine("Adding waste from one bin to another bin of the same type beyond its normal share");
                     double totalCapacity = wasteCategory.wasteBins.Sum(bin => bin.depth - bin.fillLevel);
                     if (excessWaste > totalCapacity)
                     {
@@ -145,19 +152,29 @@ namespace datascript
             }
         }
 
-        public void EmptyBinsOnSchedule(int measurementCount)
+        public void EmptyBinsOnSchedule(int measurementCount, int currentWeekDayNumber)
         {
-            foreach (var wasteCategory in wasteCategories)
-            {
-                if (measurementCount % (wasteCategory.schedule * 2) == 0) // * 2 because there is two measurements each day ... 
-                {
-                    foreach (var bin in wasteCategory.wasteBins)
-                    {
-                        bin.fillLevel = 0;
-                    }
 
+            if (measurementCount == 0)
+            {
+                foreach (var wasteCategory in wasteCategories)
+                {
+                    foreach (int scheduleWeekDay in wasteCategory.schedule)
+                    {
+                        //Console.WriteLine("HELLO, I AM COMPARING TWO DAYS: " + scheduleWeekDay + " and " + (int)currentWeekDayNumber);
+                        if (scheduleWeekDay + 1 == currentWeekDayNumber)
+                        {
+                            //Console.WriteLine("GREAT SUCCESS!");
+                            foreach (var bin in wasteCategory.wasteBins)
+                            {
+                                bin.fillLevel = 0;
+                            }
+                        }
+                    }
+                    //if (measurementCount % (wasteCategory.schedule * 2) == 0) // * 2 because there is two measurements each day ... 
                 }
             }
+
         }
 
         public async Task uploadDataForOneGenerationOfMeasurements(long time)
@@ -166,11 +183,16 @@ namespace datascript
             {
                 foreach (var bin in wasteCategory.wasteBins)
                 {
-                    await PostAsync(sharedClient, bin, time.ToString());
-                    Console.WriteLine("Bin with number " + bin.binNumber + " of type " + bin.wasteCategory.type + " has a level of " + bin.fillLevel + " at time: " + time);
+                    //await PostAsync(sharedClient, bin, time.ToString());
+                    //Console.WriteLine("Bin with number " + bin.binNumber + " of type " + bin.wasteCategory.type + " has a level of " + bin.fillLevel + " at time: " + time);
+
+                    //Also add the data (nicely formatted) to a local dataset to calculate pickup stuff here, just for now.
+                    Measurement measurement = new Measurement(bin.binNumber, bin.wasteCategory.type, time, bin.fillLevel);
+                    bin.measurements.Add(measurement);
                 }
             }
         }
+
 
         public void ResetCategoriesAndBins()
         {
@@ -189,23 +211,60 @@ namespace datascript
             //first we find out how much to increment time stamp according to number of daily ovservations.
             int incrementSeconds = 86400 / dailyObservationCount;
             long startDateUnixTime = ((DateTimeOffset)startDate).ToUnixTimeSeconds();
+            DayOfWeek startDateWeekDay = startDate.DayOfWeek;
+            int weekDayNumber = (int)startDateWeekDay;
             long time = startDateUnixTime;
 
-            for (int observation = 1; observation <= dailyObservationCount * dayCount; observation++)
+            for (int day = 0; day < dayCount; day++)
             {
-                //first create the time stamp for this generation of measurements and convert it to a date. 
-                time += incrementSeconds;
-                DateTime timeDateTime = UnixTimeStampToDateTime(time);
+                if (weekDayNumber % 7 == 0)
+                {
+                    weekDayNumber = 0;
+                }
+                weekDayNumber += 1;
 
-                //next, generate data for this generation of measurements
-                generateWaste();
-                calculateWasteShareForEachBin();
-                distributeWasteBasedOnShare();
-                EmptyBinsOnSchedule(observation);
-                await uploadDataForOneGenerationOfMeasurements(time);
-                ResetCategoriesAndBins();
+                for (int observation = 0; observation < dailyObservationCount; observation++)
+                {
+                    //first create the time stamp for this generation of measurements and convert it to a date. 
+                    time += incrementSeconds;
+                    DateTime timeDateTime = UnixTimeStampToDateTime(time);
+
+                    //next, generate data for this generation of measurements
+                    generateWaste();
+                    calculateWasteShareForEachBin();
+                    distributeWasteBasedOnShare();
+                    EmptyBinsOnSchedule(observation, weekDayNumber);
+                    await uploadDataForOneGenerationOfMeasurements(time);
+                    ResetCategoriesAndBins();
+                }
             }
+            CalculatePickupSchedulesAndAvgFillLevelBasedOnDataTrends();
+            PrintDictionaryStuff();
+            // Iterate over the dictionary and print out its contents
         }
+
+        public void PrintDictionaryStuff()
+        {
+            foreach (KeyValuePair<string, List<int>> kvp in pickupSchedule)
+            {
+                Console.Write("Key: " + kvp.Key + ", Value: ");
+                // Iterate over the list and print each element
+                foreach (int value in kvp.Value)
+                {
+                    Console.Write(value + " ");
+                }
+                Console.WriteLine(); // Move to the next line for the next key-value pair
+            }
+
+            foreach (KeyValuePair<string, double> kvp in averageFillLevelAtPickup)
+            {
+                Console.WriteLine("Waste type: " + kvp.Key + ", Average fill level at pickup time: " + kvp.Value);
+            }
+
+
+        }
+
+
 
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
@@ -230,6 +289,45 @@ namespace datascript
             var jsonResponse = await response.Content.ReadAsStringAsync();
             Console.WriteLine($"{jsonResponse}\n");
         }
+
+        public void CalculatePickupSchedulesAndAvgFillLevelBasedOnDataTrends()
+        {
+            foreach (var wasteCategory in wasteCategories)
+            {
+
+                HashSet<int> pickUpWeekDays = new HashSet<int>();
+                List<double> measurementsBeforePickup = new List<double>();
+                foreach (var bin in wasteCategory.wasteBins)
+                {
+                    double previousMeasurementFillLevel = -1;
+                    foreach (var measurement in bin.measurements)
+                    {
+                        if (previousMeasurementFillLevel > measurement.fillLevel)
+                        {
+                            //Console.WriteLine("FOUND AN DAY WHERE A BIN WAS EMPTIED! FRACTION " + wasteCategory.type + " IS EMPTIED. PREVIOUS: " + previousMeasurementFillLevel + " AND CURRENT/NEW: " + measurement.fillLevel + ". THIS IS THE BIN: " + measurement.type + " number: " + measurement.binNumber);
+
+                            DateTime timestampDateTime = DateTimeOffset.FromUnixTimeSeconds(measurement.timestamp).DateTime;
+                            int timestampWeekday = (int)timestampDateTime.DayOfWeek;
+
+                            pickUpWeekDays.Add(timestampWeekday);
+                            measurementsBeforePickup.Add(previousMeasurementFillLevel);
+                        }
+                        previousMeasurementFillLevel = measurement.fillLevel;
+                    }
+                }
+
+                pickupSchedule[wasteCategory.type] = pickUpWeekDays.ToList();
+                //Console.WriteLine("ADDED PICK UP TIMES TO THE LIBRARY");
+                double averageFillLevelAtPickupValue = 0;
+                if (measurementsBeforePickup.Count > 0)
+                {
+                    averageFillLevelAtPickupValue = measurementsBeforePickup.Average();
+                }
+                averageFillLevelAtPickup[wasteCategory.type] = averageFillLevelAtPickupValue;
+                //Console.WriteLine("ADDED AVERAGE FILL LEVEL AT UP TIMES TO THE LIBRARY: " + averageFillLevelAtPickupValue + " FOR WASTE TYPE " + wasteCategory.type);
+            }
+        }
+
     }
 }
 

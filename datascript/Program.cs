@@ -20,7 +20,7 @@ namespace datascript
 
 
 
-            WasteCategory generalWaste = new WasteCategory("General waste", 3, 7);
+            WasteCategory generalWaste = new WasteCategory("General waste", 3, new List<int> { 6 });
             wasteBinManager.addWasteCategory(generalWaste);
 
             WasteBin bin1 = new WasteBin(1, 120, 0.7, generalWaste, wasteBinManager);
@@ -32,7 +32,7 @@ namespace datascript
             generalWaste.AddWasteBin(bin3);
 
 
-            WasteCategory cardboardWaste = new WasteCategory("Cardboard", 3, 7);
+            WasteCategory cardboardWaste = new WasteCategory("Cardboard", 3, new List<int> { 6 });
             wasteBinManager.addWasteCategory(cardboardWaste);
 
             WasteBin bin4 = new WasteBin(4, 120, 0.5, cardboardWaste, wasteBinManager);
@@ -41,14 +41,14 @@ namespace datascript
             cardboardWaste.AddWasteBin(bin4);
             cardboardWaste.AddWasteBin(bin5);
 
-            WasteCategory plasticWaste = new WasteCategory("Plastic", 3, 7);
+            WasteCategory plasticWaste = new WasteCategory("Plastic", 3, new List<int> { 6 });
             wasteBinManager.addWasteCategory(plasticWaste);
 
             WasteBin bin6 = new WasteBin(4, 120, 0.9, plasticWaste, wasteBinManager);
 
             plasticWaste.AddWasteBin(bin6);
 
-            WasteCategory dangerousWaste = new WasteCategory("Dangerous", 3, 2);
+            WasteCategory dangerousWaste = new WasteCategory("Dangerous", 3, new List<int> { 2, 6 });
             wasteBinManager.addWasteCategory(dangerousWaste);
 
             WasteBin bin7 = new WasteBin(1, 120, 0.7, dangerousWaste, wasteBinManager);
@@ -57,7 +57,7 @@ namespace datascript
             dangerousWaste.AddWasteBin(bin7);
             dangerousWaste.AddWasteBin(bin8);
 
-            WasteCategory foodWaste = new WasteCategory("Food", 3, 2);
+            WasteCategory foodWaste = new WasteCategory("Food", 3, new List<int> { 2, 6 });
             wasteBinManager.addWasteCategory(foodWaste);
 
             WasteBin bin9 = new WasteBin(1, 120, 0.7, foodWaste, wasteBinManager);
@@ -66,34 +66,34 @@ namespace datascript
             foodWaste.AddWasteBin(bin9);
             foodWaste.AddWasteBin(bin10);
 
-            WasteCategory glassWaste = new WasteCategory("Glass", 3, 2);
+            WasteCategory glassWaste = new WasteCategory("Glass", 3, new List<int> { 6 });
             wasteBinManager.addWasteCategory(glassWaste);
 
             WasteBin bin11 = new WasteBin(1, 120, 0.7, glassWaste, wasteBinManager);
             WasteBin bin12 = new WasteBin(2, 120, 1, glassWaste, wasteBinManager);
 
-            foodWaste.AddWasteBin(bin11);
-            foodWaste.AddWasteBin(bin12);
+            glassWaste.AddWasteBin(bin11);
+            glassWaste.AddWasteBin(bin12);
 
-            WasteCategory MetalWaste = new WasteCategory("Metal", 3, 2);
-            wasteBinManager.addWasteCategory(MetalWaste);
+            WasteCategory metalWaste = new WasteCategory("Metal", 3, new List<int> { 2, 6 });
+            wasteBinManager.addWasteCategory(metalWaste);
 
-            WasteBin bin13 = new WasteBin(1, 120, 0.7, MetalWaste, wasteBinManager);
-            WasteBin bin14 = new WasteBin(2, 120, 1, MetalWaste, wasteBinManager);
+            WasteBin bin13 = new WasteBin(1, 120, 0.7, metalWaste, wasteBinManager);
+            WasteBin bin14 = new WasteBin(2, 120, 1, metalWaste, wasteBinManager);
 
-            foodWaste.AddWasteBin(bin13);
-            foodWaste.AddWasteBin(bin14);
+            metalWaste.AddWasteBin(bin13);
+            metalWaste.AddWasteBin(bin14);
 
-            WasteCategory PaperWaste = new WasteCategory("Paper", 3, 2);
-            wasteBinManager.addWasteCategory(PaperWaste);
+            WasteCategory paperWaste = new WasteCategory("Paper", 3, new List<int> { 2, 6 });
+            wasteBinManager.addWasteCategory(paperWaste);
 
-            WasteBin bin15 = new WasteBin(1, 120, 0.7, PaperWaste, wasteBinManager);
-            WasteBin bin16 = new WasteBin(2, 120, 1, PaperWaste, wasteBinManager);
+            WasteBin bin15 = new WasteBin(1, 120, 0.7, paperWaste, wasteBinManager);
+            WasteBin bin16 = new WasteBin(2, 120, 1, paperWaste, wasteBinManager);
 
-            foodWaste.AddWasteBin(bin15);
-            foodWaste.AddWasteBin(bin16);
+            paperWaste.AddWasteBin(bin15);
+            paperWaste.AddWasteBin(bin16);
 
-             await wasteBinManager.generateData(30, 2, new DateTime(2024, 3, 1));
+            await wasteBinManager.generateData(30, 2, new DateTime(2024, 3, 1));
         }
     }
 }
