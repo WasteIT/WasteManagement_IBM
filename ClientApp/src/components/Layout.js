@@ -56,7 +56,8 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           const childrenData = await response.json();
 
           const initialVisibilityState = {};
-          childrenData.forEach((key, index) => {
+          
+          Object.keys(childrenData).forEach((key, index) => {
             initialVisibilityState[key] = true;
           });
           setIsSensorDataVisible(initialVisibilityState);
