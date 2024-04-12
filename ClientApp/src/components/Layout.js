@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { Chart } from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
+import ServiceWasteTypeDropdown from './ServiceWasteTypeDropdown';
 
 const getRandomColor = (label) => {
   switch (label) {
@@ -31,101 +32,71 @@ const getRandomColor = (label) => {
   }
 };
 
-const fetchDataBeforeLayout = (WrappedComponent) => {
-  return (props) => {
-    const { state: { name } = {} } = useLocation();
-    const chartRef = useRef();
-    const [isSensorDataVisible, setIsSensorDataVisible] = useState({});
-    const [sensorData, setSensorData] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
-    const [graphInstance, setGraphInstance] = useState(null);
-    const [dateRange, setDateRange] = useState({
-      startDate: new Date(new Date().setDate(new Date().getDate()- 60)),
-      endDate: new Date(new Date().setDate(new Date().getDate() + 10)),
-    });
+const Layout = () => {
+  const { state: { name } = {} } = useLocation();
+  const chartRef = useRef();
+  const [isLoading, setIsLoading] = useState(true);
+  const [sensorData, setSensorData] = useState({});
+  const [graphData, setGraphData] = useState({});
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(new Date().setDate(new Date().getDate() - 60)),
+    endDate: new Date(new Date().setDate(new Date().getDate() + 10)),
+  });
 
-    useEffect(() => {
-      const fetchSensorData = async () => {
-        try {
-          const response = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor");
-          
-          if (!response.ok) {
-            throw new Error('Failed to fetch sensor data');
-          }
-          
-          const childrenData = await response.json();
-          
-          const initialVisibilityState = {};
-
-          Object.keys(childrenData).forEach((key, index) => {
-            initialVisibilityState[key] = true;
-          });
-          setIsSensorDataVisible(initialVisibilityState);
-
-          Object.keys(initialVisibilityState).forEach(element => {
-            fetchGraphData("address/" + name + "/sensor/" + element, element);
-          });
-
-          setIsLoading(false);
-        } catch (error) {
-          console.error('Error fetching sensor data:', error);
-        }
-      };
-      fetchSensorData();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [name, dateRange]);
-
-    const fetchGraphData = async (path, label) => {
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const startTimestamp = Math.floor(dateRange.startDate.getTime() / 1000);
-        const endTimestamp = Math.floor(dateRange.endDate.getTime() / 1000);
-  
-        const response = await fetch(`https://wasteit-backend.azurewebsites.net/sensor/${path}/?start=${startTimestamp}&end=${endTimestamp}`);
-        
-        const jsonData = await response.json();
+        // Fetch sensor data
+        const sensorResponse = await fetch(`https://wasteit-backend.azurewebsites.net/data/${name}/sensor`);
+        if (!sensorResponse.ok) {
+          throw new Error('Failed to fetch sensor data');
+        }
+        const sensorData = await sensorResponse.json();
+        setSensorData(sensorData);
 
-        const sensorData = [];
-
-        jsonData.forEach(entry => {
-          const fillLevel = entry.fill_level;
-          const timestamp = new Date(parseInt(entry.Timestamp) * 1000);
-          sensorData.push({ x: timestamp, y: fillLevel });
-        });
-
-        setSensorData(prevState => ({
-          ...prevState,
-          [label]: sensorData
-        }));
-
-        setIsSensorDataVisible(prevState => ({
-          ...prevState,
-          [label]: true
-        }));
+        // Fetch graph data for each waste type
+        const graphData = {};
+        for (const wasteType in sensorData) {
+          const response = await fetch(`https://wasteit-backend.azurewebsites.net/sensor/address/${name}/sensor/${wasteType}/?start=${Math.floor(dateRange.startDate.getTime() / 1000)}&end=${Math.floor(dateRange.endDate.getTime() / 1000)}`);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch graph data for ${wasteType}`);
+          }
+          const jsonData = await response.json();
+          const data = jsonData.map(entry => ({
+            x: new Date(parseInt(entry.Timestamp) * 1000),
+            y: entry.fill_level,
+            hidden: false,
+          }));
+          graphData[wasteType] = data;
+        }
+        setGraphData(graphData);
+        setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching graph data:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
-    useEffect(() => {
-      if (!isLoading && Object.keys(sensorData).length > 0) {
-        buildChart();
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLoading, isSensorDataVisible]);
+    fetchData();
+  }, [name, dateRange]);
 
-    const buildChart = () => {
+  useEffect(() => {
+    if (!isLoading && Object.keys(graphData).length > 0) {
+      buildChart();
+    }
+  }, [isLoading, graphData]);
 
-      if (graphInstance) {
-        graphInstance.destroy();
+  const buildChart = () => {
+    if (chartRef.current) {
+      if (chartRef.current.chart) {
+        chartRef.current.chart.destroy();
       }
 
       const chartRefCurrent = chartRef.current.getContext('2d');
-      const datasets = Object.keys(sensorData).map(label => ({
+      const datasets = Object.keys(graphData).map(label => ({
         label: label,
-        data: sensorData[label],
+        data: graphData[label].filter(dataPoint => !dataPoint.hidden),
         borderColor: getRandomColor(label),
         backgroundColor: 'rgba(255, 255, 255, 0)',
-        hidden: !isSensorDataVisible[label]
       }));
 
       const newGraphInstance = new Chart(chartRefCurrent, {
@@ -147,7 +118,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
                 text: 'Procent Full',
               },
             },
-            x: {  
+            x: {
               type: 'time',
               ticks:{
                 display: false
@@ -163,91 +134,51 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         },
       });
 
-      setGraphInstance(newGraphInstance)
-    };
-
-    const toggleIsSensorDataVisible = label => {
-      setIsSensorDataVisible(prevState => ({
-        ...prevState,
-        [label]: !prevState[label]
-      }));
-    };
-
-    
-
-    return (
-      <WrappedComponent
-        {...props}
-        isLoading={isLoading}
-        chartRef={chartRef}
-        toggleIsSensorDataVisible={toggleIsSensorDataVisible}
-        isSensorDataVisible={isSensorDataVisible}
-        dateRange={dateRange}
-        setDateRange={setDateRange}
-        name={name}
-      />
-    );
+      chartRef.current.chart = newGraphInstance;
+    }
   };
-};
 
-const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVisible, dateRange, setDateRange, name }) => {
+  const toggleIsSensorDataVisible = (wasteType) => {
+    const updatedGraphData = { ...graphData };
+    updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => ({
+      ...dataPoint,
+      hidden: !dataPoint.hidden,
+    }));
+    setGraphData(updatedGraphData);
+    buildChart();
+  };
+
   return (
     <main>
-       <h2 style={{textAlign: "center", paddingTop: "20px"}}>Hej</h2>
+      <h2 style={{ textAlign: 'center', paddingTop: '20px' }}>{name}</h2>
       {isLoading ? (
-        <div></div>
+        <div>Loading...</div>
       ) : (
         <div className="information_page">
-          <Form className="fraction_filter">
-            {Object.keys(isSensorDataVisible).map((label, index) => (
-              <Form.Check
-                className='temp_Form'
-                style={{backgroundColor: getRandomColor(label), color: '#fff',
-                padding: 10, paddingRight: 15, width: "12rem",}}
-                key={index}
-                type="checkbox"
-                id={label}
-                label={label}
-                checked={isSensorDataVisible[label]}
-                onChange={() => toggleIsSensorDataVisible(label)}
-              />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {Object.keys(sensorData).map((wasteType, index) => (
+              <div key={index} style={{ display: 'inline-block', marginRight: '20px', marginTop: '0px' }}>
+                <ServiceWasteTypeDropdown
+                  wasteType={wasteType}
+                  sensors={sensorData[wasteType]}
+                  onChange={(sensor) => toggleIsSensorDataVisible(sensor)}
+                />
+                <Form.Check
+                  type="checkbox"
+                  id={`checkbox-${index}`}
+                  label={wasteType}
+                  checked={!graphData[wasteType].some(dataPoint => dataPoint.hidden)}
+                  onChange={() => toggleIsSensorDataVisible(wasteType)}
+                />
+              </div>
             ))}
-          </Form>
-          <div className='graph_wrapper_outer'>
-            <div className='filter_options_wrapper'>
-              <input
-                type="date"
-                value={dateRange.startDate.toISOString().split('T')[0]}
-                onChange={e => {
-                  
-                  if(dateRange.endDate.toISOString().split('T')[0] > e.target.value){
-                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value)}))
-                  } else {
-                    var selectedDate = new Date(e.target.value)
-                    selectedDate.setDate(selectedDate.getDate() + 30);
-                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value), endDate: selectedDate }))
-                  }
-                  isLoading = false;
-                }}
-              />
-              <input
-                type="date"
-                value={dateRange.endDate.toISOString().split('T')[0]}
-                onChange={e => {
-                  //console.log("This is my target value: " + e.target.value)
-                  if(dateRange.startDate.toISOString().split('T')[0] < e.target.value){
-                    setDateRange(prev => ({...prev, endDate: new Date(e.target.value)}))
-                  } else {
-                    var selectedDate = new Date(e.target.value)
-                    selectedDate.setDate(selectedDate.getDate() - 30);
-                    setDateRange(prev => ({...prev, startDate: selectedDate, endDate: new Date(e.target.value) }))
-                  }
-                  isLoading = false
-                  }}
-              />
+          </div>
+          <div className="graph_wrapper_outer">
+            <div className="filter_options_wrapper">
+              {/* Date range filter */}
             </div>
-            <div className='graph_wrapper_inner'>
-              <canvas className='chart' ref={chartRef} />
+            <div className="graph_wrapper_inner">
+              <canvas className="chart" ref={chartRef} />
             </div>
           </div>
         </div>
@@ -256,4 +187,4 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, isSensorDataVi
   );
 };
 
-export default fetchDataBeforeLayout(Layout);
+export default Layout;
