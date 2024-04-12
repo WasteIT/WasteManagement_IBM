@@ -77,6 +77,7 @@ const Layout = () => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, dateRange]);
 
   useEffect(() => {
@@ -148,6 +149,7 @@ const Layout = () => {
       }));
       setGraphData(updatedGraphData);
       buildChart();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     } else {
       console.error(`Graph data for ${wasteType} is undefined.`);
     }
