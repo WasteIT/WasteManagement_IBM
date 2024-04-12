@@ -5,7 +5,6 @@ import SearchBar from "../components/Searchbar";
 
 export default function Agreements(){
   const { serviceAgreements, isLoading } = FetchAgreementData();
-  
   const [searchQuery, setSearchQuery] = useState("");
   
   if (isLoading) {

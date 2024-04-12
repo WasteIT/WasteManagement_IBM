@@ -22,7 +22,7 @@ export default function WasteCard(name) {
         <ListGroup variant="flush">
             <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>50%</ListGroup.Item>
             <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Pickup: Monday and Wednesday</ListGroup.Item>
-            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>3 bins</ListGroup.Item>
+            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Bins: {name.bins}</ListGroup.Item>
         </ListGroup>
         </Card>
     </Link>

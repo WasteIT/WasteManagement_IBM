@@ -27,9 +27,10 @@ export default function CardPage() {
     return (
         <main className='main' style={{ marginTop: '1rem', width: '90%'}}>
             <div className="card_container">
-                {cards.map((carType, index) => (  
-                    <WasteCard key={index} streetname={name} name={carType}/>
-                ))}  
+              {Object.keys(cards).map((cardType, index) => (
+                <WasteCard key={index} streetname={name} name={cardType} bins={cards[cardType].length}/>
+              ))}
+ 
             </div>
         </main>
     );
