@@ -54,9 +54,9 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           }
           
           const childrenData = await response.json();
-
-          const initialVisibilityState = {};
           
+          const initialVisibilityState = {};
+
           Object.keys(childrenData).forEach((key, index) => {
             initialVisibilityState[key] = true;
           });
@@ -88,8 +88,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
 
         jsonData.forEach(entry => {
           const fillLevel = entry.fill_level;
-          const timestamp = new Date(parseInt(entry.timestamp) * 1000);
-        
+          const timestamp = new Date(parseInt(entry.Timestamp) * 1000);
           sensorData.push({ x: timestamp, y: fillLevel });
         });
 
@@ -121,7 +120,6 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       }
 
       const chartRefCurrent = chartRef.current.getContext('2d');
-      
       const datasets = Object.keys(sensorData).map(label => ({
         label: label,
         data: sensorData[label],
@@ -129,7 +127,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         backgroundColor: 'rgba(255, 255, 255, 0)',
         hidden: !isSensorDataVisible[label]
       }));
-      console.log(datasets)
+
       const newGraphInstance = new Chart(chartRefCurrent, {
         type: 'line',
         data: {
