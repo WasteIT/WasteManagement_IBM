@@ -13,7 +13,7 @@ using System.Linq;
 namespace datascript
 {
 
-    class WasteBinManager
+    public class WasteBinManager
     {
         private static readonly HttpClient sharedClient = new HttpClient
         {

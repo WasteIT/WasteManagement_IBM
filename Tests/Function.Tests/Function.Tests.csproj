@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Function\Function.csproj" />
+    <ProjectReference Include="../../datascript/datascript.csproj" />
   </ItemGroup>
 
 </Project>

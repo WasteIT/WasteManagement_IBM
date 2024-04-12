@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace datascript
 {
 
-    class WasteCategory
+    public class WasteCategory
     {
         public double wasteAmount { get; set; }
         public string type { get; set; }

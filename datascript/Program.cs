@@ -11,7 +11,7 @@ using System.Text;
 
 namespace datascript
 {
-    class Program
+    public class Program
     {
 
         static async Task Main(string[] args)
