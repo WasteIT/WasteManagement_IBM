@@ -140,12 +140,17 @@ const Layout = () => {
 
   const toggleIsSensorDataVisible = (wasteType) => {
     const updatedGraphData = { ...graphData };
-    updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => ({
-      ...dataPoint,
-      hidden: !dataPoint.hidden,
-    }));
-    setGraphData(updatedGraphData);
-    buildChart();
+    if (updatedGraphData[wasteType]) {
+      console.log('Updating graph data for', wasteType);
+      updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => ({
+        ...dataPoint,
+        hidden: !dataPoint.hidden,
+      }));
+      setGraphData(updatedGraphData);
+      buildChart();
+    } else {
+      console.error(`Graph data for ${wasteType} is undefined.`);
+    }
   };
 
   return (
