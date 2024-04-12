@@ -32,129 +32,151 @@ const getRandomColor = (label) => {
   }
 };
 
-const Layout = () => {
-  const { state: { name } = {} } = useLocation();
-  const chartRef = useRef();
-  const [isLoading, setIsLoading] = useState(true);
-  const [sensorData, setSensorData] = useState({});
-  const [graphData, setGraphData] = useState({});
-  const [dateRange, setDateRange] = useState({
-    startDate: new Date(new Date().setDate(new Date().getDate() - 60)),
-    endDate: new Date(new Date().setDate(new Date().getDate() + 10)),
-  });
+const fetchDataBeforeLayout = (WrappedComponent) => {
+  return (props) => {
+    const { state: { name } = {} } = useLocation();
+    const chartRef = useRef();
+    const [sensorData, setSensorData] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [graphData, setGraphData] = useState({});
+    const [dateRange, setDateRange] = useState({
+      startDate: new Date(new Date().setDate(new Date().getDate()-31)),
+      endDate: new Date(new Date().setDate(new Date().getDate())),
+    });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch sensor data
-        const sensorResponse = await fetch(`https://wasteit-backend.azurewebsites.net/data/${name}/sensor`);
-        if (!sensorResponse.ok) {
-          throw new Error('Failed to fetch sensor data');
-        }
-        const sensorData = await sensorResponse.json();
-        setSensorData(sensorData);
-
-        // Fetch graph data for each waste type
-        const graphData = {};
-        for (const wasteType in sensorData) {
-          const response = await fetch(`https://wasteit-backend.azurewebsites.net/sensor/address/${name}/sensor/${wasteType}/?start=${Math.floor(dateRange.startDate.getTime() / 1000)}&end=${Math.floor(dateRange.endDate.getTime() / 1000)}`);
-          if (!response.ok) {
-            throw new Error(`Failed to fetch graph data for ${wasteType}`);
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          // Fetch sensor data
+          const sensorResponse = await fetch(`https://wasteit-backend.azurewebsites.net/data/${name}/sensor`);
+          if (!sensorResponse.ok) {
+            throw new Error('Failed to fetch sensor data');
           }
-          const jsonData = await response.json();
-          const data = jsonData.map(entry => ({
-            x: new Date(parseInt(entry.Timestamp) * 1000),
-            y: entry.fill_level,
-            hidden: false,
-          }));
-          graphData[wasteType] = data;
+          const sensorData = await sensorResponse.json();
+          setSensorData(sensorData);
+  
+          // Fetch graph data for each waste type
+          const graphData = {};
+          const startTimestamp = Math.floor(dateRange.startDate.getTime() / 1000);
+          const endTimestamp = Math.floor(dateRange.endDate.getTime() / 1000);
+       
+          for (const wasteType in sensorData) {
+            const response = await fetch(`https://wasteit-backend.azurewebsites.net/sensor/address/${name}/sensor/${wasteType}/?start=${startTimestamp}&end=${endTimestamp}`);
+            if (!response.ok) {
+              throw new Error(`Failed to fetch graph data for ${wasteType}`);
+            }
+            const jsonData = await response.json();
+            const data = jsonData.map(entry => ({
+              x: new Date(parseInt(entry.Timestamp) * 1000),
+              y: entry.fill_level,
+              hidden: false,
+            }));
+            graphData[wasteType] = data;
+          }
+          setGraphData(graphData);
+          setIsLoading(false);
+        } catch (error) {
+          console.error('Error fetching data:', error);
         }
-        setGraphData(graphData);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
+      };
+  
+      fetchData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [name, dateRange]);
+
+    useEffect(() => {
+      if (!isLoading && Object.keys(graphData).length > 0) {
+        buildChart();
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoading, graphData]);
+  
+    const buildChart = () => {
+      if (chartRef.current) {
+        if (chartRef.current.chart) {
+          chartRef.current.chart.destroy();
+        }
+  
+        const chartRefCurrent = chartRef.current.getContext('2d');
+
+        const datasets = Object.keys(graphData).map(label => ({
+          label: label,
+          data: graphData[label].filter(dataPoint => !dataPoint.hidden),
+          borderColor: getRandomColor(label),
+          backgroundColor: 'rgba(255, 255, 255, 0)',
+        }));
+  
+        const newGraphInstance = new Chart(chartRefCurrent, {
+          type: 'line',
+          data: {
+            datasets: datasets
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false,
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Procent Full',
+                },
+              },
+              x: {
+                type: 'time',
+                ticks:{
+                  display: false
+                }, 
+                time: {
+                  unit: 'day',
+                  displayFormats: {
+                    second: 'HH',
+                  }
+                },
+              }
+            },
+          },
+        });
+  
+        chartRef.current.chart = newGraphInstance;
       }
     };
 
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, dateRange]);
-
-  useEffect(() => {
-    if (!isLoading && Object.keys(graphData).length > 0) {
-      buildChart();
-    }
-  }, [isLoading, graphData]);
-
-  const buildChart = () => {
-    if (chartRef.current) {
-      if (chartRef.current.chart) {
-        chartRef.current.chart.destroy();
+    const toggleIsSensorDataVisible = (wasteType) => {
+      const updatedGraphData = { ...graphData };
+      if (updatedGraphData[wasteType]) {
+        console.log('Updating graph data for', wasteType);
+        updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => ({
+          ...dataPoint,
+          hidden: !dataPoint.hidden,
+        }));
+        setGraphData(updatedGraphData);
+        buildChart();
+      } else {
+        console.error(`Graph data for ${wasteType} is undefined.`);
       }
+    };
 
-      const chartRefCurrent = chartRef.current.getContext('2d');
-      const datasets = Object.keys(graphData).map(label => ({
-        label: label,
-        data: graphData[label].filter(dataPoint => !dataPoint.hidden),
-        borderColor: getRandomColor(label),
-        backgroundColor: 'rgba(255, 255, 255, 0)',
-      }));
+    return (
+      <WrappedComponent
+        {...props}
+        isLoading={isLoading}
+        chartRef={chartRef}
+        toggleIsSensorDataVisible={toggleIsSensorDataVisible}
+        dateRange={dateRange}
+        graphData={graphData}
+        setDateRange={setDateRange}
+        sensorData={sensorData}
+        name={name}
+      />
+    );
+  }
+}
 
-      const newGraphInstance = new Chart(chartRefCurrent, {
-        type: 'line',
-        data: {
-          datasets: datasets
-        },
-        options: {
-          plugins: {
-            legend: {
-              display: false,
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: 'Procent Full',
-              },
-            },
-            x: {
-              type: 'time',
-              ticks:{
-                display: false
-              }, 
-              time: {
-                unit: 'day',
-                displayFormats: {
-                  second: 'HH',
-                }
-              },
-            }
-          },
-        },
-      });
-
-      chartRef.current.chart = newGraphInstance;
-    }
-  };
-
-  const toggleIsSensorDataVisible = (wasteType) => {
-    const updatedGraphData = { ...graphData };
-    if (updatedGraphData[wasteType]) {
-      console.log('Updating graph data for', wasteType);
-      updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => ({
-        ...dataPoint,
-        hidden: !dataPoint.hidden,
-      }));
-      setGraphData(updatedGraphData);
-      buildChart();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    } else {
-      console.error(`Graph data for ${wasteType} is undefined.`);
-    }
-  };
-
+const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, graphData, dateRange, setDateRange, name }) => {
   return (
     <main>
       <h2 style={{ textAlign: 'center', paddingTop: '20px' }}>{name}</h2>
@@ -219,4 +241,5 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default fetchDataBeforeLayout(Layout);
+
