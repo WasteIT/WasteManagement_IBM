@@ -180,9 +180,34 @@ const Layout = () => {
               </div>
             ))}
           </div>
-          <div className="graph_wrapper_outer">
-            <div className="filter_options_wrapper">
-              {/* Date range filter */}
+          <div className='graph_wrapper_outer'>
+            <div className='filter_options_wrapper'>
+              <input
+                type="date"
+                value={dateRange.startDate.toISOString().split('T')[0]}
+                onChange={e => {
+                  if(dateRange.endDate.toISOString().split('T')[0] > e.target.value){
+                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value)}))
+                  } else {
+                    var selectedDate = new Date(e.target.value)
+                    selectedDate.setDate(selectedDate.getDate() + 30);
+                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value), endDate: selectedDate }))
+                  }
+                }}
+              />
+              <input
+                type="date"
+                value={dateRange.endDate.toISOString().split('T')[0]}
+                onChange={e => {
+                  if(dateRange.startDate.toISOString().split('T')[0] < e.target.value){
+                    setDateRange(prev => ({...prev, endDate: new Date(e.target.value)}))
+                  } else {
+                    var selectedDate = new Date(e.target.value)
+                    selectedDate.setDate(selectedDate.getDate() - 30);
+                    setDateRange(prev => ({...prev, startDate: selectedDate, endDate: new Date(e.target.value) }))
+                  }
+                }}
+              />
             </div>
             <div className="graph_wrapper_inner">
               <canvas className="chart" ref={chartRef} />
