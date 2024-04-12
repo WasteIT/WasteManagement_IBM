@@ -58,6 +58,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           const childrenData = await response.json();
       
           const initialVisibilityState = {};
+<<<<<<< HEAD
           const sensorData = {};
       
           // Iterate over each waste type
@@ -76,6 +77,10 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           }
       
           childrenData.forEach((key, index) => {
+=======
+          
+          Object.keys(childrenData).forEach((key, index) => {
+>>>>>>> main
             initialVisibilityState[key] = true;
           });
 
