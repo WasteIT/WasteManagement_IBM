@@ -59,9 +59,9 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       
           const initialVisibilityState = {};
           const sensorData = {};
-      
+          console.log(childrenData["Plastic"])
           // Iterate over each waste type
-          for (const wasteType of childrenData) {
+          /*for (const wasteType of childrenData) {
             initialVisibilityState[wasteType] = true;
       
             // Fetch sensors for the current waste type
@@ -74,9 +74,9 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       
             // Add sensors to sensorData object
             sensorData[wasteType] = sensorsData;
-          }
+          } */
       
-          childrenData.forEach((key, index) => {
+          Object.keys(childrenData).forEach((key, index) => {
             initialVisibilityState[key] = true;
           });
 
@@ -111,7 +111,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
 
         jsonData.forEach(entry => {
           const fillLevel = entry.fill_level;
-          const timestamp = new Date(parseInt(entry.timestamp) * 1000);
+          const timestamp = new Date(parseInt(entry.Timestamp) * 1000);
         
           sensorData.push({ x: timestamp, y: fillLevel });
         });
