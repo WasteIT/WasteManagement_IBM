@@ -20,8 +20,8 @@ export default function WasteCard(name) {
             display: 'block' // Ensures the image doesn't take full width and respects the margin auto
         }}/>
         <ListGroup variant="flush">
-            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>50%</ListGroup.Item>
-            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Pickup: Monday and Wednesday</ListGroup.Item>
+            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Avg fill level at pickup: {Math.round(name.avg*10)/10}%</ListGroup.Item>
+            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Pickup: {name.pickup.join(", ")}</ListGroup.Item>
             <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Bins: {name.bins}</ListGroup.Item>
         </ListGroup>
         </Card>
