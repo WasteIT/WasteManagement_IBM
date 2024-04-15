@@ -1,30 +1,35 @@
 import React from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-export default function WasteCard(name) {
+export default function WasteCard({ name, streetname, pickup, bins, avg }) {
+  if (!pickup) {
+    
+    return null;
+  }
+
   return (
-    <Link to='/graph' style={{textDecoration: 'none'}} state={{ name: name.streetname, pickup: name.pickup, bins: name.bins }}>
-        <Card style={{
+    <Link to='/graph' style={{ textDecoration: 'none' }} state={{ name: streetname, pickup, bins }}>
+      <Card style={{
         width: '18rem',
-        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', // This will give the 3D effect
-        border: 'none', // This removes the border
-        borderRadius: '10px', // Optional: if you want rounded corners
-        overflow: 'hidden', // Ensures the image doesn't break the border radius
-        marginBottom: '1rem' // Adds some space below the card
-        }}
-        onClick={() => console.log("user")}>
-        <Card.Img variant="top" src={`./images/${name.name}.png`} style={{
-            width: '9rem',
-            margin: '0.5rem auto', // Centers the image and adds whitespace above and below
-            display: 'block' // Ensures the image doesn't take full width and respects the margin auto
+        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+        border: 'none',
+        borderRadius: '10px',
+        overflow: 'hidden',
+        marginBottom: '1rem'
+      }}
+      onClick={() => console.log("user clicked")}>
+        <Card.Img variant="top" src={`./images/${name}.png`} style={{
+          width: '9rem',
+          margin: '0.5rem auto',
+          display: 'block'
         }}/>
         <ListGroup variant="flush">
-            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Avg fill level at pickup: {Math.round(name.avg*10)/10}%</ListGroup.Item>
-            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Pickup: {name.length > 0 ? (name.pickup.join(", ")) : ("")}</ListGroup.Item>
-            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Bins: {name.bins}</ListGroup.Item>
+          <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Avg fill level at pickup: {Math.round(avg * 10) / 10}%</ListGroup.Item>
+          <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Pickup: {pickup.length > 0 ? pickup.join(", ") : "No pickups"}</ListGroup.Item>
+          <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Bins: {bins}</ListGroup.Item>
         </ListGroup>
-        </Card>
+      </Card>
     </Link>
   );
 }
