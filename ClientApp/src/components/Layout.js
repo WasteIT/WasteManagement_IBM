@@ -34,7 +34,7 @@ const getRandomColor = (label) => {
 
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
-    const { state: { name, pickup, bins } = {} } = useLocation();
+    const { state: { name} = {} } = useLocation();
     const chartRef = useRef();
     const [sensorData, setSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -161,6 +161,31 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       }
     };
 
+    const fetchDataForSensor = async (wasteType, sensor) => {
+      setIsLoading(true);
+      try {
+        const startTimestamp = Math.floor(dateRange.startDate.getTime() / 1000);
+        const endTimestamp = Math.floor(dateRange.endDate.getTime() / 1000);
+        const response = await fetch(`https://wasteit-backend.azurewebsites.net/singleSensorData/address/${name}/sensor/${wasteType}/${sensor}/?start=${startTimestamp}&end=${endTimestamp}`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data for ${sensor.name}`);
+        }
+        const newData = await response.json();
+        
+        const data = newData.map(entry => ({
+          x: new Date(parseInt(entry.Timestamp) * 1000),
+          y: entry.fill_level,
+          hidden: false,
+        }));
+
+        graphData[sensor] = data;
+        console.log(graphData)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+      setIsLoading(false);
+    };
+
     return (
       <WrappedComponent
         {...props}
@@ -172,14 +197,15 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         setDateRange={setDateRange}
         sensorData={sensorData}
         name={name}
-        pickup={pickup}
-        bins={bins}
+        pickup={name.pickup}
+        bins={name.bins}
+        onSensorSelect={fetchDataForSensor}
       />
     );
   }
 }
 
-const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, graphData, dateRange, setDateRange, name, pickup, bins }) => {
+const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, graphData, dateRange, setDateRange, name, pickup, bins, onSensorSelect }) => {
 
   return (
     <main>
@@ -195,6 +221,7 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, gr
                   wasteType={wasteType}
                   sensors={sensorData[wasteType]}
                   onChange={(sensor) => toggleIsSensorDataVisible(sensor)}
+                  onSensorSelect={onSensorSelect}
                 />
                 <Form.Check
                   type="checkbox"
