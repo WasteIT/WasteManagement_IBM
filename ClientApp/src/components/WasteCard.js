@@ -21,7 +21,7 @@ export default function WasteCard(name) {
         }}/>
         <ListGroup variant="flush">
             <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Avg fill level at pickup: {Math.round(name.avg*10)/10}%</ListGroup.Item>
-            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Pickup: {name.pickup.join(", ")}</ListGroup.Item>
+            <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Pickup: {name.length > 0 ? (name.pickup.join(", ")) : ("")}</ListGroup.Item>
             <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Bins: {name.bins}</ListGroup.Item>
         </ListGroup>
         </Card>
