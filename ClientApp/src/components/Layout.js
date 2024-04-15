@@ -68,9 +68,10 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
             const jsonData = await response.json();
             const data = jsonData.map(entry => ({
               x: new Date(parseInt(entry.Timestamp) * 1000),
-              y: entry.fill_level,
+              y: entry.FillLevelSum,
               hidden: false,
             }));
+   
             graphData[wasteType] = data;
           }
           setGraphData(graphData);
@@ -233,6 +234,9 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, gr
             </div>
             <div className="graph_wrapper_inner">
               <canvas className="chart" ref={chartRef} />
+            </div>
+            <div className='stats_Wrapper'>
+              {/* Put stats here */}
             </div>
           </div>
         </div>
