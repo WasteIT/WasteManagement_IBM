@@ -34,7 +34,7 @@ const getRandomColor = (label) => {
 
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
-    const { state: { name } = {} } = useLocation();
+    const { state: { name, pickup, bins } = {} } = useLocation();
     const chartRef = useRef();
     const [sensorData, setSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -172,12 +172,15 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         setDateRange={setDateRange}
         sensorData={sensorData}
         name={name}
+        pickup={pickup}
+        bins={bins}
       />
     );
   }
 }
 
-const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, graphData, dateRange, setDateRange, name }) => {
+const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, graphData, dateRange, setDateRange, name, pickup, bins }) => {
+
   return (
     <main>
       <h2 style={{ textAlign: 'center', paddingTop: '20px' }}>{name}</h2>
@@ -236,7 +239,10 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, gr
               <canvas className="chart" ref={chartRef} />
             </div>
             <div className='stats_Wrapper'>
-              {/* Put stats here */}
+              Amount of bins: {bins}
+              <br></br>
+              Time since last pickup: {pickup}
+
             </div>
           </div>
         </div>

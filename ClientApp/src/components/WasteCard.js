@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function WasteCard(name) {
   return (
-    <Link to='/graph' style={{textDecoration: 'none'}} state={{ name: name.streetname }}>
+    <Link to='/graph' style={{textDecoration: 'none'}} state={{ name: name.streetname, pickup: name.pickup, bins: name.bins }}>
         <Card style={{
         width: '18rem',
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', // This will give the 3D effect
