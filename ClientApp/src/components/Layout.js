@@ -120,10 +120,12 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
             },
             scales: {
               y: {
+                suggestedMin: 0,
+                suggestedMax: 100,
                 beginAtZero: true,
                 title: {
                   display: true,
-                  text: 'Procent Full',
+                  text: 'Percentage Full',
                 },
               },
               x: {
