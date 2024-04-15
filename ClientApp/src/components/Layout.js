@@ -34,7 +34,7 @@ const getRandomColor = (label) => {
 
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
-    const { state: { name} = {} } = useLocation();
+    const { state: { name, pickup, bins} = {} } = useLocation();
     const chartRef = useRef();
     const [sensorData, setSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -197,8 +197,8 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         setDateRange={setDateRange}
         sensorData={sensorData}
         name={name}
-        pickup={name.pickup}
-        bins={name.bins}
+        pickup={pickup}
+        bins={bins}
         onSensorSelect={fetchDataForSensor}
       />
     );
