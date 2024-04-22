@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
 import { Chart } from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
 import { getRandomColor } from '../utils/GetColour';
