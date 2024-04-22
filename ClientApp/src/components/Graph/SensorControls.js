@@ -17,7 +17,21 @@ export const fetchSensorControlsData = async (name, setSensorData) => {
 }
 
 
-export const SensorControls = ({ sensorData, graphData, toggleIsSensorDataVisible, onSensorSelect }) => {
+export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraphData }) => {
+
+    const toggleIsSensorDataVisible = (wasteType) => {
+        const updatedGraphData = { ...graphData };
+        if (updatedGraphData[wasteType]) {
+          updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => ({
+            ...dataPoint,
+            hidden: !dataPoint.hidden,
+          }));
+          setGraphData(updatedGraphData);
+        } else {
+          console.error(`Graph data for ${wasteType} is undefined.`);
+        }
+      };
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             {Object.keys(sensorData).map((wasteType, index) => (

@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Chart } from 'chart.js/auto';
 import { getRandomColor } from '../../utils/GetColour';
 
-export const fetchGraphData = async (name, sensorData, dateRange, setGraphData, setIsLoading) => {
+export const fetchAllGraphData = async (name, sensorData, dateRange, setGraphData, setIsLoading) => {
     if (Object.keys(sensorData).length > 0) {
         try {
             const graphData = {};
@@ -31,6 +31,31 @@ export const fetchGraphData = async (name, sensorData, dateRange, setGraphData, 
         }
     };
 }
+
+export const fetchSingleGraphData = async (name, wasteType, sensor, graphData, dateRange, setIsLoading) => {
+    setIsLoading(true);
+    try {
+      const startTimestamp = Math.floor(dateRange.startDate.getTime() / 1000);
+      const endTimestamp = Math.floor(dateRange.endDate.getTime() / 1000);
+      const response = await fetch(`https://wasteit-backend.azurewebsites.net/singleSensorData/address/${name}/sensor/${wasteType}/${sensor}/?start=${startTimestamp}&end=${endTimestamp}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data for ${sensor.name}`);
+      }
+      const newData = await response.json();
+      
+      const data = newData.map(entry => ({
+        x: new Date(parseInt(entry.Timestamp) * 1000),
+        y: entry.fill_level,
+        hidden: false,
+      }));
+
+      graphData[sensor] = data;
+    
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+    setIsLoading(false);
+  };
 
 const Graph = ({ graphData }) => {
     const chartRef = useRef();
