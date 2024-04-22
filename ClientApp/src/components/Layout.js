@@ -34,7 +34,7 @@ const getRandomColor = (label) => {
 
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
-    const { state: { name, pickup, bins} = {} } = useLocation();
+    const { state: { name, pickup, bins, avgerageWithOneDecimal} = {} } = useLocation();
     const chartRef = useRef();
     const [sensorData, setSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -66,6 +66,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
               throw new Error(`Failed to fetch graph data for ${wasteType}`);
             }
             const jsonData = await response.json();
+            
             const data = jsonData.map(entry => ({
               x: new Date(parseInt(entry.Timestamp) * 1000),
               y: entry.FillLevelSum,
@@ -91,7 +92,8 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
       }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLoading, graphData]);
-  
+   
+    
     const buildChart = () => {
       if (chartRef.current) {
         if (chartRef.current.chart) {
@@ -151,7 +153,6 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
     const toggleIsSensorDataVisible = (wasteType) => {
       const updatedGraphData = { ...graphData };
       if (updatedGraphData[wasteType]) {
-        console.log('Updating graph data for', wasteType);
         updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => ({
           ...dataPoint,
           hidden: !dataPoint.hidden,
@@ -181,7 +182,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         }));
 
         graphData[sensor] = data;
-        console.log(graphData)
+      
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -201,14 +202,15 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         name={name}
         pickup={pickup}
         bins={bins}
+        avgFillLevel={avgerageWithOneDecimal}
         onSensorSelect={fetchDataForSensor}
       />
     );
   }
 }
 
-const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, graphData, dateRange, setDateRange, name, pickup, bins, onSensorSelect }) => {
-
+const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, graphData, dateRange, setDateRange, name, pickup, bins, avgFillLevel, onSensorSelect }) => {
+  
   return (
     <main>
       <h2 style={{ textAlign: 'center', paddingTop: '20px' }}>{name}</h2>
@@ -268,10 +270,9 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, gr
               <canvas className="chart" ref={chartRef} />
             </div>
             <div className='stats_Wrapper'>
-              Amount of bins: {bins}
-              <br></br>
-              Time since last pickup: {pickup}
-
+              <p>Amount of bins: {bins}</p>
+              <p>Time since last pickup: {pickup}</p>
+              <p>Average fill level at pickup: {avgFillLevel} %</p>
             </div>
           </div>
         </div>
