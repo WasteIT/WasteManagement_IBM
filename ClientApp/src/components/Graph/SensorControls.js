@@ -2,6 +2,21 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import ServiceWasteTypeDropdown from './ServiceWasteTypeDropdown';
 
+
+export const fetchSensorControlsData = async (name, setSensorData) => {
+    try {
+        const sensorResponse = await fetch(`https://wasteit-backend.azurewebsites.net/data/${name}/sensor`);
+        if (!sensorResponse.ok) {
+            throw new Error('Failed to fetch sensor data');
+        }
+        const sensorData = await sensorResponse.json();
+        setSensorData(sensorData);
+    } catch (error) {
+        console.error('Error fetching sensor data:', error);
+    }
+}
+
+
 export const SensorControls = ({ sensorData, graphData, toggleIsSensorDataVisible, onSensorSelect }) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>

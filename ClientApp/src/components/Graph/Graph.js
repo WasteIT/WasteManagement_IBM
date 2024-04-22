@@ -1,14 +1,44 @@
 import React, { useRef, useEffect } from 'react';
 import { Chart } from 'chart.js/auto';
-import { getRandomColor } from '../utils/GetColour';
+import { getRandomColor } from '../../utils/GetColour';
+
+export const fetchGraphData = async (name, sensorData, dateRange, setGraphData, setIsLoading) => {
+    if (Object.keys(sensorData).length > 0) {
+        try {
+            const graphData = {};
+            const startTimestamp = Math.floor(dateRange.startDate.getTime() / 1000);
+            const endTimestamp = Math.floor(dateRange.endDate.getTime() / 1000);
+         
+            for (const wasteType in sensorData) {
+              const response = await fetch(`https://wasteit-backend.azurewebsites.net/sensor/address/${name}/sensor/${wasteType}/?start=${startTimestamp}&end=${endTimestamp}`);
+              if (!response.ok) {
+                throw new Error(`Failed to fetch graph data for ${wasteType}`);
+              }
+              const jsonData = await response.json();
+              
+              const data = jsonData.map(entry => ({
+                x: new Date(parseInt(entry.Timestamp) * 1000),
+                y: entry.FillLevelSum,
+                hidden: false,
+              }));
+     
+              graphData[wasteType] = data;
+            }
+            setGraphData(graphData);
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+}
 
 const Graph = ({ graphData }) => {
     const chartRef = useRef();
-    const currentChartRef = chartRef.current;
-
+    
+    
     useEffect(() => {
         buildChart();
-        
+        const currentChartRef = chartRef.current;
         return () => {
             if (currentChartRef.chart) {
                 currentChartRef.chart.destroy();

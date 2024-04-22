@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import 'chartjs-adapter-date-fns';
 import { DateRange } from './DateRange'
-import { SensorControls } from './SensorControls'
-import Graph from './Graph';
+import { SensorControls, fetchSensorControlsData } from './SensorControls'
+import Graph, { fetchGraphData } from './Graph'
+
 
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
@@ -19,46 +20,20 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
 
     useEffect(() => {
       const fetchData = async () => {
-        try {
-          // Fetch sensor data
-          const sensorResponse = await fetch(`https://wasteit-backend.azurewebsites.net/data/${name}/sensor`);
-          if (!sensorResponse.ok) {
-            throw new Error('Failed to fetch sensor data');
-          }
-          const sensorData = await sensorResponse.json();
-          setSensorData(sensorData);
-  
-          // Fetch graph data for each waste type
-          const graphData = {};
-          const startTimestamp = Math.floor(dateRange.startDate.getTime() / 1000);
-          const endTimestamp = Math.floor(dateRange.endDate.getTime() / 1000);
-       
-          for (const wasteType in sensorData) {
-            const response = await fetch(`https://wasteit-backend.azurewebsites.net/sensor/address/${name}/sensor/${wasteType}/?start=${startTimestamp}&end=${endTimestamp}`);
-            if (!response.ok) {
-              throw new Error(`Failed to fetch graph data for ${wasteType}`);
-            }
-            const jsonData = await response.json();
-            
-            const data = jsonData.map(entry => ({
-              x: new Date(parseInt(entry.Timestamp) * 1000),
-              y: entry.FillLevelSum,
-              hidden: false,
-            }));
-   
-            graphData[wasteType] = data;
-          }
-          setGraphData(graphData);
-          setIsLoading(false);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-  
+        await fetchSensorControlsData(name, setSensorData);
+      };  
       fetchData();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [name, dateRange]);    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
+    useEffect(() => {
+      const fetchData = async () => {
+        await fetchGraphData(name, sensorData, dateRange, setGraphData, setIsLoading);
+      };  
+      fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [name, sensorData, dateRange]);
+    
     const toggleIsSensorDataVisible = (wasteType) => {
       const updatedGraphData = { ...graphData };
       if (updatedGraphData[wasteType]) {
@@ -71,7 +46,6 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
         console.error(`Graph data for ${wasteType} is undefined.`);
       }
     };
-
     const fetchDataForSensor = async (wasteType, sensor) => {
       setIsLoading(true);
       try {

@@ -1,7 +1,7 @@
 import Home from "./pages/Home";
 import Agreements from "./pages/Agreements"
 import CardPage from "./pages/CardPage";
-import Layout from "./components/Layout"
+import Layout from "./components/Graph/Layout"
 import Login from "./Login";
 import Signup from "./Signup";
 
