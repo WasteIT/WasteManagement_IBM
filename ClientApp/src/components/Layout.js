@@ -3,34 +3,9 @@ import { useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { Chart } from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
-import ServiceWasteTypeDropdown from './ServiceWasteTypeDropdown';
-
-const getRandomColor = (label) => {
-  switch (label) {
-    case 'General waste':
-      return `rgba(19, 13, 15, 1)`;
-    case 'Food':
-      return `rgba(0, 178, 90, 1)`;
-    case 'Cardboard':
-      return `rgba(190, 160, 102, 1)`;
-    case 'Metal':
-      return `rgba(87, 109, 122, 1)`;
-    case 'Plastic':
-      return `rgba(146, 52, 148, 1)`;
-    case 'Glass':
-      return `rgba(96, 195, 174, 1)`;
-    case 'Paper':
-      return `rgba(0, 132, 194, 1)`;
-    case 'Carton':
-      return `rgba(187, 155, 106, 1)`;
-    case 'Textiles':
-      return `rgba(139, 69, 19, 1)`;
-    case 'Dangerous':
-        return `rgba(237, 28, 47, 1)`;
-    default:
-      return `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 1)`;
-  }
-};
+import { getRandomColor } from '../utils/GetColour';
+import { DateRange } from './DateRange'
+import { SensorControls } from './SensorControls'
 
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
@@ -219,52 +194,16 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, gr
       ) : (
         <div className="information_page">
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {Object.keys(sensorData).map((wasteType, index) => (
-              <div key={index} style={{ display: 'inline-block', marginRight: '20px', marginTop: '0px' }}>
-                <ServiceWasteTypeDropdown
-                  wasteType={wasteType}
-                  sensors={sensorData[wasteType]}
-                  onChange={(sensor) => toggleIsSensorDataVisible(sensor)}
-                  onSensorSelect={onSensorSelect}
-                />
-                <Form.Check
-                  type="checkbox"
-                  id={`checkbox-${index}`}
-                  label={wasteType}
-                  checked={!graphData[wasteType].some(dataPoint => dataPoint.hidden)}
-                  onChange={() => toggleIsSensorDataVisible(wasteType)}
-                />
-              </div>
-            ))}
+            <SensorControls
+              sensorData={sensorData}
+              graphData={graphData}
+              toggleIsSensorDataVisible={toggleIsSensorDataVisible}
+              onSensorSelect={onSensorSelect}
+            />
           </div>
           <div className='graph_wrapper_outer'>
             <div className='filter_options_wrapper'>
-              <input
-                type="date"
-                value={dateRange.startDate.toISOString().split('T')[0]}
-                onChange={e => {
-                  if(dateRange.endDate.toISOString().split('T')[0] > e.target.value){
-                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value)}))
-                  } else {
-                    var selectedDate = new Date(e.target.value)
-                    selectedDate.setDate(selectedDate.getDate() + 30);
-                    setDateRange(prev => ({...prev, startDate: new Date(e.target.value), endDate: selectedDate }))
-                  }
-                }}
-              />
-              <input
-                type="date"
-                value={dateRange.endDate.toISOString().split('T')[0]}
-                onChange={e => {
-                  if(dateRange.startDate.toISOString().split('T')[0] < e.target.value){
-                    setDateRange(prev => ({...prev, endDate: new Date(e.target.value)}))
-                  } else {
-                    var selectedDate = new Date(e.target.value)
-                    selectedDate.setDate(selectedDate.getDate() - 30);
-                    setDateRange(prev => ({...prev, startDate: selectedDate, endDate: new Date(e.target.value) }))
-                  }
-                }}
-              />
+              <DateRange dateRange={dateRange} onDateChange={setDateRange} />
             </div>
             <div className="graph_wrapper_inner">
               <canvas className="chart" ref={chartRef} />
@@ -282,4 +221,3 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, gr
 };
 
 export default fetchDataBeforeLayout(Layout);
-
