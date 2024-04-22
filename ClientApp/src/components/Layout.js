@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Chart } from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
-import { getRandomColor } from '../utils/GetColour';
 import { DateRange } from './DateRange'
 import { SensorControls } from './SensorControls'
+import Graph from './Graph';
 
 const fetchDataBeforeLayout = (WrappedComponent) => {
   return (props) => {
@@ -58,71 +57,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
   
       fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [name, dateRange]);
-
-    useEffect(() => {
-      if (!isLoading && Object.keys(graphData).length > 0) {
-        buildChart();
-      }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLoading, graphData]);
-   
-    
-    const buildChart = () => {
-      if (chartRef.current) {
-        if (chartRef.current.chart) {
-          chartRef.current.chart.destroy();
-        }
-  
-        const chartRefCurrent = chartRef.current.getContext('2d');
-
-        const datasets = Object.keys(graphData).map(label => ({
-          label: label,
-          data: graphData[label].filter(dataPoint => !dataPoint.hidden),
-          borderColor: getRandomColor(label),
-          backgroundColor: 'rgba(255, 255, 255, 0)',
-        }));
-  
-        const newGraphInstance = new Chart(chartRefCurrent, {
-          type: 'line',
-          data: {
-            datasets: datasets
-          },
-          options: {
-            plugins: {
-              legend: {
-                display: false,
-              }
-            },
-            scales: {
-              y: {
-                suggestedMin: 0,
-                suggestedMax: 100,
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Percentage Full',
-                },
-              },
-              x: {
-                type: 'time',
-                ticks:{
-                  display: false
-                }, 
-                time: {
-                  unit: 'day',
-                  displayFormats: {
-                    second: 'HH',
-                  }
-                },
-              }
-            },
-          },
-        });
-  
-        chartRef.current.chart = newGraphInstance;
-      }
-    };
+    }, [name, dateRange]);    
 
     const toggleIsSensorDataVisible = (wasteType) => {
       const updatedGraphData = { ...graphData };
@@ -132,7 +67,6 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
           hidden: !dataPoint.hidden,
         }));
         setGraphData(updatedGraphData);
-        buildChart();
       } else {
         console.error(`Graph data for ${wasteType} is undefined.`);
       }
@@ -183,7 +117,7 @@ const fetchDataBeforeLayout = (WrappedComponent) => {
   }
 }
 
-const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, graphData, dateRange, setDateRange, name, pickup, bins, avgFillLevel, onSensorSelect }) => {
+const Layout = ({ isLoading, toggleIsSensorDataVisible, sensorData, graphData, dateRange, setDateRange, name, pickup, bins, avgFillLevel, onSensorSelect }) => {
   
   return (
     <main>
@@ -205,7 +139,7 @@ const Layout = ({ isLoading, chartRef, toggleIsSensorDataVisible, sensorData, gr
               <DateRange dateRange={dateRange} onDateChange={setDateRange} />
             </div>
             <div className="graph_wrapper_inner">
-              <canvas className="chart" ref={chartRef} />
+              <Graph graphData={graphData} />
             </div>
             <div className='stats_Wrapper'>
               <p>Amount of bins: {bins}</p>
