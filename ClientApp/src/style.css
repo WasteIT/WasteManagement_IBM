@@ -110,6 +110,19 @@ html {
   padding: 10px;
   text-decoration: none;
 }
+
+/*
+==========================
+ WasteBinsOverview styles
+==========================
+*/
+
+.card-wrapper {
+  width: 65%;
+  height: 40%;
+  border-radius: 15px;
+}
+
 /*
 ==========================
 ServiceAgreementsDropdown.js styles

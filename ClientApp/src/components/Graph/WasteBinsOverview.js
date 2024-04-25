@@ -3,8 +3,10 @@ import { useLocation } from 'react-router-dom';
 import 'chartjs-adapter-date-fns';
 import { DateRange } from './DateRange'
 import { SensorControls, fetchSensorControlsData } from './SensorControls'
-import Graph, { fetchAllGraphData, fetchSingleGraphData } from './Graph'
-
+import Graph, { fetchAllGraphData, fetchSingleGraphData } from './Graph';
+import './Layout.css';
+import './../../style.css';
+import Card from 'react-bootstrap/Card';
 
 const Layout = () => {
   
@@ -40,7 +42,7 @@ const Layout = () => {
 
   return (
     <main>
-      <h2 style={{ textAlign: 'center', paddingTop: '20px' }}>{name}</h2>
+      <h2 style={{ textAlign: 'center', paddingTop: '20px'}}>{name}</h2>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -53,19 +55,21 @@ const Layout = () => {
               setGraphData={setGraphData}
             />
           </div>
-          <div className='graph_wrapper_outer'>
-            <div className='filter_options_wrapper'>
-              <DateRange dateRange={dateRange} onDateChange={setDateRange} />
-            </div>
-            <div className="graph_wrapper_inner">
-              <Graph graphData={graphData} />
-            </div>
-            <div className='stats_Wrapper'>
-              <p>Amount of bins: {bins}</p>
-              <p>Time since last pickup: {pickup}</p>
-              <p>Average fill level at pickup: {avgerageWithOneDecimal} %</p>
-            </div>
-          </div>
+          <Card className="card-wrapper"> {/* Add className */}
+                        <Card.Body className="card-body"> {/* Add className */}
+                            <div className='filter_options_wrapper'>
+                                <DateRange dateRange={dateRange} onDateChange={setDateRange} />
+                            </div>
+                            <div className="graph_wrapper_inner">
+                                <Graph graphData={graphData} />
+                            </div>
+                            <div className='stats_Wrapper'>
+                                <p>Amount of bins: {bins}</p>
+                                <p>Time since last pickup: {pickup}</p>
+                                <p>Average fill level at pickup: {avgerageWithOneDecimal} %</p>
+                            </div>
+                        </Card.Body>
+                    </Card>
         </div>
       )}
     </main>
