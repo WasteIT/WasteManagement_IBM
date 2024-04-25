@@ -219,6 +219,105 @@ namespace Function.Tests
             // Assert
             Assert.True(bin.measurements.Count > initialMeasurementCount); // Check if measurements were added
         }
+        
+        [Fact]
+        public async Task GenerateData_CreatesMeasurementsForEachDay()
+        {
+        // Arrange
+        int dayCount = 2;
+        int dailyObservationCount = 1;
+        DateTime startDate = DateTime.UtcNow;
+
+        var wasteBinManager = new WasteBinManager();
+
+        // Store initial measurements count for each bin (avoiding SelectMany)
+        var initialMeasurementCounts = new Dictionary<WasteBin, int>();
+        foreach (var category in wasteBinManager.wasteCategories)
+        {
+            foreach (var bin in category.wasteBins)
+            {
+            initialMeasurementCounts.Add(bin, bin.measurements.Count);
+            }
+        }
+
+        // Act
+        await wasteBinManager.generateData(dayCount, dailyObservationCount, startDate);
+
+        // Assert
+        int expectedMeasurementIncrease = dayCount * dailyObservationCount;
+
+        // Verify measurements in each bin
+        foreach (var kvp in initialMeasurementCounts)
+        {
+            int expectedCount = kvp.Value + expectedMeasurementIncrease;
+            Assert.True(kvp.Key.measurements.Count >= expectedCount, $"Bin {kvp.Key} has less measurements than expected. Expected: {expectedCount}, Actual: {kvp.Key.measurements.Count}");
+        }     
+        }
+
+        [Fact]
+        public void UnixTimeStampToDateTime_ConvertsCorrectly()
+        {
+        // Arrange
+        double unixTimeStamp = 1656141600; // Represents September 21, 2022 12:00:00 PM UTC
+
+        // Act
+        DateTime actualDateTime = WasteBinManager.UnixTimeStampToDateTime(unixTimeStamp);
+
+        // Assert
+        DateTime expectedDateTime = new DateTime(2022, 06, 25, 09, 20, 0, DateTimeKind.Utc);
+        Assert.Equal(expectedDateTime, actualDateTime);
+        }
+        [Fact]
+        public void CalculatePickupSchedulesAndAvgFillLevelBasedOnDataTrends_CalculatesCorrectly()
+        {
+        // Arrange
+        var wasteBinManager = new WasteBinManager();
+
+        var category1 = new WasteCategory("GeneralWaste", 2, new List<int>() { 2 }); // Schedule on Tuesdays
+        wasteBinManager.wasteCategories.Add(category1);
+
+        var bin1 = new WasteBin(1, 100, 0.8, category1, null);
+        bin1.measurements.Add(new Measurement(1656134400, "GeneralWaste", 1656134400L, 1.0)); // Tuesday, September 20, 2022, 12:00:00 PM UTC with 100% fill level
+        bin1.measurements.Add(new Measurement(1656220800, "GeneralWaste", 1656220800L, 0.2)); // Friday, September 23, 2022, 12:00:00 PM UTC with 20% fill level
+        bin1.measurements.Add(new Measurement(1656307200, "GeneralWaste", 1656307200L, 0.5)); // Tuesday, September 27, 2022, 12:00:00 PM UTC with 50% fill level
+        category1.wasteBins.Add(bin1);
+
+        // Act
+        wasteBinManager.CalculatePickupSchedulesAndAvgFillLevelBasedOnDataTrends();
+
+        // Assert
+        // Verify average fill level at pickup for category1 (average of 1.0)
+        Assert.Equal(1.0, wasteBinManager.averageFillLevelAtPickup["GeneralWaste"]);
+        }
+        /*[Fact]
+        public async Task PostAsync_SerializesAndPostsCorrectly()
+        {
+        // Arrange
+        var mockHttpClient = new Mock<HttpClient>();
+        var wasteBinManager = new WasteBinManager(mockHttpClient.Object);
+
+        var bin = new WasteBin(1, 100, 0.7, new WasteCategory("GeneralWaste", 3), null);
+        string time = "2024-04-25T15:32:00Z"; // Example timestamp
+
+        // Expected serialized JSON content
+        var expectedJson = JsonSerializer.Serialize(new
+        {
+            ID = bin.binNumber,
+            Type = bin.wasteCategory.type,
+            Timestamp = time,
+            fill_level = bin.fillLevel.ToString()
+        });
+
+        // Act
+        await wasteBinManager.PostAsync(bin, time);
+
+        // Assert
+        // Verify that PostAsync was called with the expected URL and serialized content
+        mockHttpClient.Verify(
+            x => x.PostAsync("test", It.Is<StringContent>(content => content.ReadAsStringAsync().Result == expectedJson)),
+            Times.Once);
+        }*/
+
         /*[Theory]
         //[InlineData(0.5, 0.5, 100, 0)]
         [InlineData(0.2, 0.8, 10, 0)]

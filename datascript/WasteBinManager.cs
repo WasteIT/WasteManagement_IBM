@@ -242,7 +242,7 @@ namespace datascript
             }
             CalculatePickupSchedulesAndAvgFillLevelBasedOnDataTrends();
             PrintDictionaryStuff();
-            // Iterate over the dictionary and print out its contents
+            
         }
 
         public void PrintDictionaryStuff()
@@ -265,8 +265,6 @@ namespace datascript
 
 
         }
-
-
 
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
