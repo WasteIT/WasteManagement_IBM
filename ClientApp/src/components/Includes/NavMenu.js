@@ -6,39 +6,50 @@ import './Style.css';
 export function NavMenu() {
 
     return (
-      <header className='navbar-container'>
-        <Navbar className="navbar-expand navbar-toggleable ng-white border-bottom box-shadow" container light>
-        <NavbarBrand tag={Link} to="/">
-          <h2 className='navigation-title'>Waste-IT</h2>
-        </NavbarBrand>
-        <NavbarToggler className="mr-2" />
-          <Collapse className="d-sm-inline-flex flex-sm-row" navbar>
+      <header >
+        <Navbar className="navbar-container navbar-expand navbar-toggleable ng-white border-bottom box-shadow" container light>
+          <div className="page-title-wrapper-outer">
+            <NavbarBrand tag={Link} to="/">
+             
+              <div className='page-title-wrapper-inner'>
+                <div class="trash-bin">
+                  <div class="handle"></div>
+                  <div class="lid"></div>
+                  <span class="slot first-slot"></span>
+                  <span class="slot last-slot"></span>
+                </div>
+                <span className='page-title'>aste-IT</span>
+                </div>
+            </NavbarBrand>
+          </div>
+          <NavbarToggler className="mr-2" />
+          <Collapse className="navigation-link-wrapper-outer d-sm-inline-flex flex-sm-row" navbar>
             <ul className="navbar-nav flex-grow">
               <NavItem>
-                <NavLink tag={Link} className="" to="/">Home</NavLink>
+                <NavLink tag={Link} className="navigation-link" to="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="" to="/Agreements">Agreements</NavLink>
+                <NavLink tag={Link} className="navigation-link" to="/Agreements">Agreements</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="" to="/Report">Report</NavLink>
+                <NavLink tag={Link} className="navigation-link" to="/Report">Report</NavLink>
               </NavItem>
-              
-              {true ? (
-                <div className='logged_out_wrapper' style={{display: 'flex', marginLeft: 540}}>
+              <div className='login-wrapper-outer'>
+                {true ? (
+                  <span className='logged-out-wrapper-inner'>
+                    <NavItem>
+                      <NavLink tag={Link} className="" to="/Login">Login</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} className="" to="/Signup">Signup</NavLink>
+                    </NavItem>
+                  </span>
+                ) : (
                   <NavItem>
-                    <NavLink tag={Link} className="" to="/Login">Login</NavLink>
+                    <NavLink tag={Link} className="" to="/Logout">Logout</NavLink>
                   </NavItem>
-                  <NavItem>
-                    <NavLink tag={Link} className="" to="/Signup">Signup</NavLink>
-                  </NavItem>
-                </div>
-              ) : (
-                <NavItem>
-                  <NavLink tag={Link} className="" to="/Logout">Logout</NavLink>
-                </NavItem>
-              )}
-              
+                )}
+               </div>
             </ul>
          </Collapse>
         </Navbar>
