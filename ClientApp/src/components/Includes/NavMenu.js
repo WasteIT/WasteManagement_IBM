@@ -6,8 +6,8 @@ import './Style.css';
 export function NavMenu() {
 
     return (
-      <header>
-        <Navbar className="navbar-expand navbar-toggleable ng-white border-bottom box-shadow navbar-container" container light>
+      <header className='navbar-container'>
+        <Navbar className="navbar-expand navbar-toggleable ng-white border-bottom box-shadow" container light>
         <NavbarBrand tag={Link} to="/">
           <h2 className='navigation-title'>Waste-IT</h2>
         </NavbarBrand>

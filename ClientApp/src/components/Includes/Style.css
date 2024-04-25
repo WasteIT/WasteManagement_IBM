@@ -12,9 +12,17 @@ main {
 }
 
 .navbar-container {
-
+    
+    border-bottom-right-radius: 45%;
+    border-bottom-left-radius: 45%;
+    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.2);;
 }
 .home-style {
     box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.2);;
     border-radius: 45%;
+}
+.navigation-title {
+    background-color: #1E8449;
+    color: whitesmoke;
+    text-shadow: 0 0 0.25 rem rgba(0, 0, 0, 0.2);
 }
