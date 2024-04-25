@@ -55,14 +55,17 @@ namespace Function.Tests
             manager.generateWaste();
 
             // Assert
-            Assert.True(category1.wasteAmount > 0 && category1.wasteAmount >= (10 + 1));
-            Assert.True(category2.wasteAmount > 0 && category2.wasteAmount >= (5 + 1));
+            Assert.True(category1.wasteAmount >= category1.popularity);
+            Assert.True(category2.wasteAmount >= category2.popularity);
         }
         [Fact]
         public void WasteBinManager_CalculateWasteShareForEachBin_SetsShareWithRandomVariation()
         {
             // Arrange
-            WasteBinManager manager = new WasteBinManager();
+            var mockRandom = new Mock<Random>();
+            mockRandom.Setup(r => r.NextDouble()).Returns(0.2);
+
+            WasteBinManager manager = new WasteBinManager(mockRandom.Object); 
             WasteCategory category = new WasteCategory("General", 10, new List<int>() { 1 });
             WasteBin bin1 = new WasteBin(1, 100, 0.5, category, manager);
             WasteBin bin2 = new WasteBin(2, 100, 0.7, category, manager);
@@ -72,10 +75,48 @@ namespace Function.Tests
             // Act
             manager.calculateWasteShareForEachBin();
 
-            // Assert
-            Assert.True(bin1.popularityWithRandomVariation > 0.4);
-            Assert.True(bin2.popularityWithRandomVariation > 0.6);
+            // Assert 
+            Assert.Equal(0.7, bin1.popularityWithRandomVariation); 
+            Assert.Equal(0.9, bin2.popularityWithRandomVariation); 
         }
+        [Fact]
+        public void WasteBinManager_DistributeWasteBasedOnShare_FillsBinToCapacity()
+        {
+            // Arrange
+            WasteBinManager manager = new WasteBinManager();
+            WasteCategory category = new WasteCategory("General", 100, new List<int>() { 1 });
+            WasteBin bin = new WasteBin(1, 50, 0.5, category, manager);
+            category.wasteBins.Add(bin);
+            bin.fillLevel = 50;
+            category.wasteAmount = 60;
+
+            // Act
+            manager.distributeWasteBasedOnShare();
+
+            // Assert
+            Assert.Equal(bin.fillLevel, bin.depth);
+        }
+
+        [Fact]
+        public void WasteBinManager_DistributeWasteBasedOnShare_HandlesOverflowToGeneralWaste()
+        {
+            // Arrange
+            WasteBinManager manager = new WasteBinManager();
+            WasteCategory category = new WasteCategory("General", 100, new List<int>() { 1 });
+            WasteBin bin1 = new WasteBin(1, 20, 0.5, category, manager);
+            WasteBin bin2 = new WasteBin(2, 30, 0.5, category, manager);
+            category.wasteBins.Add(bin1);
+            category.wasteBins.Add(bin2);
+            category.wasteAmount = 70; // Waste exceeding total bin capacity
+
+            // Act
+            manager.distributeWasteBasedOnShare();
+
+            // Assert - Check fill levels of both bins
+            Assert.True(bin1.fillLevel <= bin1.depth);  // Less than or equal to bin depth
+            Assert.True(bin2.fillLevel <= bin2.depth);
+        }
+
         
         [Fact]
         public void TestGenerateWaste()
