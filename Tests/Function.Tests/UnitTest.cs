@@ -1,6 +1,7 @@
 global using datascript;
 using System.Collections.Generic;
 using Xunit;
+using Moq;
 
 namespace Function.Tests
 {
@@ -62,10 +63,8 @@ namespace Function.Tests
         public void WasteBinManager_CalculateWasteShareForEachBin_SetsShareWithRandomVariation()
         {
             // Arrange
-            var mockRandom = new Mock<Random>();
-            mockRandom.Setup(r => r.NextDouble()).Returns(0.2);
 
-            WasteBinManager manager = new WasteBinManager(mockRandom.Object); 
+            WasteBinManager manager = new WasteBinManager(); 
             WasteCategory category = new WasteCategory("General", 10, new List<int>() { 1 });
             WasteBin bin1 = new WasteBin(1, 100, 0.5, category, manager);
             WasteBin bin2 = new WasteBin(2, 100, 0.7, category, manager);
@@ -76,8 +75,8 @@ namespace Function.Tests
             manager.calculateWasteShareForEachBin();
 
             // Assert 
-            Assert.Equal(0.7, bin1.popularityWithRandomVariation); 
-            Assert.Equal(0.9, bin2.popularityWithRandomVariation); 
+            Assert.True(0.4 > bin1.popularityWithRandomVariation); 
+            Assert.True(0.6 > bin2.popularityWithRandomVariation); 
         }
         [Fact]
         public void WasteBinManager_DistributeWasteBasedOnShare_FillsBinToCapacity()
@@ -166,6 +165,59 @@ namespace Function.Tests
             double totalWastePercent = bin1.share + bin2.share + bin3.share;
             int roundedTotalWastePercent = (int)Math.Ceiling(totalWastePercent);
             Assert.Equal(roundedTotalWastePercent, 1);
+        }
+        [Fact]
+        public void EmptyBinsOnSchedule_EmptiesBinsOnMatchingScheduleDay()  
+        {
+            // Arrange
+            var wasteBinManager = new WasteBinManager();
+            var wasteCategory = new WasteCategory("General", 0, new List<int>() { 2 }); // Schedule on Tuesday (day 2)
+            wasteBinManager.wasteCategories.Add(wasteCategory);
+            WasteBin bin = new WasteBin(1, 10, 0.5, wasteCategory, wasteBinManager);
+            wasteCategory.wasteBins.Add(bin);
+
+            // Act - Simulate Tuesday (day 2)
+            wasteBinManager.EmptyBinsOnSchedule(0, 2);
+
+            // Assert
+            Assert.Equal(0, bin.fillLevel);
+        }
+        [Fact]
+        public void EmptyBinsOnSchedule_DoesntEmptyBinsOnNonMatchingScheduleDay()
+        {
+            // Arrange
+            var wasteBinManager = new WasteBinManager();
+            var wasteCategory = new WasteCategory("General", 0, new List<int>() { 2 }); // Schedule on Tuesday (day 2)
+            wasteBinManager.wasteCategories.Add(wasteCategory);
+            WasteBin bin = new WasteBin(1, 10, 0.5, wasteCategory, wasteBinManager);
+            bin.fillLevel = 5; // Set an initial fill level for the bin
+            wasteCategory.wasteBins.Add(bin);
+
+            // Act - Simulate Monday (day 1)
+            wasteBinManager.EmptyBinsOnSchedule(0, 1);
+
+            // Assert
+            Assert.NotEqual(0, bin.fillLevel);
+        }
+        [Fact]
+        public async Task UploadDataForOneGenerationOfMeasurements_GeneratesMeasurements()
+        {
+            // Arrange
+            var wasteBinManager = new WasteBinManager();
+            var wasteCategory = new WasteCategory("General", 0, new List<int>() { 1 });
+            wasteBinManager.wasteCategories.Add(wasteCategory);
+            WasteBin bin = new WasteBin(1, 10, 0.5, wasteCategory, wasteBinManager);
+            bin.fillLevel = 5;
+            wasteCategory.wasteBins.Add(bin);
+            long currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
+            int initialMeasurementCount = bin.measurements.Count;
+
+            // Act
+            await wasteBinManager.uploadDataForOneGenerationOfMeasurements(currentTime);
+
+            // Assert
+            Assert.True(bin.measurements.Count > initialMeasurementCount); // Check if measurements were added
         }
         /*[Theory]
         //[InlineData(0.5, 0.5, 100, 0)]

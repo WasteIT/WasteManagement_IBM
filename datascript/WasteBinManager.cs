@@ -163,10 +163,10 @@ namespace datascript
                 {
                     foreach (int scheduleWeekDay in wasteCategory.schedule)
                     {
-                        //Console.WriteLine("HELLO, I AM COMPARING TWO DAYS: " + scheduleWeekDay + " and " + (int)currentWeekDayNumber);
+                    
                         if (scheduleWeekDay + 1 == currentWeekDayNumber)
                         {
-                            //Console.WriteLine("GREAT SUCCESS!");
+                            
                             foreach (var bin in wasteCategory.wasteBins)
                             {
                                 bin.fillLevel = 0;
