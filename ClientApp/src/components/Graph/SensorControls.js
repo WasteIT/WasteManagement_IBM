@@ -40,10 +40,11 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                         //For sensor
                         wasteType={wasteType}
                         sensors={sensorData[wasteType]}
-                        onChangeSensor={(sensor) => toggleIsSensorDataVisible(sensor)}
-                        onSensorSelect={onSensorSelect}
+                       onChangeSensor={(sensor) => toggleIsSensorDataVisible(sensor)} // OBS: Dette er rigtigt, hvis hver virker
+                      // onChangeSensor={() => toggleIsSensorDataVisible(wasteType)}
+
                         //For wastebin
-                        checked={!graphData[wasteType].some(dataPoint => dataPoint.hidden)}
+                        checkedValue={!graphData[wasteType].some(dataPoint => dataPoint.hidden)}
                         onChange={() => toggleIsSensorDataVisible(wasteType)}
                     />
                 </div>
