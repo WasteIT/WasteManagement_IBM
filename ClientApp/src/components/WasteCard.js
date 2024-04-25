@@ -21,12 +21,18 @@ export default function WasteCard({ name, streetname, pickup, bins, avg }) {
           display: 'block'
         }}/>
         <ListGroup variant="flush">
-          <ListGroup.Item className= {`avg_fill_${name}`} 
-          style={{ padding: '0.75rem 1.25rem' }}>Avg fill level at pickup: {avgerageWithOneDecimal}%</ListGroup.Item>
-          <ListGroup.Item className= {`pickup_${name}`}
-          style={{ padding: '0.75rem 1.25rem' }}>Pickup: {pickup.length > 0 ? pickup.join(", ") : "No pickups"}</ListGroup.Item>
-          <ListGroup.Item className= {`bins_${name}`}
-          style={{ padding: '0.75rem 1.25rem' }}>Bins: {bins}</ListGroup.Item>
+          <ListGroup.Item className= {`avg_fill ${name}`}>
+          <span className="avg_pickup_text">Avg fill level at pickup:</span> 
+          <span className="avg_pickup_value"> {avgerageWithOneDecimal}% </span>
+          </ListGroup.Item>
+          <ListGroup.Item className= {`pickup ${name}`}>
+          <span className="pickup_text"> Pickup days: </span>
+          <span className="pickup_value">{pickup.length > 0 ? pickup.join(", ") : "No pickups"} </span>
+          </ListGroup.Item>
+          <ListGroup.Item className= {`bins ${name}`}>
+            <span className="bins_text">Bins: </span>
+            <span className="bins_value">{bins} </span>
+            </ListGroup.Item>
         </ListGroup>
       </Card>
     </Link>
