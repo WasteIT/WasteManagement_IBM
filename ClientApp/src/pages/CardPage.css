@@ -9,6 +9,21 @@
 main {
   max-width: 100%;
 }
+/*TITLE*/
+.cardpage_location_title{
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+
+.WasteFractionOverview{
+    font-family: 'Roboto';
+    margin-bottom: 50px;
+}
+
+.cardpage_title_div{
+    display: flex;
+    flex-flow:row;
+}
 
 /*ALL WASTETYPES*/
 .wastetype {
@@ -21,15 +36,14 @@ main {
     color: white !important;
 }
 
+/*VALUES CSS*/
 .avg_pickup_value {
     font-family: 'Roboto';
     font-size: 17px;
-    font-weight: bold;
 }
 .pickup_value {
     font-family: 'Roboto';
     font-size: 17px;
-    font-weight: bold;
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -39,6 +53,32 @@ main {
 .bins_value {
     font-family: 'Roboto';
     font-size: 17px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 21rem;
+}
+
+/*TEXT FORMAT CSS*/
+.avg_pickup_text {
+    font-family: 'Roboto';
+    font-size: 17px;
+    font-weight: bold;
+}
+.pickup_text {
+    font-family: 'Roboto';
+    font-size: 17px;
+    font-weight: bold;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 21rem;
+}
+.bins_text {
+    font-family: 'Roboto';
+    font-size: 17px;
     font-weight: bold;
     display: flex;
     flex-flow: row;
@@ -48,7 +88,7 @@ main {
 }
 
 
-
+/*TEXT COLOR CSS*/
 .avg_fill {
     color: white;
 }
@@ -99,7 +139,7 @@ main {
 }
 
 .bins.Dangerous{ 
-    background-color: #F26350;
+    background-color: #EB4D4B;
     border: none
 }
 

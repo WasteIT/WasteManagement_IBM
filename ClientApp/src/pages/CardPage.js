@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import WasteCard from '../components/WasteCard';
+import '@fontsource/roboto';
 import './/CardPage.css'
 
 export default function CardPage() {
@@ -47,6 +48,12 @@ export default function CardPage() {
   }, [name]);
     return (
         <main className='main' style={{ marginTop: '1rem', width: '90%'}}>
+          <div className='cardpage_title_div'>
+            <img className='cardpageIcon' src={`./images/cardpageIcon.png`}/>
+            <h2 className='cardpage_location_title'> {name}</h2>
+            <br/>
+            <h2 className='WasteFractionOverview'> Waste Fraction Overview </h2>
+          </div>
             <div className="card_container">
               {Object.keys(cards).map((cardType, index) => (
                 <WasteCard key={index} streetname={name} name={cardType} bins={cards[cardType].length} pickup={schedules[cardType]} avg={avgPickup[cardType]}/>
