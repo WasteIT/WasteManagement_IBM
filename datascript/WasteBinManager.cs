@@ -152,6 +152,8 @@ namespace datascript
             }
         }
 
+        
+
         public void EmptyBinsOnSchedule(int measurementCount, int currentWeekDayNumber)
         {
 
