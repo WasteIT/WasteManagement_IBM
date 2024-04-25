@@ -55,21 +55,22 @@ const Layout = () => {
               setGraphData={setGraphData}
             />
           </div>
-          <Card className="card-wrapper"> {/* Add className */}
-                        <Card.Body className="card-body"> {/* Add className */}
-                            <div className='filter_options_wrapper'>
-                                <DateRange dateRange={dateRange} onDateChange={setDateRange} />
-                            </div>
-                            <div className="graph_wrapper_inner">
-                                <Graph graphData={graphData} />
-                            </div>
-                            <div className='stats_Wrapper'>
-                                <p>Amount of bins: {bins}</p>
-                                <p>Time since last pickup: {pickup}</p>
-                                <p>Average fill level at pickup: {avgerageWithOneDecimal} %</p>
-                            </div>
-                        </Card.Body>
-                    </Card>
+          <Card className="card-wrapper">
+    <Card.Body className="card-body" style={{ backgroundColor: '#f5f5f5', borderRadius: '25px', position: 'relative' }}>
+        <h5 style={{ position: 'absolute', top: '1.5rem', left: '0', right: '63%', margin: 'auto' }}>Choose date interval</h5> {/* Title */}
+        <div className='filter_options_wrapper' style={{marginTop: '55px' }}>
+            <DateRange dateRange={dateRange} onDateChange={setDateRange} />
+        </div>
+        <div className="graph_wrapper_inner" style={{ backgroundColor: 'white', marginTop: '14px' }}>
+            <Graph graphData={graphData} />
+        </div>
+        <div className='stats_Wrapper'>
+            <p>Amount of bins: {bins}</p>
+            <p>Time since last pickup: {pickup}</p>
+            <p>Average fill level at pickup: {avgerageWithOneDecimal} %</p>
+        </div>
+    </Card.Body>
+</Card>
         </div>
       )}
     </main>
