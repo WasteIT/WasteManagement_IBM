@@ -1,24 +1,33 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Accordion from 'react-bootstrap/Accordion';
+import { Form } from 'react-router-dom';
+import { FormCheck } from 'react-bootstrap';
 
-const ServiceWasteTypeDropdown = ({ wasteType, sensors, onChange, onSensorSelect }) => {
+const ServiceWasteTypeDropdown = ({ wasteType, sensors, onChange, onChangeSensor, graphData, onSensorSelect, onWasteTypeSelect }) => {
   return (
-    <Dropdown>
-      <Dropdown.Toggle variant="primary" id="dropdown-basic">
-        {wasteType}
-      </Dropdown.Toggle>
-      <Dropdown.Menu>
-        {sensors.map((sensor, index) => (
-          <Dropdown.Item key={index} onClick={() => {
-              onSensorSelect(wasteType, sensor)
-              onChange(sensor)
+        <Accordion>
+          <Accordion.Item>
+            <Accordion.Header>{wasteType}
+            <FormCheck onClick={() => {
+              onChange(graphData)
             }}>
-            {sensor.name} sensor: {index + 1}
-          </Dropdown.Item>
-        ))}
-      </Dropdown.Menu>
-    </Dropdown>
+            </FormCheck>
+            </Accordion.Header>
+            <Accordion.Body onClick={() => {
+              onSensorSelect(wasteType, sensors)
+              onChangeSensor(sensors)
+              {sensors.map((sensor, index) => (
+                <div>
+                  {sensor.name} sensor: {index + 1}
+                </div>
+              ))}}}>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
   );
-};
+    }
+    
+    export default ServiceWasteTypeDropdown;
 
-export default ServiceWasteTypeDropdown;
+
