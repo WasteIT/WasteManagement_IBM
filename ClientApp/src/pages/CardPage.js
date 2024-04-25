@@ -50,9 +50,10 @@ export default function CardPage() {
         <main className='main' style={{ marginTop: '1rem', width: '90%'}}>
           <div className='cardpage_title_div'>
             <img className='cardpageIcon' src={`./images/cardpageIcon.png`}/>
+            <span>
             <h2 className='cardpage_location_title'> {name}</h2>
-            <br/>
             <h2 className='WasteFractionOverview'> Waste Fraction Overview </h2>
+            </span>
           </div>
             <div className="card_container">
               {Object.keys(cards).map((cardType, index) => (
