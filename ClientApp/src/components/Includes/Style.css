@@ -48,8 +48,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border-bottom-left-radius: 25%;
-    border-bottom-right-radius: 25%;
+    border-radius: 20px;
   }
   
   .navigation-title {
@@ -63,7 +62,7 @@ body {
     text-decoration: none;
     padding: 0.75rem 1.25rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
+    border-radius: 10px;
     transition: all 0.2s ease-in-out;
   }
   
