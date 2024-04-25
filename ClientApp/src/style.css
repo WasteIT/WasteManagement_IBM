@@ -133,9 +133,23 @@ ServiceAgreementsDropdown.js styles
   width: 90%;
 }
 
-.accordion-button {
+.accordion-button.collapsed {
+  border-radius: 25px !important;
   background-color: var(--primary_color) !important;
   color: #fff !important;
+  padding: 10px 40px 10px 10px /* Why 40 here? Seems to work ok, but I am not sure it's optimal.*/
+}
+
+.accordion-button:not(.collapsed) {
+  border-radius: 25px 25px 0px 0px !important;
+  background-color: var(--primary_color) !important;
+  color: #fff !important;
+  padding: 10px 40px 10px 10px /* Why 40 here? Seems to work ok, but I am not sure it's optimal.*/
+}
+.accordion-item {
+  border-radius: 25px !important;
+  outline-width: 100px !important;
+  background: rgb(255, 255, 255);
 }
 
 /*

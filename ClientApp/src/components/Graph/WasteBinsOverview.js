@@ -10,7 +10,7 @@ import Card from 'react-bootstrap/Card';
 
 const Layout = () => {
   
-    const { state: { name, pickup, bins, avgerageWithOneDecimal} = {} } = useLocation();
+    const { state: { name, streetname, pickup, bins, avgerageWithOneDecimal} = {} } = useLocation();
     const [sensorData, setSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [graphData, setGraphData] = useState({});
@@ -21,7 +21,7 @@ const Layout = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-        await fetchSensorControlsData(name, setSensorData);
+        await fetchSensorControlsData(streetname, setSensorData);
       };  
       fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,14 +29,14 @@ const Layout = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-        await fetchAllGraphData(name, sensorData, dateRange, setGraphData, setIsLoading);
+        await fetchAllGraphData(streetname, sensorData, dateRange, setGraphData, setIsLoading);
       };  
       fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [name, sensorData, dateRange]);
+    }, [streetname, sensorData, dateRange]);
     
     const handleSensorSelect = async (wasteType, sensor) => {
-      await fetchSingleGraphData(name, wasteType, sensor, graphData, dateRange, setIsLoading);
+      await fetchSingleGraphData(streetname, wasteType, sensor, graphData, dateRange, setIsLoading);
   };
     
 
@@ -53,24 +53,25 @@ const Layout = () => {
               graphData={graphData}
               onSensorSelect={handleSensorSelect}
               setGraphData={setGraphData}
+              currentWasteCategory={name}
             />
           </div>
           <Card className="card-wrapper">
-    <Card.Body className="card-body" style={{ backgroundColor: '#f5f5f5', borderRadius: '25px', position: 'relative' }}>
-        <h5 style={{ position: 'absolute', top: '1.5rem', left: '0', right: '63%', margin: 'auto' }}>Choose date interval</h5> {/* Title */}
-        <div className='filter_options_wrapper' style={{marginTop: '55px' }}>
-            <DateRange dateRange={dateRange} onDateChange={setDateRange} />
-        </div>
-        <div className="graph_wrapper_inner" style={{ backgroundColor: 'white', marginTop: '14px' }}>
-            <Graph graphData={graphData} />
-        </div>
-        <div className='stats_Wrapper'>
-            <p>Amount of bins: {bins}</p>
-            <p>Time since last pickup: {pickup}</p>
-            <p>Average fill level at pickup: {avgerageWithOneDecimal} %</p>
-        </div>
-    </Card.Body>
-</Card>
+            <Card.Body className="card-body" style={{ backgroundColor: '#f5f5f5', borderRadius: '25px', position: 'relative' }}>
+                <h5 style={{ position: 'absolute', top: '1.5rem', left: '0', right: '63%', margin: 'auto' }}>Choose date interval</h5> {/* Title */}
+                <div className='filter_options_wrapper' style={{marginTop: '55px' }}>
+                    <DateRange dateRange={dateRange} onDateChange={setDateRange} />
+                </div>
+                <div className="graph_wrapper_inner" style={{ backgroundColor: 'white', marginTop: '14px' }}>
+                    <Graph graphData={graphData} />
+                </div>
+                <div className='stats_Wrapper'>
+                    <p>Amount of bins: {bins}</p>
+                    <p>Time since last pickup: {pickup}</p>
+                    <p>Average fill level at pickup: {avgerageWithOneDecimal} %</p>
+                </div>
+            </Card.Body>
+          </Card>
         </div>
       )}
     </main>

@@ -17,7 +17,7 @@ export const fetchSensorControlsData = async (name, setSensorData) => {
 }
 
 
-export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraphData }) => {
+export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraphData, currentWasteCategory }) => {
 
     const toggleIsSensorDataVisible = (wasteType) => {
         const updatedGraphData = { ...graphData };
@@ -32,23 +32,39 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
         }
       };
 
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {Object.keys(sensorData).map((wasteType, index) => (
-                <div key={index} style={{ display: 'inline-block', marginRight: '20px', marginTop: '0px' }}>
-                    <ServiceWasteTypeDropdown
-                        //For sensor
-                        wasteType={wasteType}
-                        sensors={sensorData[wasteType]}
-                       onChangeSensor={(sensor) => toggleIsSensorDataVisible(sensor)} // OBS: Dette er rigtigt, hvis hver virker
-                      // onChangeSensor={() => toggleIsSensorDataVisible(wasteType)}
+    const filteredWasteTypes = Object.keys(sensorData).filter(wasteType => wasteType !== currentWasteCategory);
 
-                        //For wastebin
-                        checkedValue={!graphData[wasteType].some(dataPoint => dataPoint.hidden)}
-                        onChange={() => toggleIsSensorDataVisible(wasteType)}
-                    />
+    return (
+        <div>
+            <div style={{justifyContent: 'center', background: 'black', marginRight: '3rem', marginLeft: '3rem', borderRadius: '20px'}}>
+                <div style={{justifyContent: 'center', background: 'black', marginRight: '3rem', marginLeft: '3rem', borderRadius: '20px'}}>
+                    <ServiceWasteTypeDropdown
+                        wasteType={currentWasteCategory}
+                        sensors={sensorData[currentWasteCategory]}
+                        onChangeSensor={(sensor) => toggleIsSensorDataVisible(sensor)} // OBS: Dette er rigtigt, hvis hver virker
+                        // onChangeSensor={() => toggleIsSensorDataVisible(wasteType)}
+                        checkedValue={!graphData[currentWasteCategory].some(dataPoint => dataPoint.hidden)}
+                        onChange={() => toggleIsSensorDataVisible(currentWasteCategory)} />
+
                 </div>
-            ))}
+                <div style={{ display: 'flex', flexDirection: 'column', margin: '2rem 1rem 2rem 2rem' }}>
+                    {filteredWasteTypes.map((wasteType, index) => (
+                        <div key={index} style={{ display: 'inline-block', marginRight: '20px', marginTop: '10px' }}>
+                            <ServiceWasteTypeDropdown
+                                //For sensor
+                                wasteType={wasteType}
+                                sensors={sensorData[wasteType]}
+                            onChangeSensor={(sensor) => toggleIsSensorDataVisible(sensor)} // OBS: Dette er rigtigt, hvis hver virker
+                            // onChangeSensor={() => toggleIsSensorDataVisible(wasteType)}
+
+                                //For wastebin
+                                checkedValue={!graphData[wasteType].some(dataPoint => dataPoint.hidden)}
+                                onChange={() => toggleIsSensorDataVisible(wasteType)}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };

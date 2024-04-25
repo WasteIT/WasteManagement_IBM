@@ -9,7 +9,7 @@ export default function WasteCard({ name, streetname, pickup, bins, avg }) {
   }
   const avgerageWithOneDecimal = Math.round(avg * 10) / 10
   return (
-    <Link to='/graph' style={{ textDecoration: 'none' }} state={{ name: streetname, pickup, bins, avgerageWithOneDecimal }}>
+    <Link to='/graph' style={{ textDecoration: 'none' }} state={{ streetname, name, pickup, bins, avgerageWithOneDecimal }}>
       <Card style={{
         width: '18rem',
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
