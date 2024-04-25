@@ -25,7 +25,7 @@ export function NavMenu() {
               </NavItem>
               
               {true ? (
-                <div className='logged_out_wrapper' style={{display: 'flex'}}>
+                <div className='logged_out_wrapper' style={{display: 'flex', marginLeft: 500}}>
                   <NavItem>
                     <NavLink tag={Link} className="" to="/Login">Login</NavLink>
                   </NavItem>
