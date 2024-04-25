@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import WasteCard from '../components/WasteCard';
+import './/CardPage.css'
 
 export default function CardPage() {
     const location = useLocation();

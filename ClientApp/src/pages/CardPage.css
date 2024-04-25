@@ -1,0 +1,195 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+main {
+  max-width: 100%;
+}
+
+/*ALL WASTETYPES*/
+.wastetype {
+
+    width: 18rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    
+}
+
+
+/*CARDBOARD CSS*/
+.Cardboard { 
+    background-color: #BEA064;
+    border: none;
+}
+
+.avg_fill_Cardboard{ 
+    background-color: #bc905c;
+    border: none;
+    padding: 0.75rem 1.25rem
+}
+.pickup_Cardboard{ 
+    background-color: #b97f53;
+    border: none;
+    padding: 0.75rem 1.25rem
+}
+
+.bins_Cardboard{ 
+    background-color: #b66e4b;
+    border: none;
+    padding: 0.75rem 1.25rem
+}
+
+/*DANGEROUS CSS*/
+.Dangerous { 
+    background-color: #E20F1E;
+    border: none
+ 
+}
+
+.avg_fill_Dangerous{ 
+    background-color: #E6242B;
+    border: none
+}
+.pickup_Dangerous{ 
+    background-color: #EA3937;
+    border: none
+}
+
+.bins_Dangerous{ 
+    background-color: #F26350;
+    border: none
+}
+
+/*FOOD WASTE CSS*/
+.Food { 
+    background-color: #00A04B;
+    border: none
+ 
+}
+
+.avg_fill_Food{ 
+    background-color: #3BAF48;
+    border: none
+}
+.pickup_Food{ 
+    background-color: #59B746;
+    border: none
+}
+
+.bins_Food{ 
+    background-color: #76BE44;
+    border: none
+}
+
+/*GENERAL WASTE CSS*/
+.General { 
+    background-color: #141414;
+    border: none
+ 
+}
+
+.avg_fill_General{ 
+    background-color: #202523;
+    border: none
+}
+.pickup_General{ 
+    background-color: #262D2B;
+    border: none
+}
+
+.bins_General{ 
+    background-color: #2B3532;
+    border: none
+}
+
+/*GLASS CSS*/
+.Glass { 
+    background-color: #10B795;
+    border: none
+ 
+}
+
+.avg_fill_Glass{ 
+    background-color: #1AA996;
+    border: none
+}
+.pickup_Glass{ 
+    background-color: #249A97;
+    border: none
+}
+
+.bins_Glass{ 
+    background-color: #2E8B98;
+    border: none
+}
+
+/*METAL CSS*/
+.Metal { 
+    background-color: #5A6E77;
+    border: none
+ 
+}
+
+.avg_fill_Metal{ 
+    background-color: #63808E;
+    border: none
+}
+.pickup_Metal{ 
+    background-color: #688999;
+    border: none
+}
+
+.bins_Metal{ 
+    background-color: #6C91A4;
+    border: none
+}
+
+/*PAPER CSS*/
+.Paper { 
+    background-color: #0082BE;
+    border: none
+ 
+}
+
+.avg_fill_Paper{ 
+    background-color: #0F90B2;
+    border: none
+}
+.pickup_Paper{ 
+    background-color: #1697AC;
+    border: none
+}
+
+.bins_Paper{ 
+    background-color: #1D9DA5;
+    border: none
+}
+
+/*PLASTIC CSS*/
+.Plastic { 
+    background-color: #961E82;
+    border: none;
+}
+
+.avg_fill_Plastic{ 
+    background-color: #9E227E;
+    border: none;
+}
+.pickup_Plastic{ 
+    background-color: #A6267A;
+    border: none;
+}
+
+.bins_Plastic{ 
+    background-color: #B52E72;
+    border: none;
+}
+
+
