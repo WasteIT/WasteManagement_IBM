@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
-import {NavMenu} from './components/NavMenu'; 
-import './style.css';
+import {NavMenu} from './components/Includes/NavMenu'; 
+
 
 export default class App extends React.Component {
   static displayName = App.name;
