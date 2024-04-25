@@ -15,7 +15,7 @@ export function NavMenu() {
           <Collapse className="d-sm-inline-flex flex-sm-row" navbar>
             <ul className="navbar-nav flex-grow">
               <NavItem>
-                <NavLink tag={Link} className="home-style" to="/">Home</NavLink>
+                <NavLink tag={Link} className="" to="/">Home</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="" to="/Agreements">Agreements</NavLink>
