@@ -11,32 +11,50 @@ main {
   max-width: 100%;
 }
 
-.navbar-container {
-    background-color: #2e8b57;
-    border-bottom-left-radius: 45%; 
-    border-bottom-right-radius: 45%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); 
-    padding: 1rem 2rem; 
-    display: flex; 
-    justify-content: space-between; 
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
   }
-.home-style {
-    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.2);;
-    border-radius: 45%;
-}
-.navigation-title {
-    color: #000000; 
-    text-shadow: none; 
+  
+  .navbar-container {
+    background-color: #007F5F;
+    border-bottom-left-radius: 45%;
+    border-bottom-right-radius: 45%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navigation-title {
+    color: #fff;
+    text-shadow: none;
     font-weight: bold;
   }
-.navbar-container a {
-    color: #000000; 
-    text-decoration: none; 
-    margin-right: 1rem; 
-    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.2);;
+  
+  .home-style {
+    background-color: #007F5F;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
     border-radius: 45%;
+    cursor: pointer;
+    margin-left: 1rem;
+  }
+  
+  .navbar-container a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1rem;
   }
   
   .navbar-container a:hover {
-    color: #228e4d;
+    color: #000000;
   }
+
+  .logged-out-wrapper .NavItem {
+    justify-content: flex-end;
+    margin-right: 500px;
+  }
+  
+  

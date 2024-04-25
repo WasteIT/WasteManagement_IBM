@@ -23,8 +23,9 @@ export function NavMenu() {
               <NavItem>
                 <NavLink tag={Link} className="" to="/Report">Report</NavLink>
               </NavItem>
+              
               {true ? (
-                <div className='logged_out_wrapper'>
+                <div className='logged_out_wrapper' style={{display: 'flex'}}>
                   <NavItem>
                     <NavLink tag={Link} className="" to="/Login">Login</NavLink>
                   </NavItem>
@@ -37,6 +38,7 @@ export function NavMenu() {
                   <NavLink tag={Link} className="" to="/Logout">Logout</NavLink>
                 </NavItem>
               )}
+              
             </ul>
          </Collapse>
         </Navbar>
