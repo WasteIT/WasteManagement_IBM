@@ -21,18 +21,24 @@ export const fetchSensorControlsData = async (name, setSensorData) => {
 
 export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraphData, currentWasteCategory }) => {
 
-    const toggleIsSensorDataVisible = (wasteType) => {
+    const toggleIsSensorDataVisible = (wasteType, sensorName) => {
         const updatedGraphData = { ...graphData };
         if (updatedGraphData[wasteType]) {
-          updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => ({
-            ...dataPoint,
-            hidden: !dataPoint.hidden,
-          }));
-          setGraphData(updatedGraphData);
+            updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => {
+                if (dataPoint.sensor === sensorName) {
+                    return {
+                        ...dataPoint,
+                        hidden: !dataPoint.hidden,
+                    };
+                }
+                return dataPoint;
+            });
+            setGraphData(updatedGraphData);
         } else {
-          console.error(`Graph data for ${wasteType} is undefined.`);
+            console.error(`Graph data for ${wasteType} is undefined.`);
         }
-      };
+    };
+    
 
     const filteredWasteTypes = Object.keys(sensorData).filter(wasteType => wasteType !== currentWasteCategory);
 
@@ -71,12 +77,12 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                             onChangeSensor={(sensor) => toggleIsSensorDataVisible(sensor)} // OBS: Dette er rigtigt, hvis hver virker
                             // onChangeSensor={() => toggleIsSensorDataVisible(wasteType)}
 
-                            //For wastebin
-                            checkedValue={!graphData[wasteType].some(dataPoint => dataPoint.hidden)}
-                            onChange={() => toggleIsSensorDataVisible(wasteType)}
-                        />
-                    </div>
-                ))}
+                        //For waste type
+                        checkedValue={!graphData[wasteType].some(dataPoint => dataPoint.hidden)}
+                        onChange={() => toggleIsSensorDataVisible(wasteType)}
+                    />
+                </div>
+            ))}
             </div>
         </div>
     );
