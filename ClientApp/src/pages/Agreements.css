@@ -45,6 +45,10 @@ button.btn.search_bar_button{
     margin-bottom: 25px;
 } 
 
+button.accordion-button.collapsed{
+    color: black !important;
+}
+
 
 .accordion-button:not(.collapsed) {
     background-color: rgba(0, 0, 0, 0) !important;
