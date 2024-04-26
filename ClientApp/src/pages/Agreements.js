@@ -25,6 +25,7 @@ export default function Agreements(){
    return (
      <main className='main'>
       <div className="agreement_title">
+        <img className="agreementIcon" src={`./images/agreementIcon.png`}/>
         <h2>Agreements</h2>
         <SearchBar onSearchResult={handleSearchQueryChange} />
       </div>
