@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import { NavMenu } from './components/Includes/NavMenu'; 
 import { FooterMenu } from './components/Includes/FooterMenu';
+import './style.css'
 
 export default class App extends React.Component {
   static displayName = App.name;

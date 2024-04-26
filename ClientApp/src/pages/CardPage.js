@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import WasteCard from '../components/WasteCard';
-import '@fontsource/roboto';
-import './/CardPage.css'
 
 export default function CardPage() {
     const location = useLocation();
@@ -47,8 +45,8 @@ export default function CardPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
     return (
-        <main className='main' style={{ marginTop: '1rem', width: '90%', margin: '0 auto',}}>
-          <div className='cardpage_title_div'>
+        <main className='main'>
+          <div className='cardpage_title_div flex-row'>
             <img className='cardpageIcon' src={`./images/cardpageIcon.png`} alt='Waste fraction icon'/>
             <span>
             <h2 className='cardpage_location_title'> {name}</h2>

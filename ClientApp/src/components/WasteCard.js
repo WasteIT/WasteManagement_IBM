@@ -22,11 +22,11 @@ export default function WasteCard({ name, streetname, pickup, bins, avg }) {
         }}/>
         <ListGroup variant="flush">
           <ListGroup.Item className= {`avg_fill ${name}`}>
-          <span className="avg_pickup_text">Avg fill level at pickup:</span> 
+          <span className="avg_pickup_text flex-column">Avg fill level at pickup:</span> 
           <span className="avg_pickup_value"> {avgerageWithOneDecimal}% </span>
           </ListGroup.Item>
           <ListGroup.Item className= {`pickup ${name}`}>
-          <span className="pickup_text"> Pickup days: </span>
+          <span className="pickup_text flex-column"> Pickup days: </span>
           <span className="pickup_value">{pickup.length > 0 ? pickup.join(", ") : "No pickups"} </span>
           </ListGroup.Item>
           <ListGroup.Item className= {`bins ${name}`}>

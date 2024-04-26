@@ -1,7 +1,6 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import './Style.css';
 
 export function NavMenu() {
 
@@ -36,7 +35,7 @@ export function NavMenu() {
               </NavItem>
               <div className='login-wrapper-outer'>
                 {true ? (
-                  <span className='logged-out-wrapper-inner'>
+                  <span className='flex-row'>
                     <NavItem>
                       <NavLink tag={Link} className="" to="/Login">Login</NavLink>
                     </NavItem>

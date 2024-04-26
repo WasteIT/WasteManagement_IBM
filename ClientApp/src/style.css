@@ -1,10 +1,12 @@
+@import '@fontsource/roboto';
+
 /*
 ==========================
       Variables
 ==========================
 */
 :root {
-  --primary_color: #3CB371;
+  --primary-color: #007F5F;
   --accent_color: #FFA500;
 }
 
@@ -21,8 +23,9 @@
   box-shadow: none;
 }
 
-nav {
-  background-color: var(--primary_color);
+html, body, main {
+  font-family: 'Roboto';
+  font-size: 17px;
 }
 
 main {
@@ -30,7 +33,7 @@ main {
 }
 
 .main {
-  width: 80%;
+  width: 90%;
   height: auto;
   margin: 5rem auto 0 auto;
 }
@@ -45,40 +48,89 @@ main {
   color: #fff;
 }
 
+.flex-row {
+  display: flex;
+  flex-flow: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column;
+}
+
 /*
 ==========================
     NavMenu.js styles
 ==========================
 */
-.nav-item .nav-link {
-  color: #fff;
-}
-.nav-item .nav-link:hover {
-  color: var(--accent_color);
-  text-decoration: underline;
-}
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-.logged_out_wrapper {
+.navbar-container {
+  background-color: #e8dfdf;
+  margin-bottom: 3rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 6rem;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+  
+.page-title-wrapper-outer {
+  background-color: var(--primary-color);
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.page-title-wrapper-inner {
+  color: #fff;
+  letter-spacing: 15px;
+  margin-left: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  flex-flow: row;
+}
+
+.page-title {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+  
+.navigation-link-wrapper-outer {
+  width: 80%;
+  margin-left: 18%
+}
+
+.navigation-link {
+  text-decoration: none;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+  border: none;
+  padding: 10px 30px !important;
+  margin: 0 35px 0 5px;
+  border-radius: 50px;
+  transition: all 0.2s ease-in-out;
+  background-color: #fff;
+}
+  
+.navigation-link:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  transition: ease-in-out .5s;
+}
+  
+.login-wrapper-outer {
+  display: flex;
+  position: absolute;
+  left: 89.5%;
 }
 
 /*
@@ -86,25 +138,277 @@ html {
       Home.js styles
 ==========================
 */
-.card_container {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: center;
-  align-items: center;
-  
-}
+
 
 /*
 ==========================
       Card styles
 ==========================
 */
+
+.cardpage_location_title{
+  font-size: 26px;
+  font-weight: bold;
+  margin-left: 15px;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  }
+
+.WasteFractionOverview{
+  font-weight: bold;
+  font-size: 26px;
+  margin-left: 15px;
+}
+
+.cardpage_title_div{
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+.cardpageIcon {
+  margin-left: 7.2rem;
+  margin-top: 5px;
+  height: 100%;
+  width: auto;
+}
+
+.card_container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
 .card {
   width: 25rem;
   text-align: center;
   margin: 10px;
-  border: 2px solid var(--primary_color);
 }
+
+.card-link {
+  padding: 10px;
+  text-decoration: none;
+}
+
+.wastetype {
+  width: 16rem !important;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  margin-bottom: 1rem !important;
+  color: white !important;
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  width: 9rem;
+  margin: 0.5rem auto;
+  display: 'block';
+}
+
+.pickup_value {
+  align-items: center;
+  justify-content: center;
+  max-width: 21rem;
+}
+
+.avg_pickup_text {
+  font-weight: bold;
+}
+
+.pickup_text {
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  max-width: 21rem;
+}
+
+.bins_text {
+  font-weight: bold;
+}
+
+.avg_fill {
+  color: white;
+}
+
+.pickup {
+  color: white;
+}
+
+.bins {
+  color: white;
+}
+
+
+.Cardboard { 
+  background-color: #BEA064;
+  border: none;
+}
+
+.avg_fill.Cardboard{ 
+  background-color: #bc905c;
+  border: none;
+}
+.pickup.Cardboard{ 
+  background-color: #b97f53;
+  border: none;
+}
+
+.bins.Cardboard{ 
+  background-color: #b66e4b;
+  border: none;
+}
+
+
+.Dangerous { 
+  background-color: #E20F1E;
+  border: none
+
+}
+
+.avg_fill.Dangerous{ 
+  background-color: #E6242B;
+  border: none
+}
+.pickup.Dangerous{ 
+  background-color: #EA3937;
+  border: none
+}
+
+.bins.Dangerous{ 
+  background-color: #EB4D4B;
+  border: none
+}
+
+
+.Food { 
+  background-color: #00A04B;
+  border: none
+
+}
+
+.avg_fill.Food{ 
+  background-color: #3BAF48;
+  border: none
+}
+.pickup.Food{ 
+  background-color: #59B746;
+  border: none
+}
+
+.bins.Food{ 
+  background-color: #76BE44;
+  border: none
+}
+
+.General { 
+  background-color: #141414;
+  border: none
+
+}
+
+.avg_fill.General{ 
+  background-color: #202523;
+  border: none
+}
+.pickup.General{ 
+  background-color: #262D2B;
+  border: none
+}
+
+.bins.General{ 
+  background-color: #2B3532;
+  border: none
+}
+
+
+.Glass { 
+  background-color: #10B795;
+  border: none
+
+}
+
+.avg_fill.Glass{ 
+  background-color: #1AA996;
+  border: none
+}
+.pickup.Glass{ 
+  background-color: #249A97;
+  border: none
+}
+
+.bins.Glass{ 
+  background-color: #2E8B98;
+  border: none
+}
+
+
+.Metal { 
+  background-color: #5A6E77;
+  border: none
+
+}
+
+.avg_fill.Metal{ 
+  background-color: #63808E;
+  border: none
+}
+.pickup.Metal{ 
+  background-color: #688999;
+  border: none
+}
+
+.bins.Metal{ 
+  background-color: #6C91A4;
+  border: none
+}
+
+.Paper { 
+  background-color: #0082BE;
+  border: none
+
+}
+
+.avg_fill.Paper{ 
+  background-color: #0F90B2;
+  border: none
+}
+.pickup.Paper{ 
+  background-color: #1697AC;
+  border: none
+}
+
+.bins.Paper{ 
+  background-color: #1D9DA5;
+  border: none
+}
+
+.Plastic { 
+  background-color: #961E82;
+  border: none;
+}
+
+.avg_fill.Plastic{ 
+  background-color: #9E227E;
+  border: none;
+}
+.pickup.Plastic{ 
+  background-color: #A6267A;
+  border: none;
+}
+
+.bins.Plastic{ 
+  background-color: #B52E72;
+  border: none;
+}
+
+
+
 
 /*
 ==========================
@@ -204,4 +508,121 @@ input[type="date"]:focus {
   border-color: #0056b3; /* Change border color on focus for visual feedback */
   outline: none; /* Remove the default focus outline */
   box-shadow: 0 0 0 2px rgba(0,86,179,0.2); /* Soft glow effect on focus */
+}
+
+
+
+/*
+==========================
+  FooterMenu.js styles
+==========================
+*/
+.footer {
+  background-color: var(--primary-color);
+  margin-top: 3rem;
+  color: #fff;
+  width: 100vw;
+  padding: 2% 3%;
+  justify-content: center;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+.footer-column {
+  margin: 0 auto;
+}
+
+.footer-heading {
+  font-size: 18px;
+  font-weight: bold; 
+  margin-bottom: 10px; 
+}
+
+.footer-link-item {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px; 
+  margin: 2.5px 0;
+}
+
+.footer-link-item:hover {
+  cursor: pointer;
+  border-bottom: 2px solid #fff;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+}
+
+.social-icon {
+  font-size: 24px; 
+  margin-right: 10px; 
+  color: #fff;
+  text-decoration: none; 
+}
+
+
+
+
+
+
+
+
+
+/*
+==========================
+  WasteBin in nav bar
+==========================
+*/
+.trash-bin {
+  position: relative;
+  width: 37.5px; 
+  height: 50px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding-top: 20px;
+  margin-left: -30px;
+  box-sizing: border-box;
+}
+
+.lid {
+  position: absolute;
+  top: 0;
+  left: -12.5%;
+  width: 125%;
+  height: 12.5px; 
+  background-color: #000;
+}
+
+.handle {
+  width: 8px;
+  height: 14px;
+  transform: rotate(90deg);
+  border-radius: 110px;
+  border: 3px solid #000;
+  border-right: 0;
+  position: relative;
+  top: -110%;
+  left: 40%;
+}
+
+.slot {
+  display: block;
+  width: 6.3px;
+  height: 22px; 
+  background-color: #000;
+  position: absolute;
+  bottom: 40px;
+  border-radius: 30px;
+}
+
+.first-slot {
+  top: 18px;
+  left: 10px; 
+}
+
+.last-slot {
+  top: 18px;
+  right: 10px; 
 }
