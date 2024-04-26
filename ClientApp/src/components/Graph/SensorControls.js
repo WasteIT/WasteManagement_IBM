@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormCheck } from 'react-bootstrap';
 import ServiceWasteTypeDropdown from './ServiceWasteTypeDropdown';
 import { getWasteFractionColor } from '../../utils/GetColour';
@@ -17,6 +17,12 @@ export const fetchSensorControlsData = async (name, setSensorData) => {
 }
 
 export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraphData, currentWasteCategory }) => {
+
+    useEffect(() => {
+        toggleIsSensorDataVisible(currentWasteCategory)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const toggleIsSensorDataVisible = (wasteType, sensorName) => {
         const updatedGraphData = { ...graphData };
         if (updatedGraphData[wasteType]) {
