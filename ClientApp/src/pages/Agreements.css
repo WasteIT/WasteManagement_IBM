@@ -60,6 +60,7 @@ button.accordion-button.collapsed{
 .accordion-button:not(.collapsed) {
     background-color: rgba(0, 0, 0, 0) !important;
     border: none;
+    color: black !important;
 }
 
 .accordion-button:focus {
