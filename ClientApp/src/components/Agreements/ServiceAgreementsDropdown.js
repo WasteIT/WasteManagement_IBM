@@ -7,11 +7,11 @@ class ServiceAgreementsDropdown extends Component {
         const { name } = this.props;
         return (
             <Accordion className="dropdown" defaultActiveKey="1">
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>{name}</Accordion.Header>
+                <Accordion.Item className= "agreement" eventKey="0">
+                    <Accordion.Header>Agreement: {name}</Accordion.Header>
                     <Accordion.Body>
-                        <p>Content for {name}</p>
-                        <Link className="btn button" to="/Overview"  state={{ name: name }}>Agreement</Link>
+                        <p>Details of the Agreement for {name}</p>
+                        <Link className="btn button agreement" to="/Overview"  state={{ name: name }}>Access waste data</Link>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
