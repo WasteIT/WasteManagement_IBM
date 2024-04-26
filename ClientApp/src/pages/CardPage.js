@@ -48,7 +48,7 @@ export default function CardPage() {
         <main className='main' style={{ marginTop: '1rem', width: '90%'}}>
             <div className="card_container">
               {Object.keys(cards).map((cardType, index) => (
-                <WasteCard key={index} streetname={name} name={cardType} bins={cards[cardType].length} pickup={schedules[cardType]} avg={avgPickup[cardType]}/>
+                <WasteCard key={index} streetname={name} name={cardType} bins={cards[cardType]} pickup={schedules[cardType]} avg={avgPickup[cardType]}/>
               ))}
  
             </div>

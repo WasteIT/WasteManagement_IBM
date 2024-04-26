@@ -42,7 +42,7 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                 <div style={{background: getWasteFractionColor(currentWasteCategory), color: 'white', fontWeight: 'bold', borderRadius: '30px 30px 0px 0px', padding: '1rem 1rem 0.5rem 2rem'}}>
                     {currentWasteCategory}
                 </div>
-                <div style={{background: getWasteFractionColor(`${currentWasteCategory} 4th`), color: 'white', borderRadius: '0px 0px 30px 30px', padding: '1rem 1rem 0.5rem 1rem', height: '12rem', boxShadow: '-10px 30px 100px rgba(33, 82, 75, 0.5)'}}>
+                <div style={{background: getWasteFractionColor(`${currentWasteCategory} 4th`), color: 'white', borderRadius: '0px 0px 30px 30px', padding: '1rem 1rem 0.5rem 1rem', height: '12rem', boxShadow: '-10px 30px 50px rgba(33, 82, 75, 0.5)'}}>
                     {sensorData[currentWasteCategory].map((sensor, index) => (
                         <div key={index} style={{display: 'flex', padding: '0.5rem'}}>
                             <FormCheck
@@ -55,7 +55,7 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                     ))}
                 </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '2rem', padding: '1rem', color: 'white', background: '#141414', borderRadius: '30px', boxShadow: '-10px 30px 100px rgba(33, 82, 75, 0.5)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', margin: '2rem', padding: '1rem', color: 'white', background: '#141414', borderRadius: '30px', boxShadow: '-10px 30px 50px rgba(33, 82, 75, 0.5)' }}>
                 <div style={{margin: '0.5rem'}}>
                     Compare with other bins and waste types
                 </div>

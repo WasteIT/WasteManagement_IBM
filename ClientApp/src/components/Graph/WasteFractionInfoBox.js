@@ -5,15 +5,36 @@ import { getWasteFractionColor } from '../../utils/GetColour';
 
 const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecimal}) => {
   const [activeButton, setActiveButton] = useState("all"); //initially select "All bins"
+  const [avgFillLevelForCurrentSelection, setAvgFillLevelForCurrentSelection] = useState(0);
+  const [pickupDaysForCurrentSelection, setPickupDaysForCurrentSelection] = useState(0);
+  const [overfilledShareForCurrentSelection, setOverfilledShareForCurrentSelection] = useState(0);
+
+  useEffect(() => {
+    // use this emtpy dependency arrao ([]) hook to set the correct values when the page first loads. Otherwise they are just 0
+    setAvgFillLevelForCurrentSelection(avgerageWithOneDecimal);
+    setPickupDaysForCurrentSelection(pickup);
+    setOverfilledShareForCurrentSelection(10);
+  }, []);
 
   const handleClick = (binNumber) => {
     setActiveButton(binNumber);
-    //we need to add logic here to update the information displayed below based on the selected bin ... or all the bins. 
+    if (binNumber === "all") {
+      setAvgFillLevelForCurrentSelection(avgerageWithOneDecimal);
+      setPickupDaysForCurrentSelection(pickup);
+      setOverfilledShareForCurrentSelection( 10 ); //Crap
+    } else {
+      // Calculate values for the selected bin
+      const selectedBin = bins[binNumber - 1];
+      // Replace with your actual calculation logic
+      setAvgFillLevelForCurrentSelection( 99 );
+      setPickupDaysForCurrentSelection( 99 );
+      setOverfilledShareForCurrentSelection( 99 );
+    }
   };
 
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', maxWidth: '60rem', width: '60rem', borderRadius: '25px', boxShadow: '-10px 30px 100px rgba(33, 82, 75, 0.5)'}}>
+    <div style={{display: 'flex', justifyContent: 'center', maxWidth: '60rem', width: '60rem', borderRadius: '25px', boxShadow: '-10px 30px 50px rgba(33, 82, 75, 0.5)'}}>
       <div style={{ background: getWasteFractionColor(wasteFraction), borderRadius: '25px 0px 0px 25px', width: '20rem', display: 'flex', alignItems: 'center'  }}>
         <img src={`./images/${wasteFraction}.png`} alt={wasteFraction} style={{
           width: '9rem',
@@ -33,7 +54,9 @@ const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecim
           onClick={() => handleClick("all")}>
             All bins
           </Button>
-         {Array.from({ length: bins }, (_, index) => (
+         {
+        
+         bins.map((bin, index) => (
             <Button 
               key={index} 
               style={{ 
@@ -47,11 +70,7 @@ const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecim
               Bin #{index + 1} {/* Displaying bin numbers */}
             </Button>
           ))}
-          {/*bins.map((bin, index) => (
-            <Button key={index} variant="primary" style={{ marginLeft: '0.5rem' }}>
-              {bin}
-            </Button>
-          ))*/}
+    
        </div>
        <div style={{margin: '1rem 1rem 1rem 2rem'}}>
           <div style={{display: 'flex'}}>
@@ -59,7 +78,7 @@ const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecim
                 Avg fill level on pick up:
             </div>
             <div style={{margin: '0.3rem', fontSize: '18px', fontWeight: 'bold'}}>
-                XX %
+              {avgFillLevelForCurrentSelection} %
             </div>
           </div>
           <div style={{display: 'flex'}}>
@@ -67,15 +86,15 @@ const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecim
                 Pick up days:
             </div>
             <div style={{margin: '0.3rem', fontSize: '18px', fontWeight: 'bold'}}>
-                *Pickup days here*
+              {pickupDaysForCurrentSelection}
             </div>
           </div>
           <div style={{display: 'flex'}}>
             <div style={{width: '30%', margin: '0.4rem 2rem 0.4rem 0.4rem'}}>
                 Share of time all waste bins of this type were overfilled: 
             </div>
-            <div style={{margin: '1rem', fontSize: '18px', fontWeight: 'bold'}}>
-                XX %
+            <div style={{margin: '0.3rem', fontSize: '18px', fontWeight: 'bold'}}>
+              {overfilledShareForCurrentSelection} %
             </div>
           </div>
        </div>
