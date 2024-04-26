@@ -32,9 +32,10 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
         }
     };
 
-    const tehmp = (arg) => {
+    const changeInputButton = (arg) => {
         return graphData[arg] ? !graphData[arg].some(dataPoint => dataPoint.hidden) : false
     }
+    console.log(currentWasteCategory)
 
     return (
         <div>
@@ -47,7 +48,10 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                         <div key={index} style={{display: 'flex', padding: '0.5rem'}}>
                             <FormCheck
                                 style={{padding: '0rem 0.5rem 0rem 0rem'}}
-                                checked={!graphData[currentWasteCategory][index].hidden}
+                                checked={changeInputButton(graphData[currentWasteCategory][index])}
+                                onClick={() => {
+                                    onSensorSelect(currentWasteCategory, sensor)
+                                }}
                                 onChange={() => toggleIsSensorDataVisible(currentWasteCategory, sensor.name)}
                             />
                             {sensor.name} Bin #{index + 1}
@@ -66,7 +70,7 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                         sensors={sensorData[wasteType]}
                         onSensorSelect={onSensorSelect}
                         checkedPrimaryValue={graphData[wasteType] ? !graphData[wasteType].some(dataPoint => dataPoint.hidden) : false}
-                        checkedSecondaryValue={(arg) => tehmp(arg)}
+                        checkedSecondaryValue={(arg) => changeInputButton(arg)}
                         onPrimaryChange={() => toggleIsSensorDataVisible(wasteType)}
                         onSecondaryChange={(sensor) => toggleIsSensorDataVisible(sensor)}
                     />
