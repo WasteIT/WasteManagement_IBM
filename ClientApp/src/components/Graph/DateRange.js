@@ -1,5 +1,3 @@
-import calendarImage from './calendar.png'; // Import the calendar image
-
 export const DateRange = ({ dateRange, onDateChange }) => {
     const setLast90Days = () => {
         const currentDate = new Date();
@@ -18,11 +16,9 @@ export const DateRange = ({ dateRange, onDateChange }) => {
     return (
         <div>
             <div style={{ display: 'flex' }}>
-                {/* Input for start date */}
                 <div style={{ position: 'relative', marginLeft: '1rem', marginRight: '1rem'}}>
-                    {/* Calendar image */}
                     <img
-                        src={calendarImage}
+                        src="./images/calendar.png"
                         alt="calendar"
                         style={{
                             position: 'absolute',
@@ -31,10 +27,9 @@ export const DateRange = ({ dateRange, onDateChange }) => {
                             transform: 'translateY(-50%)',
                             zIndex: '1',
                             pointerEvents: 'none',
-                            width: '17px', // Adjust the width of the image as needed
+                            width: '17px'
                         }}
                     />
-                    {/* Date input */}
                     <input
                         type="date"
                         style={{
@@ -56,11 +51,9 @@ export const DateRange = ({ dateRange, onDateChange }) => {
                         }}
                     />
                 </div>
-                {/* Input for end date */}
                 <div style={{ position: 'relative', marginLeft: '1rem', marginRight: '1rem'}}>
-                    {/* Calendar image */}
                     <img
-                        src={calendarImage}
+                        src="./images/calendar"
                         alt="calendar"
                         style={{
                             position: 'absolute',
@@ -69,10 +62,9 @@ export const DateRange = ({ dateRange, onDateChange }) => {
                             transform: 'translateY(-50%)',
                             zIndex: '1',
                             pointerEvents: 'none',
-                            width: '17px', // Adjust the width of the image as needed
+                            width: '17px'
                         }}
                     />
-                    {/* Date input */}
                     <input
                         type="date"
                         style={{
@@ -94,9 +86,7 @@ export const DateRange = ({ dateRange, onDateChange }) => {
                         }}
                     />
                 </div>
-                {/* Button to set last 90 days */}
                 <button className='wasteItButton' onClick={setLast90Days}>Last 90 Days</button>
-                {/* Button to set last year */}
                 <button className='wasteItButton' onClick={setLastYear}>Last Year</button>
             </div>
             

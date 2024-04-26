@@ -35,7 +35,6 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
     const changeInputButton = (arg) => {
         return graphData[arg] ? !graphData[arg].some(dataPoint => dataPoint.hidden) : false
     }
-    console.log(currentWasteCategory)
 
     return (
         <div>
@@ -48,11 +47,14 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                         <div key={index} style={{display: 'flex', padding: '0.5rem'}}>
                             <FormCheck
                                 style={{padding: '0rem 0.5rem 0rem 0rem'}}
-                                checked={changeInputButton(graphData[currentWasteCategory][index])}
-                                onClick={() => {
+                                checked={changeInputButton(sensor)}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation(); 
+                                    onSensorSelect(currentWasteCategory, sensor)
+                                    toggleIsSensorDataVisible(sensor)
                                     onSensorSelect(currentWasteCategory, sensor)
                                 }}
-                                onChange={() => toggleIsSensorDataVisible(currentWasteCategory, sensor.name)}
                             />
                             {sensor.name} Bin #{index + 1}
                         </div>
