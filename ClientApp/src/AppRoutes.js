@@ -1,4 +1,3 @@
-import Home from "./pages/Home";
 import Agreements from "./pages/Agreements"
 import CardPage from "./pages/CardPage";
 import Layout from "./components/Graph/WasteBinsOverview"
