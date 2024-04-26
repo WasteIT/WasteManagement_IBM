@@ -20,6 +20,8 @@ const Layout = () => {
       endDate: new Date(new Date().setDate(new Date().getDate())),
     });
 
+    const isChrome = window.navigator.userAgent.includes("Chrome");
+      
     useEffect(() => {
       const fetchData = async () => {
         await fetchSensorControlsData(streetname, setSensorData);
@@ -39,7 +41,7 @@ const Layout = () => {
     const handleSensorSelect = async (wasteType, sensor) => {
       await fetchSingleGraphData(streetname, wasteType, sensor, graphData, dateRange, setIsLoading);
     };
-    console.log(graphData)
+
   return (
     <main> 
       <h2 style={{ textAlign: 'center', paddingTop: '20px'}}></h2> 
@@ -73,7 +75,7 @@ const Layout = () => {
             <Card.Body className="card-body">
                 <h5 style={{margin: '1rem 0rem 0rem 1rem' }}>Choose a date interval</h5>
                 <div className='filter_options_wrapper' style={{ }}>
-                    <DateRange dateRange={dateRange} onDateChange={setDateRange} />
+                    <DateRange dateRange={dateRange} onDateChange={setDateRange} isChrome={isChrome}/>
                 </div>
                 <div className="graph_wrapper_inner" style={{ backgroundColor: 'white',}}>
                     <Graph graphData={graphData} />
