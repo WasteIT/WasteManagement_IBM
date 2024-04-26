@@ -1,5 +1,5 @@
 import React from "react";
-import ServiceAgreementsDropdown from "../components/ServiceAgreementsDropdown";
+import ServiceAgreementsDropdown from "./ServiceAgreementsDropdown";
 
 
 function SearchResults({ filteredAgreements }) {
