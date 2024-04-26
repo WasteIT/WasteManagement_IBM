@@ -1,6 +1,9 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
-import { Home } from "./components/Home";
+import Home from "./pages/Home";
+import Agreements from "./pages/Agreements"
+import CardPage from "./pages/CardPage";
+import Layout from "./components/Graph/WasteBinsOverview"
+import Login from "./Login";
+import Signup from "./Signup";
 
 const AppRoutes = [
   {
@@ -8,13 +11,26 @@ const AppRoutes = [
     element: <Home />
   },
   {
-    path: '/counter',
-    element: <Counter />
+    path: '/graph',
+    element: <Layout />
   },
   {
-    path: '/fetch-data',
-    element: <FetchData />
+    path: '/Agreements',
+    element: <Agreements />
+  }, 
+  {
+    path: '/Overview',
+    element: <CardPage />
+  }, 
+  {
+  path: '/login',
+  element: <Login />
+  },
+  {
+  path: '/signup',
+  element: <Signup />
   }
+
 ];
 
 export default AppRoutes;
