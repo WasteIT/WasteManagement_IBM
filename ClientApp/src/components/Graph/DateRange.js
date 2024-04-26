@@ -1,6 +1,4 @@
-
-
-export const DateRange = ({ dateRange, onDateChange, isChrome }) => {
+export const DateRange = ({ dateRange, onDateChange }) => {
     const setLast90Days = () => {
         const currentDate = new Date();
         const startDate = new Date(currentDate);
@@ -19,21 +17,19 @@ export const DateRange = ({ dateRange, onDateChange, isChrome }) => {
         <div>
             <div style={{ display: 'flex' }}>
                 <div style={{ position: 'relative', marginLeft: '1rem', marginRight: '1rem'}}>
-                    {!isChrome ? (
-                        <img
-                            src="./images/calendar.png"
-                            alt="calendar"
-                            style={{
-                                position: 'absolute',
-                                right: '10px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                zIndex: '1',
-                                pointerEvents: 'none',
-                                width: '17px'
-                            }}
-                        />
-                    ) : <></>}
+                    <img
+                        src="./images/calendar.png"
+                        alt="calendar"
+                        style={{
+                            position: 'absolute',
+                            right: '10px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            zIndex: '1',
+                            pointerEvents: 'none',
+                            width: '17px'
+                        }}
+                    />
                     <input
                         type="date"
                         style={{
@@ -56,21 +52,19 @@ export const DateRange = ({ dateRange, onDateChange, isChrome }) => {
                     />
                 </div>
                 <div style={{ position: 'relative', marginLeft: '1rem', marginRight: '1rem'}}>
-                    {!isChrome ? (
-                        <img
-                            src="./images/calendar.png"
-                            alt="calendar"
-                            style={{
-                                position: 'absolute',
-                                right: '10px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                zIndex: '1',
-                                pointerEvents: 'none',
-                                width: '17px'
-                                }}
-                        />
-                    ) : <></>}
+                    <img
+                        src="./images/calendar.png"
+                        alt="calendar"
+                        style={{
+                            position: 'absolute',
+                            right: '10px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            zIndex: '1',
+                            pointerEvents: 'none',
+                            width: '17px'
+                        }}
+                    />
                     <input
                         type="date"
                         style={{
