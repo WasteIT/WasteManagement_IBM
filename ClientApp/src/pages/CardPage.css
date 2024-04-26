@@ -1,0 +1,286 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+main {
+  max-width: 100%;
+}
+/*TITLE*/
+.cardpage_location_title{
+    font-family: 'Roboto';
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    }
+
+.WasteFractionOverview{
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 26px;
+    margin-left: 15px;
+}
+
+.cardpage_title_div{
+    display: flex;
+    flex-flow:row;
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+.cardpageIcon{
+    margin-left: 7.2rem;
+    margin-top: 5px;
+    height: 100%;
+    width: auto;
+}
+
+/*ALL WASTETYPES*/
+.wastetype {
+    width: 16rem !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    margin-bottom: 1rem !important;
+    color: white !important;
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    width: 9rem;
+    margin: 0.5rem auto;
+    display: 'block';
+}
+
+/*VALUES CSS*/
+.avg_pickup_value {
+    font-family: 'Roboto';
+    font-size: 17px;
+}
+.pickup_value {
+    font-family: 'Roboto';
+    font-size: 17px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 21rem;
+}
+.bins_value {
+    font-family: 'Roboto';
+    font-size: 17px;
+}
+
+/*TEXT FORMAT CSS*/
+.avg_pickup_text {
+    font-family: 'Roboto';
+    font-size: 17px;
+    font-weight: bold;
+}
+.pickup_text {
+    font-family: 'Roboto';
+    font-size: 17px;
+    font-weight: bold;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 21rem;
+}
+.bins_text {
+    font-family: 'Roboto';
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+/*TEXT COLOR CSS*/
+.avg_fill {
+    color: white;
+}
+
+.pickup {
+    color: white;
+}
+
+.bins {
+    color: white;
+}
+
+
+/*CARDBOARD CSS*/
+.Cardboard { 
+    background-color: #BEA064;
+    border: none;
+}
+
+.avg_fill.Cardboard{ 
+    background-color: #bc905c;
+    border: none;
+}
+.pickup.Cardboard{ 
+    background-color: #b97f53;
+    border: none;
+}
+
+.bins.Cardboard{ 
+    background-color: #b66e4b;
+    border: none;
+}
+
+/*DANGEROUS CSS*/
+.Dangerous { 
+    background-color: #E20F1E;
+    border: none
+ 
+}
+
+.avg_fill.Dangerous{ 
+    background-color: #E6242B;
+    border: none
+}
+.pickup.Dangerous{ 
+    background-color: #EA3937;
+    border: none
+}
+
+.bins.Dangerous{ 
+    background-color: #EB4D4B;
+    border: none
+}
+
+/*FOOD WASTE CSS*/
+.Food { 
+    background-color: #00A04B;
+    border: none
+ 
+}
+
+.avg_fill.Food{ 
+    background-color: #3BAF48;
+    border: none
+}
+.pickup.Food{ 
+    background-color: #59B746;
+    border: none
+}
+
+.bins.Food{ 
+    background-color: #76BE44;
+    border: none
+}
+
+/*GENERAL WASTE CSS*/
+.General { 
+    background-color: #141414;
+    border: none
+ 
+}
+
+.avg_fill.General{ 
+    background-color: #202523;
+    border: none
+}
+.pickup.General{ 
+    background-color: #262D2B;
+    border: none
+}
+
+.bins.General{ 
+    background-color: #2B3532;
+    border: none
+}
+
+/*GLASS CSS*/
+.Glass { 
+    background-color: #10B795;
+    border: none
+ 
+}
+
+.avg_fill.Glass{ 
+    background-color: #1AA996;
+    border: none
+}
+.pickup.Glass{ 
+    background-color: #249A97;
+    border: none
+}
+
+.bins.Glass{ 
+    background-color: #2E8B98;
+    border: none
+}
+
+/*METAL CSS*/
+.Metal { 
+    background-color: #5A6E77;
+    border: none
+ 
+}
+
+.avg_fill.Metal{ 
+    background-color: #63808E;
+    border: none
+}
+.pickup.Metal{ 
+    background-color: #688999;
+    border: none
+}
+
+.bins.Metal{ 
+    background-color: #6C91A4;
+    border: none
+}
+
+/*PAPER CSS*/
+.Paper { 
+    background-color: #0082BE;
+    border: none
+ 
+}
+
+.avg_fill.Paper{ 
+    background-color: #0F90B2;
+    border: none
+}
+.pickup.Paper{ 
+    background-color: #1697AC;
+    border: none
+}
+
+.bins.Paper{ 
+    background-color: #1D9DA5;
+    border: none
+}
+
+/*PLASTIC CSS*/
+.Plastic { 
+    background-color: #961E82;
+    border: none;
+}
+
+.avg_fill.Plastic{ 
+    background-color: #9E227E;
+    border: none;
+}
+.pickup.Plastic{ 
+    background-color: #A6267A;
+    border: none;
+}
+
+.bins.Plastic{ 
+    background-color: #B52E72;
+    border: none;
+}
+
+
