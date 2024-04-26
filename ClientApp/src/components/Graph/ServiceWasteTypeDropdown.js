@@ -5,7 +5,7 @@ import { Form } from 'react-router-dom';
 import { FormCheck } from 'react-bootstrap';
 import { getWasteFractionColor } from '../../utils/GetColour';
 
-const ServiceWasteTypeDropdown = ({ wasteType, sensors, onChange, onChangeSensor, graphData, sensordata, onSensorSelect, onWasteTypeSelect, checkedValue}) => {
+const ServiceWasteTypeDropdown = ({ wasteType, sensors, onChange, onChangeSensor, onSensorSelect, graphData, checkedValue}) => {
 
   const [isCollapsed, setIsCollapsed] = useState(true); //This is because for some reason it is impossible to access the accordian-button-element 
 
@@ -38,6 +38,7 @@ const ServiceWasteTypeDropdown = ({ wasteType, sensors, onChange, onChangeSensor
                 <FormCheck type="checkbox" style={{padding: '0.1rem 0.5rem 0.1rem 0rem'}} 
                 checked={checkedValue}
                 onClick={(e) => {
+                  onSensorSelect(wasteType, sensor)
                   onChangeSensor(sensor)
                 }}>
                 </FormCheck>

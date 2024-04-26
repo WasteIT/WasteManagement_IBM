@@ -1,6 +1,8 @@
 body {
     background-image: url('./graphBG.png');
-    background-size: cover;
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    background-position: top;
     
 
 }

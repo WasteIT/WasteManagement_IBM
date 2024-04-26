@@ -62,24 +62,21 @@ const Layout = () => {
           <div style={{marginBottom: '2rem'}}>
           <WasteFractionInfoBox
             wasteFraction={name}
-            bins={5}>
+            bins={bins}
+            pickup={pickup}
+            avgerageWithOneDecimal={avgerageWithOneDecimal}>
 
           </WasteFractionInfoBox>
           </div>
 
           <Card className="card-wrapper">
             <Card.Body className="card-body">
-                <h5 style={{margin: '1rem 0rem 0rem 0rem' }}>Choose a date interval</h5>
+                <h5 style={{margin: '1rem 0rem 0rem 1rem' }}>Choose a date interval</h5>
                 <div className='filter_options_wrapper' style={{ }}>
                     <DateRange dateRange={dateRange} onDateChange={setDateRange} />
                 </div>
                 <div className="graph_wrapper_inner" style={{ backgroundColor: 'white',}}>
                     <Graph graphData={graphData} />
-                </div>
-                <div className='stats_Wrapper'>
-                    <p>Amount of bins: {bins}</p>
-                    <p>Time since last pickup: {pickup}</p>
-                    <p>Average fill level at pickup: {avgerageWithOneDecimal} %</p>
                 </div>
             </Card.Body>
           </Card>

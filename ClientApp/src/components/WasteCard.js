@@ -27,7 +27,7 @@ export default function WasteCard({ name, streetname, pickup, bins, avg }) {
         <ListGroup variant="flush">
           <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Avg fill level at pickup: {avgerageWithOneDecimal}%</ListGroup.Item>
           <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Pickup: {pickup.length > 0 ? pickup.join(", ") : "No pickups"}</ListGroup.Item>
-          <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Bins: {bins}</ListGroup.Item>
+          <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Bins: {bins.length}</ListGroup.Item>
         </ListGroup>
       </Card>
     </Link>
