@@ -422,24 +422,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/nusers/.nuget/packages/": {}
+    "C:\\Users\\mariu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
+      "projectUniqueName": "C:\\Users\\mariu\\Documents\\GitHub\\WasteManagement_IBM\\src\\WasteManagement_IBM.csproj",
       "projectName": "WasteManagement_IBM",
-      "projectPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
-      "packagesPath": "/Users/nusers/.nuget/packages/",
-      "outputPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/src/obj/",
+      "projectPath": "C:\\Users\\mariu\\Documents\\GitHub\\WasteManagement_IBM\\src\\WasteManagement_IBM.csproj",
+      "packagesPath": "C:\\Users\\mariu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mariu\\Documents\\GitHub\\WasteManagement_IBM\\src\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/nusers/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\mariu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -452,11 +454,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -483,20 +480,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.17, 7.0.17]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.osx-arm64",
-            "version": "[7.0.17, 7.0.17]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.17, 7.0.17]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -505,7 +488,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   },
