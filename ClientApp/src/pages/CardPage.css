@@ -9,6 +9,26 @@
 main {
   max-width: 100%;
 }
+
+.card_container {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+  width: 25rem;
+  text-align: center;
+  margin: 10px;
+  border: 2px solid var(--primary_color);
+}
+  
+.card-link {
+  padding: 10px;
+  text-decoration: none;
+}
+
 /*TITLE*/
 .cardpage_location_title{
     font-family: 'Roboto';

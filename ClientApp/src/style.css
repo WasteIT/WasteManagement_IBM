@@ -106,10 +106,6 @@ html {
   border: 2px solid var(--primary_color);
 }
 
-.card-link {
-  padding: 10px;
-  text-decoration: none;
-}
 /*
 ==========================
 ServiceAgreementsDropdown.js styles

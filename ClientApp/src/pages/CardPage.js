@@ -47,7 +47,7 @@ export default function CardPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
     return (
-        <main className='main' style={{ marginTop: '1rem', width: '90%'}}>
+        <main className='main' style={{ marginTop: '1rem', width: '90%', margin: '0 auto',}}>
           <div className='cardpage_title_div'>
             <img className='cardpageIcon' src={`./images/cardpageIcon.png`} alt='Waste fraction icon'/>
             <span>
