@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function SearchBar({ onSearchResult }) {
     const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(()=> {
+        onSearchResult(searchQuery);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchQuery])
 
     const handleSearch = () => {
         onSearchResult(searchQuery);
