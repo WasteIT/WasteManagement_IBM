@@ -53,7 +53,7 @@ export const DateRange = ({ dateRange, onDateChange }) => {
                 </div>
                 <div style={{ position: 'relative', marginLeft: '1rem', marginRight: '1rem'}}>
                     <img
-                        src="./images/calendar"
+                        src="./images/calendar.png"
                         alt="calendar"
                         style={{
                             position: 'absolute',
