@@ -11,13 +11,8 @@ export function NavMenu() {
             <NavbarBrand tag={Link} to="/">
              
               <div className='page-title-wrapper-inner'>
-                <div class="trash-bin">
-                  <div class="handle"></div>
-                  <div class="lid"></div>
-                  <span class="slot first-slot"></span>
-                  <span class="slot last-slot"></span>
-                </div>
-                <span className='page-title'>aste-IT</span>
+                
+                <span className='page-title'>Waste-IT</span>
                 </div>
             </NavbarBrand>
           </div>
