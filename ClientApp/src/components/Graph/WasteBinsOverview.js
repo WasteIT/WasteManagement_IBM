@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import 'chartjs-adapter-date-fns';
 import { DateRange } from './DateRange'
 import { SensorControls, fetchSensorControlsData } from './SensorControls'
+import WasteFractionInfoBox from './WasteFractionInfoBox'
 import Graph, { fetchAllGraphData, fetchSingleGraphData } from './Graph';
 import './Layout.css';
 import './../../style.css';
@@ -24,7 +25,7 @@ const Layout = () => {
         await fetchSensorControlsData(streetname, setSensorData);
       };  
       fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -32,23 +33,23 @@ const Layout = () => {
         await fetchAllGraphData(streetname, sensorData, dateRange, setGraphData, setIsLoading);
       };  
       fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [streetname, sensorData, dateRange]);
     
     const handleSensorSelect = async (wasteType, sensor) => {
       await fetchSingleGraphData(streetname, wasteType, sensor, graphData, dateRange, setIsLoading);
-  };
-    
+    };
 
   return (
-    <main>
-      <h2 style={{ textAlign: 'center', paddingTop: '20px'}}>{name}</h2>
+    <main> 
+      <h2 style={{ textAlign: 'center', paddingTop: '20px'}}></h2> 
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="information_page">
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <SensorControls
+        <div className="information_page" style={{justifyContent: 'center'}}>
+          <div style={{ display: 'flex', flexDirection: 'column', width: '20rem' }}>
+            
+            <SensorControls style={{marginBottom: '1rem'}}
               sensorData={sensorData}
               graphData={graphData}
               onSensorSelect={handleSensorSelect}
@@ -56,13 +57,23 @@ const Layout = () => {
               currentWasteCategory={name}
             />
           </div>
+          <div>
+          
+          <div style={{marginBottom: '2rem'}}>
+          <WasteFractionInfoBox
+            wasteFraction={name}
+            bins={5}>
+
+          </WasteFractionInfoBox>
+          </div>
+
           <Card className="card-wrapper">
-            <Card.Body className="card-body" style={{ backgroundColor: '#f5f5f5', borderRadius: '25px', position: 'relative' }}>
-                <h5 style={{ position: 'absolute', top: '1.5rem', left: '0', right: '63%', margin: 'auto' }}>Choose date interval</h5> {/* Title */}
-                <div className='filter_options_wrapper' style={{marginTop: '55px' }}>
+            <Card.Body className="card-body">
+                <h5 style={{margin: '1rem 0rem 0rem 0rem' }}>Choose a date interval</h5>
+                <div className='filter_options_wrapper' style={{ }}>
                     <DateRange dateRange={dateRange} onDateChange={setDateRange} />
                 </div>
-                <div className="graph_wrapper_inner" style={{ backgroundColor: 'white', marginTop: '14px' }}>
+                <div className="graph_wrapper_inner" style={{ backgroundColor: 'white',}}>
                     <Graph graphData={graphData} />
                 </div>
                 <div className='stats_Wrapper'>
@@ -72,6 +83,7 @@ const Layout = () => {
                 </div>
             </Card.Body>
           </Card>
+          </div>
         </div>
       )}
     </main>

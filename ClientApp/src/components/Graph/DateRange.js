@@ -1,11 +1,25 @@
 import calendarImage from './calendar.png'; // Import the calendar image
 
 export const DateRange = ({ dateRange, onDateChange }) => {
+    const setLast90Days = () => {
+        const currentDate = new Date();
+        const startDate = new Date(currentDate);
+        startDate.setDate(currentDate.getDate() - 90);
+        onDateChange({ startDate, endDate: currentDate });
+    };
+
+    const setLastYear = () => {
+        const currentDate = new Date();
+        const startDate = new Date(currentDate);
+        startDate.setFullYear(currentDate.getFullYear() - 1);
+        onDateChange({ startDate, endDate: currentDate });
+    };
+
     return (
         <div>
             <div style={{ display: 'flex' }}>
                 {/* Input for start date */}
-                <div style={{ position: 'relative', marginRight: '2rem' }}>
+                <div style={{ position: 'relative', marginLeft: '1rem', marginRight: '1rem'}}>
                     {/* Calendar image */}
                     <img
                         src={calendarImage}
@@ -27,6 +41,7 @@ export const DateRange = ({ dateRange, onDateChange }) => {
                             paddingRight: '50px',
                             borderRadius: '20px',
                             boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.40)',
+                            backgroundColor: 'white'
                         }}
                         value={dateRange.startDate.toISOString().split('T')[0]}
                         onChange={e => {
@@ -42,7 +57,7 @@ export const DateRange = ({ dateRange, onDateChange }) => {
                     />
                 </div>
                 {/* Input for end date */}
-                <div style={{ position: 'relative' }}>
+                <div style={{ position: 'relative', marginLeft: '1rem', marginRight: '1rem'}}>
                     {/* Calendar image */}
                     <img
                         src={calendarImage}
@@ -64,6 +79,7 @@ export const DateRange = ({ dateRange, onDateChange }) => {
                             paddingRight: '50px',
                             borderRadius: '20px',
                             boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.40)',
+                            backgroundColor: 'white'
                         }}
                         value={dateRange.endDate.toISOString().split('T')[0]}
                         onChange={e => {
@@ -78,7 +94,12 @@ export const DateRange = ({ dateRange, onDateChange }) => {
                         }}
                     />
                 </div>
+                {/* Button to set last 90 days */}
+                <button className='wasteItButton' onClick={setLast90Days}>Last 90 Days</button>
+                {/* Button to set last year */}
+                <button className='wasteItButton' onClick={setLastYear}>Last Year</button>
             </div>
+            
         </div>
     );
 };

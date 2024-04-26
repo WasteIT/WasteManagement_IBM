@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Chart } from 'chart.js/auto';
-import { getRandomColor } from '../../utils/GetColour';
+import { getWasteFractionColor } from '../../utils/GetColour';
 
 export const fetchAllGraphData = async (name, sensorData, dateRange, setGraphData, setIsLoading) => {
     if (Object.keys(sensorData).length > 0) {
@@ -78,7 +78,7 @@ const Graph = ({ graphData }) => {
         const datasets = Object.keys(graphData).map(label => ({
             label: label,
             data: graphData[label].filter(dataPoint => !dataPoint.hidden),
-            borderColor: getRandomColor(label),
+            borderColor: getWasteFractionColor(label),
             backgroundColor: 'rgba(255, 255, 255, 0)',
         }));
 
@@ -89,6 +89,7 @@ const Graph = ({ graphData }) => {
         const newGraphInstance = new Chart(chartRefCurrent, {
             type: 'line',
             data: { datasets },
+  
             options: {
                 plugins: {
                     legend: { display: false }
@@ -98,17 +99,19 @@ const Graph = ({ graphData }) => {
                         suggestedMin: 0,
                         suggestedMax: 100,
                         beginAtZero: true,
-                        title: { display: true, text: 'Percentage Full' }
+                        title: { display: true, text: 'Fill level percentage' }
                     },
                     x: {
                         type: 'time',
-                        ticks: { display: false },
+                        //ticks: { display: false },
                         time: {
                             unit: 'day',
                             displayFormats: { second: 'HH' }
                         }
                     }
-                }
+                },
+                //lineTension: 1,
+                //stepped: 'before'
             }
         });
 
