@@ -8,16 +8,12 @@ import Signup from "./Signup";
 const AppRoutes = [
   {
     index: true,
-    element: <Home />
+    element: <Agreements />
   },
   {
     path: '/graph',
     element: <Layout />
   },
-  {
-    path: '/Agreements',
-    element: <Agreements />
-  }, 
   {
     path: '/Overview',
     element: <CardPage />

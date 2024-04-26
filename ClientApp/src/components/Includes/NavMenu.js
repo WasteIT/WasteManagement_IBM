@@ -28,9 +28,6 @@ export function NavMenu() {
                 <NavLink tag={Link} className="navigation-link" to="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="navigation-link" to="/Agreements">Agreements</NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink tag={Link} className="navigation-link" to="/Report">Report</NavLink>
               </NavItem>
               <div className='login-wrapper-outer'>
