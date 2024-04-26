@@ -39,7 +39,7 @@ const Layout = () => {
     const handleSensorSelect = async (wasteType, sensor) => {
       await fetchSingleGraphData(streetname, wasteType, sensor, graphData, dateRange, setIsLoading);
     };
-
+    console.log(graphData)
   return (
     <main> 
       <h2 style={{ textAlign: 'center', paddingTop: '20px'}}></h2> 

@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Accordion from 'react-bootstrap/Accordion';
-import { Form } from 'react-router-dom';
 import { FormCheck } from 'react-bootstrap';
 import { getWasteFractionColor } from '../../utils/GetColour';
 
-const ServiceWasteTypeDropdown = ({ wasteType, sensors, onChange, onChangeSensor, graphData, sensordata, onSensorSelect, onWasteTypeSelect, checkedValue}) => {
+const ServiceWasteTypeDropdown = ({ wasteType, sensors, onSecondaryChange, onSensorSelect, checkedPrimaryValue, checkedSecondaryValue, onPrimaryChange }) => {
 
-  const [isCollapsed, setIsCollapsed] = useState(true); //This is because for some reason it is impossible to access the accordian-button-element 
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
-  const handleToggleAccordion = () => {
+  const handleToggleAccordion = (e) => {
+    e.preventDefault();
     setIsCollapsed(!isCollapsed);
   };
   
   return (
-        <Accordion class="accordion accordion-flush">
+        <Accordion class="accordion">
           <Accordion.Item style={{background: getWasteFractionColor(`${wasteType} 4th`)}}>
             <Accordion.Header 
               style={{
@@ -24,22 +23,26 @@ const ServiceWasteTypeDropdown = ({ wasteType, sensors, onChange, onChangeSensor
               }} 
               onClick={handleToggleAccordion}>
               <FormCheck type="checkbox" 
-              checked={checkedValue}
-              onClick={(e) => {
-                e.stopPropagation();
-                onChange(graphData)
-              }}>
-              </FormCheck>
+                checked={checkedPrimaryValue}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onPrimaryChange()                
+                }}
+              />    
               {wasteType}
             </Accordion.Header>
             <Accordion.Body>
               {sensors.map((sensor, index) => (
+                
+
               <div style={{display: 'flex', color: 'white'}}>
                 <FormCheck type="checkbox" style={{padding: '0.1rem 0.5rem 0.1rem 0rem'}} 
-                checked={checkedValue}
+                checked={checkedSecondaryValue(sensor)}
                 onClick={(e) => {
-                  e.stopPropagation();
-                  onChangeSensor(sensor)
+                  e.preventDefault();
+                  e.stopPropagation(); 
+                  onSensorSelect(wasteType, sensor)
+                  onSecondaryChange(sensor)
                 }}>
                 </FormCheck>
                 {sensor.name} Bin #{index + 1}
