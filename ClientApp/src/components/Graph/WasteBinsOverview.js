@@ -30,7 +30,7 @@ const Layout = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-        await fetchAllGraphData(name, streetname, sensorData, dateRange, setGraphData, setIsLoading);
+        await fetchAllGraphData(streetname, sensorData, dateRange, setGraphData, setIsLoading);
       };  
       fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,10 +42,11 @@ const Layout = () => {
     console.log(graphData)
   return (
     <main> 
+      <h2 style={{ textAlign: 'center', paddingTop: '20px'}}></h2> 
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="information_page" style={{justifyContent: 'center', paddingTop: '50px'}}>
+        <div className="information_page" style={{justifyContent: 'center'}}>
           <div style={{ display: 'flex', flexDirection: 'column', width: '20rem' }}>
             
             <SensorControls style={{marginBottom: '1rem'}}

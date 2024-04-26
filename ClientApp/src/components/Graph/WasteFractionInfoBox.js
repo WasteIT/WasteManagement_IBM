@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { getWasteFractionColor } from '../../utils/GetColour';
 
 const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecimal}) => {
@@ -13,7 +14,6 @@ const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecim
     setAvgFillLevelForCurrentSelection(avgerageWithOneDecimal);
     setPickupDaysForCurrentSelection(pickup);
     setOverfilledShareForCurrentSelection(10);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = (binNumber) => {
@@ -23,6 +23,8 @@ const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecim
       setPickupDaysForCurrentSelection(pickup);
       setOverfilledShareForCurrentSelection( 10 ); //Crap
     } else {
+      // Calculate values for the selected bin
+      const selectedBin = bins[binNumber - 1];
       // Replace with your actual calculation logic
       setAvgFillLevelForCurrentSelection( 99 );
       setPickupDaysForCurrentSelection( 99 );

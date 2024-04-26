@@ -5,7 +5,7 @@ import { getWasteFractionColor } from '../../utils/GetColour';
 
 const ServiceWasteTypeDropdown = ({ wasteType, sensors, onSecondaryChange, onSensorSelect, checkedPrimaryValue, checkedSecondaryValue, onPrimaryChange }) => {
 
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleToggleAccordion = (e) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ const ServiceWasteTypeDropdown = ({ wasteType, sensors, onSecondaryChange, onSen
   };
   
   return (
-        <Accordion class="accordion" style={{marginBottom: '15px'}} defaultActiveKey="0">
+        <Accordion class="accordion">
           <Accordion.Item style={{background: getWasteFractionColor(`${wasteType} 4th`)}}>
             <Accordion.Header 
               style={{
@@ -33,12 +33,14 @@ const ServiceWasteTypeDropdown = ({ wasteType, sensors, onSecondaryChange, onSen
             </Accordion.Header>
             <Accordion.Body>
               {sensors.map((sensor, index) => (
+                
+
               <div style={{display: 'flex', color: 'white'}}>
                 <FormCheck type="checkbox" style={{padding: '0.1rem 0.5rem 0.1rem 0rem'}} 
                 checked={checkedSecondaryValue(sensor)}
                 onClick={(e) => {
-                  e.stopPropagation(); 
                   e.preventDefault();
+                  e.stopPropagation(); 
                   onSensorSelect(wasteType, sensor)
                   onSecondaryChange(sensor)
                 }}>
