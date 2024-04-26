@@ -49,7 +49,7 @@ export default function CardPage() {
     return (
         <main className='main' style={{ marginTop: '1rem', width: '90%'}}>
           <div className='cardpage_title_div'>
-            <img className='cardpageIcon' src={`./images/cardpageIcon.png`}/>
+            <img className='cardpageIcon' src={`./images/cardpageIcon.png`} alt='Waste fraction icon'/>
             <span>
             <h2 className='cardpage_location_title'> {name}</h2>
             <h2 className='WasteFractionOverview'> Waste Fraction Overview </h2>
