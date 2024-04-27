@@ -31,15 +31,15 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
 
     return (
         <div>
-            <div style={{margin: '0rem 2rem 2rem 2rem'}}>
-                <div style={{background: getWasteFractionColor(currentWasteCategory), color: 'white', fontWeight: 'bold', borderRadius: '30px 30px 0px 0px', padding: '1rem 1rem 0.5rem 2rem'}}>
+            <div className='sensor-control-wrapper-inner'>
+                <div className="sensor-control-main-waste-fraction-title" style={{background: getWasteFractionColor(currentWasteCategory)}}>
                     {currentWasteCategory}
                 </div>
-                <div style={{background: getWasteFractionColor(`${currentWasteCategory} 4th`), color: 'white', borderRadius: '0px 0px 30px 30px', padding: '1rem 1rem 0.5rem 1rem', height: '12rem', boxShadow: '-10px 30px 50px rgba(33, 82, 75, 0.5)'}}>
+                <div className="sensor-control-main-waste-fraction-input-wrapper-outer" style={{background: getWasteFractionColor(`${currentWasteCategory} 4th`)}}>
                     {sensorData[currentWasteCategory].map((sensor, index) => (
-                        <div key={index} style={{display: 'flex', padding: '0.5rem'}}>
+                        <div key={index} className='sensor-control-main-waste-fraction-input-wrapper-inner'>
                             <FormCheck
-                                style={{padding: '0rem 0.5rem 0rem 0rem'}}
+                                className="sensor-control-main-waste-fraction-input"
                                 checked={changeInputButton(sensor)}
                                 onClick={(e) => {
                                     e.preventDefault();
@@ -53,8 +53,8 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                     ))}
                 </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '2rem', padding: '1rem', color: 'white', background: '#141414', borderRadius: '30px', boxShadow: '-10px 30px 50px rgba(33, 82, 75, 0.5)' }}>
-                <div style={{margin: '0.5rem'}}>
+            <div className="flex-column sensor-control-other-waste-fraction-input-wrapper-outer">
+                <div className='sensor-control-other-waste-fraction-title '>
                     Compare with other bins and waste types
                 </div>
                 {Object.keys(sensorData).filter(wasteType => wasteType !== currentWasteCategory).map((wasteType, index) => (

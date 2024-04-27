@@ -13,42 +13,40 @@ const ServiceWasteTypeDropdown = ({ wasteType, sensors, onSecondaryChange, onSen
   };
   
   return (
-        <Accordion class="accordion" defaultActiveKey="1">
-          <Accordion.Item style={{background: getWasteFractionColor(`${wasteType} 4th`), marginBottom: '15px'}}>
+        <Accordion class="report-page-accordion" defaultActiveKey="1">
+          <Accordion.Item className="report-page-waste-fraction-checkbox" style={{background: getWasteFractionColor(`${wasteType} 4th`)}}>
             <Accordion.Header 
+              className='report-accordion-button'
               style={{
                 background: getWasteFractionColor(wasteType), 
                 borderRadius: !isCollapsed ? '25px' : '25px 25px 0px 0px',
                 transition: 'border-radius 0.3s ease' 
               }} 
               onClick={handleToggleAccordion}>
-              <FormCheck type="checkbox" 
-                checked={checkedPrimaryValue}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onPrimaryChange()                
-                }}
-              />    
-              {wasteType}
+                <FormCheck type="checkbox" 
+                  checked={checkedPrimaryValue}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onPrimaryChange()                
+                  }}
+                />    
+                {wasteType}
             </Accordion.Header>
             <Accordion.Body>
               {sensors.map((sensor, index) => (
-                
-
-              <div style={{display: 'flex', color: 'white'}}>
-                <FormCheck type="checkbox" style={{padding: '0.1rem 0.5rem 0.1rem 0rem'}} 
-                checked={checkedSecondaryValue(sensor)}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation(); 
-                  onSensorSelect(wasteType, sensor)
-                  onSecondaryChange(sensor)
-                }}>
-                </FormCheck>
-                {sensor.name} Bin #{index + 1}
-              </div>
-            ))}
-              </Accordion.Body>
+                <div className='report-page-accordion-body-wrapper-inner'>
+                  <FormCheck type="checkbox" className="report-page-accordion-body-input" 
+                    checked={checkedSecondaryValue(sensor)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation(); 
+                      onSensorSelect(wasteType, sensor)
+                      onSecondaryChange(sensor)
+                    }}/>
+                  {sensor.name} Bin #{index + 1}
+                </div>
+              ))}
+            </Accordion.Body>
           </Accordion.Item>
         </Accordion>
       );

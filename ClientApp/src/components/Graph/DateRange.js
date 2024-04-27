@@ -15,31 +15,17 @@ export const DateRange = ({ dateRange, onDateChange, isChrome }) => {
 
     return (
         <div>
-            <div style={{ display: 'flex' }}>
-                <div style={{ position: 'relative', marginLeft: '1rem', marginRight: '1rem'}}>
-                {!isChrome ? (
+            <div className="date-range-picker-wrapper-inner">
+                <div className="single-date-range-picker-wrapper">
+                    {!isChrome ? (
                         <img
                             src="./images/calendar.png"
                             alt="calendar"
-                            style={{
-                                position: 'absolute',
-                                right: '10px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                zIndex: '1',
-                                pointerEvents: 'none',
-                                width: '17px'
-                            }}
+                            className="if-chrome-image-styles"
                         />
                     ) : <></>}
                     <input
                         type="date"
-                        style={{
-                            paddingRight: '50px',
-                            borderRadius: '20px',
-                            boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.40)',
-                            backgroundColor: 'white'
-                        }}
                         value={dateRange.startDate.toISOString().split('T')[0]}
                         onChange={e => {
                             const newStartDate = new Date(e.target.value);
@@ -58,25 +44,11 @@ export const DateRange = ({ dateRange, onDateChange, isChrome }) => {
                         <img
                             src="./images/calendar.png"
                             alt="calendar"
-                            style={{
-                                position: 'absolute',
-                                right: '10px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                zIndex: '1',
-                                pointerEvents: 'none',
-                                width: '17px'
-                                }}
+                            className="if-chrome-image-styles"
                         />
                     ) : <></>}
                     <input
                         type="date"
-                        style={{
-                            paddingRight: '50px',
-                            borderRadius: '20px',
-                            boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.40)',
-                            backgroundColor: 'white'
-                        }}
                         value={dateRange.endDate.toISOString().split('T')[0]}
                         onChange={e => {
                             const newEndDate = new Date(e.target.value);
@@ -90,10 +62,9 @@ export const DateRange = ({ dateRange, onDateChange, isChrome }) => {
                         }}
                     />
                 </div>
-                <button className='wasteItButton' onClick={setLast90Days}>Last 90 Days</button>
-                <button className='wasteItButton' onClick={setLastYear}>Last Year</button>
-            </div>
-            
+                <button className='fixed-date-range-button' onClick={setLast90Days}>Last 90 Days</button>
+                <button className='fixed-date-range-button' onClick={setLastYear}>Last Year</button>
+            </div> 
         </div>
     );
 };

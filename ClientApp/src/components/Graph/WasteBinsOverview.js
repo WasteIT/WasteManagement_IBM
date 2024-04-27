@@ -5,7 +5,6 @@ import { DateRange } from './DateRange'
 import { SensorControls, fetchSensorControlsData } from './SensorControls'
 import WasteFractionInfoBox from './WasteFractionInfoBox'
 import Graph, { fetchAllGraphData, fetchSingleGraphData } from './Graph';
-import './Layout.css';
 import './../../style.css';
 import Card from 'react-bootstrap/Card';
 
@@ -43,13 +42,12 @@ const Layout = () => {
     };
 
   return (
-    <main> 
+    <main className='waste-bin-overview-page-wrapper'> 
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="information_page" style={{justifyContent: 'center', paddingTop: '20px'}}>
-          <div style={{ display: 'flex', flexDirection: 'column', width: '20rem' }}>
-            
+        <div className="information_page_wrapper_outer flex-row">
+          <div className='flex-column information_page_wrapper_inner'>
             <SensorControls style={{marginBottom: '1rem'}}
               sensorData={sensorData}
               graphData={graphData}
@@ -61,28 +59,25 @@ const Layout = () => {
             />
           </div>
           <div>
-          
-          <div style={{marginBottom: '2rem'}}>
-          <WasteFractionInfoBox
-            wasteFraction={name}
-            bins={bins}
-            pickup={pickup}
-            avgerageWithOneDecimal={avgerageWithOneDecimal}>
+            <div className='waste-fraction-info-box-wrapper'>
+              <WasteFractionInfoBox
+                wasteFraction={name}
+                bins={bins}
+                pickup={pickup}
+                avgerageWithOneDecimal={avgerageWithOneDecimal} />
+            </div>
 
-          </WasteFractionInfoBox>
-          </div>
-
-          <Card className="card-wrapper">
-            <Card.Body className="card-body">
-                <h5 style={{margin: '1rem 0rem 0rem 1rem' }}>Choose a date interval</h5>
-                <div className='filter_options_wrapper' style={{ }}>
-                    <DateRange dateRange={dateRange} onDateChange={setDateRange} Chrome={isChrome}/>
+            <Card className="card-wrapper">
+              <Card.Body className="card-body">
+                <h5 className='date-range-picker-title'>Choose a date interval</h5>
+                <div className='filter_options_wrapper'>
+                  <DateRange dateRange={dateRange} onDateChange={setDateRange} Chrome={isChrome}/>
                 </div>
-                <div className="graph_wrapper_inner" style={{ backgroundColor: 'white',}}>
-                    <Graph graphData={graphData} visibleFractions={visibleFractions} />
+                <div className="graph_wrapper_inner">
+                  <Graph graphData={graphData} visibleFractions={visibleFractions} />
                 </div>
-            </Card.Body>
-          </Card>
+              </Card.Body>
+            </Card>
           </div>
         </div>
       )}

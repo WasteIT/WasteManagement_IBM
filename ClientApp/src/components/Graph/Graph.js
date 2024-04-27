@@ -111,15 +111,12 @@ const Graph = ({ graphData, visibleFractions }) => {
                     },
                     x: {
                         type: 'time',
-                        //ticks: { display: false },
                         time: {
                             unit: 'day',
                             displayFormats: { second: 'HH' }
                         }
                     }
                 },
-                //lineTension: 1,
-                //stepped: 'before'
             }
         });
 
