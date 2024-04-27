@@ -15,10 +15,12 @@ const Layout = () => {
     const [sensorData, setSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [graphData, setGraphData] = useState({});
+    const [visibleFractions, setVisibleFractions] = useState({});
     const [dateRange, setDateRange] = useState({
       startDate: new Date(new Date().setDate(new Date().getDate()-31)),
       endDate: new Date(new Date().setDate(new Date().getDate())),
     });
+    const isChrome = window.navigator.userAgent.includes("Chrome");
 
     useEffect(() => {
       const fetchData = async () => {
@@ -30,7 +32,7 @@ const Layout = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-        await fetchAllGraphData(streetname, sensorData, dateRange, setGraphData, setIsLoading);
+        await fetchAllGraphData(name, streetname, sensorData, dateRange, setGraphData, setIsLoading, setVisibleFractions);
       };  
       fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,14 +41,13 @@ const Layout = () => {
     const handleSensorSelect = async (wasteType, sensor) => {
       await fetchSingleGraphData(streetname, wasteType, sensor, graphData, dateRange, setIsLoading);
     };
-    console.log(graphData)
+
   return (
     <main> 
-      <h2 style={{ textAlign: 'center', paddingTop: '20px'}}></h2> 
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="information_page" style={{justifyContent: 'center'}}>
+        <div className="information_page" style={{justifyContent: 'center', paddingTop: '20px'}}>
           <div style={{ display: 'flex', flexDirection: 'column', width: '20rem' }}>
             
             <SensorControls style={{marginBottom: '1rem'}}
@@ -55,6 +56,8 @@ const Layout = () => {
               onSensorSelect={handleSensorSelect}
               setGraphData={setGraphData}
               currentWasteCategory={name}
+              setVisibleFractions={setVisibleFractions}
+              visibleFractions={visibleFractions}
             />
           </div>
           <div>
@@ -73,10 +76,10 @@ const Layout = () => {
             <Card.Body className="card-body">
                 <h5 style={{margin: '1rem 0rem 0rem 1rem' }}>Choose a date interval</h5>
                 <div className='filter_options_wrapper' style={{ }}>
-                    <DateRange dateRange={dateRange} onDateChange={setDateRange} />
+                    <DateRange dateRange={dateRange} onDateChange={setDateRange} Chrome={isChrome}/>
                 </div>
                 <div className="graph_wrapper_inner" style={{ backgroundColor: 'white',}}>
-                    <Graph graphData={graphData} />
+                    <Graph graphData={graphData} visibleFractions={visibleFractions} />
                 </div>
             </Card.Body>
           </Card>

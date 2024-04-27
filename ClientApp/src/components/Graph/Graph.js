@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Chart } from 'chart.js/auto';
 import { getWasteFractionColor } from '../../utils/GetColour';
 
-export const fetchAllGraphData = async (name, sensorData, dateRange, setGraphData, setIsLoading) => {
+export const fetchAllGraphData = async (wasteTypeName, name, sensorData, dateRange, setGraphData, setIsLoading, setVisibleFractions) => {
     if (Object.keys(sensorData).length > 0) {
         try {
             const graphData = {};
@@ -18,13 +18,18 @@ export const fetchAllGraphData = async (name, sensorData, dateRange, setGraphDat
               
               const data = jsonData.map(entry => ({
                 x: new Date(parseInt(entry.Timestamp) * 1000),
-                y: entry.FillLevelSum,
-                hidden: false,
+                y: entry.FillLevelSum
               }));
      
               graphData[wasteType] = data;
             }
             setGraphData(graphData);
+            if (wasteTypeName && graphData.hasOwnProperty(wasteTypeName)) {
+                setVisibleFractions(prevFractions => ({
+                    ...prevFractions,
+                    [wasteTypeName]: true
+                }));
+            }
             setIsLoading(false);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -45,39 +50,42 @@ export const fetchSingleGraphData = async (name, wasteType, sensor, graphData, d
       
       const data = newData.map(entry => ({
         x: new Date(parseInt(entry.Timestamp) * 1000),
-        y: entry.fill_level,
-        hidden: false,
+        y: entry.fill_level
       }));
 
       graphData[sensor] = data;
-    
+
     } catch (error) {
       console.error('Error fetching data:', error);
     }
     setIsLoading(false);
   };
 
-const Graph = ({ graphData }) => {
+const Graph = ({ graphData, visibleFractions }) => {
     const chartRef = useRef();
     
     
     useEffect(() => {
+        console.log(visibleFractions)
+        console.log("Graph Data:", graphData);
         buildChart();
         const currentChartRef = chartRef.current;
+
         return () => {
             if (currentChartRef.chart) {
                 currentChartRef.chart.destroy();
             }
         };
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [graphData]);
+    }, [graphData, visibleFractions]);
 
     const buildChart = () => {
         const chartRefCurrent = chartRef.current.getContext('2d');
 
         const datasets = Object.keys(graphData).map(label => ({
             label: label,
-            data: graphData[label].filter(dataPoint => !dataPoint.hidden),
+            data: graphData[label].filter(() => visibleFractions[label]),
             borderColor: getWasteFractionColor(label),
             backgroundColor: 'rgba(255, 255, 255, 0)',
         }));

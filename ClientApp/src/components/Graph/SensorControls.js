@@ -16,24 +16,17 @@ export const fetchSensorControlsData = async (name, setSensorData) => {
     }
 }
 
-export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraphData, currentWasteCategory }) => {
-    const toggleIsSensorDataVisible = (wasteType, sensorName) => {
-        const updatedGraphData = { ...graphData };
-        if (updatedGraphData[wasteType]) {
-            updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => {
-                if (dataPoint.sensor === sensorName) {
-                    return { ...dataPoint, hidden: !dataPoint.hidden };
-                }
-                return dataPoint;
-            });
-            setGraphData(updatedGraphData);
-        } else {
-            console.error(`Graph data for ${wasteType} is undefined.`);
-        }
+export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraphData, currentWasteCategory, setVisibleFractions, visibleFractions }) => {
+    
+    const toggleIsSensorDataVisible = (wasteType) => {
+        setVisibleFractions(prevFractions => ({
+            ...prevFractions,
+            [wasteType]: !prevFractions[wasteType]
+        }));
     };
 
-    const changeInputButton = (arg) => {
-        return graphData[arg] ? !graphData[arg].some(dataPoint => dataPoint.hidden) : false
+    const changeInputButton = (wasteType) => {
+        return visibleFractions[wasteType] ?? false
     }
 
     return (
@@ -53,7 +46,6 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                                     e.stopPropagation(); 
                                     onSensorSelect(currentWasteCategory, sensor)
                                     toggleIsSensorDataVisible(sensor)
-                                    onSensorSelect(currentWasteCategory, sensor)
                                 }}
                             />
                             {sensor.name} Bin #{index + 1}
@@ -71,7 +63,7 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                         wasteType={wasteType}
                         sensors={sensorData[wasteType]}
                         onSensorSelect={onSensorSelect}
-                        checkedPrimaryValue={graphData[wasteType] ? !graphData[wasteType].some(dataPoint => dataPoint.hidden) : false}
+                        checkedPrimaryValue={changeInputButton(wasteType)}
                         checkedSecondaryValue={(arg) => changeInputButton(arg)}
                         onPrimaryChange={() => toggleIsSensorDataVisible(wasteType)}
                         onSecondaryChange={(sensor) => toggleIsSensorDataVisible(sensor)}
