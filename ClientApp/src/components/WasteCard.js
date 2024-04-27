@@ -9,15 +9,11 @@ export default function WasteCard({ name, streetname, pickup, bins, avg }) {
   }
   const avgerageWithOneDecimal = Math.round(avg * 10) / 10
   return (
-    <Link to='/graph' style={{ textDecoration: 'none' }} state={{ streetname, name, pickup, bins, avgerageWithOneDecimal }}>
-      <Card style={{
-        width: '18rem',
-        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-        border: 'none',
-        borderRadius: '10px',
-        overflow: 'hidden',
-        marginBottom: '1rem'
-      }}
+    <Link to='/graph' style={{ textDecoration: 'none' }} state={{ name: streetname, pickup, bins, avgerageWithOneDecimal }}>
+      <Card
+      className= {`wastetype ${name}`}
+     
+      
       onClick={() => console.log("user clicked")}>
         <Card.Img variant="top" src={`./images/${name}.png`} style={{
           width: '9rem',
@@ -25,9 +21,18 @@ export default function WasteCard({ name, streetname, pickup, bins, avg }) {
           display: 'block'
         }}/>
         <ListGroup variant="flush">
-          <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Avg fill level at pickup: {avgerageWithOneDecimal}%</ListGroup.Item>
-          <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Pickup: {pickup.length > 0 ? pickup.join(", ") : "No pickups"}</ListGroup.Item>
-          <ListGroup.Item style={{ padding: '0.75rem 1.25rem' }}>Bins: {bins.length}</ListGroup.Item>
+          <ListGroup.Item className= {`avg_fill ${name}`}>
+          <span className="avg_pickup_text flex-column">Avg fill level at pickup:</span> 
+          <span className="avg_pickup_value"> {avgerageWithOneDecimal}% </span>
+          </ListGroup.Item>
+          <ListGroup.Item className= {`pickup ${name}`}>
+          <span className="pickup_text flex-column"> Pickup days: </span>
+          <span className="pickup_value">{pickup.length > 0 ? pickup.join(", ") : "No pickups"} </span>
+          </ListGroup.Item>
+          <ListGroup.Item className= {`bins ${name}`}>
+            <span className="bins_text">Bins: </span>
+            <span className="bins_value">{bins} </span>
+            </ListGroup.Item>
         </ListGroup>
       </Card>
     </Link>

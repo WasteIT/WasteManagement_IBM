@@ -5,15 +5,26 @@ import { Link } from 'react-router-dom';
 class ServiceAgreementsDropdown extends Component {
     render() {
         const { name } = this.props;
+
+        
+        
         return (
-            <Accordion className="dropdown" defaultActiveKey="1">
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>{name}</Accordion.Header>
-                    <Accordion.Body>
-                        <p>Content for {name}</p>
-                        <Link className="btn button" to="/Overview"  state={{ name: name }}>Agreement</Link>
-                    </Accordion.Body>
-                </Accordion.Item>
+            <Accordion className="accordion dropdown" defaultActiveKey="1">
+            <Accordion.Item className="agreement" eventKey="0">
+                <Accordion.Header 
+                style={{
+                    borderRadius: '25px !important',
+                    transition: 'border-radius 0.3s ease',
+                    margin: '0 20px', 
+                }} 
+               >
+                    Agreement: {name}
+                </Accordion.Header> 
+                <Accordion.Body>
+                <p>Details of the Agreement for {name}</p>
+                        <Link className="btn button agreement" to="/Overview"  state={{ name: name }}>Access waste data</Link>
+                </Accordion.Body>
+            </Accordion.Item>
             </Accordion>
         );
     }
