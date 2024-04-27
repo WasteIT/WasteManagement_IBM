@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 export default function WasteCard({ name, streetname, pickup, bins, avg }) {
   if (!pickup) {
-    
     return null;
   }
+  
   const avgerageWithOneDecimal = Math.round(avg * 10) / 10
   return (
     <Link to='/graph' style={{ textDecoration: 'none' }} state={{ name: streetname, pickup, bins, avgerageWithOneDecimal }}>
