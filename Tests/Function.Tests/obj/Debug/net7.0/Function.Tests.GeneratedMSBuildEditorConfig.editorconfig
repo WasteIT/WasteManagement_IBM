@@ -8,10 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Function.Tests
-<<<<<<< HEAD
-build_property.ProjectDir = C:\Users\Madso\WasteManagement_IBM\Tests\Function.Tests\
-=======
-build_property.ProjectDir = /Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
->>>>>>> 42eba8783427c872ef4cb0f50ddf569de1600ebc
+build_property.ProjectDir = /Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/Tests/Function.Tests/
