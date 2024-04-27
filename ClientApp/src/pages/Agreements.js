@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import FetchAgreementData from "../components/Agreements/FetchAgreementData";
 import SearchResults from "../components/Agreements/SearchResults";
 import SearchBar from "../components/Agreements/Searchbar";
-import '@fontsource/roboto';
-import './/Agreements.css';
 
 export default function Agreements(){
   const { serviceAgreements, isLoading } = FetchAgreementData();
