@@ -1,3 +1,4 @@
+import Home from "./pages/Home";
 import Agreements from "./pages/Agreements"
 import CardPage from "./pages/CardPage";
 import Layout from "./components/Graph/WasteBinsOverview"
@@ -7,12 +8,16 @@ import Signup from "./Signup";
 const AppRoutes = [
   {
     index: true,
-    element: <Agreements />
+    element: <Home />
   },
   {
     path: '/graph',
     element: <Layout />
   },
+  {
+    path: '/Agreements',
+    element: <Agreements />
+  }, 
   {
     path: '/Overview',
     element: <CardPage />

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
-import { NavMenu } from './components/Includes/NavMenu'; 
-import { FooterMenu } from './components/Includes/FooterMenu';
-import './style.css'
+import {NavMenu} from './components/NavMenu'; 
+import './style.css';
 
 export default class App extends React.Component {
   static displayName = App.name;
@@ -18,7 +17,6 @@ export default class App extends React.Component {
             return <Route key={index} {...rest} element={element} />;
           })}
         </Routes>
-        <FooterMenu/>
       </div>
     );
   }
