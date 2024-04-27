@@ -551,6 +551,11 @@ WasteBinsOverview.js styles
   background-size: 100vw;
   background-repeat: no-repeat;
   background-position: top;
+  margin-top: -90px
+}
+
+.waste-bin-overview-page-wrapper-inner {
+  padding-top: 100px;
 }
 
 .information_page_wrapper_outer {
@@ -582,7 +587,6 @@ WasteBinsOverview.js styles
   text-align: left;
   background-color: #f5f5f5;
   box-shadow: -10px 30px 100px 0 rgba(33, 82, 75, 0.6);
-  margin-bottom: 15rem;
   width: auto;
 }
 

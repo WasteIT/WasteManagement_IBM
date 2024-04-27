@@ -42,45 +42,47 @@ const Layout = () => {
     };
 
   return (
-    <main className='waste-bin-overview-page-wrapper'> 
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <div className="information_page_wrapper_outer flex-row">
-          <div className='flex-column information_page_wrapper_inner'>
-            <SensorControls style={{marginBottom: '1rem'}}
-              sensorData={sensorData}
-              graphData={graphData}
-              onSensorSelect={handleSensorSelect}
-              setGraphData={setGraphData}
-              currentWasteCategory={name}
-              setVisibleFractions={setVisibleFractions}
-              visibleFractions={visibleFractions}
-            />
-          </div>
-          <div>
-            <div className='waste-fraction-info-box-wrapper'>
-              <WasteFractionInfoBox
-                wasteFraction={name}
-                bins={bins}
-                pickup={pickup}
-                avgerageWithOneDecimal={avgerageWithOneDecimal} />
+    <main className='waste-bin-overview-page-wrapper-outer'> 
+      <div className='waste-bin-overview-page-wrapper-inner'>
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <div className="information_page_wrapper_outer flex-row">
+            <div className='flex-column information_page_wrapper_inner'>
+              <SensorControls style={{marginBottom: '1rem'}}
+                sensorData={sensorData}
+                graphData={graphData}
+                onSensorSelect={handleSensorSelect}
+                setGraphData={setGraphData}
+                currentWasteCategory={name}
+                setVisibleFractions={setVisibleFractions}
+                visibleFractions={visibleFractions}
+              />
             </div>
+            <div>
+              <div className='waste-fraction-info-box-wrapper'>
+                <WasteFractionInfoBox
+                  wasteFraction={name}
+                  bins={bins}
+                  pickup={pickup}
+                  avgerageWithOneDecimal={avgerageWithOneDecimal} />
+              </div>
 
-            <Card className="card-wrapper">
-              <Card.Body className="card-body">
-                <h5 className='date-range-picker-title'>Choose a date interval</h5>
-                <div className='filter_options_wrapper'>
-                  <DateRange dateRange={dateRange} onDateChange={setDateRange} Chrome={isChrome}/>
-                </div>
-                <div className="graph_wrapper_inner">
-                  <Graph graphData={graphData} visibleFractions={visibleFractions} />
-                </div>
-              </Card.Body>
-            </Card>
+              <Card className="card-wrapper">
+                <Card.Body className="card-body">
+                  <h5 className='date-range-picker-title'>Choose a date interval</h5>
+                  <div className='filter_options_wrapper'>
+                    <DateRange dateRange={dateRange} onDateChange={setDateRange} Chrome={isChrome}/>
+                  </div>
+                  <div className="graph_wrapper_inner">
+                    <Graph graphData={graphData} visibleFractions={visibleFractions} />
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </main>
   );
 };
