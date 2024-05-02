@@ -19,6 +19,7 @@
     "react-scripts": "^5.0.1",
     "reactstrap": "^9.1.9",
     "rimraf": "^5.0.0",
+    "roboto": "^0.8.2",
     "rsuite": "^5.58.1",
     "web-vitals": "^3.3.1",
     "workbox-background-sync": "^6.5.4",
