@@ -18,14 +18,17 @@ export default function Agreements(){
   const handleSearchQueryChange = (query) => {
     setSearchQuery(query);
   };
-
   
    return (
-     <main className='main'>
-       <div>
-            <SearchBar onSearchResult={handleSearchQueryChange} />
-            <SearchResults filteredAgreements={filteredAgreements} />
-        </div>
-     </main>
+    <main className='main'>
+      <div className="agreement_title">
+        <img className="agreementIcon" alt = "agreement icon" src={`./images/agreementIcon.png`}/>
+        <h2>Agreements</h2>
+        <SearchBar onSearchResult={handleSearchQueryChange} />
+      </div>
+      <div>
+        <SearchResults filteredAgreements={filteredAgreements} />
+      </div>
+    </main>
    );
 }

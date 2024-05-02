@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
+import { FormCheck } from 'react-bootstrap';
 import ServiceWasteTypeDropdown from './ServiceWasteTypeDropdown';
-
+import { getWasteFractionColor } from '../../utils/GetColour';
 
 export const fetchSensorControlsData = async (name, setSensorData) => {
     try {
@@ -16,41 +16,60 @@ export const fetchSensorControlsData = async (name, setSensorData) => {
     }
 }
 
-
-export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraphData }) => {
-
+export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraphData, currentWasteCategory, setVisibleFractions, visibleFractions }) => {
+    
     const toggleIsSensorDataVisible = (wasteType) => {
-        const updatedGraphData = { ...graphData };
-        if (updatedGraphData[wasteType]) {
-          updatedGraphData[wasteType] = updatedGraphData[wasteType].map(dataPoint => ({
-            ...dataPoint,
-            hidden: !dataPoint.hidden,
-          }));
-          setGraphData(updatedGraphData);
-        } else {
-          console.error(`Graph data for ${wasteType} is undefined.`);
-        }
-      };
+        setVisibleFractions(prevFractions => ({
+            ...prevFractions,
+            [wasteType]: !prevFractions[wasteType]
+        }));
+    };
+
+    const changeInputButton = (wasteType) => {
+        return visibleFractions[wasteType] ?? false
+    }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {Object.keys(sensorData).map((wasteType, index) => (
-                <div key={index} style={{ display: 'inline-block', marginRight: '20px', marginTop: '0px' }}>
+        <div>
+            <div className='sensor-control-wrapper-inner'>
+                <div className="sensor-control-main-waste-fraction-title" style={{background: getWasteFractionColor(currentWasteCategory)}}>
+                    {currentWasteCategory}
+                </div>
+                <div className="sensor-control-main-waste-fraction-input-wrapper-outer" style={{background: getWasteFractionColor(`${currentWasteCategory} 4th`)}}>
+                    {sensorData[currentWasteCategory].map((sensor, index) => (
+                        <div key={index} className='sensor-control-main-waste-fraction-input-wrapper-inner'>
+                            <FormCheck
+                                className="sensor-control-main-waste-fraction-input"
+                                checked={changeInputButton(sensor)}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation(); 
+                                    onSensorSelect(currentWasteCategory, sensor)
+                                    toggleIsSensorDataVisible(sensor)
+                                }}
+                            />
+                            {sensor.name} Bin #{index + 1}
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="flex-column sensor-control-other-waste-fraction-input-wrapper-outer">
+                <div className='sensor-control-other-waste-fraction-title '>
+                    Compare with other bins and waste types
+                </div>
+                {Object.keys(sensorData).filter(wasteType => wasteType !== currentWasteCategory).map((wasteType, index) => (
                     <ServiceWasteTypeDropdown
+                        key={index}
                         wasteType={wasteType}
                         sensors={sensorData[wasteType]}
-                        onChange={(sensor) => toggleIsSensorDataVisible(sensor)}
                         onSensorSelect={onSensorSelect}
+                        checkedPrimaryValue={changeInputButton(wasteType)}
+                        checkedSecondaryValue={(arg) => changeInputButton(arg)}
+                        onPrimaryChange={() => toggleIsSensorDataVisible(wasteType)}
+                        onSecondaryChange={(sensor) => toggleIsSensorDataVisible(sensor)}
                     />
-                    <Form.Check
-                        type="checkbox"
-                        id={`checkbox-${index}`}
-                        label={wasteType}
-                        checked={!graphData[wasteType].some(dataPoint => dataPoint.hidden)}
-                        onChange={() => toggleIsSensorDataVisible(wasteType)}
-                    />
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 };

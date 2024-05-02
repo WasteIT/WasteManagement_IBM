@@ -1,7 +1,6 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import './Style.css';
 
 export function NavMenu() {
 
@@ -12,13 +11,8 @@ export function NavMenu() {
             <NavbarBrand tag={Link} to="/">
              
               <div className='page-title-wrapper-inner'>
-                <div class="trash-bin">
-                  <div class="handle"></div>
-                  <div class="lid"></div>
-                  <span class="slot first-slot"></span>
-                  <span class="slot last-slot"></span>
-                </div>
-                <span className='page-title'>aste-IT</span>
+                
+                <span className='page-title'>Waste-IT</span>
                 </div>
             </NavbarBrand>
           </div>
@@ -29,14 +23,11 @@ export function NavMenu() {
                 <NavLink tag={Link} className="navigation-link" to="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="navigation-link" to="/Agreements">Agreements</NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink tag={Link} className="navigation-link" to="/Report">Report</NavLink>
               </NavItem>
               <div className='login-wrapper-outer'>
                 {true ? (
-                  <span className='logged-out-wrapper-inner'>
+                  <span className='flex-row'>
                     <NavItem>
                       <NavLink tag={Link} className="" to="/Login">Login</NavLink>
                     </NavItem>

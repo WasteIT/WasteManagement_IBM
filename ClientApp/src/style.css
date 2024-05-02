@@ -1,10 +1,12 @@
+@import '@fontsource/roboto';
+
 /*
 ==========================
       Variables
 ==========================
 */
 :root {
-  --primary_color: #3CB371;
+  --primary-color: #007F5F;
   --accent_color: #FFA500;
 }
 
@@ -21,17 +23,22 @@
   box-shadow: none;
 }
 
-nav {
-  background-color: var(--primary_color);
+html {
+  font-family: 'Roboto';
+  font-size: 17px;
+  max-width: 100%;
+  height: 100%;
 }
 
 main {
-  max-width: 100%;
+  min-height: 55vh;
+  margin: 0;
 }
 
+
 .main {
-  width: 80%;
-  height: auto;
+  flex: 1;
+  width: 90%;
   margin: 5rem auto 0 auto;
 }
 
@@ -40,9 +47,24 @@ main {
   color: var(--primary_color);
   border: 2px solid var(--primary_color);
 }
+
 .button:hover {
   background-color: var(--primary_color);
   color: #fff;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column;
 }
 
 /*
@@ -50,71 +72,463 @@ main {
     NavMenu.js styles
 ==========================
 */
-.nav-item .nav-link {
-  color: #fff;
-}
-.nav-item .nav-link:hover {
-  color: var(--accent_color);
-  text-decoration: underline;
-}
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-.logged_out_wrapper {
+.navbar-container {
+  background-color: #e8dfdf;
+  margin-bottom: 3rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 6rem;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+  
+.page-title-wrapper-outer {
+  background-color: var(--primary-color);
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.page-title-wrapper-inner {
+  color: #fff;
+  letter-spacing: 15px;
+  margin-top: -10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  flex-flow: row;
+}
+
+.page-title {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+  
+.navigation-link-wrapper-outer {
+  width: 80%;
+  margin-left: 18%
+}
+
+.navigation-link {
+  text-decoration: none;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+  border: none;
+  padding: 10px 30px !important;
+  margin: 0 35px 0 5px;
+  border-radius: 50px;
+  transition: all 0.2s ease-in-out;
+  background-color: #fff;
+}
+  
+.navigation-link:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  transition: ease-in-out .5s;
+}
+  
+.login-wrapper-outer {
+  display: flex;
+  position: absolute;
+  left: 89.5%;
 }
 
 /*
 ==========================
-      Home.js styles
+    Agreements.js styles
 ==========================
 */
+
+.agreement_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  position: relative;
+  left: 21%;
+}
+.agreementIcon {
+  max-width: 6%;
+  max-height: 6%;
+}
+
+input.form-control.search_bar{
+  max-width: 33%;
+  border-radius: 2px solid black;
+  margin-left: 125px;
+  margin-top: 15px;
+  border-radius: 40px !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.input-group {
+  margin-top: 32.5px;
+}
+
+button.btn.search_bar_button{
+  max-width:10%;
+  border-radius: 20px !important;
+  margin-left: 10px !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin-top: 15px;
+}
+.agreement.accordion-item{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50%;
+  border-radius: 40px !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  margin-bottom: 25px;
+} 
+
+.agreementAccordionButton {
+border-radius: 25px !important;
+transition: ease-in-out 1s;
+margin: 0 20px;
+}
+
+.agreementAccordionButton button.accordion-button.collapsed{
+  color: black !important;
+}
+
+
+.agreementAccordionButton button.accordion-button:not(.collapsed) {
+  background-color: rgba(0, 0, 0, 0) !important;
+  border: none;
+  color: black !important;
+}
+
+.agreementAccordionButton button.accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(0,0,0,.125);
+}
+
+.agreement-Accordion-body{
+  background-color: #f5f5f5;
+  border-radius: 0 0 40px 40px;
+}
+
+
+.btn.button.agreement{
+  border-radius: 30px;
+  background-color: #83C6C0;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-size: 12px;
+  margin-left: 80% !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.search_bar {
+border: 2px solid var(--primary_color);
+border-top-right-radius: 0%;
+border-bottom-right-radius: 0%;
+padding: 20px;
+margin-bottom: 50px;
+}
+.search_bar:focus {
+outline: none !important;
+border: 2px solid var(--primary_color);
+box-shadow: none;
+}
+
+.search_bar_button {
+background-color: #fff;
+color: var(--primary_color);
+border: 2px solid var(--primary_color);
+margin-bottom: 50px;
+}
+
+.search_bar_button:hover {
+background-color: var(--primary_color);
+color: #fff;
+}
+
+/*
+==========================
+    WasteCard styles
+==========================
+*/
+
+.cardpage_location_title{
+  font-size: 26px;
+  font-weight: bold;
+  margin-left: 15px;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  }
+
+.WasteFractionOverview{
+  font-weight: bold;
+  font-size: 26px;
+  margin-left: 15px;
+}
+
+.cardpage_title_div{
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+.cardpageIcon {
+  margin-left: 7.2rem;
+  margin-top: 5px;
+  height: 100%;
+  width: auto;
+}
+
 .card_container {
   display: flex;
   flex-flow: wrap;
   justify-content: center;
   align-items: center;
-  
+  color: #fff;
 }
 
-/*
-==========================
-      Card styles
-==========================
-*/
 .card {
   width: 25rem;
   text-align: center;
   margin: 10px;
-  border: 2px solid var(--primary_color);
 }
 
 .card-link {
   padding: 10px;
   text-decoration: none;
 }
+
+.wastetype {
+  width: 16rem !important;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  margin-bottom: 1rem !important;
+  color: white !important;
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  width: 9rem;
+  margin: 0.5rem auto;
+  display: 'block';
+}
+
+.pickup_value {
+  align-items: center;
+  justify-content: center;
+  max-width: 21rem;
+}
+
+.avg_pickup_text {
+  font-weight: bold;
+}
+
+.pickup_text {
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  max-width: 21rem;
+}
+
+.bins_text {
+  font-weight: bold;
+}
+
+.avg_fill {
+  color: white;
+}
+
+.pickup {
+  color: white;
+}
+
+.bins {
+  color: white;
+}
+
+
+.Cardboard { 
+  background-color: #BEA064;
+  border: none;
+}
+
+.avg_fill.Cardboard{ 
+  background-color: #bc905c;
+  border: none;
+}
+.pickup.Cardboard{ 
+  background-color: #b97f53;
+  border: none;
+}
+
+.bins.Cardboard{ 
+  background-color: #b66e4b;
+  border: none;
+}
+
+
+.Dangerous { 
+  background-color: #E20F1E;
+  border: none
+
+}
+
+.avg_fill.Dangerous{ 
+  background-color: #E6242B;
+  border: none
+}
+.pickup.Dangerous{ 
+  background-color: #EA3937;
+  border: none
+}
+
+.bins.Dangerous{ 
+  background-color: #EB4D4B;
+  border: none
+}
+
+
+.Food { 
+  background-color: #00A04B;
+  border: none
+
+}
+
+.avg_fill.Food{ 
+  background-color: #3BAF48;
+  border: none
+}
+.pickup.Food{ 
+  background-color: #59B746;
+  border: none
+}
+
+.bins.Food{ 
+  background-color: #76BE44;
+  border: none
+}
+
+.General { 
+  background-color: #141414;
+  border: none
+
+}
+
+.avg_fill.General{ 
+  background-color: #202523;
+  border: none
+}
+.pickup.General{ 
+  background-color: #262D2B;
+  border: none
+}
+
+.bins.General{ 
+  background-color: #2B3532;
+  border: none
+}
+
+
+.Glass { 
+  background-color: #10B795;
+  border: none
+
+}
+
+.avg_fill.Glass{ 
+  background-color: #1AA996;
+  border: none
+}
+.pickup.Glass{ 
+  background-color: #249A97;
+  border: none
+}
+
+.bins.Glass{ 
+  background-color: #2E8B98;
+  border: none
+}
+
+
+.Metal { 
+  background-color: #5A6E77;
+  border: none
+
+}
+
+.avg_fill.Metal{ 
+  background-color: #63808E;
+  border: none
+}
+.pickup.Metal{ 
+  background-color: #688999;
+  border: none
+}
+
+.bins.Metal{ 
+  background-color: #6C91A4;
+  border: none
+}
+
+.Paper { 
+  background-color: #0082BE;
+  border: none
+
+}
+
+.avg_fill.Paper{ 
+  background-color: #0F90B2;
+  border: none
+}
+.pickup.Paper{ 
+  background-color: #1697AC;
+  border: none
+}
+
+.bins.Paper{ 
+  background-color: #1D9DA5;
+  border: none
+}
+
+.Plastic { 
+  background-color: #961E82;
+  border: none;
+}
+
+.avg_fill.Plastic{ 
+  background-color: #9E227E;
+  border: none;
+}
+.pickup.Plastic{ 
+  background-color: #A6267A;
+  border: none;
+}
+
+.bins.Plastic{ 
+  background-color: #B52E72;
+  border: none;
+}
+
 /*
 ==========================
 ServiceAgreementsDropdown.js styles
 ==========================
 */
+
 .dropdown {
   margin: 20px auto;
   width: 90%;
@@ -125,49 +539,40 @@ ServiceAgreementsDropdown.js styles
   color: #fff !important;
 }
 
-/*
-==========================
-    Agreements.js styles
-==========================
-*/
-.search_bar {
-  border: 2px solid var(--primary_color);
-  border-top-right-radius: 0%;
-  border-bottom-right-radius: 0%;
-  padding: 20px;
-  margin-bottom: 50px;
-}
-.search_bar:focus {
-  outline: none !important;
-  border: 2px solid var(--primary_color);
-  box-shadow: none;
-}
-
-.search_bar_button {
-  background-color: #fff;
-  color: var(--primary_color);
-  border: 2px solid var(--primary_color);
-  margin-bottom: 50px;
-}
-.search_bar_button:hover {
-  background-color: var(--primary_color);
-  color: #fff;
-}
 
 
 /*
 ==========================
-    Layout.js styles
+WasteBinsOverview.js styles
 ==========================
 */
-.information_page {
-  display: flex;
-  flex-flow: row;
+.waste-bin-overview-page-wrapper-outer {
+  background-image: url('../public/images/graphBG.png');
+  background-size: 100vw;
+  background-repeat: no-repeat;
+  background-position: top;
+  margin-top: -90px
 }
 
-.fraction_filter {
-  width: 10%;
-  margin: 90px 3rem;
+.waste-bin-overview-page-wrapper-inner {
+  padding-top: 100px;
+}
+
+.information_page_wrapper_outer {
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.information_page_wrapper_inner {
+  width: 20rem;
+}
+
+.waste-fraction-info-box-wrapper {
+  margin-bottom: 2rem;
+}
+
+.date-range-picker-title {
+  margin: 1rem 0rem 0rem 1rem;
 }
 
 .filter_options_wrapper {
@@ -176,36 +581,302 @@ ServiceAgreementsDropdown.js styles
   margin-left: 60px;
 }
 
-.filter_graph_button {
-  margin: 5px;
+.card-wrapper {
+  margin: 0;
+  border-radius: 30px;
+  text-align: left;
+  background-color: #f5f5f5;
+  box-shadow: -10px 30px 100px 0 rgba(33, 82, 75, 0.6);
+  width: auto;
 }
 
 .graph_wrapper_inner {
+  background-color: #fff;
   width: 50rem;
   height: auto;
   margin-left: 2rem;
   margin-top: 2rem;
 }
 
-.form-check-input[type=checkbox] {
+.form-check-input {
+  background-color: transparent !important; 
+  border: 2px solid white !important;
+  border-radius: 50% !important; 
+  width: 20px; 
+  height: 20px;
+  position: relative;
+  top: 6px;
+  transform: translateY(-50%); 
   margin-left: 15px; 
   margin-right: 10px
 }
 
+/*
+==========================
+ SensorControls.js styles
+==========================
+*/
+
+.sensor-control-wrapper-inner {
+  margin: 0 2rem 2rem 2rem;
+}
+
+.sensor-control-main-waste-fraction-title {
+ color: #fff;
+ font-weight: bold; 
+ border-radius: 30px 30px 0px 0px; 
+ padding: 1rem 1rem 0.5rem 2rem;
+}
+
+.sensor-control-main-waste-fraction-input-wrapper-outer {
+  color: #fff; 
+  border-radius: 0px 0px 30px 30px;
+   padding: 1rem 1rem 0.5rem 1rem; 
+   height: 12rem; 
+   box-shadow: -10px 30px 50px rgba(33, 82, 75, 0.5);
+}
+
+.sensor-control-main-waste-fraction-input-wrapper-inner {
+  display: flex;
+  padding: 0.5rem;
+}
+
+.sensor-control-main-waste-fraction-input {
+  padding-right: 0.5rem;
+}
+
+.sensor-control-other-waste-fraction-input-wrapper-outer {
+  margin: 2rem;
+  padding: 1rem;
+  color: #fff;
+  background-color: #141414;
+  border-radius: 30px;
+  box-shadow: -10px 30px 50px rgba(33, 82, 75, 0.5);
+}
+
+.sensor-control-other-waste-fraction-title {
+  margin: 0.5rem;
+}
+
+/*
+==========================
+ServiceWasteTypeDropdown.js styles
+==========================
+*/
+.report-page-waste-fraction-checkbox {
+  margin-bottom: 15px;
+}
+
+.report-page-accordion-body-wrapper-inner {
+  display: flex;
+  color: #fff;
+}
+
+.report-page-accordion-body-input {
+  padding: 0.1rem 0.5rem 0.1rem 0;
+}
+
+.report-accordion-button button.accordion-button.collapsed {
+  border-radius: 25px !important;
+  color: #fff !important;
+  padding: 10px 30px 10px 10px;
+}
+
+.report-accordion-button button.accordion-button:not(.collapsed) {
+  border-radius: 25px 25px 0px 0px !important;
+  color: #fff !important;
+  padding: 10px 30px 10px 10px;
+}
+
+.report-accordion-button button.accordion-button:after {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+.report-page-waste-fraction-checkbox.accordion-item {
+  border-radius: 25px !important;
+  outline-width: 100px !important;
+  background: rgb(255, 255, 255);
+}
+
+.report-page-accordion.accordion {
+  --bs-accordion-active-bg: rgba(255, 255, 255, 0) !important;
+  --bs-accordion-btn-bg: rgba(255, 255, 255, 0) !important;
+  --bs-accordion-border-color: rgba(255, 255, 255, 0)
+}
+
+/*
+==========================
+    DateRange.js styles
+==========================
+*/
+
+.date-range-picker-wrapper-inner {
+  display: flex;
+}
+
+.single-date-range-picker-wrapper {
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.if-chrome-image-styles {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+  width: 17px;
+} 
+
 input[type="date"] {
-  background-color: #fafafa; /* Light grey background */
-  border: 1px solid #ddd; /* Light grey border */
-  border-radius: 4px; /* Rounded corners */
-  padding: 8px 12px; /* Padding inside the input */
-  font-size: 16px; /* Slightly larger font size for better readability */
-  color: #333; /* Dark grey text for contrast */
-  width: 100%; /* Full-width to fit its container */
-  box-sizing: border-box; /* Border and padding included in width */
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for focus effects */
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 8px 12px;
+  padding-right: 50px;
+  font-size: 16px;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 input[type="date"]:focus {
-  border-color: #0056b3; /* Change border color on focus for visual feedback */
-  outline: none; /* Remove the default focus outline */
-  box-shadow: 0 0 0 2px rgba(0,86,179,0.2); /* Soft glow effect on focus */
+  border-color: #0056b3;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,86,179,0.2);
+}
+
+.fixed-date-range-button {
+  background-color: #fff;
+  border: none;
+  border-radius: 20px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.40);
+}
+
+/*
+==========================
+WasteFractionInfoBox.js styles
+==========================
+*/
+
+.waste-fraction-info-box-page-wrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 60rem;
+  width: 60rem;
+  border-radius: 25px;
+  box-shadow: -10px 30px 50px rgba(33, 82, 75, 0.5);
+}
+
+.waste-fraction-info-box-image-wrapper {
+  border-radius: 25px 0 0 25px;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+}
+
+.waste-fraction-info-box-image {
+  width: 9rem;
+  margin: 0.5rem auto;
+  display: block;
+}
+
+.waste-fraction-info-box-information-wrapper {
+  background-color: #fff;
+  border-radius: 0 25px 25px 0;
+  width: 60rem;
+}
+
+.waste-fraction-info-box-button-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 40rem;
+  max-width: 40rem;
+}
+
+.waste-fraction-info-box-button {
+  margin: 1.5rem 0.5rem 1rem 1.5rem;
+  color: #141414;
+  border-radius: 25px;
+  border: none;
+}
+
+.waste-fraction-info-box-button:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.waste-fraction-info-box-text-section-wrapper {
+  margin: 1rem 1rem 1rem 2rem;
+}
+
+.waste-fraction-info-box-text-section-title {
+  width: 30%;
+  margin: 0.4rem 2rem 0.4rem 0.4rem;
+}
+
+.waste-fraction-info-box-text-section-text {
+  width: 30%;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/*
+==========================
+  FooterMenu.js styles
+==========================
+*/
+
+.footer {
+  background-color: var(--primary-color);
+  margin-top: 3rem;
+  color: #fff;
+  width: 100vw;
+  padding: 2% 3%;
+  justify-content: center;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+.footer-column {
+  margin: 0 auto;
+}
+
+.footer-heading {
+  font-size: 18px;
+  font-weight: bold; 
+  margin-bottom: 10px; 
+}
+
+.footer-link-item {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px; 
+  margin: 2.5px 0;
+}
+
+.footer-link-item:hover {
+  cursor: pointer;
+  border-bottom: 2px solid #fff;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+}
+
+.social-icon {
+  font-size: 24px; 
+  margin-right: 10px; 
+  color: #fff;
+  text-decoration: none; 
 }
