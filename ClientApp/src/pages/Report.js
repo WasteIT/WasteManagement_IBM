@@ -14,7 +14,7 @@ const Report = () => {
       const fetchOptimizationData = async () => {
         setIsLoading(true);
         try {
-          const response = await fetch('https://wasteit-backend.azurewebsites.net/optimization/'+name);
+          const response = await fetch('https://wasteit-backend.azurewebsites.net/optimization/' + name);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
@@ -36,11 +36,11 @@ const Report = () => {
   return (
     <main className="main">
       <div style={{ textAlign: "center" }}>
-        <h1>Optimization Findings</h1>
+        <h1>Optimization for {name}</h1>
         {isLoading ? (
           <p>Loading...</p>
         ) :  (
-            <div>
+            <div style={{marginTop: "50px"}}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <Actions data={optimizationData}/>
                 </div>
