@@ -6,56 +6,18 @@ class Report extends Component {
     render() {
      return (
        <main className='main'>
-        <div>
-            <h1>
-                findings
-            </h1>    
-        </div>
-        <div>
-            <Actions/>
-        </div>
-        <div>
-            <EstimatedEffects/>
-            
-        </div>
-        <div>
-            <h3>
-                Download Report
-            </h3>
-            <img/>
-        </div>
-        <div>
-            <div>
-                <img/>
-                <h3>
-                    Waste distribution
-                </h3>
+            <div style={{textAlign: 'center'}}>
+                <h1>
+                    findings
+                </h1>    
             </div>
-            <h3>
-                Before recommended actions
-            </h3>
-            <img/>
-            <h3>
-               After recommended actions 
-            </h3>
-            <img/>
-        </div>
-        <div>
-            <div>
-                <img/>
-                <h3>
-                    Recommended new pickup schedule
-                </h3>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Actions/>
             </div>
-            <div>
-                <p>General Waste:</p>
-                <p>Monday Thursday</p>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <EstimatedEffects/>
+                
             </div>
-            <div>
-                <p>Cardboard:</p>
-                <p>Monday</p>
-            </div>
-        </div>
        </main>
      );
     }
