@@ -1,5 +1,4 @@
-import React, {Component, useState } from "react";
-import Cards from "../components/Card";
+import React, {Component } from "react";
 import Actions from "../components/Report/Actions";
 import EstimatedEffects from "../components/Report/EstimatedEffects";
 class Report extends Component {
