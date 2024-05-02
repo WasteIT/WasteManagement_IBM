@@ -44,19 +44,22 @@ export default function CardPage() {
       fetchAvgPickupAndSchedules();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
+
     return (
         <main className='main'>
-          <div className='cardpage_title_div flex-row'>
+          <div className='cardpage_title_div flex-row' >
             <img className='cardpageIcon' src={`./images/cardpageIcon.png`} alt='Waste fraction icon'/>
             <span>
             <h2 className='cardpage_location_title'> {name}</h2>
             <h2 className='WasteFractionOverview'> Waste Fraction Overview </h2>
             </span>
           </div>
-            <div className="card_container">
+          <div style={{justifyContent: 'center', display: 'flex'}}>
+            <div className="card_container" >
               {Object.keys(cards).map((cardType, index) => (
                 <WasteCard key={index} streetname={name} name={cardType} bins={cards[cardType]} pickup={schedules[cardType]} avg={avgPickup[cardType]}/>
               ))}
+              </div>
  
             </div>
         </main>

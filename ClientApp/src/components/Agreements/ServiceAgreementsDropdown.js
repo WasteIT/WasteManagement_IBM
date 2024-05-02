@@ -14,7 +14,9 @@ class ServiceAgreementsDropdown extends Component {
                     </Accordion.Header> 
                     <Accordion.Body className="agreement-Accordion-body">
                         <p>Details of the Agreement for {name}</p>
-                        <Link className="btn button agreement" to="/Overview"  state={{ name: name }}>Access waste data</Link>
+                        <div style={{display: 'flex', justifyContent: 'right'}}>
+                            <Link className="btn button agreement" to="/Overview" state={{ name: name }}>Access waste data</Link>
+                        </div>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>

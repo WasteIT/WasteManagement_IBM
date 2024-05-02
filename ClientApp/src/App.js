@@ -12,12 +12,14 @@ export default class App extends React.Component {
     return (
       <div>
         <NavMenu/>
+        <div style={{marginBottom: '8rem'}}></div> 
         <Routes>
           {AppRoutes.map((route, index) => {
             const { element, ...rest } = route;
             return <Route key={index} {...rest} element={element} />;
           })}
         </Routes>
+        <div style={{marginTop: '16rem'}}></div> 
         <FooterMenu/>
       </div>
     );

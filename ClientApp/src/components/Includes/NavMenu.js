@@ -1,12 +1,13 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export function NavMenu() {
 
+
     return (
       <header >
-        <Navbar className="navbar-container navbar-expand navbar-toggleable ng-white border-bottom box-shadow" container light>
+        <Navbar className="navbar-container navbar-expand navbar-toggleable ng-white border-bottom fixed-top" container light>
           <div className="page-title-wrapper-outer">
             <NavbarBrand tag={Link} to="/">
              

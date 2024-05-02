@@ -69,7 +69,7 @@ const Layout = () => {
               </div>
 
               <Card className="card-wrapper">
-                <Card.Body className="card-body">
+                <Card.Body className="card-body" style={{paddingBottom: '4rem'}}>
                   <h5 className='date-range-picker-title'>Choose a date interval</h5>
                   <div className='filter_options_wrapper'>
                     <DateRange dateRange={dateRange} onDateChange={setDateRange} Chrome={isChrome}/>
