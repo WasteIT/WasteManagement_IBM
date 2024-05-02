@@ -66,8 +66,6 @@ const Graph = ({ graphData, visibleFractions }) => {
     
     
     useEffect(() => {
-        console.log(visibleFractions)
-        console.log("Graph Data:", graphData);
         buildChart();
         const currentChartRef = chartRef.current;
 

@@ -17,7 +17,7 @@ namespace datascript
     {
         private static readonly HttpClient sharedClient = new HttpClient
         {
-            BaseAddress = new Uri("https://wasteit-backend.azurewebsites.net/test")
+            BaseAddress = new Uri("http://localhost:5000/test")
         };
 
         //static List<long> randomEpochTimes;
@@ -185,8 +185,8 @@ namespace datascript
             {
                 foreach (var bin in wasteCategory.wasteBins)
                 {
-                    //await PostAsync(sharedClient, bin, time.ToString());
-                    //Console.WriteLine("Bin with number " + bin.binNumber + " of type " + bin.wasteCategory.type + " has a level of " + bin.fillLevel + " at time: " + time);
+                    await PostAsync(sharedClient, bin, time.ToString());
+                    Console.WriteLine("Bin with number " + bin.binNumber + " of type " + bin.wasteCategory.type + " has a level of " + bin.fillLevel + " at time: " + time);
 
                     //Also add the data (nicely formatted) to a local dataset to calculate pickup stuff here, just for now.
                     Measurement measurement = new Measurement(bin.binNumber, bin.wasteCategory.type, time, bin.fillLevel);

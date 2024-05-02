@@ -6,7 +6,7 @@ namespace datascript
 
     public class WasteBin
     {
-        public int binNumber { get; set; }
+        public string binNumber { get; set; }
         public WasteCategory wasteCategory { get; set; }
         public int depth { get; set; }
         public double popularity { get; set; }
@@ -18,7 +18,7 @@ namespace datascript
 
         public List<Measurement> measurements { get; set; }
 
-        public WasteBin(int binNumber, int depth, double popularity, WasteCategory wasteCategory, WasteBinManager wastebinManager)
+        public WasteBin(string binNumber, int depth, double popularity, WasteCategory wasteCategory, WasteBinManager wastebinManager)
         {
             this.wasteCategory = wasteCategory;
             this.depth = depth;

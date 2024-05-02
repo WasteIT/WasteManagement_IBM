@@ -1,27 +1,31 @@
 export default function Action({fraction, action, binId, numberOfBins}){
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     function GetText(action) {
-        if (action === "ActionAdd") {
-            return `Add ${numberOfBins} ${fraction} bins to your waste yard.`
+        if (action === "add") {
+            return `Add ${numberOfBins} ${capitalizeFirstLetter(fraction)} bins to your waste yard.`
         }
-        if (action === "ActionRemove") {
-            return `Remove ${numberOfBins} ${fraction} bins from your waste yard.`
+        if (action === "remove") {
+            return `Remove ${numberOfBins} ${capitalizeFirstLetter(fraction)} bins from your waste yard.`
         }
-        if (action === "ActionInspect") {
-            return `Inspect bin #${binId}. `
+        if (action === "check") {
+            return `Inspect bin #${binId} in ${capitalizeFirstLetter(fraction)} fraction`
         }
         else {
             return "Oh no!"
         }
     }
     function GetColor(action) {
-        if (action === "ActionAdd") {
+        if (action === "add") {
             return "#A5C47D"
         }
-        if (action === "ActionRemove") {
+        if (action === "remove") {
             return "#EE7B89"
         }
-        if (action === "ActionInspect") {
+        if (action === "check") {
             return "#E9B968"
         }
         else {

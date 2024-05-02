@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import 'chartjs-adapter-date-fns';
 import { DateRange } from './DateRange'
 import { SensorControls, fetchSensorControlsData } from './SensorControls'
@@ -83,6 +83,7 @@ const Layout = () => {
           </div>
         )}
       </div>
+      <Link to="/Report" className="fixed-square" state={{ name: streetname }}>Optimization</Link>
     </main>
   );
 };
