@@ -422,16 +422,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\mariu\\.nuget\\packages\\": {}
-=======
-    "/Users/juliusdalsgaardbertelsen/.nuget/packages/": {}
->>>>>>> 1be49bc1aada58573f5dda7c95bafa8519397df1
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\mariu\\Documents\\GitHub\\WasteManagement_IBM\\src\\WasteManagement_IBM.csproj",
       "projectName": "WasteManagement_IBM",
       "projectPath": "C:\\Users\\mariu\\Documents\\GitHub\\WasteManagement_IBM\\src\\WasteManagement_IBM.csproj",
@@ -441,16 +436,6 @@
       "configFilePaths": [
         "C:\\Users\\mariu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-=======
-      "projectUniqueName": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
-      "projectName": "WasteManagement_IBM",
-      "projectPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/src/WasteManagement_IBM.csproj",
-      "packagesPath": "/Users/juliusdalsgaardbertelsen/.nuget/packages/",
-      "outputPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/src/obj/",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "/Users/juliusdalsgaardbertelsen/.nuget/NuGet/NuGet.Config"
->>>>>>> 1be49bc1aada58573f5dda7c95bafa8519397df1
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -503,11 +488,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
->>>>>>> 1be49bc1aada58573f5dda7c95bafa8519397df1
       }
     }
   },

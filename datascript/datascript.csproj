@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-
-   <ItemGroup>
-    <ProjectReference Include="Test/Function.Tests/Function.Tests.csproj" />
-  </ItemGroup>
-
 </Project>
