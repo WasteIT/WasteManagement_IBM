@@ -11,7 +11,7 @@ namespace Function.Tests
         public void WasteBin_Constructor_SetsPropertiesCorrectly()
         {
             // Arrange
-            int binNumber = 1;
+            string binNumber = "1";
             int depth = 100;
             double popularity = 0.5;
             WasteCategory category = new WasteCategory("General", 10, new List<int>() { 1, 3 });
@@ -32,7 +32,7 @@ namespace Function.Tests
         public void WasteBin_AddWaste_IncreasesFillLevel()
         {
             // Arrange
-            WasteBin bin = new WasteBin(1, 100, 0.5, new WasteCategory("General", 10, new List<int>() { 1, 3 }), new WasteBinManager());
+            WasteBin bin = new WasteBin("1", 100, 0.5, new WasteCategory("General", 10, new List<int>() { 1, 3 }), new WasteBinManager());
             double wasteAmount = 10.5;
 
             // Act
@@ -66,8 +66,8 @@ namespace Function.Tests
 
             WasteBinManager manager = new WasteBinManager(); 
             WasteCategory category = new WasteCategory("General", 10, new List<int>() { 1 });
-            WasteBin bin1 = new WasteBin(1, 100, 0.5, category, manager);
-            WasteBin bin2 = new WasteBin(2, 100, 0.7, category, manager);
+            WasteBin bin1 = new WasteBin("1", 100, 0.5, category, manager);
+            WasteBin bin2 = new WasteBin("2", 100, 0.7, category, manager);
             category.wasteBins.Add(bin1);
             category.wasteBins.Add(bin2);
 
@@ -84,7 +84,7 @@ namespace Function.Tests
             // Arrange
             WasteBinManager manager = new WasteBinManager();
             WasteCategory category = new WasteCategory("General", 100, new List<int>() { 1 });
-            WasteBin bin = new WasteBin(1, 50, 0.5, category, manager);
+            WasteBin bin = new WasteBin("1", 50, 0.5, category, manager);
             category.wasteBins.Add(bin);
             bin.fillLevel = 50;
             category.wasteAmount = 60;
@@ -102,8 +102,8 @@ namespace Function.Tests
             // Arrange
             WasteBinManager manager = new WasteBinManager();
             WasteCategory category = new WasteCategory("General", 100, new List<int>() { 1 });
-            WasteBin bin1 = new WasteBin(1, 20, 0.5, category, manager);
-            WasteBin bin2 = new WasteBin(2, 30, 0.5, category, manager);
+            WasteBin bin1 = new WasteBin("1", 20, 0.5, category, manager);
+            WasteBin bin2 = new WasteBin("2", 30, 0.5, category, manager);
             category.wasteBins.Add(bin1);
             category.wasteBins.Add(bin2);
             category.wasteAmount = 70; // Waste exceeding total bin capacity
@@ -146,9 +146,9 @@ namespace Function.Tests
             WasteBinManager manager = new WasteBinManager();
             WasteCategory plastic = new WasteCategory("Plastic", 7, new List<int> { 6 });
 
-            WasteBin bin1 = new WasteBin(1, 120, 0.7, plastic, manager);
-            WasteBin bin2 = new WasteBin(2, 120, 1, plastic, manager);
-            WasteBin bin3 = new WasteBin(3, 120, 0.9, plastic, manager);
+            WasteBin bin1 = new WasteBin("1", 120, 0.7, plastic, manager);
+            WasteBin bin2 = new WasteBin("2", 120, 1, plastic, manager);
+            WasteBin bin3 = new WasteBin("3", 120, 0.9, plastic, manager);
 
             manager.addWasteCategory(plastic);
             plastic.AddWasteBin(bin1);
@@ -173,7 +173,7 @@ namespace Function.Tests
             var wasteBinManager = new WasteBinManager();
             var wasteCategory = new WasteCategory("General", 0, new List<int>() { 2 }); // Schedule on Tuesday (day 2)
             wasteBinManager.wasteCategories.Add(wasteCategory);
-            WasteBin bin = new WasteBin(1, 10, 0.5, wasteCategory, wasteBinManager);
+            WasteBin bin = new WasteBin("1", 10, 0.5, wasteCategory, wasteBinManager);
             wasteCategory.wasteBins.Add(bin);
 
             // Act - Simulate Tuesday (day 2)
@@ -189,7 +189,7 @@ namespace Function.Tests
             var wasteBinManager = new WasteBinManager();
             var wasteCategory = new WasteCategory("General", 0, new List<int>() { 2 }); // Schedule on Tuesday (day 2)
             wasteBinManager.wasteCategories.Add(wasteCategory);
-            WasteBin bin = new WasteBin(1, 10, 0.5, wasteCategory, wasteBinManager);
+            WasteBin bin = new WasteBin("1", 10, 0.5, wasteCategory, wasteBinManager);
             bin.fillLevel = 5; // Set an initial fill level for the bin
             wasteCategory.wasteBins.Add(bin);
 
@@ -206,7 +206,7 @@ namespace Function.Tests
             var wasteBinManager = new WasteBinManager();
             var wasteCategory = new WasteCategory("General", 0, new List<int>() { 1 });
             wasteBinManager.wasteCategories.Add(wasteCategory);
-            WasteBin bin = new WasteBin(1, 10, 0.5, wasteCategory, wasteBinManager);
+            WasteBin bin = new WasteBin("1", 10, 0.5, wasteCategory, wasteBinManager);
             bin.fillLevel = 5;
             wasteCategory.wasteBins.Add(bin);
             long currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
@@ -276,10 +276,10 @@ namespace Function.Tests
         var category1 = new WasteCategory("GeneralWaste", 2, new List<int>() { 2 }); // Schedule on Tuesdays
         wasteBinManager.wasteCategories.Add(category1);
 
-        var bin1 = new WasteBin(1, 100, 0.8, category1, null);
-        bin1.measurements.Add(new Measurement(1656134400, "GeneralWaste", 1656134400L, 1.0)); // Tuesday, September 20, 2022, 12:00:00 PM UTC with 100% fill level
-        bin1.measurements.Add(new Measurement(1656220800, "GeneralWaste", 1656220800L, 0.2)); // Friday, September 23, 2022, 12:00:00 PM UTC with 20% fill level
-        bin1.measurements.Add(new Measurement(1656307200, "GeneralWaste", 1656307200L, 0.5)); // Tuesday, September 27, 2022, 12:00:00 PM UTC with 50% fill level
+        var bin1 = new WasteBin("1", 100, 0.8, category1, null);
+        bin1.measurements.Add(new Measurement("1656134400", "GeneralWaste", 1656134400L, 1.0)); // Tuesday, September 20, 2022, 12:00:00 PM UTC with 100% fill level
+        bin1.measurements.Add(new Measurement("1656220800", "GeneralWaste", 1656220800L, 0.2)); // Friday, September 23, 2022, 12:00:00 PM UTC with 20% fill level
+        bin1.measurements.Add(new Measurement("1656307200", "GeneralWaste", 1656307200L, 0.5)); // Tuesday, September 27, 2022, 12:00:00 PM UTC with 50% fill level
         category1.wasteBins.Add(bin1);
 
         // Act

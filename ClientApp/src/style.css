@@ -166,7 +166,6 @@ input.form-control.search_bar{
   margin-left: 125px;
   margin-top: 15px;
   border-radius: 40px !important;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -179,7 +178,6 @@ button.btn.search_bar_button{
   max-width:10%;
   border-radius: 25px !important;
   margin-left: 10px !important;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   margin-top: 15px;
 }
 .agreement.accordion-item{
@@ -188,7 +186,7 @@ button.btn.search_bar_button{
   margin-right: auto;
   max-width: 50%;
   border-radius: 30px !important;
-  box-shadow: -5px 5px 50px rgba(33, 82, 75, 0.4);
+  box-shadow: -5px 5px 50px rgba(33, 82, 75, 0.2);
   margin-bottom: 25px;
 } 
 .agreement.accordion-item:hover{
@@ -197,7 +195,7 @@ button.btn.search_bar_button{
   margin-right: auto;
   max-width: 50%;
   border-radius: 30px !important;
-  box-shadow: -5px 5px 50px rgba(33, 82, 75, 0.4);
+  box-shadow: -5px 5px 50px rgba(33, 82, 75, 0.2);
   margin-bottom: 25px;
 } 
 
