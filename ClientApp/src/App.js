@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
-import { NavMenu } from './components/Includes/NavMenu'; 
+import NavMenu from './components/Includes/NavMenu'; 
 import { FooterMenu } from './components/Includes/FooterMenu';
 import './style.css'
 

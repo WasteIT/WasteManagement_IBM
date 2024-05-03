@@ -17,8 +17,8 @@ jobs:
       with:
         dotnet-version: 7.0.*
     - name: Restore dependencies
-      run: dotnet restore Function
+      run: dotnet restore Tests/Function.Tests
     - name: Build
-      run: dotnet build /src Function --no-restore
+      run: dotnet build Tests/Function.Tests --no-restore
     - name: Test
       run: dotnet test Tests/Function.Tests --no-build --verbosity normal
