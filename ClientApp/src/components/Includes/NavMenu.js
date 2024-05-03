@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
 
