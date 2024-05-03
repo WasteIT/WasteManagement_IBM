@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FetchAgreementData from "../components/Agreements/FetchAgreementData";
 import SearchResults from "../components/Agreements/SearchResults";
 import SearchBar from "../components/Agreements/Searchbar";
-import { lightBlue, red } from "@mui/material/colors";
+
 
 export default function Agreements(){
   const { serviceAgreements, isLoading } = FetchAgreementData();
