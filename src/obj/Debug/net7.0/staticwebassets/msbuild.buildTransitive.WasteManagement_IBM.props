@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="..\buildMultiTargeting\WasteManagement_IBM.props" />
+  <Import Project="../buildMultiTargeting/WasteManagement_IBM.props" />
 </Project>

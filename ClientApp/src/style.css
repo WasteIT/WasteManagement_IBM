@@ -130,7 +130,7 @@ main {
 }
   
 .navigation-link:hover {
-  background-color: var(--primary-color);
+  background-color: black;
   color: #fff;
   transition: ease-in-out .5s;
 }
@@ -662,19 +662,24 @@ WasteBinsOverview.js styles
 
 .fixed-square {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--primary-color);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  bottom: 50px;
+  right: 50px;
+  background-color: #83C6C0;
+  color: black;
+  padding: 20px 40px;
+  border-radius: 50px;
   text-decoration: none;
   cursor: pointer;
   transition: ease-in-out .5s;
+  box-shadow: 5px 5px 50px rgba(33, 82, 75, 0.8);
+  
 }
 
 .fixed-square:hover {
-  background-color: #0056b3; 
+  background-color: black;
+  color: white;
+  transform: translateY(-25px) scale(1.05);
+  box-shadow: 5px 5px 50px rgba(33, 82, 75, 0.8);
 }
 
 /*

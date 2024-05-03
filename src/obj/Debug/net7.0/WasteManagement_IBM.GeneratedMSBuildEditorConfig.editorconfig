@@ -9,21 +9,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WasteManagement_IBM
 build_property.RootNamespace = WasteManagement_IBM
-<<<<<<< HEAD
-build_property.ProjectDir = C:\Users\mariu\Documents\GitHub\WasteManagement_IBM\src\
-build_property.RazorLangVersion = 7.0
-build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\mariu\Documents\GitHub\WasteManagement_IBM\src
-build_property._RazorSourceGeneratorDebug = 
-
-[C:/Users/mariu/Documents/GitHub/WasteManagement_IBM/src/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/mariu/Documents/GitHub/WasteManagement_IBM/src/Pages/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
-=======
 build_property.ProjectDir = /Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/src/
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
@@ -37,5 +22,4 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/src/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
->>>>>>> 1be49bc1aada58573f5dda7c95bafa8519397df1
 build_metadata.AdditionalFiles.CssScope = 
