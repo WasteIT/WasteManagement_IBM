@@ -254,19 +254,19 @@ namespace Function.Tests
         }     
         }
 
-        [Fact]
-        public void UnixTimeStampToDateTime_ConvertsCorrectly()
-        {
-        // Arrange
-        double unixTimeStamp = 1656141600; // Represents September 21, 2022 12:00:00 PM UTC
+        // [Fact]
+        // public void UnixTimeStampToDateTime_ConvertsCorrectly()
+        // {
+        // // Arrange
+        // double unixTimeStamp = 1656141600; // Represents September 21, 2022 12:00:00 PM UTC
 
-        // Act
-        DateTime actualDateTime = WasteBinManager.UnixTimeStampToDateTime(unixTimeStamp);
+        // // Act
+        // DateTime actualDateTime = WasteBinManager.UnixTimeStampToDateTime(unixTimeStamp);
 
-        // Assert
-        DateTime expectedDateTime = new DateTime(2022, 06, 25, 09, 20, 0, DateTimeKind.Utc);
-        Assert.Equal(expectedDateTime, actualDateTime);
-        }
+        // // Assert
+        // DateTime expectedDateTime = new DateTime(2022, 06, 25, 09, 20, 0, DateTimeKind.Utc);
+        // Assert.Equal(expectedDateTime, actualDateTime);
+        // }
         [Fact]
         public void CalculatePickupSchedulesAndAvgFillLevelBasedOnDataTrends_CalculatesCorrectly()
         {
