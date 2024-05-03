@@ -17,7 +17,7 @@ namespace datascript
     {
         private static readonly HttpClient sharedClient = new HttpClient
         {
-            BaseAddress = new Uri("http://localhost:5000/test")
+            BaseAddress = new Uri("http://wasteit.azurewebsites.net/test")
         };
 
         //static List<long> randomEpochTimes;
