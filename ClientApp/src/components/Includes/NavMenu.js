@@ -1,10 +1,12 @@
+import React, { useContext } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
+import UserContext from '../../utils/UserContext';
 
 function NavMenu() {
   const location = useLocation();
   const isRootPath = location.pathname === "/";
-
+  const { userName } = useContext(UserContext);
   return (
     <header>
       <Navbar className="navbar-container navbar-expand navbar-toggleable ng-white border-bottom box-shadow" container light>
@@ -23,7 +25,7 @@ function NavMenu() {
             </NavItem>
             {!isRootPath && (
               <NavItem>
-                <NavLink tag={Link} className="navigation-link" to="/Report">Optimization</NavLink>
+                <NavLink tag={Link} className="navigation-link" to="/Report" state={{ name: userName }}>Optimization</NavLink>
               </NavItem>
             )}
             <div className='login-wrapper-outer'>

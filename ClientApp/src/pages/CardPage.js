@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import WasteCard from '../components/WasteCard';
+import UserContext from '../utils/UserContext';
 
 export default function CardPage() {
     const location = useLocation();
@@ -8,7 +9,16 @@ export default function CardPage() {
     const [cards, setCards] = useState([]);
     const [avgPickup, setAvgPickup] = useState([]);
     const [schedules, setSchedules] = useState([]);
+    const { setUserName } = useContext(UserContext);
     
+
+    useEffect(() => {
+      if (name) {
+          setUserName(name); 
+      }
+    }, [name, setUserName]);
+
+
     useEffect(() => {
         const fetchSensorData = async () => {
           try {
