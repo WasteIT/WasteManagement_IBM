@@ -75,7 +75,7 @@ main {
 .navbar-container {
   background-color: #e8dfdf;
   margin-bottom: 3rem;
-  box-shadow: -10px 30px 50px rgba(33, 82, 75, 0.3);
+  box-shadow: -2px 5px 10px rgba(33, 82, 75, 0.1);
   display: flex;
   justify-content: space-between;
   width: 100vw;
@@ -120,13 +120,13 @@ main {
 
 .navigation-link {
   text-decoration: none;
-  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
   border: none;
   padding: 10px 30px !important;
   margin: 0 35px 0 5px;
   border-radius: 50px;
   transition: all 0.2s ease-in-out;
-  background-color: #fff;
+  background-color: #ffffffda;
 }
   
 .navigation-link:hover {
@@ -179,7 +179,7 @@ button.btn.search_bar_button{
   max-width:10%;
   border-radius: 25px !important;
   margin-left: 10px !important;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.06);
   margin-top: 15px;
 }
 .agreement.accordion-item{
@@ -257,7 +257,7 @@ transition: ease-in-out 1s;
   background-color: #83C6C0;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 .btn.button.agreement:hover{
@@ -594,11 +594,28 @@ WasteBinsOverview.js styles
 ==========================
 */
 .waste-bin-overview-page-wrapper-outer {
+  position: relative;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to bottom, transparent, white);
+  background-size: 100vw 86%;
+  background-position: top;
+  margin-top: -135px;
+}
+
+.waste-bin-overview-page-wrapper-outer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('../public/images/graphBG.png');
-  background-size: 100vw;
+  background-size: 100vw 85%;
   background-repeat: no-repeat;
   background-position: top;
-  margin-top: -90px
+  filter: blur(2px); 
+  opacity: 0.8;
+  z-index: -1;
 }
 
 .waste-bin-overview-page-wrapper-inner {
