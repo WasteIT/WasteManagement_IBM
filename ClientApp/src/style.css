@@ -595,10 +595,11 @@ WasteBinsOverview.js styles
 */
 .waste-bin-overview-page-wrapper-outer {
   position: relative;
-  background-size: 100vw;
   background-repeat: no-repeat;
+  background-image: linear-gradient(to bottom, transparent, white);
+  background-size: 100vw 86%;
   background-position: top;
-  margin-top: -120px;
+  margin-top: -135px;
 }
 
 .waste-bin-overview-page-wrapper-outer::before {
@@ -609,11 +610,11 @@ WasteBinsOverview.js styles
   width: 100%;
   height: 100%;
   background-image: url('../public/images/graphBG.png');
-  background-size: 100vw;
+  background-size: 100vw 85%;
   background-repeat: no-repeat;
   background-position: top;
-  filter: blur(5px); 
-  opacity: 0.5;
+  filter: blur(2px); 
+  opacity: 0.8;
   z-index: -1;
 }
 
