@@ -3,7 +3,7 @@ import Action from './Action';
 
 export default function Actions({ data }) {
     return (
-        <div style={{width: '40rem', background: '#F5F5F5', borderRadius: '25px', boxShadow: '-10px 30px 50px rgba(33, 82, 75, 0.5)'}}>
+        <div style={{width: '40rem', background: '#F5F5F5', borderRadius: '25px', boxShadow: '-10px 30px 50px rgba(33, 82, 75, 0.4)'}}>
             <div style={{display: 'flex', padding: '1rem 1rem 1rem 1rem'}}>
                 <img style={{width: '5rem'}} src='./images/Desk_fill.png' alt="Card cap"/>
                 <div style={{alignContent: 'center', paddingLeft: '1rem'}}>
