@@ -10,9 +10,11 @@ on:
   workflow_dispatch:
 
 jobs:
+  tests: 
+    uses: ./.github/workflows/build_and_test.yml
   build:
+    needs: ["tests"]
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v4
 
