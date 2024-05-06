@@ -8,7 +8,10 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  playwright_tests:
+    uses: ./.github/workflows/install_and_tests_playwright.yml
+  build_for_deploy:
+    needs: ["playwright_tests"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -16,18 +19,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 7.0.*
-    - name: Restore functionTests dependencies
+    - name: Restore dependencies
       run: dotnet restore Tests/Function.Tests
-    - name: Build_function_tests
+    - name: Build
       run: dotnet build Tests/Function.Tests --no-restore
-    - name: Test_function_tests
+    - name: Test
       run: dotnet test Tests/Function.Tests --no-build --verbosity normal
-      
-    - name: Restore UITests dependencies
-      run: dotnet restore Tests/PlaywrightTests
-    - name: Build_ui_tests
-      run: dotnet build Tests/PlaywrightTests --no-restore
-    - name: Test_ui_tests
-      run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
-
-    
