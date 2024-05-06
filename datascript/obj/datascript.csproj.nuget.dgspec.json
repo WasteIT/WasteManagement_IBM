@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj": {}
+    "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj": {}
   },
   "projects": {
-    "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj": {
+    "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj",
+        "projectUniqueName": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj",
         "projectName": "datascript",
-        "projectPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj",
-        "packagesPath": "/Users/juliusdalsgaardbertelsen/.nuget/packages/",
-        "outputPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/obj/",
+        "projectPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj",
+        "packagesPath": "/Users/edwardrostomian/.nuget/packages/",
+        "outputPath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/datascript/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/juliusdalsgaardbertelsen/.nuget/NuGet/NuGet.Config"
+          "/Users/edwardrostomian/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"

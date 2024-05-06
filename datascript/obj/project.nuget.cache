@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o4kms+BcAyzlrWFQ3Y7cr0PAqivGhJwTahWPdPbDYgBoqwvad2kvnI7jkBHrWs6KtPPEjw02uB0w02q3abU4ZA==",
+  "dgSpecHash": "pnynXVxgVZguVSoV1H2ZYdrAAa/uP0533e8zu9uOrUXLCq0L/1IuUn2BFj+bcQz+psJjoEO6EcEF+6AXlYAtHA==",
   "success": true,
-  "projectFilePath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj",
+  "projectFilePath": "/Users/edwardrostomian/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

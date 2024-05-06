@@ -597,7 +597,7 @@ WasteBinsOverview.js styles
   position: relative;
   background-repeat: no-repeat;
   background-image: linear-gradient(to bottom, transparent, white);
-  background-size: 100vw 86%;
+  background-size: 100vw 83%;
   background-position: top;
   margin-top: -135px;
 }
@@ -610,11 +610,11 @@ WasteBinsOverview.js styles
   width: 100%;
   height: 100%;
   background-image: url('../public/images/graphBG.png');
-  background-size: 100vw 85%;
+  background-size: 100vw 82%;
   background-repeat: no-repeat;
   background-position: top;
-  filter: blur(2px); 
-  opacity: 0.8;
+  filter: blur(3px); 
+
   z-index: -1;
 }
 
