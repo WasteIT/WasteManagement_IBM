@@ -16,9 +16,18 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 7.0.*
-    - name: Restore dependencies
+    - name: Restore functionTests dependencies
       run: dotnet restore Tests/Function.Tests
-    - name: Build
+    - name: Build_function_tests
       run: dotnet build Tests/Function.Tests --no-restore
-    - name: Test
+    - name: Test_function_tests
       run: dotnet test Tests/Function.Tests --no-build --verbosity normal
+      
+    - name: Restore UITests dependencies
+      run: dotnet restore Tests/PlaywrightTests
+    - name: Build_ui_tests
+      run: dotnet build Tests/PlaywrightTests --no-restore
+    - name: Test_ui_tests
+      run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
+
+    
