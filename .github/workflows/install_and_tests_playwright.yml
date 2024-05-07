@@ -4,6 +4,8 @@ on:
   workflow_call: 
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   test_playwright:
@@ -24,5 +26,3 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run playwright tests
       run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
-
-    
