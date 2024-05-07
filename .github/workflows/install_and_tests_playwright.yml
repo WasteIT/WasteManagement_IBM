@@ -3,7 +3,7 @@ name: playwright tests
 on: 
   workflow_call: 
   push:
-    branches: [ none ]
+    branches: [ main ]
 
 jobs:
   test_playwright:
