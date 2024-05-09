@@ -26,3 +26,5 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run playwright tests
       run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
+
+    
