@@ -1,6 +1,7 @@
 name: playwright tests
-on: 
-  workflow_call: 
+
+on:
+  workflow_call:
   push:
     branches: [ main ]
   pull_request:
@@ -18,9 +19,31 @@ jobs:
         dotnet-version: 7.0.*
     - name: Uninstall all playwright
       run: npm uninstall @playwright/test @playwright/cli @playwright/core playwright-core playwright
+    - name: Clean project build
+      run: |
+        # Delete bin and obj directories
+        rm -rf bin obj
+
+        # Remove cached NuGet packages
+        rm -rf packages
+
+        # Remove cached npm packages
+        rm -rf node_modules
+
+        # Clean solution (if applicable)
+        # dotnet clean YourSolution.sln
+
+        # Optionally, run additional cleaning commands as needed
+
+        # Display the directory structure after cleaning (for verification)
+        ls -R
     - name: Install dependencies
       run: npm ci Tests/PlaywrightTests
     - name: Install NPM
       run: npm install @playwright/test@latest
+    - name: Set Chromium path
+      run: echo "PLAYWRIGHT_BROWSERS_PATH=C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1112" >> $GITHUB_ENV
+    - name: Display environment variables
+      run: echo $PLAYWRIGHT_BROWSERS_PATH
     - name: Run playwright tests
-      run: dotnet test Tests/PlaywrightTests/PlaywrightTests.csproj --no-build --verbosity normal --configuration Debug -- PlaywrightExecutablePath=C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1112\chrome-win\chrome.exe
+      run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
