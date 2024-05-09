@@ -3,6 +3,9 @@
 "dependencies": {
   
   
+"@playwright/test": "^1.44.0",
+  
+  
 "react-countup": "^6.5.3"
   
 }
