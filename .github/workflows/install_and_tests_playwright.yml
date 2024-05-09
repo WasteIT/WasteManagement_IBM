@@ -1,4 +1,3 @@
-## Skeleton taken from Chirp project
 name: playwright tests
 on: 
   workflow_call: 
@@ -12,12 +11,11 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-    -   uses: actions/setup-node@v4
-    -   name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-         node-version: 18
-         dotnet-version: 7.0.*
+    - uses: actions/setup-node@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 7.0.*
     - name: Uninstall all playwright
       run: npm uninstall @playwright/test
     - name: Install dependencies
@@ -26,7 +24,7 @@ jobs:
       run: npm install @playwright/test@latest
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Install chromium
-      run: dotnet tool install --global dotnet-chromium --version 2024.4.16
+    - name: Set Chromium path
+      run: npx playwright config set browsers.path C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1112
     - name: Run playwright tests
-      run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
+      run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal 
