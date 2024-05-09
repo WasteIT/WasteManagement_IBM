@@ -23,7 +23,7 @@ jobs:
     - name: Install NPM
       run: npm install @playwright/test@latest
     - name: Set Chromium path
-      run: echo "PLAYWRIGHT_BROWSERS_PATH=C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1117" >> $GITHUB_ENV
+      run: echo "PLAYWRIGHT_BROWSERS_PATH=C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1112" >> $GITHUB_ENV
     - name: Display environment variables
       run: echo $PLAYWRIGHT_BROWSERS_PATH
     - name: Run playwright tests
