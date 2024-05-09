@@ -16,7 +16,6 @@
   <ItemGroup>
     <PackageReference Include="FireSharp" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.10" />
-    <PackageReference Include="Microsoft.Playwright" Version="1.43.0" />
   </ItemGroup>
 
   <ItemGroup>
