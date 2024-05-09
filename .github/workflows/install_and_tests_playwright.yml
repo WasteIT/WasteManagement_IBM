@@ -23,6 +23,6 @@ jobs:
     - name: Install NPM
       run: npm install @playwright/test@1.34.3 -D
     - name: Install Playwright Browsers
-      run: npx playwright install @playwright/test --with-deps
+      run: npx playwright install --with-deps
     - name: Run playwright tests
       run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
