@@ -24,6 +24,7 @@ jobs:
       run: npm install @playwright/test
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+      run: pwsh bin/Debug/netX/playwright.ps1 install
     - name: Run playwright tests
       run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
 
