@@ -25,7 +25,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: List Playwright browsers
-    run: ls "C:\Users\runneradmin\AppData\Local\ms-playwright\"
+      run: ls "C:\Users\runneradmin\AppData\Local\ms-playwright\"
     - name: Run playwright tests
       run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
 
