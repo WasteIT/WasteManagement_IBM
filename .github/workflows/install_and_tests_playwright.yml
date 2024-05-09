@@ -26,5 +26,7 @@ jobs:
       run: npm install @playwright/test@latest
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Install chromium
+      run: dotnet tool install --global dotnet-chromium --version 2024.4.16
     - name: Run playwright tests
       run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
