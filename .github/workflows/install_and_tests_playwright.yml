@@ -24,8 +24,6 @@ jobs:
       run: npm install @playwright/test
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Yeet the meat
-      run: pwsh bin/Debug/netX/playwright.ps1 install 
     - name: List Playwright browsers
       run: ls "C:\Users\runneradmin\AppData\Local\ms-playwright\"
     - name: Run playwright tests
