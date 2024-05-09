@@ -25,6 +25,6 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Set Chromium path
-      run: npx playwright config set browsers.path C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1112
+      run: echo "PLAYWRIGHT_BROWSERS_PATH=C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1112" >> $GITHUB_ENV
     - name: Run playwright tests
       run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal 
