@@ -27,7 +27,8 @@ jobs:
       run: npm ci Tests/PlaywrightTests 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps --force  
-
+    - name: Yeet
+      run: pwsh bin/Debug/net7.0/playwright.ps1 install  
     - name: List Playwright browsers
       run: ls "C:\Users\runneradmin\AppData\Local\ms-playwright\" 
 
