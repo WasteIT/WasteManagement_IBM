@@ -23,7 +23,7 @@ jobs:
     - name: Install NPM
       run: npm install @playwright/test
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: npx playwright install --with-deps --force
     - name: List Playwright browsers
       run: ls "C:\Users\runneradmin\AppData\Local\ms-playwright\"
     - name: Run playwright tests
