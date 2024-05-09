@@ -22,9 +22,7 @@ jobs:
       run: npm ci Tests/PlaywrightTests
     - name: Install NPM
       run: npm install @playwright/test@latest
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
     - name: Set Chromium path
-      run: echo "PLAYWRIGHT_BROWSERS_PATH=C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1112" >> $GITHUB_ENV
+      run: echo "PLAYWRIGHT_BROWSERS_PATH=C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1117" >> $GITHUB_ENV
     - name: Run playwright tests
       run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal 
