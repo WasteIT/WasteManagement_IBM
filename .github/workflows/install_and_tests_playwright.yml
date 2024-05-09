@@ -21,17 +21,14 @@ jobs:
       run: npm uninstall @playwright/test @playwright/cli @playwright/core playwright-core playwright
     - name: Clean project build
       run: |
-        # Delete bin and obj directories
-        Remove-Item -Path bin,obj -Recurse -Force
+        # Delete bin and obj directories if they exist
+        Remove-Item -Path bin,obj -Recurse -Force -ErrorAction SilentlyContinue
 
         # Remove cached NuGet packages
-        Remove-Item -Path packages -Recurse -Force
+        Remove-Item -Path packages -Recurse -Force -ErrorAction SilentlyContinue
 
         # Remove cached npm packages
-        Remove-Item -Path node_modules -Recurse -Force
-
-        # Clean solution (if applicable)
-        # dotnet clean YourSolution.sln
+        Remove-Item -Path node_modules -Recurse -Force -ErrorAction SilentlyContinue
 
         # Optionally, run additional cleaning commands as needed
 
@@ -47,3 +44,4 @@ jobs:
       run: echo $PLAYWRIGHT_BROWSERS_PATH
     - name: Run playwright tests
       run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal
+        
