@@ -23,4 +23,4 @@ jobs:
     - name: Install NPM
       run: npm install @playwright/test@latest
     - name: Run playwright tests
-      run: dotnet test Tests/PlaywrightTests --no-build --verbosity normal --configuration Debug /p:PlaywrightExecutablePath=C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1117\chrome-win\chrome.exe
+      run: dotnet test Tests/PlaywrightTests/PlaywrightTests.csproj --no-build --verbosity normal --configuration Debug -- PlaywrightExecutablePath=C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1117\chrome-win\chrome.exe
