@@ -1,4 +1,4 @@
-export default function Action({fraction, action, binId, numberOfBins}){
+export default function Action({fraction, action, binId, numberOfBins, schedule}){
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -14,6 +14,9 @@ export default function Action({fraction, action, binId, numberOfBins}){
         if (action === "check") {
             return `Inspect bin #${binId} in ${capitalizeFirstLetter(fraction)} fraction`
         }
+        if (action === "schedule") {
+            return `Change the pickup schedule for your ${capitalizeFirstLetter(fraction)} bins to once every ${schedule} days. `
+        }
         else {
             return "Oh no!"
         }
@@ -27,6 +30,9 @@ export default function Action({fraction, action, binId, numberOfBins}){
         }
         if (action === "check") {
             return "#E9B968"
+        }
+        if (action === "schedule") {
+            return "#96C6E9"
         }
         else {
             return "Oh no!"
