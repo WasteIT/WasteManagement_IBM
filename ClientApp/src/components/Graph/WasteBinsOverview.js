@@ -41,12 +41,26 @@ const Layout = () => {
       await fetchSingleGraphData(streetname, wasteType, sensor, graphData, dateRange, setIsLoading);
     };
 
+  
+  if(isLoading){
+    return(
+      <main className='main'>
+        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex'}}>
+        <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 272, height: 255, marginLeft: 60}}/>
+         <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 1020, height: 255, marginLeft: 30}}/>
+        </div>
+
+        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex'}}>
+        <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 272, height: 528, marginLeft: 60, marginTop: 20}}/>
+         <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 1020, height: 668, marginLeft: 30, marginTop: 20}}/>
+        </div>
+      </main>
+  )
+}
+
   return (
     <main className='waste-bin-overview-page-wrapper-outer'> 
       <div className='waste-bin-overview-page-wrapper-inner'>
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : (
           <div className="information_page_wrapper_outer flex-row">
             <div className='flex-column information_page_wrapper_inner'>
               <SensorControls style={{marginBottom: '1rem'}}
@@ -80,8 +94,7 @@ const Layout = () => {
                 </Card.Body>
               </Card>
             </div>
-          </div>
-        )}
+          </div>    
       </div>
       <Link to="/Report" className="fixed-square" state={{ name: streetname }}>Optimization</Link>
     </main>
