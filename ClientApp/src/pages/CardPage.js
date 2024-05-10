@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import WasteCard from '../components/WasteCard';
 import UserContext from '../utils/UserContext';
 
@@ -69,9 +69,10 @@ export default function CardPage() {
               {Object.keys(cards).map((cardType, index) => (
                 <WasteCard key={index} streetname={name} name={cardType} bins={cards[cardType]} pickup={schedules[cardType]} avg={avgPickup[cardType]}/>
               ))}
-              </div>
- 
             </div>
+ 
+          </div>
+          <Link to="/Report" className="fixed-square" state={{ name: name }}>Your Report is Ready</Link>
         </main>
     );
 }

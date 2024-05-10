@@ -10,7 +10,7 @@ class ServiceAgreementsDropdown extends Component {
             <Accordion className="agreementAccordion dropdown" defaultActiveKey="1">
                 <Accordion.Item className="agreement" eventKey="0">
                     <Accordion.Header className="agreementAccordionButton">
-                        Agreement: {name}
+                        Agreement: {name}        Optimization report is ready
                     </Accordion.Header> 
                     <Accordion.Body className="agreement-Accordion-body">
                         <p>Details of the Agreement for {name}</p>

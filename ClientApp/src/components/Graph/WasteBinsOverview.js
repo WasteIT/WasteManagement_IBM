@@ -83,7 +83,7 @@ const Layout = () => {
           </div>
         )}
       </div>
-      <Link to="/Report" className="fixed-square" state={{ name: streetname }}>Optimization</Link>
+      <Link to="/Report" className="fixed-square" state={{ name: streetname }}>Your Report is Ready</Link>
     </main>
   );
 };
