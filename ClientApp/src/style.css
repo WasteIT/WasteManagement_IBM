@@ -679,8 +679,8 @@ WasteBinsOverview.js styles
 
 .fixed-square {
   position: fixed;
-  bottom: 30rem;
-  right: 37rem;
+  bottom: 3rem;
+  right: 3rem;
   background-color: #83C6C0;
   color: black;
   padding: 20px 40px;
