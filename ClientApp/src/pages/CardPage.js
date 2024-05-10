@@ -72,10 +72,12 @@ export default function CardPage() {
             <h2 className='WasteFractionOverview' style={{ width: 200, height: 33, borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', fontSize: '26px' }} />
           </div>
         </div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div className='card_container' style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
           {Object.keys(cards).map((cardType, index) => (
             <div key={index} className="placeholder-card" style={{ borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', width: 380, height: 360, margin: '0 10px 20px', flex: '0 1 calc(25% - 20px)' }} />
           ))}
+        </div>
         </div>
       </main>
     )
