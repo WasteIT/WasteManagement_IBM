@@ -596,13 +596,13 @@ WasteBinsOverview.js styles
 .waste-bin-overview-page-wrapper-outer {
   position: relative;
   background-repeat: no-repeat;
-  background-image: linear-gradient(to bottom, transparent, white);
+  /*background-image: linear-gradient(to bottom, transparent, white);*/
   background-size: 100vw 83%;
   background-position: top;
   margin-top: -135px;
 }
 
-.waste-bin-overview-page-wrapper-outer::before {
+/*.waste-bin-overview-page-wrapper-outer::before {
   content: "";
   position: absolute;
   top: 0;
@@ -616,7 +616,7 @@ WasteBinsOverview.js styles
   filter: blur(3px); 
 
   z-index: -1;
-}
+}*/
 
 .waste-bin-overview-page-wrapper-inner {
   padding-top: 100px;
