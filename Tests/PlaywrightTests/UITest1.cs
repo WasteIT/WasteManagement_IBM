@@ -73,6 +73,29 @@ public class Tests : PageTest
         await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Fraction" }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Bøgevej" })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Waste Fraction Overview" })).ToBeVisibleAsync();
+    }
+
+        public async Task WHENOnAnyPageTHENISeeFractionButton()
+    {
+        var page = await Context.NewPageAsync();
+        await page.GotoAsync("https://wasteit.azurewebsites.net/");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Fraction" })).ToBeVisibleAsync();
+    }
+
+
+        public async Task GIVENAnyPageWHENIPressTheFractionButtonTHENIAmNavigatedToTheFractionPage()
+    {
+        var page = await Context.NewPageAsync();
+        await page.GotoAsync("https://wasteit.azurewebsites.net/");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
         await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Optimization for Bøgevej" })).ToBeVisibleAsync();
     }
 
