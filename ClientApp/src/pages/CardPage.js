@@ -65,17 +65,17 @@ export default function CardPage() {
       <main className='main'>
         <div className='cardpage_title_div flex-row'>
           <div className='cardpageIcon'>
-            <div style={{ borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', width: 90, height: 90, margin: '0 0px' }} />
+            <div style={{ borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', width: 70, height: 70, margin: '4px 8px' }} />
           </div>
           <div>
-            <h2 className='cardpage_location_title' style={{ width: 150, height: 33, borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', marginBottom: '5px', fontSize: '26px' }} />
-            <h2 className='WasteFractionOverview' style={{ width: 200, height: 33, borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', fontSize: '26px' }} />
+            <h2 className='cardpage_location_title' style={{ width: 150, height: 22.5, borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', marginBottom: '15px', marginTop: '15px', fontSize: '26px' }}> </h2>
+            <h2 className='WasteFractionOverview' style={{ width: 200, height: 22.5, borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', fontSize: '26px' }}> </h2>
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div className='card_container' style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+        <div className='card_container' style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginTop: '15px', marginLeft: '25px' }}>
           {Object.keys(cards).map((cardType, index) => (
-            <div key={index} className="placeholder-card" style={{ borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', width: 380, height: 360, margin: '0 10px 20px', flex: '0 1 calc(25% - 20px)' }} />
+            <div key={index} className="placeholder-card" style={{ borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', width: 292, height: 346, margin: '0 10px 20px', flex: '0 1 calc(25% - 20px)' }} />
           ))}
         </div>
         </div>
