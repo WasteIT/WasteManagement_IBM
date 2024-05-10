@@ -9,6 +9,7 @@ export default function CardPage() {
     const [cards, setCards] = useState([]);
     const [avgPickup, setAvgPickup] = useState([]);
     const [schedules, setSchedules] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const { setUserName } = useContext(UserContext);
     
 
@@ -38,6 +39,10 @@ export default function CardPage() {
     }, [name]);
 
     useEffect(() => {
+      
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
       const fetchAvgPickupAndSchedules = async () => {
         try {
           const response = await fetch("https://wasteit-backend.azurewebsites.net/sensorData/" + name);
@@ -55,6 +60,33 @@ export default function CardPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
+  if (isLoading) {
+    return (
+      <main className='main'>
+        <div className='cardpage_title_div flex-row'>
+          <div className='cardpageIcon'>
+            <div style={{ borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', width: 90, height: 90, margin: '0 0px' }} />
+          </div>
+          <div>
+            <h2 className='cardpage_location_title' style={{ width: 150, height: 33, borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', marginBottom: '5px', fontSize: '26px' }} />
+            <h2 className='WasteFractionOverview' style={{ width: 200, height: 33, borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', fontSize: '26px' }} />
+          </div>
+        </div>
+        <div className='card_container' style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+          {Object.keys(cards).map((cardType, index) => (
+            <div key={index} className="placeholder-card" style={{ borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', width: 380, height: 360, margin: '0 10px 20px', flex: '0 1 calc(25% - 20px)' }} />
+          ))}
+        </div>
+      </main>
+    )
+  }
+  
+  
+  
+  
+  
+  
+  
     return (
         <main className='main'>
           <div className='cardpage_title_div flex-row' >
