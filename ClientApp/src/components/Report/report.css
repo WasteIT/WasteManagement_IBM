@@ -1,0 +1,60 @@
+/* WastePickupSchedule.css */
+.waste-schedule {
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 15rem;
+
+    /* Add other styling properties as needed */
+  }
+  
+  .waste-schedule h2 {
+    font-size: 1.2rem;
+    margin-right: 20px;
+  }
+  
+
+
+  .schedule-header {
+    border-radius: 50px 50px 0px 0px;
+    height: auto;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007F5F;
+    color: #fff
+  }
+
+  .schedule-icon{
+    margin-left: 15px
+  }
+  
+  .schedule-title{
+    margin-right: 10px
+  }
+
+  .waste-schedule ul{
+    padding: 0;
+  }
+
+  .pickup-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .schedule-fraction-item{
+    font-weight: bold;
+  }
+
+  .pickup-items:nth-child(odd){
+    background-color: white;
+  }
+  .pickup-items:nth-child(even){
+    background-color: #F5F5F5;
+  }
+
+  .pickup-items:last-child{
+    border-radius: 0px 0px 50px 50px;
+  }

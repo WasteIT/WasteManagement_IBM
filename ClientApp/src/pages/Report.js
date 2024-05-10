@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Actions from "../components/Report/Actions";
 import EstimatedEffects from "../components/Report/EstimatedEffects";
+import Pickup from "../components/Report/Pickup";
 
 const Report = () => {
   const { state } = useLocation();
@@ -40,14 +41,17 @@ const Report = () => {
         {isLoading ? (
           <p>Loading...</p>
         ) :  (
-            <div style={{marginTop: "50px"}}>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Actions data={optimizationData}/>
-                </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <EstimatedEffects />
-                </div>
-            </div>
+          <div style={{marginLeft: "17rem", marginTop: "50px", display: "flex",  justifyContent: "center"}}>
+              <div>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                        <Actions data={optimizationData}/>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <EstimatedEffects />
+                    </div>
+              </div>
+              <div style={{marginLeft: "2rem"}}> <Pickup/></div>
+          </div>
             )}
       </div>
     </main>
