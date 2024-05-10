@@ -28,6 +28,11 @@ function NavMenu() {
                 <NavLink tag={Link} className="navigation-link" to="/Report" state={{ name: userName }}>Optimization</NavLink>
               </NavItem>
             )}
+            {!isRootPath && (
+              <NavItem>
+                <NavLink tag={Link} className="navigation-link" to="/Overview" state={{ name: userName }}>Fraction</NavLink>
+              </NavItem>
+            )}
             <div className='login-wrapper-outer'>
               {true ? (
                 <span className='flex-row'>
