@@ -4,6 +4,8 @@ import AppRoutes from './AppRoutes';
 import NavMenu from './components/Includes/NavMenu'; 
 import { FooterMenu } from './components/Includes/FooterMenu';
 import UserContext from './utils/UserContext';
+import Breadcrumbs from './utils/Breadcrumbs';
+import { BreadcrumbProvider } from './utils/BreadcrumbContext';
 import './style.css'
 
 export default function App() {
@@ -11,18 +13,21 @@ export default function App() {
 
   return (
     <UserContext.Provider value={{ userName, setUserName }}>
-      <div>
-        <NavMenu />
-        <div style={{ marginBottom: '8rem' }} />
-        <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={index} {...rest} element={element} />;
-          })}
-        </Routes>
-        <div style={{ marginTop: '16rem' }} />
-        <FooterMenu />
-      </div>
+      <BreadcrumbProvider>
+        <div>
+          <NavMenu />
+          <Breadcrumbs />
+          <div style={{ marginBottom: '8rem' }} />
+          <Routes>
+            {AppRoutes.map((route, index) => {
+              const { element, ...rest } = route;
+              return <Route key={index} {...rest} element={element} />;
+            })}
+          </Routes>
+          <div style={{ marginTop: '16rem' }} />
+          <FooterMenu />
+        </div>
+      </BreadcrumbProvider>
     </UserContext.Provider>
   );
 }

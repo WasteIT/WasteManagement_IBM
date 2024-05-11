@@ -973,3 +973,39 @@ WasteFractionInfoBox.js styles
   color: #fff;
   text-decoration: none; 
 }
+
+
+/*
+==========================
+  Breadcrumbs.js styles
+==========================
+*/
+
+.breadcrumbs {
+  padding: 8px 16px;
+  font-size: 20px;
+  border-radius: 5px; 
+  margin: 10px 0; 
+  display: inline-block;
+}
+
+.breadcrumbs a {
+  color: #000;
+  text-decoration: none; 
+  font-weight: 500;
+  
+}
+.breadcrumbs a:hover {
+  color: var(--primary-color);
+}
+
+.breadcrumbs a:not(:last-child)::after {
+  content: ' / ';
+  padding: 0 5px; 
+  color: #6c757d;
+}
+
+.breadcrumbs span {
+  color: #495057;
+  font-weight: bold;
+}
