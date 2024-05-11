@@ -10,14 +10,14 @@ export default function CardPage() {
     const [avgPickup, setAvgPickup] = useState([]);
     const [schedules, setSchedules] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const { setUserName } = useContext(UserContext);
+    const { setStreetName } = useContext(UserContext);
     
 
     useEffect(() => {
       if (name) {
-          setUserName(name); 
+        setStreetName(name); 
       }
-    }, [name, setUserName]);
+    }, [name, setStreetName]);
 
 
     useEffect(() => {
@@ -101,7 +101,7 @@ export default function CardPage() {
           <div style={{justifyContent: 'center', display: 'flex'}}>
             <div className="card_container" >
               {Object.keys(cards).map((cardType, index) => (
-                <WasteCard key={index} streetname={name} name={cardType} bins={cards[cardType]} pickup={schedules[cardType]} avg={avgPickup[cardType]}/>
+                <WasteCard key={index} streetName={name} name={cardType} bins={cards[cardType]} pickup={schedules[cardType]} avg={avgPickup[cardType]}/>
               ))}
               </div>
  

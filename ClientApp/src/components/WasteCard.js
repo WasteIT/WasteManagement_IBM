@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export default function WasteCard({ name, streetname, pickup, bins, avg }) {
+export default function WasteCard({ name, streetName, pickup, bins, avg }) {
 
   if (!pickup) {
     return null;
@@ -10,7 +10,7 @@ export default function WasteCard({ name, streetname, pickup, bins, avg }) {
   
   const avgerageWithOneDecimal = Math.round(avg * 10) / 10
   return (
-    <Link to='/graph' style={{ textDecoration: 'none' }} state={{ streetname, name, pickup, bins, avgerageWithOneDecimal }}>
+    <Link to='/graph' style={{ textDecoration: 'none' }} state={{ streetName, name, pickup, bins, avgerageWithOneDecimal }}>
       <Card className= {`wastetype ${name}`}>
         <Card.Img variant="top" src={`./images/${name}.png`} />
         <ListGroup variant="flush">

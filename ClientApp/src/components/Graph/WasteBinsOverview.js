@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import UserContext from '../../utils/UserContext';
 import 'chartjs-adapter-date-fns';
 import { DateRange } from './DateRange'
 import { SensorControls, fetchSensorControlsData } from './SensorControls'
@@ -10,7 +11,9 @@ import Card from 'react-bootstrap/Card';
 
 const Layout = () => {
   
-    const { state: { name, streetname, pickup, bins, avgerageWithOneDecimal} = {} } = useLocation();
+    const { state: { name, streetName, pickup, bins, avgerageWithOneDecimal} = {} } = useLocation();
+    const { setName, setPickup, setBins, setAvgerageWithOneDecimal } = useContext(UserContext);
+    
     const [sensorData, setSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [graphData, setGraphData] = useState({});
@@ -22,8 +25,18 @@ const Layout = () => {
     const isChrome = window.navigator.userAgent.includes("Chrome");
 
     useEffect(() => {
+      if (streetName) {
+        setName(name); 
+        setPickup(pickup);
+        setBins(bins);
+        setAvgerageWithOneDecimal(avgerageWithOneDecimal);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [streetName, pickup, bins, avgerageWithOneDecimal]);
+
+    useEffect(() => {
       const fetchData = async () => {
-        await fetchSensorControlsData(streetname, setSensorData);
+        await fetchSensorControlsData(streetName, setSensorData);
       };  
       fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,14 +44,14 @@ const Layout = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-        await fetchAllGraphData(name, streetname, sensorData, dateRange, setGraphData, setIsLoading, setVisibleFractions);
+        await fetchAllGraphData(name, streetName, sensorData, dateRange, setGraphData, setIsLoading, setVisibleFractions);
       };  
       fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [streetname, sensorData, dateRange]);
+    }, [streetName, sensorData, dateRange]);
     
     const handleSensorSelect = async (wasteType, sensor) => {
-      await fetchSingleGraphData(streetname, wasteType, sensor, graphData, dateRange, setIsLoading);
+      await fetchSingleGraphData(streetName, wasteType, sensor, graphData, dateRange, setIsLoading);
     };
 
   
@@ -96,7 +109,7 @@ const Layout = () => {
             </div>
           </div>    
       </div>
-      <Link to="/Report" className="fixed-square" state={{ name: streetname }}>Optimization</Link>
+      <Link to="/Report" className="fixed-square" state={{ name: streetName }}>Optimization</Link>
     </main>
   );
 };

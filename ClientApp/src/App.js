@@ -9,10 +9,27 @@ import { BreadcrumbProvider } from './utils/BreadcrumbContext';
 import './style.css'
 
 export default function App() {
-  const [userName, setUserName] = useState("");
+  const [streetName, setStreetName] = useState("");
+  const [name, setName] = useState();
+  const [pickup, setPickup] = useState();
+  const [bins, setBins] = useState();
+  const [avgerageWithOneDecimal, setAvgerageWithOneDecimal] = useState();
+
+  const contextValue = {
+    streetName,
+    setStreetName,
+    name,
+    setName,
+    pickup,
+    setPickup,
+    bins,
+    setBins,
+    avgerageWithOneDecimal,
+    setAvgerageWithOneDecimal,
+  };
 
   return (
-    <UserContext.Provider value={{ userName, setUserName }}>
+    <UserContext.Provider value={contextValue}>
       <BreadcrumbProvider>
         <div>
           <NavMenu />
