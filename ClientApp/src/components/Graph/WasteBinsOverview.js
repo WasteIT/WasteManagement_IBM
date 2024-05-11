@@ -45,12 +45,12 @@ const Layout = () => {
   if(isLoading){
     return(
       <main className='main'>
-        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex', width: '100vw'}}>
+        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex', justifyContent: 'center'}}>
         <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 272, height: 255, marginTop: '-15px', marginRight: '34px', padding: '1rem'}}/>
          <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 1020, height: 255, marginTop: '-15px', marginRight: '0px'}}/>
         </div>
 
-        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex', width: '100vw'}}>
+        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex', justifyContent: 'center'}}>
         <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 272, height: 528, marginRight: '34px', padding: '1rem'}}/>
          <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 1020, height: 668, marginRight: '0px'}}/>
         </div>

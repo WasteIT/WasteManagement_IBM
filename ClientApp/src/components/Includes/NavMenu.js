@@ -2,11 +2,16 @@ import React, { useContext } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
 import UserContext from '../../utils/UserContext';
+import { Popup } from '../../utils/Popup/Popup';
+import { useKeyboardPopup } from '../../utils/Popup/useKeyboardPopup';
 
 function NavMenu() {
   const location = useLocation();
   const isRootPath = location.pathname === "/";
   const { userName } = useContext(UserContext);
+
+  useKeyboardPopup();
+
   return (
     <header>
       <Navbar className="navbar-container navbar-expand navbar-toggleable ng-white border-bottom box-shadow" container light>
@@ -24,14 +29,15 @@ function NavMenu() {
               <NavLink tag={Link} className="navigation-link" to="/">Agreements</NavLink>
             </NavItem>
             {!isRootPath && (
-              <NavItem>
-                <NavLink tag={Link} className="navigation-link" to="/Overview" state={{ name: userName }}>Fraction</NavLink>
-              </NavItem>
-            )}
-            {!isRootPath && (
-              <NavItem>
-                <NavLink tag={Link} className="navigation-link" to="/Report" state={{ name: userName }}>Optimization</NavLink>
-              </NavItem>
+              <span className='flex-row'>
+                <NavItem>
+                  <NavLink tag={Link} className="navigation-link" to="/Overview" state={{ name: userName }}>Fraction</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} className="navigation-link" to="/Report" state={{ name: userName }}>Optimization</NavLink>
+                </NavItem>
+                <Popup />
+              </span>
             )}
             <div className='login-wrapper-outer'>
               {true ? (
