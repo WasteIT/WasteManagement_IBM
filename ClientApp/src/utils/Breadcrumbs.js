@@ -7,7 +7,7 @@ import UserContext from './UserContext';
 const Breadcrumbs = () => {
   const location = useLocation();
   const { breadcrumbs, addBreadcrumb } = useBreadcrumb();
-  const { userName } = useContext(UserContext);
+  const { name, streetName, pickup, bins, avgerageWithOneDecimal } = useContext(UserContext);
 
   useEffect(() => {
     const currentRoute = AppRoutes.find(route => route.path === location.pathname);
@@ -27,16 +27,18 @@ const Breadcrumbs = () => {
     <nav className="breadcrumbs">
       <ol>
         {breadcrumbs.map(({ path, breadcrumb }, index) => {
-          return (
-            <span>
-              {index === 0 ? (
-                <Link to="/">{breadcrumb}</Link>
-              ) : (
-                <Link to={path} state={{ name: userName }}>{breadcrumb}</Link>
-              )}
-              {index < breadcrumbs.length - 1 && " / "}
-            </span>
-          );
+            const linkState = path === '/graph' ? { name, streetName, pickup, bins, avgerageWithOneDecimal } : { name: streetName };
+            
+            return (
+                <span>
+                {index === 0 ? (
+                    <Link to="/">{breadcrumb}</Link>
+                ) : (
+                    <Link to={path} state={linkState}>{breadcrumb}</Link>
+                )}
+                {index < breadcrumbs.length - 1 && " / "}
+                </span>
+            );
         })}
       </ol>
     </nav>

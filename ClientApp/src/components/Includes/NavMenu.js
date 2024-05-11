@@ -8,7 +8,7 @@ import { useKeyboardPopup } from '../../utils/Popup/useKeyboardPopup';
 function NavMenu() {
   const location = useLocation();
   const isRootPath = location.pathname === "/";
-  const { userName } = useContext(UserContext);
+  const { streetName } = useContext(UserContext);
 
   useKeyboardPopup();
 
@@ -31,10 +31,10 @@ function NavMenu() {
             {!isRootPath && (
               <span className='flex-row'>
                 <NavItem>
-                  <NavLink tag={Link} className="navigation-link" to="/Overview" state={{ name: userName }}>Fraction</NavLink>
+                  <NavLink tag={Link} className="navigation-link" to="/Overview" state={{ name: streetName }}>Fraction</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="navigation-link" to="/Report" state={{ name: userName }}>Optimization</NavLink>
+                  <NavLink tag={Link} className="navigation-link" to="/Report" state={{ name: streetName }}>Optimization</NavLink>
                 </NavItem>
                 <Popup />
               </span>
