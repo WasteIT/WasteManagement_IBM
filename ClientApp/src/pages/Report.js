@@ -37,8 +37,15 @@ const Report = () => {
     <main className="main">
       <div style={{ textAlign: "center" }}>
         <h1>Optimization for {name}</h1>
-        {isLoading ? (
-          <p>Loading...</p>
+        {true ? (
+          <div style={{marginTop: "50px"}}>
+            <div style={{ display: "flex", justifyContent: "center"}}>
+              <div style={{ borderRadius: '25px', background: 'lightgrey', width: 720, height: 628}}></div>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center"}}>
+               <div style={{ borderRadius: '25px', background: 'lightgrey', width: 720, height: 739, marginTop: '45px'}}></div>
+            </div>
+          </div>
         ) :  (
             <div style={{marginTop: "50px"}}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
