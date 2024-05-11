@@ -28,9 +28,14 @@ export default function EstimatedEffects() {
                                 Saved yearly
                             </h6>
                         </div>
-                        <p>
-                            Expenses before and after recommended actions
-                        </p>
+                        <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
+                            <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
+                                <p>Before: DKK {yearlySavings - 1000}</p>
+                            </div>
+                            <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
+                                <p>After: DKK {yearlySavings}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div style = {{padding: '1rem'}}>
@@ -44,13 +49,21 @@ export default function EstimatedEffects() {
                                 Estimated emission reduction
                             </h6>
                         </div>
+                        <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
+                            <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
+                                <p>Before: DKK {yearlySavings - 1000}</p>
+                            </div>
+                            <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
+                                <p>After: DKK {yearlySavings}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div style = {{padding: '1rem', display: 'flex'}}>
-                <div style = {{background: 'white', boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)', borderRadius: '25px', marginRight: '1rem', padding: '1rem', width:'12rem', height:'12rem', alignContent:'center'}}>
+                <div style = {{background: 'white', boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)', borderRadius: '25px', marginRight: '1rem', padding: '1rem', width:'12rem', height:'18rem', alignContent:'center'}}>
                     <div style = {{textAlign: 'center'}}>
-                        <img style={{height: '4rem'}} src='./images/houseStonks.png' alt="Card cap"/>
+                        <img style={{height: '5rem'}} src='./images/houseStonks.png' alt="Card cap"/>
                         <h5 style={{color: '#579249', fontWeight: 'bold'}}>
                             <CountUp end={savingsPerHousehold} duration={4} prefix="DKK " />
                         </h5>
@@ -58,10 +71,18 @@ export default function EstimatedEffects() {
                             Saved per household
                         </p>
                     </div>
+                    <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
+                        <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
+                            <p>Before: DKK {yearlySavings - 1000}</p>
+                        </div>
+                        <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
+                            <p>After: DKK {yearlySavings}</p>
+                        </div>
+                    </div>
                 </div>
-                <div style = {{background: 'white', boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)', borderRadius: '25px', marginRight: '1rem', marginLeft: '1rem', padding: '1rem', width:'12rem', height:'12rem', alignContent:'center'}}>
+                <div style = {{background: 'white', boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)', borderRadius: '25px', marginRight: '1rem', marginLeft: '1rem', padding: '1rem', width:'12rem', height:'18rem', alignContent:'center'}}>
                     <div style = {{textAlign: 'center'}}>
-                        <img style={{width: '4rem', height: '4rem'}} src='./images/Recycle.png' alt="Card cap"/>
+                        <img style={{height: '5rem'}} src='./images/Recycle.png' alt="Card cap"/>
                         <h5 style={{color: '#579249', fontWeight: 'bold'}}>
                             <CountUp end={recyclingRateIncrease} duration={2} suffix=" %" />
                         </h5>
@@ -69,16 +90,32 @@ export default function EstimatedEffects() {
                             Rate of recycling
                         </p>
                     </div>
+                    <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
+                        <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
+                            <p>Before: DKK {yearlySavings - 1000}</p>
+                        </div>
+                        <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
+                            <p>After: DKK {yearlySavings}</p>
+                        </div>
+                    </div>
                 </div>
-                <div style = {{background: 'white',boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)',borderRadius: '25px',marginLeft: '1rem', padding: '1rem',width:'12rem',height:'12rem',alignContent:'center'}}>
+                <div style = {{background: 'white',boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)',borderRadius: '25px',marginLeft: '1rem', padding: '1rem',width:'12rem',height:'18rem',alignContent:'center'}}>
                         <div style = {{textAlign: 'center'}}>
-                            <img style={{width: '4rem', height: '4rem'}} src='./images/Truck.png' alt="Card cap"/>
+                            <img style={{height: '5rem'}} src='./images/Truck.png' alt="Card cap"/>
                             <h5 style={{color: '#579249', fontWeight: 'bold'}}>
-                                <CountUp end={savingsPerHousehold} duration={4} prefix="DKK " />   
+                                <CountUp end={5} duration={4} suffix=" times" />   
                             </h5>
                             <p>
-                                Saved per household
+                                Average weekly pickups
                             </p>
+                        </div>
+                        <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
+                            <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
+                                <p>Before: DKK {yearlySavings - 1000}</p>
+                            </div>
+                            <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
+                                <p>After: DKK {yearlySavings}</p>
+                            </div>
                         </div>
                     </div>
             </div>
