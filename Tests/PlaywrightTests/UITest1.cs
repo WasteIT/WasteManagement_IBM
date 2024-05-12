@@ -80,7 +80,7 @@ public class Tests : PageTest
 
     [Test]
 
-        public async Task WHENOnAnyPageTHENISeeFractionButton()
+    public async Task WHENOnAnyPageTHENISeeFractionButton()
     {
         var page = await Context.NewPageAsync();
         await page.GotoAsync("https://wasteit.azurewebsites.net/");
@@ -91,7 +91,7 @@ public class Tests : PageTest
     }
     [Test]
 
-        public async Task GIVENAnyPageWHENIPressTheFractionButtonTHENIAmNavigatedToTheFractionPage()
+    public async Task GIVENAnyPageWHENIPressTheFractionButtonTHENIAmNavigatedToTheFractionPage()
     {
         var page = await Context.NewPageAsync();
         await page.GotoAsync("https://wasteit.azurewebsites.net/");
@@ -112,4 +112,51 @@ public class Tests : PageTest
         await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Recommended Actions" })).ToBeVisibleAsync();
         await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Estimated Effects" })).ToBeVisibleAsync();
     }
+    [Test]
+    public async Task WHENViewingAnyPageTHENICanSeeBreadcrumbsReflectingTheStructureOfTheNavigationPath()
+    {
+        var page = await Context.NewPageAsync();
+        await page.GotoAsync("https://wasteit.azurewebsites.net/");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Overview" })).ToBeVisibleAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Avg fill level at pickup: 48." }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Overview" })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Graph" })).ToBeVisibleAsync();
+        await page.GetByRole(AriaRole.Banner).GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Report" })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Overview" })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Report" })).ToBeVisibleAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Overview" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Report" })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Overview" })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
+    }
+    [Test]
+    public async GIVENABreadcrumbTrailWHENClickingABreadcrumbTHENINavigateToTheRelevantPage()
+    {
+        var page = await Context.NewPageAsync();
+        await page.GotoAsync("https://wasteit.azurewebsites.net/");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Avg fill level at pickup: 48." }).ClickAsync();
+        await page.GetByRole(AriaRole.Banner).GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Overview" }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
+    }
+    [Test]
+    public async GIVENAReadyOptimizationReportWHENIAmOnAnyPageOtherThanTheOptimizationPageTHENIWantAVisualIndicatorOfAReadyReport()
+    {
+        var page = await context.NewPageAsync();
+        await page.GotoAsync("https://wasteit.azurewebsites.net/");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
+        await page.keyboard.press('y');
+        await Expect(page.GetByText("×Optimization Report")).ToBeVisibleAsync();
+    }
+
 }
