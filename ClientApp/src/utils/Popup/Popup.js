@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { usePopup } from './PopupProvider'; 
+import { Link } from 'react-router-dom';
+import UserContext from '../../utils/UserContext';
 
 export const Popup = () => {
     const { isVisible, hidePopup } = usePopup();
     const [isHovering, setIsHovering] = useState(false);
+    const { streetName } = useContext(UserContext);
 
     if (!isVisible) return null;
 
@@ -21,7 +24,7 @@ export const Popup = () => {
         border: '1px solid #ddd', 
         textAlign: 'center',
         color: '#333',
-        cursor: 'default',
+        cursor: 'pointer',
         fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif'
     };
 
@@ -45,23 +48,30 @@ export const Popup = () => {
         border: 'none',
         color: isHovering ? '#F00' : '#aaa',
         fontSize: '24px',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        zIndex: '1001'
     };
-
+   
     return (
-        <div style={style}>
-            <div style={arrowStyle}></div>
-            <button 
-                style={closeButtonStyle}
-                onClick={hidePopup}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-                aria-label="Close">
-                &times;
-            </button>
-            <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>Optimization Report Complete</h2>
-            <p style={{ fontSize: '16px' }}>Your optimization report is done. Click here to watch.</p>
-        </div>
+        <Link to="/Report" style={{ textDecoration: 'none' }} state={{ name: streetName }}>
+            <div style={style}>
+                <div style={arrowStyle}></div>
+                <button 
+                    style={closeButtonStyle}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        hidePopup();
+                    }}
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                    aria-label="Close">
+                    &times;
+                </button>
+                <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>Optimization Report Complete</h2>
+                <p style={{ fontSize: '16px' }}>Your optimization report is done. Click here to watch.</p>
+            </div>
+        </Link>
     );
 };
 
