@@ -158,5 +158,18 @@ public class Tests : PageTest
         await page.keyboard.press('y');
         await Expect(page.GetByText("×Optimization Report")).ToBeVisibleAsync();
     }
+    [Test]
+    public async GIVENANotificationForAReadyOptimizationReportWHENClickingTheElementTHENIAmNavigatedToTheRespectiveOptimizationPage()
+    {
+        var page = await context.NewPageAsync();
+        await page.GotoAsync("https://wasteit.azurewebsites.net/");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
+        await page.keyboard.press('y');
+        await page.GetByRole(AriaRole.Link, new() { Name = "Close Optimization Report" }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Optimization for Amagerbrogade" })).ToBeVisibleAsync();
+
+
+    }
 
 }
