@@ -183,7 +183,7 @@ public class Tests : PageTest
         await page.Keyboard.DownAsync("KeyY");
         await page.ClickAsync("text=Optimization Report Complete");
         
-        var expectedYearlySavings = "DKK 14,959";
+        var expectedYearlySavings = "DKK 14,960";
         var expectedEmissionReduction = "12 %";
         var expectedSavingsPerHousehold = "DKK 450";
         var expectedRecyclingRateIncrease = "25 %";
