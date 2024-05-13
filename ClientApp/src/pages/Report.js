@@ -50,7 +50,7 @@ const Report = () => {
                         <EstimatedEffects />
                     </div>
               </div>
-              <div style={{marginLeft: "2rem"}}> <Pickup/></div>
+              <div style={{marginLeft: "2rem"}}> <Pickup address={name}/></div>
           </div>
             )}
       </div>
