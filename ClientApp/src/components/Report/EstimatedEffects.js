@@ -3,10 +3,15 @@ import CountUp from 'react-countup';
 
 export default function EstimatedEffects() {    
 
-    const yearlySavings = getRandomNumber(14960, 2000);
-    const emissionReduction = getRandomNumber(12, 4);
-    const savingsPerHousehold = getRandomNumber(450, 75);
-    const recyclingRateIncrease = getRandomNumber(25, 10);
+    //const yearlySavings = getRandomNumber(14960, 2000);
+    //const emissionReduction = getRandomNumber(12, 4);
+    //const savingsPerHousehold = getRandomNumber(450, 75);
+    //const recyclingRateIncrease = getRandomNumber(25, 10);
+
+    const yearlySavings = 14960
+    const emissionReduction = 12
+    const savingsPerHousehold = 450
+    const recyclingRateIncrease = 25
 
     return (
         <div style={{width: '40rem', background: '#F5F5F5', borderRadius: '25px', boxShadow: '-10px 30px 50px rgba(33, 82, 75, 0.4)', marginTop: '2.5rem'}}>
@@ -21,7 +26,7 @@ export default function EstimatedEffects() {
                     <div style = {{background: 'white', boxShadow: '-10px 10px 25px rgba(33, 82, 75, 0.3)', borderRadius: '25px', padding: '1rem', width:'18rem', height:'18rem', alignContent:'center'}}>
                         <div style = {{textAlign: 'center'}}>
                             <img style={{width: '5rem', margin: '0.5rem'}} src='./images/Money.png' alt="Card cap"/>
-                            <h3 style={{color: '#579249', fontWeight: 'bold'}}>
+                            <h3 id="yearlySavings" style={{color: '#579249', fontWeight: 'bold'}}>
                                 <CountUp end={yearlySavings} duration={5} prefix="DKK " />
                             </h3>
                             <h6>
@@ -42,7 +47,7 @@ export default function EstimatedEffects() {
                     <div style = {{background: 'white', boxShadow: '-10px 10px 25px rgba(33, 82, 75, 0.3)', borderRadius: '25px', padding: '1rem', width:'18rem', height:'18rem', alignContent:'center'}}>
                         <div style = {{textAlign: 'center'}}>
                             <img style={{width: '5rem'}} src='./images/fire.png' alt="Card cap"/>
-                            <h3 style={{color: '#579249', fontWeight: 'bold'}}>
+                            <h3 id="emissionReduction" style={{color: '#579249', fontWeight: 'bold'}}>
                                 <CountUp end={emissionReduction} duration={2} suffix=" %" />
                             </h3>
                             <h6>
@@ -64,7 +69,7 @@ export default function EstimatedEffects() {
                 <div style = {{background: 'white', boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)', borderRadius: '25px', marginRight: '1rem', padding: '1rem', width:'12rem', height:'18rem', alignContent:'center'}}>
                     <div style = {{textAlign: 'center'}}>
                         <img style={{height: '5rem'}} src='./images/houseStonks.png' alt="Card cap"/>
-                        <h5 style={{color: '#579249', fontWeight: 'bold'}}>
+                        <h5 id="savingsPerHousehold" style={{color: '#579249', fontWeight: 'bold'}}>
                             <CountUp end={savingsPerHousehold} duration={4} prefix="DKK " />
                         </h5>
                         <p>
@@ -83,7 +88,7 @@ export default function EstimatedEffects() {
                 <div style = {{background: 'white', boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)', borderRadius: '25px', marginRight: '1rem', marginLeft: '1rem', padding: '1rem', width:'12rem', height:'18rem', alignContent:'center'}}>
                     <div style = {{textAlign: 'center'}}>
                         <img style={{height: '5rem'}} src='./images/Recycle.png' alt="Card cap"/>
-                        <h5 style={{color: '#579249', fontWeight: 'bold'}}>
+                        <h5 id="recyclingRateIncrease"  style={{color: '#579249', fontWeight: 'bold'}}>
                             <CountUp end={recyclingRateIncrease} duration={2} suffix=" %" />
                         </h5>
                         <p>
@@ -102,7 +107,7 @@ export default function EstimatedEffects() {
                 <div style = {{background: 'white',boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)',borderRadius: '25px',marginLeft: '1rem', padding: '1rem',width:'12rem',height:'18rem',alignContent:'center'}}>
                         <div style = {{textAlign: 'center'}}>
                             <img style={{height: '5rem'}} src='./images/Truck.png' alt="Card cap"/>
-                            <h5 style={{color: '#579249', fontWeight: 'bold'}}>
+                            <h5 id="averagePickup" style={{color: '#579249', fontWeight: 'bold'}}>
                                 <CountUp end={5} duration={4} suffix=" times" />   
                             </h5>
                             <p>
