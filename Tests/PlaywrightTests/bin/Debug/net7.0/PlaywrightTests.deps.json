@@ -9,7 +9,6 @@
       "PlaywrightTests/1.0.0": {
         "dependencies": {
           "Microsoft.NET.Test.Sdk": "17.7.1",
-          "Microsoft.Playwright": "1.43.0",
           "Microsoft.Playwright.NUnit": "1.43.0",
           "NUnit": "3.13.3",
           "NUnit.Analyzers": "3.6.1",
