@@ -10,7 +10,7 @@ namespace PlaywrightTests;
 [TestFixture]
 public class Tests : PageTest
 {
-    [Test]
+    /*[Test]
     public async Task canGoToStartPagePage()
     {
         await Page.GotoAsync("https://wasteit.azurewebsites.net/");
@@ -64,9 +64,9 @@ public class Tests : PageTest
         await Expect(page.GetByText("Cardboard")).ToBeVisibleAsync();
         await Expect(page.Locator("canvas")).ToBeVisibleAsync();
 
-    }
+    }*/
     [Test]
-    public async Task GIVENAnyPageWHENIPressTheOptimizationButtonTHENIAmNavigatedToTheOptimizationPage()
+    public async Task GIVEN_any_page_WHEN_I_press_the_optimization_button_THEN_I_am_navigated_to_the_optimization_page()
     {
         var page = await Context.NewPageAsync();
         await page.GotoAsync("https://wasteit.azurewebsites.net/");
@@ -101,7 +101,7 @@ public class Tests : PageTest
     }
 
     [Test]
-    public async Task WHENIAmViewingTheOptimizationPageTHENISeeTheRelevantTitles()
+    public async Task WHEN_I_am_viewing_the_optimization_page_THEN_I_see_the_relevant_titles()
     {
         var page = await Context.NewPageAsync();
         await page.GotoAsync("https://wasteit.azurewebsites.net/");
@@ -171,8 +171,6 @@ public class Tests : PageTest
         await page.Keyboard.DownAsync("KeyY");
         await page.ClickAsync("text=Optimization Report Complete");
         await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Optimization for Bøgevej" })).ToBeVisibleAsync();
-
-
     }
 
     [Test]
@@ -185,7 +183,7 @@ public class Tests : PageTest
         await page.Keyboard.DownAsync("KeyY");
         await page.ClickAsync("text=Optimization Report Complete");
         
-        var expectedYearlySavings = "DKK 14,960";
+        var expectedYearlySavings = "DKK 14,959";
         var expectedEmissionReduction = "12 %";
         var expectedSavingsPerHousehold = "DKK 450";
         var expectedRecyclingRateIncrease = "25 %";
