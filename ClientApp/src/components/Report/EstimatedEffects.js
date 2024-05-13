@@ -128,6 +128,6 @@ export default function EstimatedEffects() {
     );
 }
 
-function getRandomNumber(base, variance) {
-    return Math.round(base + (Math.random() * variance - (variance / 2)));
-}
+//function getRandomNumber(base, variance) {
+//    return Math.round(base + (Math.random() * variance - (variance / 2)));
+//}
