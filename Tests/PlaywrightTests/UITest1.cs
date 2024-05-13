@@ -10,7 +10,7 @@ namespace PlaywrightTests;
 [TestFixture]
 public class Tests : PageTest
 {
-    /*[Test]
+    [Test]
     public async Task canGoToStartPagePage()
     {
         await Page.GotoAsync("https://wasteit.azurewebsites.net/");
@@ -64,7 +64,7 @@ public class Tests : PageTest
         await Expect(page.GetByText("Cardboard")).ToBeVisibleAsync();
         await Expect(page.Locator("canvas")).ToBeVisibleAsync();
 
-    }*/
+    }
     [Test]
     public async Task GIVEN_any_page_WHEN_I_press_the_optimization_button_THEN_I_am_navigated_to_the_optimization_page()
     {
