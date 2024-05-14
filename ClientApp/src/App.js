@@ -31,7 +31,7 @@ export default function App() {
   return (
     <UserContext.Provider value={contextValue}>
       <BreadcrumbProvider>
-        <div>
+       
           <NavMenu />
           <Breadcrumbs />
           <Routes>
@@ -42,7 +42,7 @@ export default function App() {
           </Routes>
           <div style={{ marginTop: '16rem' }} />
           <FooterMenu />
-        </div>
+        
       </BreadcrumbProvider>
     </UserContext.Provider>
   );
