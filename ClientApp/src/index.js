@@ -13,6 +13,6 @@ root.render(
   <BrowserRouter basename={baseUrl}>
     <PopupProvider>
         <App />
-    </PopupProvider>,
+    </PopupProvider>
   </BrowserRouter>);
 

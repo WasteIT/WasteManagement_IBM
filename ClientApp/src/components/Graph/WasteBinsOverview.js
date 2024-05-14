@@ -19,8 +19,8 @@ const Layout = () => {
     const [graphData, setGraphData] = useState({});
     const [visibleFractions, setVisibleFractions] = useState({});
     const [dateRange, setDateRange] = useState({
-      startDate: new Date(new Date().setDate(new Date().getDate()-31)),
-      endDate: new Date(new Date().setDate(new Date().getDate())),
+      startDate: new Date(new Date().getFullYear(), 2, 1),
+      endDate: new Date(new Date().getFullYear(), 2, 31),
     });
     const isChrome = window.navigator.userAgent.includes("Chrome");
 
