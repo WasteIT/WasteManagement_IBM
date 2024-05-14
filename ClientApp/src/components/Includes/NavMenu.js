@@ -31,10 +31,10 @@ function NavMenu() {
             {!isRootPath && (
               <span className='flex-row'>
                 <NavItem>
-                  <NavLink tag={Link} className="navigation-link" to="/Overview" state={{ name: streetName }}>Fraction</NavLink>
+                  <NavLink tag={Link} data-testid="Fraction-nav" className="navigation-link" to="/Overview" state={{ name: streetName }}>Fraction</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="navigation-link" to="/Report" state={{ name: streetName }}>Optimization</NavLink>
+                  <NavLink tag={Link} data-testid="Optimization-nav" className="navigation-link" to="/Report" state={{ name: streetName }}>Optimization</NavLink>
                 </NavItem>
                 <Popup />
               </span>
