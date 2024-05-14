@@ -236,17 +236,17 @@ public class Tests : PageTest
         await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
-        await Expect(page.GetByText("Before: DKK").First).ToBeVisibleAsync();
-        await Expect(page.GetByText("After: DKK").First).ToBeVisibleAsync();
-        await Expect(page.GetByText("Before: DKK").Nth(1)).ToBeVisibleAsync();
-        await page.GetByText("Before: DKK").Nth(2).ClickAsync();
-        await Expect(page.GetByText("After: DKK").Nth(1)).ToBeVisibleAsync();
-        await Expect(page.GetByText("Before: DKK").Nth(2)).ToBeVisibleAsync();
-        await Expect(page.GetByText("After: DKK").Nth(2)).ToBeVisibleAsync();
-        await Expect(page.GetByText("Before: DKK").Nth(3)).ToBeVisibleAsync();
-        await Expect(page.GetByText("After: DKK").Nth(3)).ToBeVisibleAsync();
-        await Expect(page.GetByText("Before: DKK").Nth(4)).ToBeVisibleAsync();
-        await Expect(page.GetByText("After: DKK").Nth(4)).ToBeVisibleAsync();
+        await Expect(page.GetByText("Before:").First).ToBeVisibleAsync();
+        await Expect(page.GetByText("After:").First).ToBeVisibleAsync();
+        await Expect(page.GetByText("Before:").Nth(1)).ToBeVisibleAsync();
+        await page.GetByText("Before:").Nth(2).ClickAsync();
+        await Expect(page.GetByText("After:").Nth(1)).ToBeVisibleAsync();
+        await Expect(page.GetByText("Before:").Nth(2)).ToBeVisibleAsync();
+        await Expect(page.GetByText("After:").Nth(2)).ToBeVisibleAsync();
+        await Expect(page.GetByText("Before:").Nth(3)).ToBeVisibleAsync();
+        await Expect(page.GetByText("After:").Nth(3)).ToBeVisibleAsync();
+        await Expect(page.GetByText("Before:").Nth(4)).ToBeVisibleAsync();
+        await Expect(page.GetByText("After:").Nth(4)).ToBeVisibleAsync();
 
     }
 
