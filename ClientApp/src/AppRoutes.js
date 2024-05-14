@@ -1,8 +1,6 @@
 import Agreements from "./pages/Agreements"
 import CardPage from "./pages/CardPage";
 import Layout from "./components/Graph/WasteBinsOverview"
-import Login from "./Login";
-import Signup from "./Signup";
 import Report from "./pages/Report";
 
 const AppRoutes = [
@@ -20,16 +18,6 @@ const AppRoutes = [
     path: '/Overview',
     element: <CardPage />,
     breadcrumb: 'Fraction'
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    breadcrumb: 'Login'
-  },
-  {
-    path: '/signup',
-    element: <Signup />,
-    breadcrumb: 'Signup'
   },
   {
     path: '/Report',

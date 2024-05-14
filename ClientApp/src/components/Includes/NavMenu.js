@@ -39,22 +39,6 @@ function NavMenu() {
                 <Popup />
               </span>
             )}
-            <div className='login-wrapper-outer'>
-              {true ? (
-                <span className='flex-row'>
-                  <NavItem>
-                    <NavLink tag={Link} className="" to="/Login">Login</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink tag={Link} className="" to="/Signup">Signup</NavLink>
-                  </NavItem>
-                </span>
-              ) : (
-                <NavItem>
-                  <NavLink tag={Link} className="" to="/Logout">Logout</NavLink>
-                </NavItem>
-              )}
-            </div>
           </ul>
         </Collapse>
       </Navbar>

@@ -20,7 +20,7 @@ const Layout = () => {
     const [visibleFractions, setVisibleFractions] = useState({});
     const [dateRange, setDateRange] = useState({
       startDate: new Date(new Date().getFullYear(), 2, 1),
-      endDate: new Date(new Date().getFullYear(), 2, 31),
+      endDate: new Date(new Date().setDate(new Date().getDate())),
     });
     const isChrome = window.navigator.userAgent.includes("Chrome");
 
