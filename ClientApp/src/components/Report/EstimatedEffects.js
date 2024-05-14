@@ -8,6 +8,12 @@ export default function EstimatedEffects() {
     //const savingsPerHousehold = getRandomNumber(450, 75);
     //const recyclingRateIncrease = getRandomNumber(25, 10);
 
+    const yearlySavingsBefore = 14960
+    const emissionReductionBefore = 12
+    const savingsPerHouseholdBefore = 450
+    const recyclingRateIncreaseBefore = 25
+    const averageWeeklyPickupBefore = 6
+
     const yearlySavings = 14960
     const emissionReduction = 12
     const savingsPerHousehold = 450
@@ -35,10 +41,10 @@ export default function EstimatedEffects() {
                         </div>
                         <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
-                                <p>Before: DKK {yearlySavings - 1000}</p>
+                                <p>Before: DKK {yearlySavingsBefore}</p>
                             </div>
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
-                                <p>After: DKK {yearlySavings}</p>
+                                <p>After: DKK {yearlySavingsBefore - yearlySavings}</p>
                             </div>
                         </div>
                     </div>
@@ -54,12 +60,12 @@ export default function EstimatedEffects() {
                                 Estimated emission reduction
                             </h6>
                         </div>
-                        <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
+                        <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px', height: "50px"}}>
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
-                                <p>Before: DKK {yearlySavings - 1000}</p>
+                                <p>Before: {emissionReductionBefore} %</p>
                             </div>
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
-                                <p>After: DKK {yearlySavings}</p>
+                                <p>After: {emissionReductionBefore + emissionReduction} %</p>
                             </div>
                         </div>
                     </div>
@@ -78,10 +84,10 @@ export default function EstimatedEffects() {
                     </div>
                     <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
                         <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
-                            <p>Before: DKK {yearlySavings - 1000}</p>
+                            <p>Before: DKK {savingsPerHouseholdBefore}</p>
                         </div>
                         <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
-                            <p>After: DKK {yearlySavings}</p>
+                            <p>After: DKK {savingsPerHouseholdBefore - savingsPerHousehold}</p>
                         </div>
                     </div>
                 </div>
@@ -95,12 +101,12 @@ export default function EstimatedEffects() {
                             Rate of recycling
                         </p>
                     </div>
-                    <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
+                    <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px', height: '30px'}}>
                         <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
-                            <p>Before: DKK {yearlySavings - 1000}</p>
+                            <p>Before: {recyclingRateIncreaseBefore} %</p>
                         </div>
                         <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
-                            <p>After: DKK {yearlySavings}</p>
+                            <p>After: {recyclingRateIncreaseBefore - recyclingRateIncrease} %</p>
                         </div>
                     </div>
                 </div>
@@ -116,10 +122,10 @@ export default function EstimatedEffects() {
                         </div>
                         <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
-                                <p>Before: DKK {yearlySavings - 1000}</p>
+                                <p>Before: {averageWeeklyPickupBefore} times</p>
                             </div>
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
-                                <p>After: DKK {yearlySavings}</p>
+                                <p>After: {averageWeeklyPickupBefore} times</p>
                             </div>
                         </div>
                     </div>
