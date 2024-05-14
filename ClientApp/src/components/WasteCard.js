@@ -21,7 +21,7 @@ export default function WasteCard({ name, streetName, pickup, bins, avg }) {
           </ListGroup.Item>
           <ListGroup.Item className= {`pickup ${name}`}>
           <span className="pickup_text flex-column"> Pickup days: </span>
-          <span className="pickup_value">{pickup.length > 0 ? sortWeekdays(pickup).join(", ") : "No pickups"} </span>
+          <span className="pickup_value">{pickup.length > 0 ? sortWeekdays(pickup).join(", ") : "By appointment"} </span>
           </ListGroup.Item>
           <ListGroup.Item className= {`bins ${name}`}>
             <span className="bins_text">Bins: </span>
