@@ -19,7 +19,7 @@ const AppRoutes = [
   {
     path: '/Overview',
     element: <CardPage />,
-    breadcrumb: 'Overview'
+    breadcrumb: 'Fraction'
   },
   {
     path: '/login',
@@ -34,7 +34,7 @@ const AppRoutes = [
   {
     path: '/Report',
     element: <Report />,
-    breadcrumb: 'Report'
+    breadcrumb: 'Optimization'
   }
 ];
 
