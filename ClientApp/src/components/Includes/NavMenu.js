@@ -8,7 +8,7 @@ import { useKeyboardPopup } from '../../utils/Popup/useKeyboardPopup';
 function NavMenu() {
   const location = useLocation();
   const isRootPath = location.pathname === "/";
-  const { name, streetName, pickup, bins, avgerageWithOneDecimal } = useContext(UserContext);
+  const { streetName } = useContext(UserContext);
 
   useKeyboardPopup();
 
