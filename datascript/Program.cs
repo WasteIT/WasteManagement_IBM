@@ -20,7 +20,7 @@ namespace datascript
 
 
 
-            WasteCategory generalWaste = new WasteCategory("General waste", 10, new List<int> { 2 }, 1);
+            WasteCategory generalWaste = new WasteCategory("General waste", 10, new List<int> { 2, 5 }, 1);
             wasteBinManager.addWasteCategory(generalWaste);
 
             WasteBin bin1 = new WasteBin("generalWaste1", 120, 0.7, generalWaste, wasteBinManager);
@@ -60,7 +60,7 @@ namespace datascript
             dangerousWaste.AddWasteBin(bin9);
             dangerousWaste.AddWasteBin(bin10);
 
-            WasteCategory foodWaste = new WasteCategory("Food", 10, new List<int> { 1, 4 }, 1);
+            WasteCategory foodWaste = new WasteCategory("Food", 14, new List<int> { 1, 3, 5 }, 1);
             wasteBinManager.addWasteCategory(foodWaste);
 
             WasteBin bin11 = new WasteBin("food1", 120, 0.7, foodWaste, wasteBinManager);
@@ -69,7 +69,7 @@ namespace datascript
             foodWaste.AddWasteBin(bin11);
             foodWaste.AddWasteBin(bin12);
 
-            WasteCategory glassWaste = new WasteCategory("Glass", 5, new List<int> { 4 }, 2);
+            WasteCategory glassWaste = new WasteCategory("Glass", 5, new List<int> { 5 }, 2);
             wasteBinManager.addWasteCategory(glassWaste);
 
             WasteBin bin13 = new WasteBin("glass1", 120, 0.7, glassWaste, wasteBinManager);
@@ -80,7 +80,7 @@ namespace datascript
             glassWaste.AddWasteBin(bin14);
             glassWaste.AddWasteBin(bin15);
 
-            WasteCategory metalWaste = new WasteCategory("Metal", 8, new List<int> { 4 }, 2);
+            WasteCategory metalWaste = new WasteCategory("Metal", 5, new List<int> { 4 }, 2);
             wasteBinManager.addWasteCategory(metalWaste);
 
             WasteBin bin16 = new WasteBin("metal1", 120, 0.7, metalWaste, wasteBinManager);
@@ -89,16 +89,16 @@ namespace datascript
             metalWaste.AddWasteBin(bin16);
             metalWaste.AddWasteBin(bin17);
 
-            WasteCategory paperWaste = new WasteCategory("Paper", 10, new List<int> { 1, 4 }, 1);
+            WasteCategory paperWaste = new WasteCategory("Paper", 10, new List<int> { 4 }, 1);
             wasteBinManager.addWasteCategory(paperWaste);
 
-            WasteBin bin18 = new WasteBin("paper1", 120, 0.7, paperWaste, wasteBinManager);
+            WasteBin bin18 = new WasteBin("paper1", 120, 0, paperWaste, wasteBinManager);
             WasteBin bin19 = new WasteBin("paper2", 120, 1, paperWaste, wasteBinManager);
 
             paperWaste.AddWasteBin(bin18);
             paperWaste.AddWasteBin(bin19);
 
-            await wasteBinManager.generateData(30, 2, new DateTime(2024, 3, 1));
+            await wasteBinManager.generateData(60, 2, new DateTime(2024, 3, 1));
         }
     }
 }
