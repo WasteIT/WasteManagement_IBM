@@ -14,7 +14,7 @@ const ServiceWasteTypeDropdown = ({ wasteType, sensors, onSecondaryChange, onSen
   
   return (
         <Accordion class="report-page-accordion" defaultActiveKey="1">
-          <Accordion.Item className="report-page-waste-fraction-checkbox" style={{background: getWasteFractionColor(`${wasteType} 4th`)}}>
+          <Accordion.Item className="report-page-waste-fraction-checkbox" style={{background: getWasteFractionColor(`${wasteType} childBackground`)}}>
             <Accordion.Header 
               className='report-accordion-button'
               style={{
