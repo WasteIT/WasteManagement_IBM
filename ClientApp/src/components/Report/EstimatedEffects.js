@@ -21,8 +21,8 @@ export default function EstimatedEffects() {
                     <h3> Estimated Effects</h3>
                 </div>
             </div>
-            <div data-testid="Money" style = {{ display: 'flex'}}>
-                <div style = {{padding: '1rem'}}>
+            <div style = {{ display: 'flex'}}>
+                <div data-testid="Money" style = {{padding: '1rem'}}>
                     <div style = {{background: 'white', boxShadow: '-10px 10px 25px rgba(33, 82, 75, 0.3)', borderRadius: '25px', padding: '1rem', width:'18rem', height:'18rem', alignContent:'center'}}>
                         <div style = {{textAlign: 'center'}}>
                             <img style={{width: '5rem', margin: '0.5rem'}} src='./images/Money.png' alt="Card cap"/>
@@ -65,8 +65,8 @@ export default function EstimatedEffects() {
                     </div>
                 </div>
             </div>
-            <div data-testid="Household"style = {{padding: '1rem', display: 'flex'}}>
-                <div style = {{background: 'white', boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)', borderRadius: '25px', marginRight: '1rem', padding: '1rem', width:'12rem', height:'18rem', alignContent:'center'}}>
+            <div style = {{padding: '1rem', display: 'flex'}}>
+                <div data-testid="Household" style = {{background: 'white', boxShadow: '-2px 2px 18px rgba(33, 82, 75, 0.3)', borderRadius: '25px', marginRight: '1rem', padding: '1rem', width:'12rem', height:'18rem', alignContent:'center'}}>
                     <div style = {{textAlign: 'center'}}>
                         <img style={{height: '5rem'}} src='./images/houseStonks.png' alt="Card cap"/>
                         <h5 id="savingsPerHousehold" style={{color: '#579249', fontWeight: 'bold'}}>

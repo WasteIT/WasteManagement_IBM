@@ -1691,26 +1691,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mariu\\.nuget\\packages\\": {}
+    "/Users/nusers/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mariu\\Documents\\GitHub\\WasteManagement_IBM-1\\Tests\\PlaywrightTests\\PlaywrightTests.csproj",
+      "projectUniqueName": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/PlaywrightTests/PlaywrightTests.csproj",
       "projectName": "PlaywrightTests",
-      "projectPath": "C:\\Users\\mariu\\Documents\\GitHub\\WasteManagement_IBM-1\\Tests\\PlaywrightTests\\PlaywrightTests.csproj",
-      "packagesPath": "C:\\Users\\mariu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mariu\\Documents\\GitHub\\WasteManagement_IBM-1\\Tests\\PlaywrightTests\\obj\\",
+      "projectPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/PlaywrightTests/PlaywrightTests.csproj",
+      "packagesPath": "/Users/nusers/.nuget/packages/",
+      "outputPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/PlaywrightTests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mariu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/nusers/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1723,6 +1721,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1765,12 +1768,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }
