@@ -66,7 +66,7 @@ const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecim
                 Pick up days:
             </div>
             <div className='waste-fraction-info-box-text-section-text'>
-              {pickupDaysForCurrentSelection.length > 0 ? pickupDaysForCurrentSelection.join(", ") : "No pickups"}
+              {pickupDaysForCurrentSelection.length > 0 ? pickupDaysForCurrentSelection.join(", ") : "By appointment"}
             </div>
           </div>
           <div className='flex'>
