@@ -229,6 +229,7 @@ public class Tests : PageTest
         await Expect(page.Locator("div:nth-child(2) > div > img").First).ToBeVisibleAsync();
 
     }
+
     [Test]
     public async Task WHEN_viewing_estimates_THEN_all_cards_should_display_before_and_after_values()
     {
@@ -252,4 +253,43 @@ public class Tests : PageTest
 
     }
 
+    [Test]
+    public async Task WHEN_viewing_estimates_THEN_each_estimate_should_have_a_relevant_icon()
+    {
+        var page = await Context.NewPageAsync();
+        await page.GotoAsync("https://wasteit.azurewebsites.net/");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
+        await Expect(page.GetByTestId("Truck").GetByRole(AriaRole.Img)).ToBeVisibleAsync();
+        await Expect(page.GetByTestId("CO2").GetByRole(AriaRole.Img)).ToBeVisibleAsync();
+        await Expect(page.GetByTestId("Household").GetByRole(AriaRole.Img)).ToBeVisibleAsync();
+        await Expect(page.GetByTestId("Recycle").GetByRole(AriaRole.Img)).ToBeVisibleAsync();
+        await Expect(page.GetByTestId("Money").GetByRole(AriaRole.Img)).ToBeVisibleAsync();
+
+    }
+
+    [Test]
+    public async Task GIVEN_trends_in_the_waste_data_WHEN_viewing_the_optimization_page_THEN_I_want_to_see_recommended_changes_to_the_pickup_schedule_based_on_the_trends()
+    {
+        var page = await Context.NewPageAsync();
+        await page.GotoAsync("https://wasteit.azurewebsites.net/");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Recommended New Pickup" })).ToBeVisibleAsync();
+
+    }
+
+    [Test]
+    public async Task GIVEN_trends_in_the_waste_data_WHEN_viewing_the_optimization_page_THEN_I_want_to_see_recommended_actions_to_the_pickup_schedule_based_on_the_trends()
+    {
+
+        var page = await Context.NewPageAsync();
+        await page.GotoAsync("https://wasteit.azurewebsites.net/");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
+        await Expect(page.GetByText("Change the pickup schedule")).ToBeVisibleAsync();
+    }
 }
