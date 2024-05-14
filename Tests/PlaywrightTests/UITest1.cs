@@ -65,29 +65,29 @@ public class Tests : PageTest
         await Expect(page.Locator("canvas")).ToBeVisibleAsync();
 
     }
-    /*[Test]
+    [Test]
     public async Task GIVEN_any_page_WHEN_I_press_the_optimization_button_THEN_I_am_navigated_to_the_optimization_page()
     {
         var page = await Context.NewPageAsync();
         await page.GotoAsync("https://wasteit.azurewebsites.net/");
         await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
-        await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
-        await page.GetByRole(AriaRole.Link, new() { Name = "Fraction" }).ClickAsync();
+        await page.GetByTestId("Optimization-nav").ClickAsync();
+        await page.GetByTestId("Fraction-nav").ClickAsync();
         await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Bøgevej" })).ToBeVisibleAsync();
         await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Waste Fraction Overview" })).ToBeVisibleAsync();
-    }*/
+    }
 
-    /*[Test]
+    [Test]
     public async Task WHEN_an_agreement_has_been_chosen_on_any_page_within_said_agreement_THEN_i_see_the_fraction_button_in_the_navbar()
     {
         var page = await Context.NewPageAsync();
         await page.GotoAsync("https://wasteit.azurewebsites.net/");
         await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
-        await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
-        await Expect(page.GetByText("Fraction")).ToBeVisibleAsync();
-    }*/
+        await page.GetByTestId("Optimization-nav").ClickAsync();
+        await Expect(page.GetByTestId("Fraction-nav")).ToBeVisibleAsync();
+    }
 
     [Test]
     public async Task GIVEN_a_fraction_button_WHEN_clicking_the_button_THEN_I_am_navigated_to_the_fraction_page()
@@ -112,7 +112,7 @@ public class Tests : PageTest
         await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Estimated Effects" })).ToBeVisibleAsync();
     }
 
-    /*[Test]
+    [Test]
     public async Task WHEN_viewing_any_page_THEN_I_can_breadcrumbs_reflecting_the_structure_of_the_navigation_path()
     {
         var page = await Context.NewPageAsync();
@@ -123,19 +123,16 @@ public class Tests : PageTest
         await Expect(page.GetByTestId("Fraction-test")).ToBeVisibleAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Avg fill level at pickup: 40%" }).ClickAsync();
         await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
-        await page.GetByTestId("Fraction-test").ClickAsync();
-        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Graph" })).ToBeVisibleAsync();
-        await page.GetByRole(AriaRole.Banner).GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
-        await Expect(page.GetByTestId("Optimization-test")).ToBeVisibleAsync();
-        await page.GetByTestId("Fraction-test").ClickAsync();
-        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
-        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Report" })).ToBeVisibleAsync();
-        await page.GetByTestId("Fraction-test").ClickAsync();
-        await page.GetByTestId("Optimization-test").ClickAsync();
-        await Expect(page.GetByTestId("Optimization-test")).ToBeVisibleAsync();
         await Expect(page.GetByTestId("Fraction-test")).ToBeVisibleAsync();
+        await Expect(page.GetByTestId("Graph-test")).ToBeVisibleAsync();
+        await page.GetByTestId("Optimization-nav").ClickAsync();
+        await Expect(page.GetByTestId("Optimization-test")).ToBeVisibleAsync();
+        await page.GetByTestId("Fraction-test").ClickAsync();
         await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
-    }*/
+        await Expect(page.GetByTestId("Fraction-test")).ToBeVisibleAsync();
+        await page.GetByTestId("Optimization-nav").ClickAsync();
+        await Expect(page.GetByTestId("Optimization-test")).ToBeVisibleAsync();
+    }
 
     [Test]
     public async Task GIVEN_a_breadcrumb_trail_WHEN_clicking_a_breadcrumb_THEN_I_navigate_to_the_relevant_page()
