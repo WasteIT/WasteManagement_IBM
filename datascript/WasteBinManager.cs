@@ -17,7 +17,7 @@ namespace datascript
     {
         private static readonly HttpClient sharedClient = new HttpClient
         {
-            BaseAddress = new Uri("http://wasteit.azurewebsites.net/test")
+            BaseAddress = new Uri("https://wasteit-backend.azurewebsites.net/test")
         };
 
         //static List<long> randomEpochTimes;
@@ -27,6 +27,7 @@ namespace datascript
         public List<WasteCategory> wasteCategories { set; get; }
         public List<string> allBinData = new List<string>();
         public int panic { get; }
+        public Dictionary<long, List<string>> checkThereIsOneMeasurementForEachDate;
 
 
         public Dictionary<string, List<int>> pickupSchedule;
@@ -38,6 +39,15 @@ namespace datascript
             wasteCategories = new List<WasteCategory>();
             pickupSchedule = new Dictionary<string, List<int>>();
             averageFillLevelAtPickup = new Dictionary<string, double>();
+        }
+
+
+        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dateTime;
         }
 
         public void addWasteCategory(WasteCategory wasteCategory)
@@ -104,11 +114,13 @@ namespace datascript
                 }
                 if (excessWaste > 0)
                 {
-                    //Console.WriteLine("Adding waste from one bin to another bin of the same type beyond its normal share");
+                    Console.WriteLine("Adding waste from one bin to another bin of the same type beyond its normal share");
                     double totalCapacity = wasteCategory.wasteBins.Sum(bin => bin.depth - bin.fillLevel);
                     if (excessWaste > totalCapacity)
                     {
-                        overflowGeneralWaste = excessWaste - totalCapacity;
+                        Console.WriteLine("There is excess waste beyond the capacity of all the bins");
+                        overflowGeneralWaste += excessWaste - totalCapacity;
+                        Console.WriteLine("The excess waste amount to add to general waste before the end is now is now: " + overflowGeneralWaste);
                         excessWaste = totalCapacity;
                     }
                     if (totalCapacity > 0)
@@ -123,38 +135,47 @@ namespace datascript
                     }
                 }
             }
+            Console.WriteLine("TESTESTESTESTESTESTESTESTEST");
             //next go through waste categories again to find general waste and handle overflow into the general waste bins.
             foreach (var wasteCategory in wasteCategories)
             {
                 if (overflowGeneralWaste <= 0)
-                    break;  //no more overflowGeneralWaste, stop. 
-
-                if (wasteCategory.type == "general waste")
                 {
-                    Console.WriteLine("Adding overflow waste to general waste bin");
+                    Console.WriteLine("No excess waste.");
+                    continue;  //no more overflowGeneralWaste, stop. 
+                }
+                else if (wasteCategory.type == "General waste")
+                {
+                    Console.WriteLine("Adding overflow waste to general waste bin. This is the amount: " + overflowGeneralWaste);
                     double totalCapacity = wasteCategory.wasteBins.Sum(bin => bin.depth - bin.fillLevel);
+                    Console.WriteLine("This is the total capacity" + totalCapacity);
                     if (totalCapacity < overflowGeneralWaste)
                     {
                         overflowGeneralWaste = totalCapacity;
-                        Console.WriteLine("Oh no, there is waste that has nowhere to go. We have ignored it for now");
+                        Console.WriteLine("The amount of pverflow waste is now: " + overflowGeneralWaste);
+                        //Console.WriteLine("Oh no, there is waste that has nowhere to go. We have ignored it for now");
                     }
-                    if (totalCapacity > 0)
+                    foreach (var bin in wasteCategory.wasteBins)
                     {
-                        foreach (var bin in wasteCategory.wasteBins)
-                        {
-                            double binCapacity = bin.depth - bin.fillLevel;
-                            double proportion = binCapacity / totalCapacity;
-                            double wasteToAdd = excessWaste * proportion;
-                            bin.fillLevel += wasteToAdd;
-                        }
+                        Console.WriteLine("NOW ADDING EXCESS WASTE TO A BIN; IT REALLY SHOULD SHOW UP!");
+                        double binCapacity = bin.depth - bin.fillLevel;
+                        Console.WriteLine("Bin capacity: " + binCapacity);
+                        Console.WriteLine("Total capacity: " + totalCapacity);
+                        double proportion = binCapacity / totalCapacity;
+                        Console.WriteLine("Proportion" + proportion);
+                        double wasteToAdd = overflowGeneralWaste * proportion;
+                        Console.WriteLine("Waste to add" + wasteToAdd);
+                        bin.fillLevel += wasteToAdd;
+                        Console.WriteLine("THE BIN FILL LEVEL SHOULD BE: " + bin.fillLevel);
+
                     }
                 }
             }
         }
 
-        
 
-        public void EmptyBinsOnSchedule(int measurementCount, int currentWeekDayNumber)
+
+        public void EmptyBinsOnSchedule(int measurementCount, int currentWeekDayNumber, int currentWeekNumber)
         {
 
             if (measurementCount == 0)
@@ -163,13 +184,20 @@ namespace datascript
                 {
                     foreach (int scheduleWeekDay in wasteCategory.schedule)
                     {
-                    
+
                         if (scheduleWeekDay + 1 == currentWeekDayNumber)
                         {
-                            
-                            foreach (var bin in wasteCategory.wasteBins)
+
+                            Console.WriteLine("THE CURRENT WEEK SCHEDULE IS: " + wasteCategory.weekSchedule);
+                            Console.WriteLine("THE CURRENT WEEK NUMBER IS: " + currentWeekNumber);
+                            Console.WriteLine("MODULO: " + currentWeekNumber % wasteCategory.weekSchedule);
+                            if (currentWeekNumber % wasteCategory.weekSchedule == 0)
                             {
-                                bin.fillLevel = 0;
+                                foreach (var bin in wasteCategory.wasteBins)
+                                {
+                                    Console.WriteLine("Setting the fill level to 0");
+                                    bin.fillLevel = 0;
+                                }
                             }
                         }
                     }
@@ -179,20 +207,50 @@ namespace datascript
 
         }
 
-        public async Task uploadDataForOneGenerationOfMeasurements(long time)
+        public async Task uploadDataForOneGenerationOfMeasurements(long time) //async Task fix! OBS
         {
             foreach (var wasteCategory in wasteCategories)
             {
+                Console.WriteLine("Type " + wasteCategory.type + " at time: " + UnixTimeStampToDateTime(time));
                 foreach (var bin in wasteCategory.wasteBins)
                 {
+                    System.Threading.Thread.Sleep(200);
                     await PostAsync(sharedClient, bin, time.ToString());
-                    Console.WriteLine("Bin with number " + bin.binNumber + " of type " + bin.wasteCategory.type + " has a level of " + bin.fillLevel + " at time: " + time);
+                    //Console.WriteLine("Bin with number " + bin.binNumber + " of type " + bin.wasteCategory.type + " has a level of " + bin.fillLevel + " at time: " + UnixTimeStampToDateTime(time));
+
+
+                    //List<string> wasteBinsAlreadyInMap;
+                    //try
+                    //{
+                    //    wasteBinsAlreadyInMap = checkThereIsOneMeasurementForEachDate[time];
+                    //}
+                    //catch (Exception)
+                    //{
+                    //    wasteBinsAlreadyInMap = new List<string>();
+                    //}
+
+                    //wasteBinsAlreadyInMap.Add(wasteCategory.type);
+                    //checkThereIsOneMeasurementForEachDate[time] = wasteBinsAlreadyInMap;
+
 
                     //Also add the data (nicely formatted) to a local dataset to calculate pickup stuff here, just for now.
                     Measurement measurement = new Measurement(bin.binNumber, bin.wasteCategory.type, time, bin.fillLevel);
                     bin.measurements.Add(measurement);
                 }
             }
+        }
+
+        public bool checkThatTheMeasurementsAreThereForEachDate()
+        {
+            foreach (var time in checkThereIsOneMeasurementForEachDate.Keys)
+            {
+                List<string> wasteTypesThatHaveOneMeasurementForThisTime = checkThereIsOneMeasurementForEachDate[time];
+                if (wasteTypesThatHaveOneMeasurementForThisTime.Count != 8)
+                {
+                    return false;
+                };
+            }
+            return true;
         }
 
 
@@ -215,6 +273,7 @@ namespace datascript
             long startDateUnixTime = ((DateTimeOffset)startDate).ToUnixTimeSeconds();
             DayOfWeek startDateWeekDay = startDate.DayOfWeek;
             int weekDayNumber = (int)startDateWeekDay;
+            int WeekNumber = 1;
             long time = startDateUnixTime;
 
             for (int day = 0; day < dayCount; day++)
@@ -222,6 +281,7 @@ namespace datascript
                 if (weekDayNumber % 7 == 0)
                 {
                     weekDayNumber = 0;
+                    WeekNumber += 1;
                 }
                 weekDayNumber += 1;
 
@@ -235,14 +295,22 @@ namespace datascript
                     generateWaste();
                     calculateWasteShareForEachBin();
                     distributeWasteBasedOnShare();
-                    EmptyBinsOnSchedule(observation, weekDayNumber);
-                    await uploadDataForOneGenerationOfMeasurements(time);
+                    EmptyBinsOnSchedule(observation, weekDayNumber, WeekNumber);
+                    await uploadDataForOneGenerationOfMeasurements(time); //OBS: Should be await
                     ResetCategoriesAndBins();
                 }
             }
             CalculatePickupSchedulesAndAvgFillLevelBasedOnDataTrends();
+            //if (checkThatTheMeasurementsAreThereForEachDate())
+            //{
+            //    Console.WriteLine("THERE IS A MEASUREMENT FOR EACH TIME FOR EACH FRACTION!");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("THERE IS NOT! A MEASUREMENT FOR EACH TIME FOR EACH FRACTION");
+            //}
             PrintDictionaryStuff();
-            
+
         }
 
         public void PrintDictionaryStuff()
@@ -266,13 +334,7 @@ namespace datascript
 
         }
 
-        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
-        {
-            // Unix timestamp is seconds past epoch
-            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-            return dateTime;
-        }
+
 
         static async Task PostAsync(HttpClient httpClient, WasteBin bin, string time)
         {
@@ -287,7 +349,7 @@ namespace datascript
 
             using HttpResponseMessage response = await httpClient.PostAsync("test", jsonContent);
             var jsonResponse = await response.Content.ReadAsStringAsync();
-            Console.WriteLine($"{jsonResponse}\n");
+            //Console.WriteLine($"{jsonResponse}\n");
         }
 
         public void CalculatePickupSchedulesAndAvgFillLevelBasedOnDataTrends()
