@@ -35,7 +35,7 @@ export const SensorControls = ({ sensorData, graphData, onSensorSelect, setGraph
                 <div className="sensor-control-main-waste-fraction-title" style={{background: getWasteFractionColor(currentWasteCategory)}}>
                     {currentWasteCategory}
                 </div>
-                <div className="sensor-control-main-waste-fraction-input-wrapper-outer" style={{background: getWasteFractionColor(`${currentWasteCategory} 4th`)}}>
+                <div className="sensor-control-main-waste-fraction-input-wrapper-outer" style={{background: getWasteFractionColor(`${currentWasteCategory} childBackground`)}}>
                     {sensorData[currentWasteCategory].map((sensor, index) => (
                         <div key={index} className='sensor-control-main-waste-fraction-input-wrapper-inner'>
                             <FormCheck

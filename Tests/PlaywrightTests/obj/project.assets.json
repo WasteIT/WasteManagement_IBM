@@ -1683,7 +1683,6 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Microsoft.NET.Test.Sdk >= 17.7.1",
-      "Microsoft.Playwright >= 1.43.0",
       "Microsoft.Playwright.NUnit >= 1.43.0",
       "NUnit >= 3.13.3",
       "NUnit.Analyzers >= 3.6.1",
@@ -1692,19 +1691,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Chedd\\.nuget\\packages\\": {}
+    "/Users/nusers/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Chedd\\OneDrive\\Dokumenter\\GitHub\\WasteManagement_IBM\\tests\\PlaywrightTests\\PlaywrightTests.csproj",
+      "projectUniqueName": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/PlaywrightTests/PlaywrightTests.csproj",
       "projectName": "PlaywrightTests",
-      "projectPath": "C:\\Users\\Chedd\\OneDrive\\Dokumenter\\GitHub\\WasteManagement_IBM\\tests\\PlaywrightTests\\PlaywrightTests.csproj",
-      "packagesPath": "C:\\Users\\Chedd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Chedd\\OneDrive\\Dokumenter\\GitHub\\WasteManagement_IBM\\tests\\PlaywrightTests\\obj\\",
+      "projectPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/PlaywrightTests/PlaywrightTests.csproj",
+      "packagesPath": "/Users/nusers/.nuget/packages/",
+      "outputPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/PlaywrightTests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Chedd\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/nusers/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -1722,6 +1721,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1731,10 +1735,6 @@
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.7.1, )"
-          },
-          "Microsoft.Playwright": {
-            "target": "Package",
-            "version": "[1.43.0, )"
           },
           "Microsoft.Playwright.NUnit": {
             "target": "Package",
@@ -1768,12 +1768,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }

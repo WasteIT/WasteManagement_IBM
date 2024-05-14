@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Actions from "../components/Report/Actions";
 import EstimatedEffects from "../components/Report/EstimatedEffects";
+import Pickup from "../components/Report/Pickup";
 
 const Report = () => {
   const { state } = useLocation();
@@ -38,16 +39,26 @@ const Report = () => {
       <div style={{ textAlign: "center" }}>
         <h1>Optimization for {name}</h1>
         {isLoading ? (
-          <p>Loading...</p>
-        ) :  (
-            <div style={{marginTop: "50px"}}>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Actions data={optimizationData}/>
-                </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <EstimatedEffects />
-                </div>
+          <div style={{marginTop: "50px"}}>
+            <div style={{ display: "flex", justifyContent: "center"}}>
+              <div style={{ borderRadius: '25px', background: 'lightgrey', width: 720, height: 628}}></div>
             </div>
+            <div style={{ display: "flex", justifyContent: "center"}}>
+               <div style={{ borderRadius: '25px', background: 'lightgrey', width: 720, height: 739, marginTop: '45px'}}></div>
+            </div>
+          </div>
+        ) :  (
+          <div style={{marginLeft: "17rem", marginTop: "50px", display: "flex",  justifyContent: "center"}}>
+              <div>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                        <Actions data={optimizationData}/>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <EstimatedEffects />
+                    </div>
+              </div>
+              <div style={{marginLeft: "2rem"}}> <Pickup address={name}/></div>
+          </div>
             )}
       </div>
     </main>

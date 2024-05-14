@@ -9,14 +9,15 @@ export default function CardPage() {
     const [cards, setCards] = useState([]);
     const [avgPickup, setAvgPickup] = useState([]);
     const [schedules, setSchedules] = useState([]);
-    const { setUserName } = useContext(UserContext);
+    const [isLoading, setIsLoading] = useState(true);
+    const { setStreetName } = useContext(UserContext);
     
 
     useEffect(() => {
       if (name) {
-          setUserName(name); 
+        setStreetName(name); 
       }
-    }, [name, setUserName]);
+    }, [name, setStreetName]);
 
 
     useEffect(() => {
@@ -38,6 +39,10 @@ export default function CardPage() {
     }, [name]);
 
     useEffect(() => {
+      
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
       const fetchAvgPickupAndSchedules = async () => {
         try {
           const response = await fetch("https://wasteit-backend.azurewebsites.net/sensorData/" + name);
@@ -55,6 +60,35 @@ export default function CardPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
+  if (isLoading) {
+    return (
+      <main className='main'>
+        <div className='cardpage_title_div flex-row'>
+          <div className='cardpageIcon'>
+            <div style={{ borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', width: 70, height: 70, margin: '4px 8px' }} />
+          </div>
+          <div>
+            <h2 className='cardpage_location_title' style={{ width: 150, height: 22.5, borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', marginBottom: '15px', marginTop: '15px', fontSize: '26px' }}> </h2>
+            <h2 className='WasteFractionOverview' style={{ width: 200, height: 22.5, borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', fontSize: '26px' }}> </h2>
+          </div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className='card_container' style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginTop: '15px', marginLeft: '25px' }}>
+          {Object.keys(cards).map((cardType, index) => (
+            <div key={index} className="placeholder-card" style={{ borderRadius: '10px', background: 'lightgrey', color: 'lightgrey', width: 292, height: 346, margin: '0 10px 20px', flex: '0 1 calc(25% - 20px)' }} />
+          ))}
+        </div>
+        </div>
+      </main>
+    )
+  }
+  
+  
+  
+  
+  
+  
+  
     return (
         <main className='main'>
           <div className='cardpage_title_div flex-row' >
@@ -67,7 +101,7 @@ export default function CardPage() {
           <div style={{justifyContent: 'center', display: 'flex'}}>
             <div className="card_container" >
               {Object.keys(cards).map((cardType, index) => (
-                <WasteCard key={index} streetname={name} name={cardType} bins={cards[cardType]} pickup={schedules[cardType]} avg={avgPickup[cardType]}/>
+                <WasteCard key={index} streetName={name} name={cardType} bins={cards[cardType]} pickup={schedules[cardType]} avg={avgPickup[cardType]}/>
               ))}
               </div>
  

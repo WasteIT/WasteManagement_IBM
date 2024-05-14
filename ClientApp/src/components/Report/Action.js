@@ -43,7 +43,7 @@ export default function Action({fraction, action, binId, numberOfBins, schedule}
             <div style={{display: 'flex', padding: '0.5rem'}}>
                 <img style={{height: '4rem', borderRadius: '13px'}} src={`./images/${fraction}.png`} alt="Card cap"/>
                 
-                <div style={{alignItems: 'center', display: 'flex', background: GetColor(action), borderRadius: '25px',boxShadow: '-10px 10px 20px rgba(33, 82, 75, 0.35)',width: '30rem',marginLeft: '2rem'}}>
+                <div style={{alignItems: 'center', display: 'flex', background: GetColor(action), borderRadius: '25px', width: '30rem',marginLeft: '2rem'}}>
                     <img style={{width: '2rem', marginLeft: '0.5rem', marginRight: '0.5rem'}} src={`./images/${action}.png`} alt="Card cap"/>
                     <div style= {{marginTop: '1rem'}}>
                         <p>{GetText(action)}</p> 

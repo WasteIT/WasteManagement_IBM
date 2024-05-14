@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import UserContext from '../../utils/UserContext';
 import 'chartjs-adapter-date-fns';
 import { DateRange } from './DateRange'
 import { SensorControls, fetchSensorControlsData } from './SensorControls'
@@ -10,20 +11,32 @@ import Card from 'react-bootstrap/Card';
 
 const Layout = () => {
   
-    const { state: { name, streetname, pickup, bins, avgerageWithOneDecimal} = {} } = useLocation();
+    const { state: { name, streetName, pickup, bins, avgerageWithOneDecimal} = {} } = useLocation();
+    const { setName, setPickup, setBins, setAvgerageWithOneDecimal } = useContext(UserContext);
+    
     const [sensorData, setSensorData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [graphData, setGraphData] = useState({});
     const [visibleFractions, setVisibleFractions] = useState({});
     const [dateRange, setDateRange] = useState({
-      startDate: new Date(new Date().setDate(new Date().getDate()-31)),
+      startDate: new Date(new Date().getFullYear(), 2, 1),
       endDate: new Date(new Date().setDate(new Date().getDate())),
     });
     const isChrome = window.navigator.userAgent.includes("Chrome");
 
     useEffect(() => {
+      if (streetName) {
+        setName(name); 
+        setPickup(pickup);
+        setBins(bins);
+        setAvgerageWithOneDecimal(avgerageWithOneDecimal);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [streetName, pickup, bins, avgerageWithOneDecimal]);
+
+    useEffect(() => {
       const fetchData = async () => {
-        await fetchSensorControlsData(streetname, setSensorData);
+        await fetchSensorControlsData(streetName, setSensorData);
       };  
       fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,22 +44,36 @@ const Layout = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-        await fetchAllGraphData(name, streetname, sensorData, dateRange, setGraphData, setIsLoading, setVisibleFractions);
+        await fetchAllGraphData(name, streetName, sensorData, dateRange, setGraphData, setIsLoading, setVisibleFractions);
       };  
       fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [streetname, sensorData, dateRange]);
+    }, [streetName, sensorData, dateRange]);
     
     const handleSensorSelect = async (wasteType, sensor) => {
-      await fetchSingleGraphData(streetname, wasteType, sensor, graphData, dateRange, setIsLoading);
+      await fetchSingleGraphData(streetName, wasteType, sensor, graphData, dateRange, setIsLoading);
     };
 
+  
+  if(isLoading){
+    return(
+      <main className='main'>
+        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex', justifyContent: 'center', marginTop: '70px',}}>
+        <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 272, height: 255, marginTop: '-15px', marginRight: '34px', padding: '1rem'}}/>
+         <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 1020, height: 255, marginTop: '-15px', marginRight: '0px'}}/>
+        </div>
+
+        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 272, height: 528, marginRight: '34px', padding: '1rem'}}/>
+         <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 1020, height: 668, marginRight: '0px'}}/>
+        </div>
+      </main>
+  )
+}
+
   return (
-    <main className='waste-bin-overview-page-wrapper-outer'> 
+    <main className='waste-bin-overview-page-wrapper-outer main'> 
       <div className='waste-bin-overview-page-wrapper-inner'>
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : (
           <div className="information_page_wrapper_outer flex-row">
             <div className='flex-column information_page_wrapper_inner'>
               <SensorControls style={{marginBottom: '1rem'}}
@@ -80,10 +107,9 @@ const Layout = () => {
                 </Card.Body>
               </Card>
             </div>
-          </div>
-        )}
+          </div>    
       </div>
-      <Link to="/Report" className="fixed-square" state={{ name: streetname }}>Optimization</Link>
+      <Link to="/Report" className="fixed-square" state={{ name: streetName }}>Optimization</Link>
     </main>
   );
 };

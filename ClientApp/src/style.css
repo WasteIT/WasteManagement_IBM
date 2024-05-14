@@ -37,7 +37,7 @@ main {
 .main {
   flex: 1;
   width: 90%;
-  margin: 5rem auto 0 auto;
+  margin: 2rem auto;
 }
 
 .button {
@@ -75,7 +75,6 @@ main {
 .navbar-container {
   background-color: #e8dfdf;
   margin-bottom: 3rem;
-  box-shadow: -2px 5px 10px rgba(33, 82, 75, 0.1);
   display: flex;
   justify-content: space-between;
   width: 100vw;
@@ -120,7 +119,6 @@ main {
 
 .navigation-link {
   text-decoration: none;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
   border: none;
   padding: 10px 30px !important;
   margin: 0 35px 0 5px;
@@ -166,7 +164,6 @@ input.form-control.search_bar{
   margin-left: 125px;
   margin-top: 15px;
   border-radius: 40px !important;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -179,9 +176,9 @@ button.btn.search_bar_button{
   max-width:10%;
   border-radius: 25px !important;
   margin-left: 10px !important;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.06);
   margin-top: 15px;
 }
+
 .agreement.accordion-item{
   display: block;
   margin-left: auto;
@@ -265,32 +262,52 @@ transition: ease-in-out 1s;
 
 }
 
+
 .search_bar {
-border: 2px solid var(--primary_color);
-border-top-right-radius: 0%;
-border-bottom-right-radius: 0%;
-padding: 20px;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+  margin-bottom: 70px;
+  opacity: 1;
+  background-color: #f1f1f1;
+  color: #545454;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  transition: background .5s ease;
+  transition: .5s ease;
+  padding: 20px;
 margin-bottom: 50px;
 }
 
-.search_bar:focus {
-outline: none !important;
-border: 2px solid var(--primary_color);
-box-shadow: none;
-}
 
 .search_bar_button {
-background-color: #fff;
-
-color: var(--primary_color);
-border: 2px solid var(--primary_color);
-margin-bottom: 50px;
+  background-color: #fff;
+  color: #545454;
+  margin-bottom: 50px;
+  padding: -10px 30px !important; 
+  opacity: 1;
+  background-color: #f1f1f1;
+  color: #545454;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: .5s ease-in-out;
+  margin-bottom: 50px;
 }
 
 .search_bar_button:hover {
 background-color: black;
 color: #fff;
 }
+
+.search_bar:hover,
+.search_bar_button:hover,
+.search_bar:hover +
+.search_bar_button {
+  background-color: #d1d1d1;
+  color: black;
+}
+
 
 /*
 ==========================
@@ -315,7 +332,6 @@ color: #fff;
 .cardpage_title_div{
   width: 100%;
   height: 100%;
-  margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -593,14 +609,7 @@ ServiceAgreementsDropdown.js styles
 WasteBinsOverview.js styles
 ==========================
 */
-.waste-bin-overview-page-wrapper-outer {
-  position: relative;
-  background-repeat: no-repeat;
-  /*background-image: linear-gradient(to bottom, transparent, white);*/
-  background-size: 100vw 83%;
-  background-position: top;
-  margin-top: -135px;
-}
+
 
 /*.waste-bin-overview-page-wrapper-outer::before {
   content: "";
@@ -617,10 +626,6 @@ WasteBinsOverview.js styles
 
   z-index: -1;
 }*/
-
-.waste-bin-overview-page-wrapper-inner {
-  padding-top: 100px;
-}
 
 .information_page_wrapper_outer {
   justify-content: center;
@@ -968,8 +973,44 @@ WasteFractionInfoBox.js styles
 }
 
 .social-icon {
-  font-size: 24px; 
-  margin-right: 10px; 
+  font-size: 50px; 
+  margin-right: 15px; 
   color: #fff;
   text-decoration: none; 
+}
+
+
+/*
+==========================
+  Breadcrumbs.js styles
+==========================
+*/
+
+.breadcrumbs {
+  padding: 8px 16px;
+  font-size: 20px;
+  border-radius: 5px; 
+  margin: 10px 0; 
+  display: inline-block;
+}
+
+.breadcrumbs a {
+  color: #000;
+  text-decoration: none; 
+  font-weight: 500;
+  
+}
+.breadcrumbs a:hover {
+  color: var(--primary-color);
+}
+
+.breadcrumbs a:not(:last-child)::after {
+  content: ' / ';
+  padding: 0 5px; 
+  color: #6c757d;
+}
+
+.breadcrumbs span {
+  color: #495057;
+  font-weight: bold;
 }

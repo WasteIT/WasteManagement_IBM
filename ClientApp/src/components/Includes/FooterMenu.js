@@ -1,11 +1,14 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faTwitter, faFacebookF } from '@fortawesome/free-brands-svg-icons';
+
 export function FooterMenu() {
     return (
         <footer className="footer flex-row">
             <div className="footer-column flex-column">
                 <div className="footer-heading">WasteIT ApS</div>
-                <div className="footer-item">Addresse</div>
-                <div className="footer-item">Copenhagen 2200</div>
-                <div className="footer-item">CVR: xxxxxxxx</div>
+                <div className="footer-item">Addresse: Sundkrogsgade 11</div>
+                <div className="footer-item">2100 Copenhagen E</div>
+                <div className="footer-item">CVR: 65305216</div>
             </div>
             
             <div className="footer-column flex-column">
@@ -20,14 +23,19 @@ export function FooterMenu() {
             </div>
 
             <div className="footer-column flex-column">
-                <div className="footer-heading">Follow us</div>
+                <div className="footer-heading" style={{margin: '0 auto'}}>Follow us</div>
                 <div className="footer-socials">
-                {/*<a href="/" className="social-icon"><i className="fab fa-instagram"></i></a>
-                <a href="/" className="social-icon"><i className="fab fa-twitter"></i></a>
-                <a href="/" className="social-icon"><i className="fab fa-facebook-f"></i></a>*/}
+                    <a href="/" className="social-icon">
+                        <FontAwesomeIcon icon={faInstagram} />
+                    </a>
+                    <a href="/" className="social-icon">
+                        <FontAwesomeIcon icon={faTwitter} />
+                    </a>
+                    <a href="/" className="social-icon">
+                        <FontAwesomeIcon icon={faFacebookF} />
+                    </a>
                 </div>
             </div>
-            </footer>
-
+        </footer>
     );
 }
