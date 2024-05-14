@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { getWasteFractionColor } from '../../utils/GetColour';
+import { sortWeekdays } from '../../utils/SortDays'
 
 const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecimal}) => {
   const [activeButton, setActiveButton] = useState("all");
   const [avgFillLevelForCurrentSelection, setAvgFillLevelForCurrentSelection] = useState(0);
   const [pickupDaysForCurrentSelection, setPickupDaysForCurrentSelection] = useState(0);
   const [overfilledShareForCurrentSelection, setOverfilledShareForCurrentSelection] = useState(0);
-
   useEffect(() => {
     setAvgFillLevelForCurrentSelection(avgerageWithOneDecimal);
-    setPickupDaysForCurrentSelection(pickup);
+    setPickupDaysForCurrentSelection(sortWeekdays(pickup));
     setOverfilledShareForCurrentSelection(10);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   const handleClick = (binNumber) => {
     setActiveButton(binNumber);
     if (binNumber === "all") {
@@ -67,7 +66,7 @@ const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecim
                 Pick up days:
             </div>
             <div className='waste-fraction-info-box-text-section-text'>
-              {pickupDaysForCurrentSelection}
+              {pickupDaysForCurrentSelection.length > 0 ? pickupDaysForCurrentSelection.join(", ") : "No pickups"}
             </div>
           </div>
           <div className='flex'>

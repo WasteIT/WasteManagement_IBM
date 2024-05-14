@@ -34,7 +34,7 @@ const Breadcrumbs = () => {
                 {index === 0 ? (
                     <Link to="/">{breadcrumb}</Link>
                 ) : (
-                    <Link to={path} state={linkState}>{breadcrumb}</Link>
+                    <Link to={path} data-testid={breadcrumb+"-test"} state={linkState}>{breadcrumb}</Link>
                 )}
                 {index < breadcrumbs.length - 1 && " / "}
                 </span>
