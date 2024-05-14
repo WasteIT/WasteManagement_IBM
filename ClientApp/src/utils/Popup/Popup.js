@@ -11,8 +11,8 @@ export const Popup = () => {
     if (!isVisible) return null;
 
     const style = {
-        position: 'fixed',
-        top: '8%',
+        position: 'absolute',
+        top: '75%',
         left: '50.5%',
         zIndex: '1000',
         width: 'auto',

@@ -34,7 +34,6 @@ export default function App() {
         <div>
           <NavMenu />
           <Breadcrumbs />
-          <div style={{ marginBottom: '8rem' }} />
           <Routes>
             {AppRoutes.map((route, index) => {
               const { element, ...rest } = route;

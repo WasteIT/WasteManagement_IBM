@@ -58,7 +58,7 @@ const Layout = () => {
   if(isLoading){
     return(
       <main className='main'>
-        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex', justifyContent: 'center'}}>
+        <div className='waste-fraction-info-box-wrapper' style={{display: 'flex', justifyContent: 'center', marginTop: '70px',}}>
         <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 272, height: 255, marginTop: '-15px', marginRight: '34px', padding: '1rem'}}/>
          <div style={{borderRadius: '30px', background: 'lightgrey', color: 'lightgrey', width: 1020, height: 255, marginTop: '-15px', marginRight: '0px'}}/>
         </div>
@@ -72,7 +72,7 @@ const Layout = () => {
 }
 
   return (
-    <main className='waste-bin-overview-page-wrapper-outer'> 
+    <main className='waste-bin-overview-page-wrapper-outer main'> 
       <div className='waste-bin-overview-page-wrapper-inner'>
           <div className="information_page_wrapper_outer flex-row">
             <div className='flex-column information_page_wrapper_inner'>
