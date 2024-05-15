@@ -1,9 +1,5 @@
 export default function Action({fraction, action, binId, numberOfBins, description}){
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
     function GetText(action) {
         if (action === "add") {
             return `Add ${numberOfBins} ${fraction} bins to your waste yard.`

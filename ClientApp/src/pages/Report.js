@@ -8,8 +8,6 @@ const Report = () => {
   const { state } = useLocation();
   const name = state?.name || null;
   const [optimizationData, setOptimizationData] = useState(null);
-  const [sensorData, setSensorData] = useState(null);
-  //const [avgPickup, setAvgPickup] = useState(null);
   const [schedules, setSchedules] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -34,26 +32,6 @@ const Report = () => {
       fetchOptimizationData();
     }
    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name]);
-
-  useEffect(() => {
-    const fetchSensorData = async () => {
-      try {
-        const response = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor");
-        if (!response.ok) {
-          throw new Error('Failed to fetch sensor data');
-        } else {
-          console.log(response);
-        }
-        const fetchedSensorData = await response.json();
-        setSensorData(fetchedSensorData);
-
-      } catch (error) {
-        console.error('Error fetching sensor data:', error);
-      }
-    };
-    fetchSensorData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
   useEffect(() => {
