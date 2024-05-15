@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Madso\\WasteManagement_IBM\\Tests\\Function.Tests\\Function.Tests.csproj": {}
+    "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/Function.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Madso\\WasteManagement_IBM\\datascript\\datascript.csproj": {
+    "/Users/nusers/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Madso\\WasteManagement_IBM\\datascript\\datascript.csproj",
+        "projectUniqueName": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj",
         "projectName": "datascript",
-        "projectPath": "C:\\Users\\Madso\\WasteManagement_IBM\\datascript\\datascript.csproj",
-        "packagesPath": "C:\\Users\\Madso\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Madso\\WasteManagement_IBM\\datascript\\obj\\",
+        "projectPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj",
+        "packagesPath": "/Users/nusers/.nuget/packages/",
+        "outputPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/datascript/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Madso\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/nusers/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -48,26 +53,40 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.17, 7.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[7.0.17, 7.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.17, 7.0.17]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Madso\\WasteManagement_IBM\\Tests\\Function.Tests\\Function.Tests.csproj": {
+    "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/Function.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Madso\\WasteManagement_IBM\\Tests\\Function.Tests\\Function.Tests.csproj",
+        "projectUniqueName": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/Function.Tests.csproj",
         "projectName": "Function.Tests",
-        "projectPath": "C:\\Users\\Madso\\WasteManagement_IBM\\Tests\\Function.Tests\\Function.Tests.csproj",
-        "packagesPath": "C:\\Users\\Madso\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Madso\\WasteManagement_IBM\\Tests\\Function.Tests\\obj\\",
+        "projectPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/Function.Tests.csproj",
+        "packagesPath": "/Users/nusers/.nuget/packages/",
+        "outputPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/Function.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Madso\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/nusers/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -79,8 +98,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Madso\\WasteManagement_IBM\\datascript\\datascript.csproj": {
-                "projectPath": "C:\\Users\\Madso\\WasteManagement_IBM\\datascript\\datascript.csproj"
+              "/Users/nusers/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj": {
+                "projectPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj"
               }
             }
           }
@@ -89,6 +108,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -131,12 +155,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.17, 7.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.17, 7.0.17]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }
