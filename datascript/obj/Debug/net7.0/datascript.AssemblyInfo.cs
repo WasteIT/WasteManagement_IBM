@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("datascript")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+936ea8980b1b8244e5b86afef9bb5c4fd02fec1f")]
 [assembly: System.Reflection.AssemblyProductAttribute("datascript")]
 [assembly: System.Reflection.AssemblyTitleAttribute("datascript")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
