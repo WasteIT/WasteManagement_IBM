@@ -1,5 +1,15 @@
 import { useState, useEffect } from "react";
 
+/**
+ * FetchAgreementData is a custom React hook that fetches agreement data from a specified endpoint.
+ * It utilizes the useState and useEffect hooks to manage state and perform side effects respectively.
+ * 
+ * @returns {object} An object containing serviceAgreements array and isLoading boolean.
+ * @property {array} serviceAgreements - An array containing agreement data fetched from the API.
+ * @property {boolean} isLoading - A boolean indicating whether the data is still loading.
+ */
+
+
 export default function FetchAgreementData (){
   const [serviceAgreements, setServiceAgreements] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
