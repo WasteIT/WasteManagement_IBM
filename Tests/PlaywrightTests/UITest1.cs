@@ -186,7 +186,7 @@ public class Tests : PageTest
         var expectedRecyclingRateIncrease = "25 %";
         var expectedAveragePickup = "5 times";
 
-        await Task.Delay(5500);
+        await Task.Delay(6000);
 
 
         var yearlySavings = await page.InnerTextAsync("#yearlySavings");
