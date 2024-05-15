@@ -1,6 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTwitter, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 
+/**
+ * FooterMenu is a functional component responsible for rendering the footer menu of the website.
+ * It includes information about the company, links to different sections of the website, and social media links.
+ * 
+ * @returns {JSX.Element} JSX element representing the FooterMenu component.
+ */
+
 export function FooterMenu() {
     return (
         <footer className="footer flex-row">
