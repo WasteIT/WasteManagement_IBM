@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
 
-export default function EstimatedEffects({ data}) {    
+export default function EstimatedEffects({ data, name }) {    
 
 
     const [costChange, setCostChange] = useState(0);
@@ -14,9 +14,9 @@ export default function EstimatedEffects({ data}) {
                     console.log(fraction)
                     if ( fraction === 'general waste') {
                         if (operation === 'add') {
-                            change -= amount * 400 * 7.5 * 2 //Fix to accurately reflect pick up schedule for general waste containers.
+                            change -= amount * 660 * 7.5 * 2 //Fix to accurately reflect pick up schedule for general waste containers.
                         } else if (operation === 'remove') {
-                            change += amount * 400 * 7.5 * 2 //Fix to accurately reflect pick up schedule for general waste containers.
+                            change += amount * 660 * 7.5 * 2 //Fix to accurately reflect pick up schedule for general waste containers.
                         }
                     }
                 });
@@ -26,10 +26,40 @@ export default function EstimatedEffects({ data}) {
     }, [data]);
 
     //Hardcoded for now. Yearly cost for 24 households...
-    let numberOfHouseholds = 24;
-    let numberOfGeneralWasteContainersTemp = 3
-    let generalWasteContainersScheduleTemp = 2
-    let totalCostBefore = 2629 * numberOfHouseholds + numberOfGeneralWasteContainersTemp * 400 * generalWasteContainersScheduleTemp * 7.5;
+
+    let numberOfHouseholds = 0;
+    let numberOfGeneralWasteContainers = 0;
+    let generalWasteContainersSchedule = 0;
+    let totalCostBefore = 0;
+    let avgPickupSchedule = 0;
+    let avgPickupScheduleBefore = 0;
+    let recyclingRateIncreaseBefore = 0;
+    let recyclingRateIncrease = 0;
+    let emissionReductionBefore = 0;
+    let emissionReduction = 0;
+
+    if (name === 'Amagerbrogade') {
+        numberOfHouseholds = 24;
+        numberOfGeneralWasteContainers = 3
+        generalWasteContainersSchedule = 2
+        // Fixed tax of 2.629 per household + general waste tax: Weekly liters of general waste at 7.5 kr per liter
+        totalCostBefore = 2629 * numberOfHouseholds + numberOfGeneralWasteContainers * 660 * generalWasteContainersSchedule * 7.5;
+        avgPickupScheduleBefore = 1 + 0.25 + 3 + 2 + 0.5 + 0.5 + 1 + 1;
+        avgPickupSchedule = 1 + 0.2 + 3 + 2 + 0.5 + 0.5 + 1 + 1;
+        recyclingRateIncreaseBefore = 20;
+        recyclingRateIncrease = 25;
+
+    } else if (name === 'Bøgevej') {
+        numberOfHouseholds = 16;
+        numberOfGeneralWasteContainers = 4
+        generalWasteContainersSchedule = 2
+        // Fixed tax of 2.629 per household + general waste tax: Weekly liters of general waste at 7.5 kr per liter
+        totalCostBefore = 2629 * numberOfHouseholds + numberOfGeneralWasteContainers * 660 * generalWasteContainersSchedule * 7.5;
+        avgPickupScheduleBefore = 1 + 1 + 1 + 0.5 + 0.5 + 0.5 + 1
+        avgPickupSchedule = 1 + 1 + 2 + 0.5 + 0.5 + 0.5 + 1;
+        recyclingRateIncreaseBefore = 18;
+        recyclingRateIncrease = 26;
+    }
 
     
     //const yearlySavings = getRandomNumber(14960, 2000);
@@ -38,15 +68,10 @@ export default function EstimatedEffects({ data}) {
     //const recyclingRateIncrease = getRandomNumber(25, 10);
 
     const yearlySavingsBefore = totalCostBefore;
-    const emissionReductionBefore = "TBD";
-    const savingsPerHouseholdBefore = yearlySavingsBefore / 24;
-    const recyclingRateIncreaseBefore = "TBD";
-    const averageWeeklyPickupBefore = "TBD";
+    const savingsPerHouseholdBefore = (yearlySavingsBefore / 24).toFixed(2);
 
     const yearlySavings = costChange;
-    const emissionReduction = "TBD";
-    const savingsPerHousehold = costChange / numberOfHouseholds;
-    const recyclingRateIncrease = "TBD";
+    const savingsPerHousehold = (costChange / numberOfHouseholds).toFixed(2);
 
     return (
         <div style={{width: '40rem', background: '#F5F5F5', borderRadius: '25px', boxShadow: '-5px 5px 50px rgba(33, 82, 75, 0.4)', marginTop: '2.5rem'}}>
@@ -132,18 +157,18 @@ export default function EstimatedEffects({ data}) {
                     </div>
                     <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px', height: '30px'}}>
                         <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
-                            <p>Before: {recyclingRateIncreaseBefore} %</p>
+                            <p>Difference: {recyclingRateIncrease - recyclingRateIncreaseBefore} %</p>
                         </div>
-                        <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
+                        {/* <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
                             <p>After: {recyclingRateIncreaseBefore - recyclingRateIncrease} %</p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div data-testid="Truck" style = {{background: 'white', borderRadius: '25px',marginLeft: '1rem', padding: '1rem',width:'12rem',height:'18rem',alignContent:'center'}}>
                         <div style = {{textAlign: 'center'}}>
                             <img style={{height: '5rem'}} src='./images/Truck.png' alt="Card cap"/>
                             <h5 id="averagePickup" style={{color: '#579249', fontWeight: 'bold'}}>
-                                <CountUp end={"TBD"} duration={4} suffix=" times" />   
+                                <CountUp end={avgPickupSchedule} duration={4} suffix=" times" />   
                             </h5>
                             <p>
                                 Average weekly pickups
@@ -151,11 +176,11 @@ export default function EstimatedEffects({ data}) {
                         </div>
                         <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px'}}>
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
-                                <p>Before: {averageWeeklyPickupBefore} times</p>
+                                <p>Before: {avgPickupScheduleBefore} times</p>
                             </div>
-                            <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
-                                <p>After: {averageWeeklyPickupBefore} times</p>
-                            </div>
+                            {/* <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
+                                <p>After: {avgPickupSchedule} times</p>
+                            </div> */}
                         </div>
                     </div>
             </div>

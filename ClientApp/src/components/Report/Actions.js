@@ -22,6 +22,7 @@ export default function Actions({ data }) {
                                 action={operation}
                                 binId={'1'} 
                                 numberOfBins={amount}
+                                description={description}
                             />
                         );
                     });

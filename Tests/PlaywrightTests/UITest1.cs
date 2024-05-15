@@ -180,11 +180,11 @@ public class Tests : PageTest
         await page.Keyboard.DownAsync("KeyY");
         await page.ClickAsync("text=Optimization Report Complete");
 
-        var expectedYearlySavings = "DKK 14,960";
-        var expectedEmissionReduction = "12 %";
-        var expectedSavingsPerHousehold = "DKK 450";
-        var expectedRecyclingRateIncrease = "25 %";
-        var expectedAveragePickup = "5 times";
+        var expectedYearlySavings = "DKK 18,000";
+        var expectedEmissionReduction = "0 %";
+        var expectedSavingsPerHousehold = "DKK 750";
+        var expectedRecyclingRateIncrease = "0 %";
+        var expectedAveragePickup = "0 times";
 
         await Task.Delay(6000);
 
@@ -247,7 +247,7 @@ public class Tests : PageTest
         await Expect(page.GetByText("After:").Nth(3)).ToBeVisibleAsync();
         await Expect(page.GetByText("Before:").Nth(4)).ToBeVisibleAsync();
         await Expect(page.GetByText("After:").Nth(4)).ToBeVisibleAsync();
-
+        //await Expect(page.GetByText("Difference:")).ToBeVisibleAsync();
     }
 
     [Test]

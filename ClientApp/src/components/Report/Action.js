@@ -1,4 +1,4 @@
-export default function Action({fraction, action, binId, numberOfBins, schedule}){
+export default function Action({fraction, action, binId, numberOfBins, description}){
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -6,16 +6,16 @@ export default function Action({fraction, action, binId, numberOfBins, schedule}
 
     function GetText(action) {
         if (action === "add") {
-            return `Add ${numberOfBins} ${capitalizeFirstLetter(fraction)} bins to your waste yard.`
+            return `Add ${numberOfBins} ${fraction} bins to your waste yard.`
         }
         if (action === "remove") {
-            return `Remove ${numberOfBins} ${capitalizeFirstLetter(fraction)} bins from your waste yard.`
+            return `Remove ${numberOfBins} ${fraction} bins from your waste yard.`
         }
         if (action === "check") {
-            return `Inspect bin #${binId} in ${capitalizeFirstLetter(fraction)} fraction`
+            return `Inspect bin #${binId} of type ${fraction}`
         }
         if (action === "schedule") {
-            return `Change the pickup schedule for your ${capitalizeFirstLetter(fraction)} bins to once every ${schedule} days. `
+            return `Change the pickup schedule for your ${fraction} bins to ${description}. `
         }
         else {
             return "Oh no!"

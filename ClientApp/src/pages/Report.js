@@ -8,6 +8,9 @@ const Report = () => {
   const { state } = useLocation();
   const name = state?.name || null;
   const [optimizationData, setOptimizationData] = useState(null);
+  const [sensorData, setSensorData] = useState(null);
+  //const [avgPickup, setAvgPickup] = useState(null);
+  const [schedules, setSchedules] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,9 +36,46 @@ const Report = () => {
    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
-  
+  useEffect(() => {
+    const fetchSensorData = async () => {
+      try {
+        const response = await fetch("https://wasteit-backend.azurewebsites.net/data/" + name + "/sensor");
+        if (!response.ok) {
+          throw new Error('Failed to fetch sensor data');
+        } else {
+          console.log(response);
+        }
+        const fetchedSensorData = await response.json();
+        setSensorData(fetchedSensorData);
 
+      } catch (error) {
+        console.error('Error fetching sensor data:', error);
+      }
+    };
+    fetchSensorData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    const fetchAvgPickupAndSchedules = async () => {
+      try {
+        const response = await fetch("https://wasteit-backend.azurewebsites.net/sensorData/" + name);
+        if (!response.ok) {
+          throw new Error('Failed to fetch sensor data');
+        }
+        const avgPickupAndSchedules = await response.json();
+       //setAvgPickup(avgPickupAndSchedules.AverageFillLevels)
+        setSchedules(avgPickupAndSchedules.PickupSchedules)
+      } catch (error) {
+        console.error('Error fetching sensor data:', error);
+      }
+    };
+    fetchAvgPickupAndSchedules();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name]);
 
   return (
     <main className="main">
@@ -57,7 +97,11 @@ const Report = () => {
                         <Actions data={optimizationData}/>
                     </div>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                        <EstimatedEffects data={optimizationData} />
+                        <EstimatedEffects 
+                          data={optimizationData} 
+                          schedules={schedules}
+                          name={name}
+                          />
                      </div>
               </div>
               <div style={{marginLeft: "2rem"}}> <Pickup address={name}/></div>
