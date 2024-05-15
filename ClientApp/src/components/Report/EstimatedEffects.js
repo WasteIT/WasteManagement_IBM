@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
 
+/**
+ * EstimatedEffects is a functional component that calculates and displays estimated effects
+ * based on the provided data and location name.
+ * 
+ * @param {object} data - The data containing information about waste management operations.
+ * @param {string} name - The name of the location.
+ * @returns {JSX.Element} - The JSX element representing the estimated effects.
+ */
+
 export default function EstimatedEffects({ data, name }) {    
 
 
