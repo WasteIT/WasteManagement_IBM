@@ -1,33 +1,40 @@
-import React from 'react';
-import Action from './Action';
+    import React from 'react';
+    import Action from './Action';
 
-export default function Actions({ data }) {
-    return (
-        <div style={{width: '40rem', background: '#F5F5F5', borderRadius: '25px', boxShadow: '-5px 5px 50px rgba(33, 82, 75, 0.4)'}}>     
-            <div style={{display: 'flex', padding: '1rem 1rem 1rem 1rem'}}>
-                <img style={{width: '5rem'}} src='./images/Desk_fill.png' alt="Card cap"/>
-                <div style={{alignContent: 'center', paddingLeft: '1rem'}}>
-                    <h3>Recommended Actions</h3>
+/**
+ * Actions is a functional component that renders a list of recommended actions based on the provided data.
+ * 
+ * @param {object} data - The data containing recommended actions.
+ * @returns {JSX.Element} - The JSX element representing the list of recommended actions.
+ */
+
+    export default function Actions({ data }) {
+        return (
+            <div style={{width: '40rem', background: '#F5F5F5', borderRadius: '25px', boxShadow: '-5px 5px 50px rgba(33, 82, 75, 0.4)'}}>     
+                <div style={{display: 'flex', padding: '1rem 1rem 1rem 1rem'}}>
+                    <img style={{width: '5rem'}} src='./images/Desk_fill.png' alt="Card cap"/>
+                    <div style={{alignContent: 'center', paddingLeft: '1rem'}}>
+                        <h3>Recommended Actions</h3>
+                    </div>
+                </div>
+                <div style={{padding: '1rem'}}>
+                    {data && Object.entries(data).map(([operation, fractions]) => {
+                        return Object.entries(fractions).map(([fraction, {amount, description}]) => {
+                            
+                            
+                            return (
+                                <Action
+                                    key={`${operation}-${fraction}`}
+                                    fraction={fraction}
+                                    action={operation}
+                                    binId={'1'} 
+                                    numberOfBins={amount}
+                                    description={description}
+                                />
+                            );
+                        });
+                    })}
                 </div>
             </div>
-            <div style={{padding: '1rem'}}>
-                {data && Object.entries(data).map(([operation, fractions]) => {
-                    return Object.entries(fractions).map(([fraction, {amount, description}]) => {
-                        
-                        
-                        return (
-                            <Action
-                                key={`${operation}-${fraction}`}
-                                fraction={fraction}
-                                action={operation}
-                                binId={'1'} 
-                                numberOfBins={amount}
-                                description={description}
-                            />
-                        );
-                    });
-                })}
-            </div>
-        </div>
-    );
-}
+        );
+    }

@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from "react";
 
+/**
+ * SearchBar is a functional component in React that provides a search input field and a button.
+ * It takes a callback function onSearchResult as a prop to handle search queries.
+ * 
+ * @param {object} props - Props passed to the SearchBar component.
+ * @param {function} props.onSearchResult - A callback function to handle search results. It receives the search query as an argument.
+ * 
+ * @returns {JSX.Element} JSX element representing the SearchBar component.
+ */
+
+
 function SearchBar({ onSearchResult }) {
     const [searchQuery, setSearchQuery] = useState("");
 

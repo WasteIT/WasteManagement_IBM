@@ -1,3 +1,14 @@
+/**
+ * DateRange is a functional component that represents a date range picker.
+ * 
+ * @param {object} props - Props passed to the DateRange component.
+ * @param {object} props.dateRange - An object containing startDate and endDate representing the selected date range.
+ * @param {function} props.onDateChange - A callback function to handle changes in the selected date range.
+ * @param {boolean} props.isChrome - A boolean value indicating whether the user's browser is Chrome.
+ * 
+ * @returns {JSX.Element} JSX element representing the DateRange component.
+ */
+
 export const DateRange = ({ dateRange, onDateChange, isChrome }) => {
     const setLast90Days = () => {
         const currentDate = new Date();

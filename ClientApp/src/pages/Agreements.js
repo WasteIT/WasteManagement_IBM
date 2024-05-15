@@ -3,6 +3,12 @@ import FetchAgreementData from "../components/Agreements/FetchAgreementData";
 import SearchResults from "../components/Agreements/SearchResults";
 import SearchBar from "../components/Agreements/Searchbar";
 
+/**
+ * Agreements is a functional component that displays a list of service agreements.
+ * It includes a search functionality to filter agreements based on user input.
+ * 
+ * @returns {JSX.Element} JSX element representing the Agreements component.
+ */
 
 export default function Agreements(){
   const { serviceAgreements, isLoading } = FetchAgreementData();

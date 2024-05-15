@@ -3,6 +3,21 @@ import { FormCheck } from 'react-bootstrap';
 import ServiceWasteTypeDropdown from './ServiceWasteTypeDropdown';
 import { getWasteFractionColor } from '../../utils/GetColour';
 
+/**
+ * SensorControls is a functional component in React responsible for rendering sensor controls and managing their visibility.
+ * 
+ * @param {object} props - Props passed to the SensorControls component.
+ * @param {object} props.sensorData - An object containing sensor data for different waste types.
+ * @param {object} props.graphData - An object containing graph data for different sensors.
+ * @param {function} props.onSensorSelect - A function to handle the selection of sensors.
+ * @param {function} props.setGraphData - A function to set the graph data state.
+ * @param {string} props.currentWasteCategory - The current waste category being displayed.
+ * @param {function} props.setVisibleFractions - A function to set the visibility state of waste fractions.
+ * @param {object} props.visibleFractions - An object indicating the visibility state of waste fractions.
+ * 
+ * @returns {JSX.Element} JSX element representing the SensorControls component.
+ */
+
 export const fetchSensorControlsData = async (name, setSensorData) => {
     try {
         const sensorResponse = await fetch(`https://wasteit-backend.azurewebsites.net/data/${name}/sensor`);

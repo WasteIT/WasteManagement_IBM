@@ -4,6 +4,13 @@ import Actions from "../components/Report/Actions";
 import EstimatedEffects from "../components/Report/EstimatedEffects";
 import Pickup from "../components/Report/Pickup";
 
+/**
+ * Report is a React functional component responsible for displaying optimization details and reports.
+ * It fetches optimization data and sensor data based on the location (address) provided via React Router.
+ * 
+ * @returns {JSX.Element} The JSX element representing the Report component.
+ */
+
 const Report = () => {
   const { state } = useLocation();
   const name = state?.name || null;

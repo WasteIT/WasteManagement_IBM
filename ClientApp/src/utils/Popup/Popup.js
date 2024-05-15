@@ -3,6 +3,13 @@ import { usePopup } from './PopupProvider';
 import { Link } from 'react-router-dom';
 import UserContext from '../../utils/UserContext';
 
+/**
+ * Popup component displays a popup message to notify the user about the completion of an optimization report.
+ * It provides a button to navigate to the report page.
+ * 
+ * @returns {JSX.Element} The JSX element representing the Popup component.
+ */
+
 export const Popup = () => {
     const { isVisible, hidePopup } = usePopup();
     const [isHovering, setIsHovering] = useState(false);

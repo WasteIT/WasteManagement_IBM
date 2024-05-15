@@ -5,6 +5,14 @@ import UserContext from '../../utils/UserContext';
 import { Popup } from '../../utils/Popup/Popup';
 import { useKeyboardPopup } from '../../utils/Popup/useKeyboardPopup';
 
+/**
+ * NavMenu is a functional component responsible for rendering the navigation menu of the website.
+ * It includes navigation links to different sections of the website, such as Agreements, Fraction, and Optimization.
+ * The visibility of certain links depends on the current route.
+ * 
+ * @returns {JSX.Element} JSX element representing the NavMenu component.
+ */
+
 function NavMenu() {
   const location = useLocation();
   const isRootPath = location.pathname === "/";

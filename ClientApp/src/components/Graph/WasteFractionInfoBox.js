@@ -3,6 +3,19 @@ import { Button } from 'react-bootstrap';
 import { getWasteFractionColor } from '../../utils/GetColour';
 import { sortWeekdays } from '../../utils/SortDays'
 
+/**
+ * WasteFractionInfoBox is a functional component in React responsible for rendering information about a specific waste fraction.
+ * 
+ * @param {object} props - Props passed to the WasteFractionInfoBox component.
+ * @param {string} props.wasteFraction - The type of waste fraction being displayed.
+ * @param {array} props.bins - An array containing information about individual waste bins.
+ * @param {array} props.pickup - An array containing pickup days for the waste fraction.
+ * @param {number} props.avgerageWithOneDecimal - The average fill level for the waste fraction, rounded to one decimal point.
+ * 
+ * @returns {JSX.Element} JSX element representing the WasteFractionInfoBox component.
+ */
+
+
 const WasteFractionInfoBox = ({wasteFraction, bins, pickup, avgerageWithOneDecimal}) => {
   const [activeButton, setActiveButton] = useState("all");
   const [avgFillLevelForCurrentSelection, setAvgFillLevelForCurrentSelection] = useState(0);

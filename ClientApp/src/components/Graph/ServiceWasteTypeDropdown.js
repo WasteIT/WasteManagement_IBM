@@ -3,6 +3,22 @@ import Accordion from 'react-bootstrap/Accordion';
 import { FormCheck } from 'react-bootstrap';
 import { getWasteFractionColor } from '../../utils/GetColour';
 
+/**
+ * ServiceWasteTypeDropdown is a functional component in React that represents a dropdown menu for selecting waste types and associated sensors.
+ * 
+ * @param {object} props - Props passed to the ServiceWasteTypeDropdown component.
+ * @param {string} props.wasteType - The type of waste for which sensors are being displayed.
+ * @param {array} props.sensors - An array containing sensor data for the specified waste type.
+ * @param {function} props.onSecondaryChange - A function to handle changes in secondary selections (sensors).
+ * @param {function} props.onSensorSelect - A function to handle the selection of sensors.
+ * @param {boolean} props.checkedPrimaryValue - A boolean value indicating whether the primary checkbox for the waste type is checked.
+ * @param {function} props.checkedSecondaryValue - A function to check if a secondary checkbox (sensor) is checked.
+ * @param {function} props.onPrimaryChange - A function to handle changes in the primary checkbox for the waste type.
+ * 
+ * @returns {JSX.Element} JSX element representing the ServiceWasteTypeDropdown component.
+ */
+
+
 const ServiceWasteTypeDropdown = ({ wasteType, sensors, onSecondaryChange, onSensorSelect, checkedPrimaryValue, checkedSecondaryValue, onPrimaryChange }) => {
 
   const [isCollapsed, setIsCollapsed] = useState(false);
