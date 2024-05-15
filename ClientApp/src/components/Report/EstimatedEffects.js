@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
 
-export default function EstimatedEffects({ data, schedules, numberOfGeneralWasteContainers, generalWasteContainersSchedule }) {    
+export default function EstimatedEffects({ data}) {    
 
 
     const [costChange, setCostChange] = useState(0);
