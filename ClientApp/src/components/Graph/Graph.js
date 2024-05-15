@@ -1,6 +1,46 @@
 import React, { useRef, useEffect } from 'react';
 import { Chart } from 'chart.js/auto';
 import { getWasteFractionColor } from '../../utils/GetColour';
+/**
+ * This module contains functions and a React component related to fetching and displaying graph data.
+ * 
+ * @module Graph
+ */
+
+/**
+ * Asynchronously fetches graph data for all waste types within a specified date range.
+ * 
+ * @param {string} wasteTypeName - The name of the waste type to be highlighted.
+ * @param {string} name - The address or location name associated with the sensor data.
+ * @param {object} sensorData - An object containing sensor data for different waste types.
+ * @param {object} dateRange - An object containing startDate and endDate representing the selected date range.
+ * @param {function} setGraphData - A function to set the graph data state.
+ * @param {function} setIsLoading - A function to set the loading state.
+ * @param {function} setVisibleFractions - A function to set the visibility state of waste fractions.
+ */
+
+/**
+ * Asynchronously fetches graph data for a single sensor within a specified date range.
+ * 
+ * @param {string} name - The address or location name associated with the sensor data.
+ * @param {string} wasteType - The type of waste associated with the sensor.
+ * @param {string} sensor - The sensor identifier.
+ * @param {object} graphData - An object containing graph data for different sensors.
+ * @param {object} dateRange - An object containing startDate and endDate representing the selected date range.
+ * @param {function} setIsLoading - A function to set the loading state.
+ */
+
+/**
+ * Graph is a functional component that represents a chart displaying sensor data over time.
+ * 
+ * @param {object} props - Props passed to the Graph component.
+ * @param {object} props.graphData - An object containing graph data for different sensors.
+ * @param {object} props.visibleFractions - An object indicating the visibility state of waste fractions.
+ * 
+ * @returns {JSX.Element} JSX element representing the Graph component.
+ */
+
+
 
 export const fetchAllGraphData = async (wasteTypeName, name, sensorData, dateRange, setGraphData, setIsLoading, setVisibleFractions) => {
     if (Object.keys(sensorData).length > 0) {
