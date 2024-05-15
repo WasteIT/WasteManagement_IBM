@@ -2,6 +2,15 @@ import React, { Component } from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import { Link } from 'react-router-dom';
 
+/**
+ * ServiceAgreementsDropdown is a class component in React that represents a dropdown item displaying details of a service agreement.
+ * 
+ * @param {object} props - Props passed to the ServiceAgreementsDropdown component.
+ * @param {string} props.name - The name of the service agreement to be displayed.
+ * 
+ * @returns {JSX.Element} JSX element representing the ServiceAgreementsDropdown component.
+ */
+
 class ServiceAgreementsDropdown extends Component {
     render() {
         const { name } = this.props;
