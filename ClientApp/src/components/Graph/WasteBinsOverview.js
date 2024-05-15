@@ -9,6 +9,13 @@ import Graph, { fetchAllGraphData, fetchSingleGraphData } from './Graph';
 import './../../style.css';
 import Card from 'react-bootstrap/Card';
 
+/**
+ * Layout is a functional component in React responsible for rendering the main layout of the waste bin overview page.
+ * 
+ * @returns {JSX.Element} JSX element representing the Layout component.
+ */
+
+
 const Layout = () => {
   
     const { state: { name, streetName, pickup, bins, avgerageWithOneDecimal} = {} } = useLocation();
