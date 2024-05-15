@@ -14,7 +14,7 @@ namespace Function.Tests
             string binNumber = "1";
             int depth = 100;
             double popularity = 0.5;
-            WasteCategory category = new WasteCategory("General", 10, new List<int>() { 1, 3 });
+            WasteCategory category = new WasteCategory("General", 10, new List<int>() { 1, 3 }, 1);
             WasteBinManager manager = new WasteBinManager();
 
             // Act
@@ -32,7 +32,7 @@ namespace Function.Tests
         public void WasteBin_AddWaste_IncreasesFillLevel()
         {
             // Arrange
-            WasteBin bin = new WasteBin("1", 100, 0.5, new WasteCategory("General", 10, new List<int>() { 1, 3 }), new WasteBinManager());
+            WasteBin bin = new WasteBin("1", 100, 0.5, new WasteCategory("General", 10, new List<int>() { 1, 3 }, 1), new WasteBinManager());
             double wasteAmount = 10.5;
 
             // Act
@@ -47,8 +47,8 @@ namespace Function.Tests
         {
             // Arrange
             WasteBinManager manager = new WasteBinManager();
-            WasteCategory category1 = new WasteCategory("General", 10, new List<int>() { 1 });
-            WasteCategory category2 = new WasteCategory("Recycling", 5, new List<int>() { 2 });
+            WasteCategory category1 = new WasteCategory("General", 10, new List<int>() { 1 }, 1);
+            WasteCategory category2 = new WasteCategory("Recycling", 5, new List<int>() { 2 }, 1);
             manager.wasteCategories.Add(category1);
             manager.wasteCategories.Add(category2);
 
@@ -65,7 +65,7 @@ namespace Function.Tests
             // Arrange
 
             WasteBinManager manager = new WasteBinManager(); 
-            WasteCategory category = new WasteCategory("General", 10, new List<int>() { 1 });
+            WasteCategory category = new WasteCategory("General", 10, new List<int>() { 1 }, 1);
             WasteBin bin1 = new WasteBin("1", 100, 0.5, category, manager);
             WasteBin bin2 = new WasteBin("2", 100, 0.7, category, manager);
             category.wasteBins.Add(bin1);
@@ -83,7 +83,7 @@ namespace Function.Tests
         {
             // Arrange
             WasteBinManager manager = new WasteBinManager();
-            WasteCategory category = new WasteCategory("General", 100, new List<int>() { 1 });
+            WasteCategory category = new WasteCategory("General", 100, new List<int>() { 1 }, 1);
             WasteBin bin = new WasteBin("1", 50, 0.5, category, manager);
             category.wasteBins.Add(bin);
             bin.fillLevel = 50;
@@ -101,7 +101,7 @@ namespace Function.Tests
         {
             // Arrange
             WasteBinManager manager = new WasteBinManager();
-            WasteCategory category = new WasteCategory("General", 100, new List<int>() { 1 });
+            WasteCategory category = new WasteCategory("General", 100, new List<int>() { 1 }, 1);
             WasteBin bin1 = new WasteBin("1", 20, 0.5, category, manager);
             WasteBin bin2 = new WasteBin("2", 30, 0.5, category, manager);
             category.wasteBins.Add(bin1);
@@ -123,9 +123,9 @@ namespace Function.Tests
             // Arrange
             WasteBinManager manager = new WasteBinManager();
             
-            WasteCategory plastic = new WasteCategory("Plastic", 7, new List<int> { 6 });
-            WasteCategory paper = new WasteCategory("Paper", 6, new List<int> { 5 });
-            WasteCategory glass = new WasteCategory("Glass", 5, new List<int> { 4});
+            WasteCategory plastic = new WasteCategory("Plastic", 7, new List<int> { 6 }, 1);
+            WasteCategory paper = new WasteCategory("Paper", 6, new List<int> { 5 }, 1);
+            WasteCategory glass = new WasteCategory("Glass", 5, new List<int> { 4}, 1);
             
             manager.addWasteCategory(plastic);
             manager.addWasteCategory(paper);
@@ -145,13 +145,13 @@ namespace Function.Tests
         {
             // Arrange
             var wasteBinManager = new WasteBinManager();
-            var wasteCategory = new WasteCategory("General", 0, new List<int>() { 2 }); // Schedule on Tuesday (day 2)
+            var wasteCategory = new WasteCategory("General", 0, new List<int>() { 2 }, 1); // Schedule on Tuesday (day 2)
             wasteBinManager.wasteCategories.Add(wasteCategory);
             WasteBin bin = new WasteBin("1", 10, 0.5, wasteCategory, wasteBinManager);
             wasteCategory.wasteBins.Add(bin);
 
             // Act - Simulate Tuesday (day 2)
-            wasteBinManager.EmptyBinsOnSchedule(0, 2);
+            wasteBinManager.EmptyBinsOnSchedule(0, 2, 1);
 
             // Assert
             Assert.Equal(0, bin.fillLevel);
@@ -161,14 +161,14 @@ namespace Function.Tests
         {
             // Arrange
             var wasteBinManager = new WasteBinManager();
-            var wasteCategory = new WasteCategory("General", 0, new List<int>() { 2 }); // Schedule on Tuesday (day 2)
+            var wasteCategory = new WasteCategory("General", 0, new List<int>() { 2 }, 1); // Schedule on Tuesday (day 2)
             wasteBinManager.wasteCategories.Add(wasteCategory);
             WasteBin bin = new WasteBin("1", 10, 0.5, wasteCategory, wasteBinManager);
             bin.fillLevel = 5; // Set an initial fill level for the bin
             wasteCategory.wasteBins.Add(bin);
 
             // Act - Simulate Monday (day 1)
-            wasteBinManager.EmptyBinsOnSchedule(0, 1);
+            wasteBinManager.EmptyBinsOnSchedule(0, 1, 1);
 
             // Assert
             Assert.NotEqual(0, bin.fillLevel);
@@ -178,7 +178,7 @@ namespace Function.Tests
         {
             // Arrange
             var wasteBinManager = new WasteBinManager();
-            var wasteCategory = new WasteCategory("General", 0, new List<int>() { 1 });
+            var wasteCategory = new WasteCategory("General", 0, new List<int>() { 1 }, 1);
             wasteBinManager.wasteCategories.Add(wasteCategory);
             WasteBin bin = new WasteBin("1", 10, 0.5, wasteCategory, wasteBinManager);
             bin.fillLevel = 5;
@@ -247,7 +247,7 @@ namespace Function.Tests
         // Arrange
         var wasteBinManager = new WasteBinManager();
 
-        var category1 = new WasteCategory("GeneralWaste", 2, new List<int>() { 2 }); // Schedule on Tuesdays
+        var category1 = new WasteCategory("GeneralWaste", 2, new List<int>() { 2 }, 1); // Schedule on Tuesdays
         wasteBinManager.wasteCategories.Add(category1);
 
         var bin1 = new WasteBin("1", 100, 0.8, category1, null);

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "o4kms+BcAyzlrWFQ3Y7cr0PAqivGhJwTahWPdPbDYgBoqwvad2kvnI7jkBHrWs6KtPPEjw02uB0w02q3abU4ZA==",
+  "dgSpecHash": "ISXxt0e5Ih82pXEDDt5XT+K03/N+dICRLSf2lJ7msAp12rSHgVj40TIn0KtSt/9B/SC/Eij+e9Umo/Y7Q/tSAA==",
   "success": true,
-  "projectFilePath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/datascript/datascript.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/datascript/datascript.csproj",
+  "expectedPackageFiles": [
+    "/Users/nusers/.nuget/packages/microsoft.netcore.app.ref/7.0.17/microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
+    "/Users/nusers/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.17/microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512",
+    "/Users/nusers/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.17/microsoft.netcore.app.host.osx-arm64.7.0.17.nupkg.sha512"
+  ],
   "logs": []
 }

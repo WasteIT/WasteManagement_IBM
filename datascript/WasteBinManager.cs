@@ -211,7 +211,6 @@ namespace datascript
         {
             foreach (var wasteCategory in wasteCategories)
             {
-                Console.WriteLine("Type " + wasteCategory.type + " at time: " + UnixTimeStampToDateTime(time));
                 foreach (var bin in wasteCategory.wasteBins)
                 {
                     System.Threading.Thread.Sleep(200);
