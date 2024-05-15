@@ -1,23 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
 
-export default function EstimatedEffects() {    
+export default function EstimatedEffects({ data, schedules, numberOfGeneralWasteContainers, generalWasteContainersSchedule }) {    
 
+
+    const [costChange, setCostChange] = useState(0);
+
+    useEffect(() => {
+        let change = 0;
+        if (data) {
+            Object.entries(data).forEach(([operation, fractions]) => {
+                Object.entries(fractions).forEach(([fraction, {amount, schedules, sensorData}]) => {
+                    console.log(fraction)
+                    if ( fraction === 'general waste') {
+                        if (operation === 'add') {
+                            change -= amount * 400 * 7.5 * 2 //Fix to accurately reflect pick up schedule for general waste containers.
+                        } else if (operation === 'remove') {
+                            change += amount * 400 * 7.5 * 2 //Fix to accurately reflect pick up schedule for general waste containers.
+                        }
+                    }
+                });
+            });
+        }
+        setCostChange(change);
+    }, [data]);
+
+    //Hardcoded for now. Yearly cost for 24 households...
+    let numberOfHouseholds = 24;
+    let numberOfGeneralWasteContainersTemp = 3
+    let generalWasteContainersScheduleTemp = 2
+    let totalCostBefore = 2629 * numberOfHouseholds + numberOfGeneralWasteContainersTemp * 400 * generalWasteContainersScheduleTemp * 7.5;
+
+    
     //const yearlySavings = getRandomNumber(14960, 2000);
     //const emissionReduction = getRandomNumber(12, 4);
     //const savingsPerHousehold = getRandomNumber(450, 75);
     //const recyclingRateIncrease = getRandomNumber(25, 10);
 
-    const yearlySavingsBefore = 14960
-    const emissionReductionBefore = 12
-    const savingsPerHouseholdBefore = 450
-    const recyclingRateIncreaseBefore = 25
-    const averageWeeklyPickupBefore = 6
+    const yearlySavingsBefore = totalCostBefore;
+    const emissionReductionBefore = "TBD";
+    const savingsPerHouseholdBefore = yearlySavingsBefore / 24;
+    const recyclingRateIncreaseBefore = "TBD";
+    const averageWeeklyPickupBefore = "TBD";
 
-    const yearlySavings = 14960
-    const emissionReduction = 12
-    const savingsPerHousehold = 450
-    const recyclingRateIncrease = 25
+    const yearlySavings = costChange;
+    const emissionReduction = "TBD";
+    const savingsPerHousehold = costChange / numberOfHouseholds;
+    const recyclingRateIncrease = "TBD";
 
     return (
         <div style={{width: '40rem', background: '#F5F5F5', borderRadius: '25px', boxShadow: '-10px 30px 50px rgba(33, 82, 75, 0.4)', marginTop: '2.5rem'}}>
@@ -114,7 +143,7 @@ export default function EstimatedEffects() {
                         <div style = {{textAlign: 'center'}}>
                             <img style={{height: '5rem'}} src='./images/Truck.png' alt="Card cap"/>
                             <h5 id="averagePickup" style={{color: '#579249', fontWeight: 'bold'}}>
-                                <CountUp end={5} duration={4} suffix=" times" />   
+                                <CountUp end={"TBD"} duration={4} suffix=" times" />   
                             </h5>
                             <p>
                                 Average weekly pickups

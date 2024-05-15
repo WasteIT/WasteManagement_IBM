@@ -54,17 +54,3 @@ C:/Users/Madso/WasteManagement_IBM/datascript/bin/Debug/net7.0/datascript.dll
 C:/Users/Madso/WasteManagement_IBM/datascript/bin/Debug/net7.0/datascript.pdb
 C:/Users/Madso/WasteManagement_IBM/datascript/obj/Debug/net7.0/datascript.genruntimeconfig.cache
 C:/Users/Madso/WasteManagement_IBM/datascript/obj/Debug/net7.0/ref/datascript.dll
-C:\Users\Madso\WasteManagement_IBM\datascript\bin\Debug\net7.0\datascript.exe
-C:\Users\Madso\WasteManagement_IBM\datascript\bin\Debug\net7.0\datascript.deps.json
-C:\Users\Madso\WasteManagement_IBM\datascript\bin\Debug\net7.0\datascript.runtimeconfig.json
-C:\Users\Madso\WasteManagement_IBM\datascript\bin\Debug\net7.0\datascript.dll
-C:\Users\Madso\WasteManagement_IBM\datascript\bin\Debug\net7.0\datascript.pdb
-C:\Users\Madso\WasteManagement_IBM\datascript\obj\Debug\net7.0\datascript.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Madso\WasteManagement_IBM\datascript\obj\Debug\net7.0\datascript.AssemblyInfoInputs.cache
-C:\Users\Madso\WasteManagement_IBM\datascript\obj\Debug\net7.0\datascript.AssemblyInfo.cs
-C:\Users\Madso\WasteManagement_IBM\datascript\obj\Debug\net7.0\datascript.csproj.CoreCompileInputs.cache
-C:\Users\Madso\WasteManagement_IBM\datascript\obj\Debug\net7.0\datascript.dll
-C:\Users\Madso\WasteManagement_IBM\datascript\obj\Debug\net7.0\refint\datascript.dll
-C:\Users\Madso\WasteManagement_IBM\datascript\obj\Debug\net7.0\datascript.pdb
-C:\Users\Madso\WasteManagement_IBM\datascript\obj\Debug\net7.0\datascript.genruntimeconfig.cache
-C:\Users\Madso\WasteManagement_IBM\datascript\obj\Debug\net7.0\ref\datascript.dll
