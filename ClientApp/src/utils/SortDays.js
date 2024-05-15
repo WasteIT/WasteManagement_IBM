@@ -1,3 +1,14 @@
+/**
+ * Sorts an array of weekdays according to their order defined in the `weekdayOrder` object.
+ * 
+ * @param {string[]} weekdays - Array of weekdays to be sorted.
+ * @returns {string[]} The sorted array of weekdays.
+ * @example
+ * // Example of usage:
+ * const sortedWeekdays = sortWeekdays(['Wednesday', 'Monday', 'Friday', 'Sunday']);
+ * // Returns: ['Monday', 'Wednesday', 'Friday', 'Sunday']
+ */
+
 const weekdayOrder = {
     'Monday': 1,
     'Tuesday': 2,

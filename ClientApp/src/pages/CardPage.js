@@ -3,6 +3,15 @@ import { useLocation } from 'react-router-dom';
 import WasteCard from '../components/WasteCard';
 import UserContext from '../utils/UserContext';
 
+/**
+ * Renders the waste card page component.
+ * 
+ * This component fetches data related to waste cards based on the location and displays waste card information
+ * including waste fraction overview, average pickup, and schedules.
+ * 
+ * @returns {JSX.Element} Waste card page component.
+ */
+
 export default function CardPage() {
     const location = useLocation();
     const [name, ] = useState(location.state.name);
