@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './report.css';
 import { sortWeekdays } from '../../utils/SortDays'
 
+/**
+ * WastePickupSchedule is a functional component that displays the recommended new pickup schedule
+ * for different waste types based on the provided address.
+ * 
+ * @param {string} address - The address for which the pickup schedule is fetched.
+ * @returns {JSX.Element} - The JSX element representing the recommended pickup schedule.
+ */
+
 const WastePickupSchedule = ({ address }) => {
   const [wasteTypes, setWasteTypes] = useState([]);
 
