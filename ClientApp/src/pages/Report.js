@@ -99,9 +99,8 @@ const Report = () => {
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <EstimatedEffects 
                           data={optimizationData} 
-                          schedules={schedules} 
-                          //numberOfGeneralWasteBins = {sensorData["General waste"]}
-                          //wasteBinSchedule = {schedules["General waste"]}
+                          schedules={schedules}
+                          name={name}
                           />
                      </div>
               </div>
