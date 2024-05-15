@@ -60,7 +60,7 @@ public class Tests : PageTest
         await page.GotoAsync("https://wasteit.azurewebsites.net/");
         await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
-        await page.GetByRole(AriaRole.Link, new() { Name = "Avg fill level at pickup: 19.8% Pickup days: Saturday Bins:" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Avg fill level at pickup: 94.5%" }).ClickAsync();
         await Expect(page.GetByText("Cardboard")).ToBeVisibleAsync();
         await Expect(page.Locator("canvas")).ToBeVisibleAsync();
 
@@ -121,7 +121,7 @@ public class Tests : PageTest
         await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
         await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
         await Expect(page.GetByTestId("Fraction-test")).ToBeVisibleAsync();
-        await page.GetByRole(AriaRole.Link, new() { Name = "Avg fill level at pickup: 40%" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Avg fill level at pickup: 96.9%" }).ClickAsync();
         await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
         await Expect(page.GetByTestId("Fraction-test")).ToBeVisibleAsync();
         await Expect(page.GetByTestId("Graph-test")).ToBeVisibleAsync();
@@ -141,7 +141,7 @@ public class Tests : PageTest
         await page.GotoAsync("https://wasteit.azurewebsites.net/");
         await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
-        await page.GetByRole(AriaRole.Link, new() { Name = "Avg fill level at pickup: 40%" }).ClickAsync();
+        await page.GetByRole(AriaRole.Link, new() { Name = "Avg fill level at pickup: 96.9%" }).ClickAsync();
         await page.GetByRole(AriaRole.Banner).GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
         await page.GetByTestId("Fraction-test").ClickAsync();
         await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Home" })).ToBeVisibleAsync();
@@ -212,7 +212,7 @@ public class Tests : PageTest
         await page.GetByRole(AriaRole.Button, new() { Name = "Agreement: Bøgevej" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Access waste data" }).ClickAsync();
         await page.GetByRole(AriaRole.Link, new() { Name = "Optimization" }).ClickAsync();
-        await Expect(page.Locator("div").Filter(new() { HasTextRegex = new Regex("^Add 1 Cardboard bins to your waste yard\\.$") }).Nth(1)).ToBeVisibleAsync();
+        await Expect(page.Locator("div").Filter(new() { HasTextRegex = new Regex("^Add 1 Glass bins to your waste yard\\.$") }).Nth(1)).ToBeVisibleAsync();
 
     }
     [Test]
