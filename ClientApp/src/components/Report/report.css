@@ -1,7 +1,7 @@
 /* WastePickupSchedule.css */
 .waste-schedule {
     border-radius: 50px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: -5px 5px 50px rgba(33, 82, 75, 0.4);
     max-width: 15rem;
 
     /* Add other styling properties as needed */
@@ -11,11 +11,10 @@
     font-size: 1.2rem;
     margin-right: 20px;
   }
-  
-
 
   .schedule-header {
-    border-radius: 50px 50px 0px 0px;
+    border-radius: 25px 25px 0px 0px;
+    padding: 10px;
     height: auto;
     width: auto;
     display: flex;
@@ -39,6 +38,7 @@
 
   .pickup-items {
     display: flex;
+    padding: 0.3rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -56,5 +56,5 @@
   }
 
   .pickup-items:last-child{
-    border-radius: 0px 0px 50px 50px;
+    border-radius: 0px 0px 25px 25px;
   }

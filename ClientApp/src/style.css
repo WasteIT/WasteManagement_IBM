@@ -74,7 +74,7 @@ main {
 
 .navbar-container {
   background-color: #e8dfdf;
-  margin-bottom: 3rem;
+  margin-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
   width: 100vw;
@@ -179,6 +179,15 @@ button.btn.search_bar_button{
   margin-top: 15px;
 }
 
+button.btn.search_bar_button:hover{
+  max-width:10%;
+  background-color: black;
+  color: white;
+  border-radius: 25px !important;
+  margin-left: 10px !important;
+  margin-top: 15px;
+}
+
 .agreement.accordion-item{
   display: block;
   margin-left: auto;
@@ -205,7 +214,6 @@ transition: ease-in-out 1s;
 }
 
 .agreementAccordionButton:hover {
-  border-radius: 25px !important;
   transition: ease-in-out 0.3s;
   color: white !important;
   }
@@ -216,10 +224,15 @@ transition: ease-in-out 1s;
   border-radius: 30px 30px 30px 30px !important;
 }
 
+
 .agreementAccordionButton button.accordion-button.collapsed:hover{
   color: white !important;
   background-color: black !important;
   border-radius: 30px !important;
+}
+
+.accordion-button:hover:after {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
 }
 
 
@@ -254,7 +267,7 @@ transition: ease-in-out 1s;
   background-color: #83C6C0;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3) !important;
+ 
 }
 
 .btn.button.agreement:hover{
@@ -648,7 +661,7 @@ WasteBinsOverview.js styles
 .filter_options_wrapper {
   text-align: left;
   margin-top: 40px;
-  margin-left: 60px;
+  margin-left: 10px;
 }
 
 .card-wrapper {
@@ -656,7 +669,7 @@ WasteBinsOverview.js styles
   border-radius: 30px;
   text-align: left;
   background-color: #f5f5f5;
-  box-shadow: -10px 30px 100px 0 rgba(33, 82, 75, 0.6);
+  box-shadow: -5px 5px 50px rgba(33, 82, 75, 0.4);
   width: auto;
   margin-bottom: 8rem;
 }
@@ -726,7 +739,7 @@ WasteBinsOverview.js styles
   border-radius: 0px 0px 30px 30px;
    padding: 1rem 1rem 0.5rem 1rem; 
    height: 12rem; 
-   box-shadow: -10px 30px 50px rgba(33, 82, 75, 0.5);
+   box-shadow: -5px 5px 50px rgba(33, 82, 75, 0.4);
 }
 
 .sensor-control-main-waste-fraction-input-wrapper-inner {
@@ -744,7 +757,7 @@ WasteBinsOverview.js styles
   color: #fff;
   background-color: #141414;
   border-radius: 30px;
-  box-shadow: -10px 30px 50px rgba(33, 82, 75, 0.5);
+  box-shadow: -5px 5px 50px rgba(33, 82, 75, 0.4);
 }
 
 .sensor-control-other-waste-fraction-title {
@@ -824,8 +837,8 @@ ServiceWasteTypeDropdown.js styles
 } 
 
 input[type="date"] {
-  background-color: #fafafa;
-  border: 1px solid #ddd;
+  background-color: #ffffff;
+  border: 2px solid #d8d8d8;
   border-radius: 20px;
   padding: 8px 12px;
   padding-right: 50px;
@@ -833,7 +846,7 @@ input[type="date"] {
   color: #333;
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+  /*box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);*/
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -845,13 +858,14 @@ input[type="date"]:focus {
 
 .fixed-date-range-button {
   background-color: #fff;
-  border: none;
+  border: 2px solid #d8d8d8;
   border-radius: 20px;
   margin-left: 1rem;
   margin-right: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.40);
+  transition: all 0.2s ease-in-out;
+  /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.40); */
 }
 
 .fixed-date-range-button:hover {
@@ -871,7 +885,7 @@ WasteFractionInfoBox.js styles
   max-width: 60rem;
   width: 60rem;
   border-radius: 25px;
-  box-shadow: -10px 30px 50px rgba(33, 82, 75, 0.5);
+  box-shadow: -5px 5px 50px rgba(33, 82, 75, 0.4);
 }
 
 .waste-fraction-info-box-image-wrapper {
