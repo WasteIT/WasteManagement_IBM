@@ -1691,19 +1691,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/juliusdalsgaardbertelsen/.nuget/packages/": {}
+    "/Users/nusers/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/Tests/PlaywrightTests/PlaywrightTests.csproj",
+      "projectUniqueName": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/PlaywrightTests/PlaywrightTests.csproj",
       "projectName": "PlaywrightTests",
-      "projectPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/Tests/PlaywrightTests/PlaywrightTests.csproj",
-      "packagesPath": "/Users/juliusdalsgaardbertelsen/.nuget/packages/",
-      "outputPath": "/Users/juliusdalsgaardbertelsen/Documents/ITU/2 year project/WasteManagemenIBM/WasteManagement_IBM/Tests/PlaywrightTests/obj/",
+      "projectPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/PlaywrightTests/PlaywrightTests.csproj",
+      "packagesPath": "/Users/nusers/.nuget/packages/",
+      "outputPath": "/Users/nusers/Documents/GitHub/WasteManagement_IBM/Tests/PlaywrightTests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/juliusdalsgaardbertelsen/.nuget/NuGet/NuGet.Config"
+        "/Users/nusers/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -1721,6 +1721,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1763,12 +1768,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }
