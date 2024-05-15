@@ -1,5 +1,16 @@
 export default function Action({fraction, action, binId, numberOfBins, description}){
 
+/**
+ * Action is a functional component that renders an action card based on the provided props.
+ * 
+ * @param {string} fraction - The type of waste fraction associated with the action.
+ * @param {string} action - The type of action to be performed (e.g., "add", "remove", "check", "schedule").
+ * @param {number} binId - The ID of the waste bin (relevant for "check" action).
+ * @param {number} numberOfBins - The number of waste bins involved in the action (relevant for "add" and "remove" actions).
+ * @param {string} description - The description of the action (relevant for "schedule" action).
+ * @returns {JSX.Element} - The JSX element representing the action card.
+ */
+
     function GetText(action) {
         if (action === "add") {
             return `Add ${numberOfBins} ${fraction} bins to your waste yard.`
