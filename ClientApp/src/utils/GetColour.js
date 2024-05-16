@@ -1,3 +1,13 @@
+/**
+ * Function to get the color associated with a waste fraction label.
+ * 
+ * @param {string} label - The label of the waste fraction.
+ * @returns {string} The color in RGBA format.
+ * @example
+ * // Example of usage:
+ * const color = getWasteFractionColor('General waste');
+ */
+
 export const getWasteFractionColor = (label) => {
     switch (label) {
       case 'General waste':

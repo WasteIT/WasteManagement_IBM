@@ -7,6 +7,12 @@ import UserContext from './utils/UserContext';
 import Breadcrumbs from './utils/Breadcrumbs';
 import { BreadcrumbProvider } from './utils/BreadcrumbContext';
 import './style.css'
+/**
+ * Root component of the application responsible for rendering navigation menus,
+ * routing, and providing context for user data.
+ * 
+ * @returns {JSX.Element} Root component of the application.
+ */
 
 export default function App() {
   const [streetName, setStreetName] = useState("");

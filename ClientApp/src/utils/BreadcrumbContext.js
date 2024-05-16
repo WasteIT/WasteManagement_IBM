@@ -1,5 +1,25 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 
+/**
+ * Context provider for managing breadcrumbs in the application.
+ * 
+ * @param {object} props - The properties passed to the component.
+ * @param {React.ReactNode} props.children - The child components wrapped by the provider.
+ * @returns {JSX.Element} BreadcrumbProvider component.
+ * @example
+ * // Example of usage:
+ * // In App.js:
+ * // import { BreadcrumbProvider } from './BreadcrumbProvider';
+ * // <BreadcrumbProvider>
+ * //   <App />
+ * // </BreadcrumbProvider>
+ * 
+ * // In any component:
+ * // import { useBreadcrumb } from './BreadcrumbProvider';
+ * // const { breadcrumbs, addBreadcrumb } = useBreadcrumb();
+ * // addBreadcrumb({ path: '/example', breadcrumb: 'Example' });
+ */
+
 const BreadcrumbContext = createContext();
 
 export const useBreadcrumb = () => useContext(BreadcrumbContext);

@@ -3,6 +3,22 @@ import { Link, useLocation } from 'react-router-dom';
 import { useBreadcrumb } from './BreadcrumbContext';
 import AppRoutes from '../AppRoutes';
 import UserContext from './UserContext';
+/**
+ * Component for rendering breadcrumbs based on the current location in the application.
+ * 
+ * @returns {JSX.Element} Breadcrumbs component.
+ * @example
+ * // Example of usage:
+ * // In App.js:
+ * // import { BreadcrumbProvider } from './BreadcrumbProvider';
+ * // <BreadcrumbProvider>
+ * //   <App />
+ * // </BreadcrumbProvider>
+ * 
+ * // In any component:
+ * // import Breadcrumbs from './Breadcrumbs';
+ * // <Breadcrumbs />
+ */
 
 const Breadcrumbs = () => {
   const location = useLocation();
