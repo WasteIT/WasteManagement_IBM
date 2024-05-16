@@ -57,7 +57,8 @@ export default function EstimatedEffects({ data, name }) {
         avgPickupSchedule = 1 + 0.2 + 3 + 2 + 0.5 + 0.5 + 1 + 1;
         recyclingRateIncreaseBefore = 20;
         recyclingRateIncrease = 25;
-
+        emissionReductionBefore = 2000;
+        emissionReduction = 5;
     } else if (name === 'Bøgevej') {
         numberOfHouseholds = 16;
         numberOfGeneralWasteContainers = 4
@@ -68,13 +69,9 @@ export default function EstimatedEffects({ data, name }) {
         avgPickupSchedule = 1 + 1 + 2 + 0.5 + 0.5 + 0.5 + 1;
         recyclingRateIncreaseBefore = 18;
         recyclingRateIncrease = 26;
+        emissionReductionBefore = 1650;
+        emissionReduction = 4;
     }
-
-    
-    //const yearlySavings = getRandomNumber(14960, 2000);
-    //const emissionReduction = getRandomNumber(12, 4);
-    //const savingsPerHousehold = getRandomNumber(450, 75);
-    //const recyclingRateIncrease = getRandomNumber(25, 10);
 
     const yearlySavingsBefore = totalCostBefore;
     const savingsPerHouseholdBefore = (yearlySavingsBefore / 24).toFixed(2);
@@ -125,10 +122,10 @@ export default function EstimatedEffects({ data, name }) {
                         </div>
                         <div style={{display: 'flex', justifyContent: 'space-around', position: 'relative', top: '40px', height: "50px"}}>
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
-                                <p>Before: {emissionReductionBefore} %</p>
+                                <p>Before: {emissionReductionBefore} Kilo</p>
                             </div>
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
-                                <p>After: {emissionReductionBefore + emissionReduction} %</p>
+                                <p>After: {emissionReductionBefore - (emissionReductionBefore / 100 * emissionReduction)} Kilo</p>
                             </div>
                         </div>
                     </div>
@@ -168,9 +165,6 @@ export default function EstimatedEffects({ data, name }) {
                         <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
                             <p>Difference: {recyclingRateIncrease - recyclingRateIncreaseBefore} %</p>
                         </div>
-                        {/* <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
-                            <p>After: {recyclingRateIncreaseBefore - recyclingRateIncrease} %</p>
-                        </div> */}
                     </div>
                 </div>
                 <div data-testid="Truck" style = {{background: 'white', borderRadius: '25px',marginLeft: '1rem', padding: '1rem',width:'12rem',height:'18rem',alignContent:'center'}}>
@@ -187,9 +181,6 @@ export default function EstimatedEffects({ data, name }) {
                             <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'left'}}>
                                 <p>Before: {avgPickupScheduleBefore} times</p>
                             </div>
-                            {/* <div style={{fontSize: '0.8rem', opacity: 0.6, textAlign: 'right'}}>
-                                <p>After: {avgPickupSchedule} times</p>
-                            </div> */}
                         </div>
                     </div>
             </div>
