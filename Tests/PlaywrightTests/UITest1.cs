@@ -181,7 +181,7 @@ public class Tests : PageTest
         await page.ClickAsync("text=Optimization Report Complete");
 
         var expectedYearlySavings = "DKK 29,700";
-        var expectedEmissionReduction = "0 %";
+        var expectedEmissionReduction = "4 %";
         var expectedSavingsPerHousehold = "DKK 1,856";
         var expectedRecyclingRateIncrease = "26 %";
         var expectedAveragePickup = "7 times";
