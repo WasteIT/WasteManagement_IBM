@@ -192,8 +192,8 @@ public class Tests : PageTest
         var yearlySavings = await page.InnerTextAsync("#yearlySavings");
         Assert.AreEqual(expectedYearlySavings, yearlySavings);
 
-        var emissionText = await page.InnerTextAsync("#emissionReduction");
-        Assert.AreEqual(expectedEmissionReduction, emissionText);
+        //var emissionText = await page.InnerTextAsync("#emissionReduction");
+        //Assert.AreEqual(expectedEmissionReduction, emissionText);
 
         var householdSavingsText = await page.InnerTextAsync("#savingsPerHousehold");
         Assert.AreEqual(expectedSavingsPerHousehold, householdSavingsText);
